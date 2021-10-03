@@ -16,7 +16,7 @@ public class Player {
         return this.name;
     }
 
-    public String getItemList() {
+    public String getItems() {
         StringBuilder toReturn = new StringBuilder("Items in backpack");
         int count = 1;
         for (String itemName : this.items.keySet()) {
@@ -33,7 +33,7 @@ public class Player {
         this.items.put(item.getName(), item);
     }
 
-    public void useItem(String itemName) {
+    public void use(String itemName) {
         Item toUse = this.items.get(itemName);
         this.items.remove(itemName);
         toUse.useAbility();
