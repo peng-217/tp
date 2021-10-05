@@ -4,11 +4,11 @@ public class Clue {
 
     //Suspect suspect;
     String clueName = "default name";
-    String image = ":)";
+    String image = "default image :)";
     String description = "default description";
     boolean isChecked;
 
-    Clue() {
+    public Clue() {
         isChecked = false;
     }
 
