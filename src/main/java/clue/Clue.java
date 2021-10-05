@@ -18,9 +18,12 @@ public class Clue {
 
     @Override
     public String toString() {
-        return "------------------------------------------------\n" +
-                clueName + System.lineSeparator() +
-                image + System.lineSeparator() +
-                description + System.lineSeparator();
+        return "------------------------------------------------\n"
+                + clueName
+                + System.lineSeparator()
+                + image
+                + System.lineSeparator()
+                + description
+                + System.lineSeparator();
     }
 }
