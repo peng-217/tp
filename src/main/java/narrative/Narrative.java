@@ -10,8 +10,8 @@ public class Narrative {
     String fileName;
 
     public Narrative() {
-         filePath = "docs/";
-    };
+        filePath = "docs/";
+    }
 
     public void displayNarrative() throws FileNotFoundException {
         File file = new File(filePath + fileName);
