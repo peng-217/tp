@@ -12,10 +12,10 @@ public class SuspectTest {
 
     @Test
     public void suspectWithTwoClues() {
-       Suspect tom = new Suspect();
-       tom.addClue(new FatherInsurance());
-       tom.addClue(new FatherTextMessage());
-       assertEquals(2, tom.getClues().size());
+        Suspect tom = new Suspect();
+        tom.addClue(new FatherInsurance());
+        tom.addClue(new FatherTextMessage());
+        assertEquals(2, tom.getClues().size());
     }
 
     @Test
