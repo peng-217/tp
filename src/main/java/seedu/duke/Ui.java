@@ -20,7 +20,7 @@ public class Ui {
 
     public void printSuspects(SuspectList suspects) {
         System.out.println("Please choose a suspect that you think is the real murderer from the list:");
-        for(int i = 0; i < suspects.getSize(); i++){
+        for (int i = 0; i < suspects.getSize(); i++) {
             System.out.println((i+1) + "." + suspects.getIndexSuspect(i));
         }
 

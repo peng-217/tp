@@ -30,10 +30,10 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
         String userInput;
-        Scanner user_type = new Scanner(System.in);
-        userInput = user_type.nextLine();
+        Scanner userType = new Scanner(System.in);
+        userInput = userType.nextLine();
 
-        while(!userInput.equals("EXIT")){
+        while (!userInput.equals("EXIT")) {
             //parser.processCommand(userInput);
             //the line above needs parser to be done first, then can be uncommented
             userInput = in.nextLine();
