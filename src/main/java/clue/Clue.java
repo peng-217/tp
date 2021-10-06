@@ -20,10 +20,10 @@ public class Clue {
     public String toString() {
         return "------------------------------------------------\n"
                 + clueName
-                + System.lineSeparator()
+                + "\n"
                 + image
-                + System.lineSeparator()
+                + "\n"
                 + description
-                + System.lineSeparator();
+                + "\n";
     }
 }
