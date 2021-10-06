@@ -34,10 +34,11 @@ public class Duke {
         userInput = user_type.nextLine();
 
         while(!userInput.equals("EXIT")){
-            parser.processCommand(userInput);
+            //parser.processCommand(userInput);
+            //the line above needs parser to be done first, then can be uncommented
             userInput = in.nextLine();
         }
-        
+
 
         ui.printExitMessage();
     }
