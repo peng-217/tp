@@ -6,6 +6,18 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
+    private static Ui ui;
+    private static Suspect choseSuspect;
+    private static Suspect realSuspect;
+
+    public static void initializeGame(){
+        ui = new Ui();
+        SuspectList suspects = new SuspectList(ui);
+
+
+    }
+
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -17,5 +29,16 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
+        String userInput;
+        Scanner user_type = new Scanner(System.in);
+        userInput = user_type.nextLine();
+
+        while(!userInput.equals("EXIT")){
+            parser.processCommand(userInput);
+            userInput = in.nextLine();
+        }
+        
+
+        ui.printExitMessage();
     }
 }
