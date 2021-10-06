@@ -45,7 +45,5 @@ public class SuspectListTest {
         assertTrue(suspects.getSuspectAllClues("Tom").get(0).isChecked());
 
         assertEquals(1, suspects.getSuspectAvailableClues("Tom").size());
-
-//        System.out.println(suspects.getSuspects().get("Jerry").getClues().get(0).isChecked());
     }
 }
