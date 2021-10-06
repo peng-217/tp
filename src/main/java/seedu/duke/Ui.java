@@ -6,19 +6,19 @@ import java.util.Scanner;
 public class Ui {
     private Scanner scanner;
 
-    public Ui(InputStream input){
+    public Ui(InputStream input) {
         this.scanner = new Scanner(input);
     }
 
-    public Ui(){
+    public Ui() {
         this(System.in);
     }
 
-    public void printExitMessage(){
+    public void printExitMessage() {
         System.out.println("Ok! Hope you enjoy this game! See you soon!");
     }
 
-    public void printSuspects(SuspectList suspects){
+    public void printSuspects(SuspectList suspects) {
         System.out.println("Please choose a suspect that you think is the real murderer from the list:");
         for(int i = 0; i < suspects.getSize(); i++){
             System.out.println((i+1) + "." + suspects.getIndexSuspect(i));

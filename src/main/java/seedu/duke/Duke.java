@@ -10,7 +10,7 @@ public class Duke {
     private static Suspect choseSuspect;
     private static Suspect realSuspect;
 
-    public static void initializeGame(){
+    public static void initializeGame() {
         ui = new Ui();
         SuspectList suspects = new SuspectList(ui);
 
