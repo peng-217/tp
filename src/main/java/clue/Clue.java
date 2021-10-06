@@ -16,6 +16,10 @@ public class Clue {
         this.isChecked = true;
     }
 
+    public boolean isChecked() {
+        return isChecked;
+    }
+
     @Override
     public String toString() {
         return "------------------------------------------------\n"
