@@ -1,6 +1,10 @@
 package seedu.duke;
 
+import suspect.Suspect;
+import suspect.SuspectList;
+
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Ui {
@@ -20,8 +24,10 @@ public class Ui {
 
     public void printSuspects(SuspectList suspects) {
         System.out.println("Please choose a suspect that you think is the real murderer from the list:");
-        for (int i = 0; i < suspects.getSize(); i++) {
-            System.out.println((i + 1) + "." + suspects.getIndexSuspect(i));
+        int i = 0;
+        for (Map.Entry<String, Suspect> suspectEntry : suspects.getSuspects().entrySet()) {
+            System.out.println((i + 1) + ". " + suspectEntry.getKey());
+            i++;
         }
 
     }
