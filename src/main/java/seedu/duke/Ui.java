@@ -18,6 +18,10 @@ public class Ui {
         this(System.in);
     }
 
+    public void print(String message) {
+        System.out.println(message);
+    }
+
     public void printExitMessage() {
         System.out.println("Ok! Hope you enjoy this game! See you soon!");
     }
