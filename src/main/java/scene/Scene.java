@@ -1,4 +1,7 @@
-package seedu.duke;
+package scene;
+
+import narrative.Narrative;
+import search.Search;
 
 public class Scene {
     private final Narrative narrative;

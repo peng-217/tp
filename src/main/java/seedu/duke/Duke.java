@@ -1,5 +1,8 @@
 package seedu.duke;
 
+import suspect.Suspect;
+import suspect.SuspectList;
+
 import java.util.Scanner;
 
 public class Duke {

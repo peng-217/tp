@@ -1,4 +1,4 @@
-package seedu.duke;
+package scene;
 
 public class SceneList {
 

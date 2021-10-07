@@ -1,4 +1,4 @@
-package seedu.duke;
+package search;
 
 public class Search {
 }
