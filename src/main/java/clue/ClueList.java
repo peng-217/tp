@@ -1,6 +1,6 @@
 package clue;
 
-import seedu.duke.Suspect;
+import suspect.Suspect;
 
 import java.util.ArrayList;
 
