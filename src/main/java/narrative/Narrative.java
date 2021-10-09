@@ -13,13 +13,17 @@ public class Narrative {
         filePath = "docs/";
     }
 
-    public void displayNarrative() throws FileNotFoundException {
+    public String getNarrative() throws FileNotFoundException {
         File file = new File(filePath + fileName);
         Scanner in = new Scanner(file);
         StringBuilder content = new StringBuilder();
         while (in.hasNext()) {
             content.append("\n").append(in.nextLine());
         }
-        System.out.println(content);
+        return content.toString();
+    }
+
+    public void displayNarrative() throws FileNotFoundException {
+        System.out.println(this.getNarrative());
     }
 }
