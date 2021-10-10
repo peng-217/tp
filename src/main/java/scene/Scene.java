@@ -31,8 +31,10 @@ public class Scene {
     @Override
     public String toString() {
         try {
-            return this.narrative.getNarrative() + "\n" +
-                    "Suspects: " + this.getSearch().toString();
+            return this.narrative.getNarrative()
+                    + "\n"
+                    + "Suspects: "
+                    + this.getSearch().toString();
         } catch (FileNotFoundException e) {
             System.out.println("Narrative has not been selected!");
             return "Incomplete Scene";
