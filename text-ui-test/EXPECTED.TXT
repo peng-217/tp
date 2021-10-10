@@ -7,4 +7,7 @@ HELLO! I am
 
 Before we get started, how do I address you?
 ==============================
+==============================
+Welcome James Gosling to the Classic Adventure Text Game!
+==============================
 
