@@ -7,7 +7,7 @@ public class FatherQuarrel extends Clue {
     public FatherQuarrel() {
         super();
         this.clueName = "                   Quarrel";
-        this.image ="          (   #  õ_ó)ﾉヽ(ó_õ  #   )";
+        this.image = "          (   #  õ_ó)ﾉヽ(ó_õ  #   )";
         this.description = "Father went out halfway. It sounded like there\n"
                 + "were some quarrel outside.\n"
                 + "As my soul approached the door, I vaguely heard\n"
