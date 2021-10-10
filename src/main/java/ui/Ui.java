@@ -68,4 +68,10 @@ public class Ui {
         System.out.println(LIST_OF_NOTES_MESSAGE);
         System.out.println("1. This is a place holder");
     }
+
+    public void getClue(int clueNumber) {
+        String str = "this is a clue placeholder";
+        System.out.println("Clue number " + clueNumber
+                + " " + str);
+    }
 }

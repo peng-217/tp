@@ -61,6 +61,10 @@ public class Duke {
             case "/notes":
                 ui.printNotesMessage();
                 break;
+            case "clue":
+                int clueNumber = parser.parseClueNumber(userInput);
+                ui.getClue(clueNumber);
+                break;
             default:
                 break;
             }
