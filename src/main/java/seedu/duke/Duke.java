@@ -4,8 +4,8 @@ import suspect.Suspect;
 import suspect.SuspectList;
 import java.util.Scanner;
 
-import Ui.Ui;
-import Parser.Parser;
+import ui.Ui;
+import parser.Parser;
 
 public class Duke {
     /**
@@ -36,7 +36,7 @@ public class Duke {
         ui.printEmptyLine();
         ui.printWelcomeMessage(userName);
         ui.printEmptyLine();
-//        SuspectList suspects = new SuspectList(ui);
+        // SuspectList suspects = new SuspectList(ui);
 
     }
 
@@ -48,10 +48,21 @@ public class Duke {
             String userInput = ui.readUserInput();
             String userInputParsed = parser.parseUserInput(userInput);
             ui.printEmptyLine();
-            if (userInputParsed.equals("/exit")) {
+            switch (userInputParsed) {
+            case "/exit":
                 userExit = true;
-            } else if (userInputParsed.equals("/help")) {
+                break;
+            case "/help":
                 ui.printListOfCommands();
+                break;
+            case "/clues":
+                ui.printListOfClues();
+                break;
+            case "/notes":
+                ui.printNotesMessage();
+                break;
+            default:
+                break;
             }
             ui.printEmptyLine();
         }

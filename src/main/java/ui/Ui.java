@@ -1,4 +1,4 @@
-package Ui;
+package ui;
 
 import java.util.Scanner;
 
@@ -16,6 +16,10 @@ public class Ui {
     private static final String GOODBYE_MESSAGE = "Goodbye.";
     private static final String LIST_OF_COMMAND_AVAILABLE_MESSAGE =
             "Here are the list of commands available to you.";
+    private static final String LIST_OF_CLUES_MESSAGE =
+            "Here are the list of clues available to you.";
+    private static final String LIST_OF_NOTES_MESSAGE =
+            "Here are the list of notes available to you.";
     private static final String lineSeparator = "==============================";
     private Scanner scanner;
 
@@ -42,8 +46,8 @@ public class Ui {
     }
 
     public void printWelcomeMessage(String userName) {
-        String welcomeMessage = "Welcome " + userName +
-                " to the " + GAME_NAME + "!";
+        String welcomeMessage = "Welcome " + userName
+                + " to the " + GAME_NAME + "!";
         System.out.println(welcomeMessage);
     }
 
@@ -53,5 +57,15 @@ public class Ui {
         System.out.println("/clues");
         System.out.println("/suspect");
         System.out.println("/note");
+    }
+
+    public void printListOfClues() {
+        System.out.println(LIST_OF_CLUES_MESSAGE);
+        System.out.println("1. This is a place holder");
+    }
+
+    public void printNotesMessage() {
+        System.out.println(LIST_OF_NOTES_MESSAGE);
+        System.out.println("1. This is a place holder");
     }
 }
