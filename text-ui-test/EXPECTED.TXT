@@ -7,14 +7,4 @@ HELLO! I am
 
 Before we get started, how do I address you?
 ==============================
-==============================
-==============================
-Welcome James Gosling to the Classic Adventure Text Game!
-==============================
-==============================
-Here are the list of commands available to you.
-/help
-/clues
-/suspect
-/note
-==============================
+
