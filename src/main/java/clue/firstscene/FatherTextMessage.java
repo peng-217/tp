@@ -11,7 +11,7 @@ public class FatherTextMessage extends Clue {
                 + "                    |_\n"
                 + "                    (O)\n"
                 + "                    |#|\n"
-                + "                    '-'";
+                + "                    '-'\n";
         this.description = "Father received text messages on his cell phone \n"
                 + "for several days in a row, and the contents were \n"
                 + "all the same: \"Li Jianguo, owe money pay money. \n"
