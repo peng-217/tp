@@ -16,7 +16,7 @@ public class SceneList {
     }
 
     public void nextScene() {
-        if(currentSceneIndex == scenes.size() - 1) {
+        if (currentSceneIndex == scenes.size() - 1) {
             return;
         }
         this.currentSceneIndex++;
