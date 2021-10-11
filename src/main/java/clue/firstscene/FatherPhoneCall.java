@@ -1,4 +1,6 @@
-package clue;
+package clue.firstscene;
+
+import clue.Clue;
 
 public class FatherPhoneCall extends Clue {
 

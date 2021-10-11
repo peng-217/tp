@@ -3,9 +3,9 @@ package suspect;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import clue.Clue;
-import clue.FatherInsurance;
-import clue.FatherMap;
-import clue.FatherTextMessage;
+import clue.firstscene.FatherInsurance;
+import clue.firstscene.FatherMap;
+import clue.firstscene.FatherTextMessage;
 import org.junit.jupiter.api.Test;
 
 public class SuspectTest {

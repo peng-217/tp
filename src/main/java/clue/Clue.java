@@ -3,10 +3,10 @@ package clue;
 public class Clue {
 
     //Suspect suspect;
-    String clueName = "default name";
-    String image = "default image :)";
-    String description = "default description";
-    boolean isChecked;
+    protected String clueName = "default name";
+    protected String image = "default image :)";
+    protected String description = "default description";
+    protected boolean isChecked;
 
     public Clue() {
         isChecked = false;
