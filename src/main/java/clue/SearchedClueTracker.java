@@ -1,6 +1,6 @@
 package clue;
 
-import seedu.duke.Ui;
+import ui.Ui;
 import suspect.SuspectList;
 
 import java.util.ArrayList;
@@ -16,8 +16,6 @@ public class SearchedClueTracker {
     
     public void viewSearcherdCLues(String name) {
         ArrayList<Clue> availableClues = suspects.getSuspectAvailableClues(name);
-        for (Clue availableClue : availableClues) {
-            ui.print(availableClue.toString());
-        }
+        ui.printListOfClues(availableClues);
     }
 }

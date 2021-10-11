@@ -1,8 +1,8 @@
 package seedu.duke;
 
+import scene.SceneList;
+import scene.SceneListBuilder;
 import suspect.Suspect;
-import suspect.SuspectList;
-import java.util.Scanner;
 
 import ui.Ui;
 import parser.Parser;
@@ -24,6 +24,7 @@ public class Duke {
 
         // Initialise a new Ui object
         ui = new Ui();
+        SceneList sceneList = SceneListBuilder.buildSceneList(ui);
         ui.printIntroductionMessage();
 
         // We ask the user to give a name
@@ -40,7 +41,6 @@ public class Duke {
 
     }
 
-
     public static void main(String[] args) {
         initializeGame();
         boolean userExit = false;
@@ -56,7 +56,7 @@ public class Duke {
                 ui.printListOfCommands();
                 break;
             case "/clues":
-                ui.printListOfClues();
+                // Prints list of clues
                 break;
             case "/notes":
                 ui.printNotesMessage();

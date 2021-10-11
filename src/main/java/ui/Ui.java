@@ -1,5 +1,11 @@
 package ui;
 
+import clue.Clue;
+import suspect.Suspect;
+import suspect.SuspectList;
+
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Ui {
@@ -59,9 +65,11 @@ public class Ui {
         System.out.println("/note");
     }
 
-    public void printListOfClues() {
+    public void printListOfClues(ArrayList<Clue> clues) {
         System.out.println(LIST_OF_CLUES_MESSAGE);
-        System.out.println("1. This is a place holder");
+        for (Clue clue : clues) {
+            System.out.println(clue.toString());
+        }
     }
 
     public void printNotesMessage() {
@@ -73,5 +81,14 @@ public class Ui {
         String str = "this is a clue placeholder";
         System.out.println("Clue number " + clueNumber
                 + " " + str);
+    }
+
+    public void printSuspects(SuspectList suspects) {
+        System.out.println("Please choose a suspect that you think is the real murderer from the list:");
+        int i = 0;
+        for (Map.Entry<String, Suspect> suspectEntry : suspects.getSuspects().entrySet()) {
+            System.out.println((i + 1) + ". " + suspectEntry.getKey());
+            i++;
+        }
     }
 }

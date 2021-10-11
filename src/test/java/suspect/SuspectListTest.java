@@ -9,7 +9,7 @@ import clue.firstscene.FatherInsurance;
 import clue.firstscene.FatherMap;
 import clue.firstscene.FatherTextMessage;
 import org.junit.jupiter.api.Test;
-import seedu.duke.Ui;
+import ui.Ui;
 
 public class SuspectListTest {
 
