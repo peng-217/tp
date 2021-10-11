@@ -22,6 +22,9 @@ public class Clue {
 
     @Override
     public String toString() {
+        assert !clueName.equals("default name");
+        assert !image.equals("default image :)");
+        assert !description.equals("default description");
         return "------------------------------------------------\n"
                 + clueName
                 + "\n"
