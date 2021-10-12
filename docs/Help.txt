@@ -1,0 +1,8 @@
+----------------
+| Instructions |
+----------------
+
+Here are the commands that you can enter:
+"/next" - move on to the next scene or the next stage of a scene
+"/help" - view this command list
+"/exit" - exit the game
