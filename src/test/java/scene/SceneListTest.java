@@ -1,9 +1,9 @@
 package scene;
 
 import clue.Clue;
-import clue.FatherInsurance;
-import clue.FatherPhoneCall;
-import clue.FatherTextMessage;
+import clue.firstscene.FatherInsurance;
+import clue.firstscene.FatherPhoneCall;
+import clue.firstscene.FatherTextMessage;
 import narrative.FirstNarrative;
 import narrative.SecondNarrative;
 import org.junit.jupiter.api.Test;
