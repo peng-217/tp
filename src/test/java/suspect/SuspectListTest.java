@@ -20,7 +20,7 @@ public class SuspectListTest {
         suspects.addSuspect("Jerry", new Suspect());
         suspects.addSuspect("Tom", new Suspect());
 
-        assertEquals("[Tom, Jerry]", suspects.getSuspects().keySet().toString());
+        assertEquals("[Jerry, Tom]", suspects.getSuspects().keySet().toString());
     }
 
     @Test
