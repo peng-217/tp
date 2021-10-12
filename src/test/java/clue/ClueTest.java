@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ClueTest {
 
     @Test
-    public void toString_InstantiateClue_printDefaultMessages() {
+    public void toString_InstantiateFatherMap_printMessages() {
         String expectedResult = "------------------------------------------------\n"
                 +  "                     Map\n"
                 + "\nFather's           DNA Testing\n"
@@ -26,8 +26,9 @@ public class ClueTest {
                 + "                     min|\n"
                 + "                        |\n"
                 + "                        |\n"
-                + "                   Money Lender\n";
+                + "                   Money Lender\n\n";
         Clue fatherMap = new FatherMap();
-        String result = fatherMap.toString();
+        String actualResult = fatherMap.toString();
+        assertEquals(expectedResult, actualResult);
     }
 }
