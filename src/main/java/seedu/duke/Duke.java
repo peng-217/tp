@@ -2,7 +2,6 @@ package seedu.duke;
 
 import scene.SceneList;
 import scene.SceneListBuilder;
-import suspect.Suspect;
 
 import ui.Ui;
 import parser.Parser;
@@ -14,8 +13,6 @@ public class Duke {
     private static Ui ui;
     private static Parser parser;
     private static SceneList sceneList;
-    private static Suspect choseSuspect;
-    private static Suspect realSuspect;
 
     private static String userName;
 
@@ -36,7 +33,7 @@ public class Duke {
 
         // print welcome message with username
         ui.printEmptyLine();
-        ui.printWelcomeMessage(userName);
+        ui.printWelcomeUser(userName);
         ui.printEmptyLine();
         // SuspectList suspects = new SuspectList(ui);
 
