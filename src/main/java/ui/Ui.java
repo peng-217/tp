@@ -33,8 +33,8 @@ public class Ui {
         System.out.println(lineSeparator);
     }
 
-    public void printIntroductionMessage() {
-        System.out.println(INTRODUCE_MYSELF);
+    public void printWelcomeMessage() {
+        System.out.println(WELCOME_MESSAGE);
     }
 
     public void askForUsername() {
@@ -51,7 +51,7 @@ public class Ui {
         System.out.println(GOODBYE_MESSAGE);
     }
 
-    public void printWelcomeMessage(String userName) {
+    public void printWelcomeUser(String userName) {
         String welcomeMessage = "Welcome " + userName
                 + " to the " + GAME_NAME + "!";
         System.out.println(welcomeMessage);

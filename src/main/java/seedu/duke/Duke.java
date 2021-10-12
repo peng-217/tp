@@ -13,6 +13,7 @@ public class Duke {
      */
     private static Ui ui;
     private static Parser parser;
+    private static SceneList sceneList;
     private static Suspect choseSuspect;
     private static Suspect realSuspect;
 
@@ -24,8 +25,8 @@ public class Duke {
 
         // Initialise a new Ui object
         ui = new Ui();
-        SceneList sceneList = SceneListBuilder.buildSceneList(ui);
-        ui.printIntroductionMessage();
+        sceneList = SceneListBuilder.buildSceneList(ui);
+        ui.printWelcomeMessage();
 
         // We ask the user to give a name
         ui.askForUsername();
