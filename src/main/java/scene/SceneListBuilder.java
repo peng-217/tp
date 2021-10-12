@@ -55,8 +55,8 @@ public class SceneListBuilder {
         SuspectList suspectsScene3 = new SuspectList(ui);
         suspectsScene3.addSuspect("Father", new Suspect());
         suspectsScene3.addSuspect("Kevin", new Suspect());
-        suspectsScene3.addSuspect("Ling", new Suspect());
         suspectsScene3.addSuspect("Wendy", new Suspect());
+        suspectsScene3.addSuspect("Ling", new Suspect());
         suspectsScene3.addSuspect("Zack", new Suspect());
 
         suspectsScene3.addClueForSuspect("Father", new FatherCough());
@@ -65,10 +65,10 @@ public class SceneListBuilder {
         suspectsScene3.addClueForSuspect("Father", new FatherTofu());
         suspectsScene3.addClueForSuspect("Kevin", new KevinAphrodisiac());
         suspectsScene3.addClueForSuspect("Kevin", new KevinWhisper());
-        suspectsScene3.addClueForSuspect("Ling", new LingPowder());
-        suspectsScene3.addClueForSuspect("Ling", new LingTextMessage());
         suspectsScene3.addClueForSuspect("Wendy", new WendyActDrunk());
         suspectsScene3.addClueForSuspect("Wendy", new WendyRude());
+        suspectsScene3.addClueForSuspect("Ling", new LingPowder());
+        suspectsScene3.addClueForSuspect("Ling", new LingTextMessage());
         suspectsScene3.addClueForSuspect("Zack", new ZackDrink());
         suspectsScene3.addClueForSuspect("Zack", new ZackMemo());
         suspectsScene3.addClueForSuspect("Zack", new ZackNotif());

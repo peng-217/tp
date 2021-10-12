@@ -15,6 +15,10 @@ public class Suspect {
         return clues;
     }
 
+    public int getNumClues() {
+        return clues.size();
+    }
+
     public void addClue(Clue clue) {
         this.clues.add(clue);
     }

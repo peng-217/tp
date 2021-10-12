@@ -60,15 +60,16 @@ public class Ui {
     public void printListOfCommands() {
         System.out.println(LIST_OF_COMMAND_AVAILABLE_MESSAGE);
         System.out.println("/help");
-        System.out.println("/clues");
-        System.out.println("/suspect");
-        System.out.println("/note");
+        System.out.println("/exit");
+        System.out.println("/next");
+//        System.out.println("/note");
     }
 
     public void printListOfClues(ArrayList<Clue> clues) {
-        System.out.println(LIST_OF_CLUES_MESSAGE);
+        int i = 0;
         for (Clue clue : clues) {
-            System.out.println(clue.toString());
+            System.out.println((i + 1) + ". " + clue.getClueName());
+            i++;
         }
     }
 
@@ -84,7 +85,7 @@ public class Ui {
     }
 
     public void printSuspects(SuspectList suspects) {
-        System.out.println("Please choose a suspect that you think is the real murderer from the list:");
+//        System.out.println("Please choose a suspect that you think is the real murderer from the list:");
         int i = 0;
         for (Map.Entry<String, Suspect> suspectEntry : suspects.getSuspects().entrySet()) {
             System.out.println((i + 1) + ". " + suspectEntry.getKey());

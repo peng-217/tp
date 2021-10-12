@@ -1,11 +1,12 @@
 package scene;
 
+import clue.Clue;
 import narrative.Narrative;
-import search.Search;
 import suspect.Suspect;
 import suspect.SuspectList;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class Scene {
     private final Narrative narrative;
@@ -22,6 +23,14 @@ public class Scene {
 
     public SuspectList getSuspectList() {
         return suspectList;
+    }
+
+    public ArrayList<Clue> getAllAvailableClues() {
+        return suspectList.getAllAvailableClues();
+    }
+
+    public Suspect investigateSuspect(String name) {
+        return suspectList.getSuspects().get(name);
     }
 
     public void runScene() throws FileNotFoundException {

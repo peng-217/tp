@@ -28,4 +28,22 @@ public class SceneListTest {
         System.out.println("------------------------------------------");
         currentScene.runScene();
     }
+
+    @Test
+    public void scene2Test() throws FileNotFoundException {
+        Ui ui = new Ui();
+        SceneList sceneList = SceneListBuilder.buildSceneList(ui);
+        Scene currentScene = sceneList.getCurrentScene();
+        currentScene.runScene();
+
+        sceneList.nextScene();
+        currentScene = sceneList.getCurrentScene();
+        System.out.println("------------------------------------------");
+        currentScene.runScene();
+
+        sceneList.nextScene();
+        currentScene = sceneList.getCurrentScene();
+        System.out.println("------------------------------------------");
+        currentScene.runScene();
+    }
 }
