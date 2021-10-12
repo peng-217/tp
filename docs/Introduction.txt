@@ -10,7 +10,6 @@ I woke up and found myself dead. The Spirit Guide from the Hell told me that the
 
 Here are the commands that you can enter:
 "/next" - move on to the next scene or the next stage of a scene
-"/suspect" - view the list of suspects
 "/help" - view this command list
 "/exit" - exit the game
 
