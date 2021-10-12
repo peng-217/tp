@@ -32,7 +32,7 @@ public class Duke {
         ui = new Ui();
         ui.printWelcomeMessage();
 
-        level = Levels.SCENE;
+        level = Levels.SUSPECT_STAGE;
         sceneList = SceneListBuilder.buildSceneList(ui);
 
         currentScene = sceneList.getCurrentScene();
@@ -43,15 +43,15 @@ public class Duke {
         }
 
         // We ask the user to give a name
-//        ui.askForUsername();
-//        ui.printEmptyLine();
-//        userName = ui.readUserInput();
-//        ui.printEmptyLine();
+        // ui.askForUsername();
+        // ui.printEmptyLine();
+        // userName = ui.readUserInput();
+        // ui.printEmptyLine();
 
         // print welcome message with username
-//        ui.printEmptyLine();
-//        ui.printWelcomeUser(userName);
-//        ui.printEmptyLine();
+        // ui.printEmptyLine();
+        // ui.printWelcomeUser(userName);
+        // ui.printEmptyLine();
         // SuspectList suspects = new SuspectList(ui);
 
     }
@@ -64,7 +64,7 @@ public class Duke {
 
     private static void runUntilExitCommand() {
         boolean isExit = false;
-        while(!isExit) {
+        while (!isExit) {
             printCurrentInvestigation();
 
             String userInput = ui.readUserInput();
@@ -75,13 +75,11 @@ public class Duke {
     }
 
     private static void printCurrentInvestigation() {
-        switch (level) {
-        case SCENE:
+        if (level == Levels.SUSPECT_STAGE) {
             System.out.println("Scene " + (sceneList.getCurrentSceneIndex() + 1) + " Investigation");
             System.out.println("Who do you want to investigate?");
             ui.printSuspects(currentScene.getSuspectList());
-            break;
-        case SUSPECT:
+        } else {
             System.out.print("Scene " + (sceneList.getCurrentSceneIndex() + 1) + " Investigation");
             System.out.println(" - " + currentSuspect);
             System.out.println("0. Go back to list of suspects");
@@ -110,36 +108,53 @@ public class Duke {
                 return true;
             }
             currentScene = sceneList.getCurrentScene();
-            level = Levels.SCENE;
+            level = Levels.SUSPECT_STAGE;
             try {
                 currentScene.runScene();
             } catch (FileNotFoundException e) {
                 System.out.println("File not found for scene");
             }
             return false;
+        default:
+            investigateScene(userInput);
         }
+        return false;
+    }
 
+    private static void investigateScene(String userInput) {
         switch (level) {
-        case SCENE:
-            currentSuspect = getSuspectNameFromIndex(Integer.parseInt(userInput));
+        case SUSPECT_STAGE:
+            try {
+                currentSuspect = getSuspectNameFromIndex(Integer.parseInt(userInput));
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid user command");
+                return;
+            }
             if (currentSuspect != null) {
-                level = Levels.SUSPECT;
+                level = Levels.CLUE_STAGE;
             } else {
                 System.out.println("Sorry please enter index within range");
             }
             break;
-        case SUSPECT:
+        case CLUE_STAGE:
             int suspectNumClues = currentScene.investigateSuspect(currentSuspect).getNumClues();
-            int index = Integer.parseInt(userInput);
-            if (index > suspectNumClues ) {
-                System.out.println("Sorry please enter index within range");
-            } else if (index == 0) {
-                level = Levels.SCENE;
-            } else {
-                System.out.println(currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1));
+            try {
+                int index = Integer.parseInt(userInput);
+                if (index > suspectNumClues) {
+                    System.out.println("Sorry please enter index within range");
+                } else if (index == 0) {
+                    level = Levels.SUSPECT_STAGE;
+                } else {
+                    System.out.println(currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1));
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid user command");
+                return;
             }
+            break;
+        default:
+            System.out.println("Invalid command");
         }
-        return false;
     }
 
     private static String getSuspectNameFromIndex(int index) {
@@ -160,6 +175,6 @@ public class Duke {
     }
 
     public enum Levels {
-        SCENE, SUSPECT, CLUE, DONE
+        SUSPECT_STAGE, CLUE_STAGE
     }
 }

@@ -62,7 +62,6 @@ public class Ui {
         System.out.println("/help");
         System.out.println("/exit");
         System.out.println("/next");
-//        System.out.println("/note");
     }
 
     public void printListOfClues(ArrayList<Clue> clues) {
@@ -85,7 +84,6 @@ public class Ui {
     }
 
     public void printSuspects(SuspectList suspects) {
-//        System.out.println("Please choose a suspect that you think is the real murderer from the list:");
         int i = 0;
         for (Map.Entry<String, Suspect> suspectEntry : suspects.getSuspects().entrySet()) {
             System.out.println((i + 1) + ". " + suspectEntry.getKey());
