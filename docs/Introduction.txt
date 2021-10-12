@@ -1,0 +1,17 @@
+------------------
+| Who Killed Me? |
+------------------
+
+I woke up and found myself dead. The Spirit Guide from the Hell told me that the only way to revive my soul is for me to find the murderer, eliminating the grudge in my soul. So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
+
+----------------
+| Instructions |
+----------------
+
+Here are the commands that you can enter:
+"/next" - move on to the next scene or the next stage of a scene
+"/suspect" - view the list of suspects
+"/help" - view this command list
+"/exit" - exit the game
+
+Now, enter "/next" to start your journey to the truth.

@@ -1,4 +1,6 @@
-scene #3
+------------
+| scene #3 |
+------------
 
 "Thump thump thump..."
 
