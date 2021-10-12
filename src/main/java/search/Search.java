@@ -30,6 +30,6 @@ public class Search {
 
     @Override
     public String toString() {
-        return this.suspects.getSuspects().keySet().toString();
+        return this.suspects.getSuspects().toString();
     }
 }

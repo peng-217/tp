@@ -15,15 +15,20 @@ public class SceneList {
         this.scenes.add(scene);
     }
 
-    public void nextScene() {
+    // Returns false if unable to move to next scene (last scene)
+    public boolean nextScene() {
         if (currentSceneIndex == scenes.size() - 1) {
-            return;
+            return true;
         }
         this.currentSceneIndex++;
+        return false;
     }
 
     public Scene getCurrentScene() {
         return this.scenes.get(currentSceneIndex);
     }
 
+    public int getCurrentSceneIndex() {
+        return currentSceneIndex;
+    }
 }

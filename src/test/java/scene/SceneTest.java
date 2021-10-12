@@ -2,8 +2,7 @@ package scene;
 
 import narrative.Narrative;
 import org.junit.jupiter.api.Test;
-import search.Search;
-import seedu.duke.Ui;
+import ui.Ui;
 import suspect.SuspectList;
 
 
@@ -16,16 +15,14 @@ public class SceneTest {
 
     @Test
     public void getNarrative() {
-        Search search = new Search(new SuspectList(new Ui()));
-        Scene scene = new Scene(new Narrative(), search);
+        Scene scene = new Scene(new Narrative(), new SuspectList(new Ui()));
         assertThrows(FileNotFoundException.class, () -> scene.runScene());
     }
 
     @Test
     public void toString_InstantiateScene_printNoNarrativeMessage() {
         String expectedResult = "Incomplete Scene";
-        Search search = new Search(new SuspectList(new Ui()));
-        Scene scene = new Scene(new Narrative(), search);
+        Scene scene = new Scene(new Narrative(), new SuspectList(new Ui()));
         String result = scene.toString();
         assertEquals(expectedResult, result);
     }

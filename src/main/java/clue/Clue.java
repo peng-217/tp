@@ -20,6 +20,10 @@ public class Clue {
         return isChecked;
     }
 
+    public String getClueName() {
+        return clueName;
+    }
+
     @Override
     public String toString() {
         assert !clueName.equals("default name");

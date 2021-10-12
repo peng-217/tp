@@ -9,7 +9,7 @@ import clue.firstscene.FatherInsurance;
 import clue.firstscene.FatherMap;
 import clue.firstscene.FatherTextMessage;
 import org.junit.jupiter.api.Test;
-import seedu.duke.Ui;
+import ui.Ui;
 
 public class SuspectListTest {
 
@@ -20,7 +20,7 @@ public class SuspectListTest {
         suspects.addSuspect("Jerry", new Suspect());
         suspects.addSuspect("Tom", new Suspect());
 
-        assertEquals("[Tom, Jerry]", suspects.getSuspects().keySet().toString());
+        assertEquals("[Jerry, Tom]", suspects.getSuspects().keySet().toString());
     }
 
     @Test

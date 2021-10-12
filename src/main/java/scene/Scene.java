@@ -1,27 +1,36 @@
 package scene;
 
+import clue.Clue;
 import narrative.Narrative;
-import search.Search;
+import suspect.Suspect;
 import suspect.SuspectList;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class Scene {
     private final Narrative narrative;
-    private final Search search;
+    private final SuspectList suspectList;
 
-    public Scene(Narrative narrative, Search search) {
+    public Scene(Narrative narrative, SuspectList suspectList) {
         this.narrative = narrative;
-        this.search = search;
-        search.setScene(this);
+        this.suspectList = suspectList;
     }
 
     public Narrative getNarrative() {
         return narrative;
     }
 
-    public Search getSearch() {
-        return this.search;
+    public SuspectList getSuspectList() {
+        return suspectList;
+    }
+
+    public ArrayList<Clue> getAllAvailableClues() {
+        return suspectList.getAllAvailableClues();
+    }
+
+    public Suspect investigateSuspect(String name) {
+        return suspectList.getSuspects().get(name);
     }
 
     public void runScene() throws FileNotFoundException {
@@ -34,7 +43,7 @@ public class Scene {
             return this.narrative.getNarrative()
                     + "\n"
                     + "Suspects: "
-                    + this.getSearch().toString();
+                    + this.getSuspectList().toString();
         } catch (FileNotFoundException e) {
             System.out.println("Narrative has not been selected!");
             return "Incomplete Scene";

@@ -1,5 +1,11 @@
 package ui;
 
+import clue.Clue;
+import suspect.Suspect;
+import suspect.SuspectList;
+
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Ui {
@@ -27,8 +33,8 @@ public class Ui {
         System.out.println(lineSeparator);
     }
 
-    public void printIntroductionMessage() {
-        System.out.println(INTRODUCE_MYSELF);
+    public void printWelcomeMessage() {
+        System.out.println(WELCOME_MESSAGE);
     }
 
     public void askForUsername() {
@@ -45,7 +51,7 @@ public class Ui {
         System.out.println(GOODBYE_MESSAGE);
     }
 
-    public void printWelcomeMessage(String userName) {
+    public void printWelcomeUser(String userName) {
         String welcomeMessage = "Welcome " + userName
                 + " to the " + GAME_NAME + "!";
         System.out.println(welcomeMessage);
@@ -54,14 +60,16 @@ public class Ui {
     public void printListOfCommands() {
         System.out.println(LIST_OF_COMMAND_AVAILABLE_MESSAGE);
         System.out.println("/help");
-        System.out.println("/clues");
-        System.out.println("/suspect");
-        System.out.println("/note");
+        System.out.println("/exit");
+        System.out.println("/next");
     }
 
-    public void printListOfClues() {
-        System.out.println(LIST_OF_CLUES_MESSAGE);
-        System.out.println("1. This is a place holder");
+    public void printListOfClues(ArrayList<Clue> clues) {
+        int i = 0;
+        for (Clue clue : clues) {
+            System.out.println((i + 1) + ". " + clue.getClueName());
+            i++;
+        }
     }
 
     public void printNotesMessage() {
@@ -73,5 +81,13 @@ public class Ui {
         String str = "this is a clue placeholder";
         System.out.println("Clue number " + clueNumber
                 + " " + str);
+    }
+
+    public void printSuspects(SuspectList suspects) {
+        int i = 0;
+        for (Map.Entry<String, Suspect> suspectEntry : suspects.getSuspects().entrySet()) {
+            System.out.println((i + 1) + ". " + suspectEntry.getKey());
+            i++;
+        }
     }
 }

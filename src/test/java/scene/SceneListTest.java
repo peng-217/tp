@@ -1,16 +1,7 @@
 package scene;
 
-import clue.Clue;
-import clue.firstscene.FatherInsurance;
-import clue.firstscene.FatherPhoneCall;
-import clue.firstscene.FatherTextMessage;
-import narrative.FirstNarrative;
-import narrative.SecondNarrative;
 import org.junit.jupiter.api.Test;
-import search.Search;
-import seedu.duke.Ui;
-import suspect.Suspect;
-import suspect.SuspectList;
+import ui.Ui;
 
 import java.io.FileNotFoundException;
 
@@ -19,31 +10,40 @@ public class SceneListTest {
     @Test
     public void scenesTest() throws FileNotFoundException {
         Ui ui = new Ui();
-        SuspectList suspects = new SuspectList(ui);
-        suspects.addSuspect("Jerry", new Suspect());
-        suspects.addSuspect("Tom", new Suspect());
+        SceneList sceneList = SceneListBuilder.buildSceneList(ui);
+        Scene currentScene = sceneList.getCurrentScene();
+        currentScene.runScene();
 
-        Clue fatherInsurance = new FatherInsurance();
-        Clue fatherMap = new FatherTextMessage();
-        suspects.addClueForSuspect("Tom", fatherInsurance);
-        suspects.addClueForSuspect("Tom", fatherMap);
-
-        Clue fatherPhoneCall = new FatherPhoneCall();
-        suspects.addClueForSuspect("Jerry", fatherPhoneCall);
-
-        Search searchFirstScene = new Search(suspects);
-        Scene firstScene = new Scene(new FirstNarrative(), searchFirstScene);
-
-        Search searchSecondScene = new Search(suspects);
-        Scene secondScene = new Scene(new SecondNarrative(), searchSecondScene);
-
-        SceneList sceneList = new SceneList();
-        sceneList.addScene(firstScene);
-        sceneList.addScene(secondScene);
-
-        sceneList.getCurrentScene().runScene();
         sceneList.nextScene();
+        currentScene = sceneList.getCurrentScene();
+
+        System.out.println(currentScene.getSuspectList().getSuspectAvailableClues("Father"));
+        System.out.println(currentScene.getSuspectList().toString());
+        System.out.println(currentScene.getSuspectList().getAllClues());
+
+        currentScene.getSuspectList().setClueChecked("Father",
+                sceneList.getCurrentScene().getSuspectList().getAllAvailableClues().get(0));
+        System.out.println(currentScene.getSuspectList().getAllAvailableClues());
+
         System.out.println("------------------------------------------");
-        sceneList.getCurrentScene().runScene();
+        currentScene.runScene();
+    }
+
+    @Test
+    public void scene2Test() throws FileNotFoundException {
+        Ui ui = new Ui();
+        SceneList sceneList = SceneListBuilder.buildSceneList(ui);
+        Scene currentScene = sceneList.getCurrentScene();
+        currentScene.runScene();
+
+        sceneList.nextScene();
+        currentScene = sceneList.getCurrentScene();
+        System.out.println("------------------------------------------");
+        currentScene.runScene();
+
+        sceneList.nextScene();
+        currentScene = sceneList.getCurrentScene();
+        System.out.println("------------------------------------------");
+        currentScene.runScene();
     }
 }
