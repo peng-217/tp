@@ -21,7 +21,7 @@ public class Duke {
         // Initialise a new Ui object
         ui = new Ui();
         ui.printWelcomeMessage();
-        investigation = new Investigation(ui);
+        investigation = new Investigation(parser, ui);
 
         // We ask the user to give a name
         // ui.askForUsername();

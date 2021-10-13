@@ -1,5 +1,6 @@
 package investigation;
 
+import parser.Parser;
 import scene.Scene;
 import scene.SceneList;
 import scene.SceneListBuilder;
@@ -13,10 +14,11 @@ public class Investigation {
     private static SceneList sceneList;
     private static Scene currentScene;
     private static String currentSuspect;
-
+    private static Parser parser;
     private static Ui ui;
 
-    public Investigation(Ui ui) {
+    public Investigation(Parser parser, Ui ui) {
+        this.parser = parser;
         this.ui = ui;
         stage = InvestigationStages.SUSPECT_STAGE;
         sceneList = SceneListBuilder.buildSceneList(ui);
@@ -79,16 +81,11 @@ public class Investigation {
     private void investigateScene(String userInput) {
         switch (stage) {
         case SUSPECT_STAGE:
-            try {
-                currentSuspect = getSuspectNameFromIndex(Integer.parseInt(userInput));
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid user command");
-                return;
-            }
-            if (currentSuspect != null) {
-                stage = InvestigationStages.CLUE_STAGE;
-            } else {
+            currentSuspect = parser.getSuspectNameFromIndex(sceneList.getCurrentSceneIndex(), userInput);
+            if (currentSuspect == null) {
                 System.out.println("Sorry please enter index within range");
+            } else {
+                stage = InvestigationStages.CLUE_STAGE;
             }
             break;
         case CLUE_STAGE:
@@ -109,23 +106,6 @@ public class Investigation {
             break;
         default:
             System.out.println("Invalid command");
-        }
-    }
-
-    private String getSuspectNameFromIndex(int index) {
-        int currentScene = sceneList.getCurrentSceneIndex();
-        if (index == 1) {
-            return "Father";
-        } else if (index == 2 & currentScene >= 1) {
-            return "Kevin";
-        } else if (index == 3 & currentScene >= 1) {
-            return "Wendy";
-        } else if (index == 4 & currentScene >= 2) {
-            return "Ling";
-        } else if (index == 5 & currentScene >= 2) {
-            return "Zack";
-        } else {
-            return null;
         }
     }
 
