@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import clue.Clue;
-import clue.FatherInsurance;
-import clue.FatherMap;
-import clue.FatherTextMessage;
+import clue.firstscene.FatherInsurance;
+import clue.firstscene.FatherMap;
+import clue.firstscene.FatherTextMessage;
 import org.junit.jupiter.api.Test;
-import seedu.duke.Ui;
+import ui.Ui;
 
 public class SuspectListTest {
 
@@ -20,7 +20,7 @@ public class SuspectListTest {
         suspects.addSuspect("Jerry", new Suspect());
         suspects.addSuspect("Tom", new Suspect());
 
-        assertEquals("[Tom, Jerry]", suspects.getSuspects().keySet().toString());
+        assertEquals("[Jerry, Tom]", suspects.getSuspects().keySet().toString());
     }
 
     @Test

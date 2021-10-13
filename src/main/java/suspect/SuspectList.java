@@ -1,22 +1,22 @@
 package suspect;
 
 import clue.Clue;
-import seedu.duke.Ui;
+import ui.Ui;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class SuspectList {
-    protected HashMap<String, Suspect> suspects;
+    protected LinkedHashMap<String, Suspect> suspects;
     protected Ui ui;
 
     public SuspectList(Ui ui) {
         this.ui = ui;
-        this.suspects = new HashMap<>();
+        this.suspects = new LinkedHashMap<>();
     }
 
-    public HashMap<String, Suspect> getSuspects() {
+    public LinkedHashMap<String, Suspect> getSuspects() {
         return suspects;
     }
 
@@ -40,10 +40,28 @@ public class SuspectList {
         return suspects.get(name).getAvailableClues();
     }
 
+    public ArrayList<Clue> getAllClues() {
+        ArrayList<Clue> clues = new ArrayList<>();
+        for (Map.Entry<String, Suspect> suspectEntry : suspects.entrySet()) {
+            clues.addAll(0, suspectEntry.getValue().getClues());
+        }
+        return clues;
+    }
+
+    public ArrayList<Clue> getAllAvailableClues() {
+        ArrayList<Clue> clues = new ArrayList<>();
+        for (Map.Entry<String, Suspect> suspectEntry : suspects.entrySet()) {
+            clues.addAll(0, suspectEntry.getValue().getAvailableClues());
+        }
+        return clues;
+    }
+
     public int getNumSuspects() {
         return suspects.size();
     }
 
-
-
+    @Override
+    public String toString() {
+        return String.valueOf(suspects.keySet());
+    }
 }
