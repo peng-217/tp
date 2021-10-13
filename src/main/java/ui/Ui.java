@@ -67,7 +67,7 @@ public class Ui {
     public void printListOfClues(ArrayList<Clue> clues) {
         int i = 0;
         for (Clue clue : clues) {
-            System.out.println((i + 1) + ". " + clue.getClueName());
+            System.out.println((i + 1) + ". " + clue.getClueName().trim());
             i++;
         }
     }

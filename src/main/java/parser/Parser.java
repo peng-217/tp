@@ -23,4 +23,25 @@ public class Parser {
         return clueNumber;
     }
 
+    public String getSuspectNameFromIndex(int currentScene, String userInput) {
+        try {
+            int index = Integer.parseInt(userInput);
+            if (index == 1) {
+                return "Father";
+            } else if (index == 2 & currentScene >= 1) {
+                return "Kevin";
+            } else if (index == 3 & currentScene >= 1) {
+                return "Wendy";
+            } else if (index == 4 & currentScene >= 2) {
+                return "Ling";
+            } else if (index == 5 & currentScene >= 2) {
+                return "Zack";
+            } else {
+                return null;
+            }
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
 }
