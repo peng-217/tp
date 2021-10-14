@@ -1,10 +1,18 @@
 package parser;
 
+import command.NextCommand;
+import command.Command;
+import command.ExitCommand;
+import command.HelpCommand;
+import command.InvestigateCommand;
+
 public class Parser {
     private static final String HELP = "/help";
     private static final String CLUES = "/clues";
     private static final String SUSPECT = "/suspect";
     private static final String NOTE = "/note";
+    private static final String EXIT = "/exit";
+    private static final String NEXT = "/next";
 
     private static final String INPUT_SPLITTER = " ";
 
@@ -41,6 +49,24 @@ public class Parser {
             }
         } catch (NumberFormatException e) {
             return null;
+        }
+    }
+
+    public Command getCommandFromUser(String userInput) {
+        Command commandToReturn;
+        switch (userInput) {
+        case EXIT:
+            commandToReturn = new ExitCommand();
+            return commandToReturn;
+        case HELP:
+            commandToReturn = new HelpCommand();
+            return commandToReturn;
+        case NEXT:
+            commandToReturn = new NextCommand();
+            return commandToReturn;
+        default:
+            commandToReturn = new InvestigateCommand(userInput);
+            return commandToReturn;
         }
     }
 
