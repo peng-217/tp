@@ -11,13 +11,13 @@ public class Narrative {
     String fileName;
 
     public Narrative() {
-        filePath = "/";
+        filePath = "src/main/resources/";
     }
 
     public String getNarrative() throws FileNotFoundException {
-        //File file = new File(filePath + fileName);
-        InputStream file = getClass().getResourceAsStream(filePath + fileName);
-        assert file != null;
+        File file = new File(filePath + fileName);
+        //InputStream file = getClass().getResourceAsStream(filePath + fileName);
+        //assert file != null;
         Scanner in = new Scanner(file);
         StringBuilder content = new StringBuilder();
         while (in.hasNext()) {
