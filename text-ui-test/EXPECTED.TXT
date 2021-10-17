@@ -5,4 +5,3 @@ Scene 1 Investigation
 Who do you want to investigate?
 1. Father
 Goodbye.
-Goodbye.

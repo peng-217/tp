@@ -41,7 +41,6 @@ public class Duke {
     public static void main(String[] args) {
         initializeGame();
         runUntilExitCommand();
-        ui.printExitMessage();
     }
 
     private static void runUntilExitCommand() {
