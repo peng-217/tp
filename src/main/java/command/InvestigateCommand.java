@@ -5,6 +5,7 @@ import ui.Ui;
 
 public class InvestigateCommand extends Command {
     private String userInput;
+
     public InvestigateCommand(String userInput) {
         this.userInput = userInput;
     }
