@@ -52,39 +52,6 @@ public class Investigation {
         }
     }
 
-    //public boolean performUserCommand(String userInput) {
-    //    switch (userInput) {
-    //    case "/exit":
-    //        return true;
-    //    case "/help":
-    //        ui.printListOfCommands();
-    //        return false;
-    //    case "/next":
-    //        boolean isEndScene = sceneList.nextScene();
-    //        if (isEndScene) {
-    //            System.out.println(WHO_KILLED_YOU);
-    //            String guess = ui.readUserInput();
-    //           if (guess.equals(KILLER_WENDY)) {
-    //                System.out.println(CORRECT_ANSWER);
-    //            } else {
-    //                System.out.println(WRONG_ANSWER);
-    //            }
-    //            return true;
-    //        }
-    //        currentScene = sceneList.getCurrentScene();
-    //        stage = InvestigationStages.SUSPECT_STAGE;
-    //        try {
-    //            currentScene.runScene();
-    //        } catch (FileNotFoundException e) {
-    //            System.out.println(FILE_NOT_FOUND);
-    //        }
-    //        return false;
-    //    default:
-    //        investigateScene(userInput);
-    //    }
-    //    return false;
-    //}
-
     public void investigateScene(String userInput) {
         switch (stage) {
         case SUSPECT_STAGE:
@@ -117,7 +84,7 @@ public class Investigation {
     }
 
     public boolean completedGame() {
-        boolean isLastScene = getNextScene();
+        boolean isLastScene = getNextSceneFromSceneList();
         if (isLastScene) {
             ui.printSuspectKillerMessage();
             String suspectedKiller = ui.readUserInput();
@@ -137,7 +104,7 @@ public class Investigation {
         }
     }
 
-    public boolean getNextScene() {
+    public boolean getNextSceneFromSceneList() {
         return sceneList.nextScene();
     }
 

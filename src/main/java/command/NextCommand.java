@@ -8,7 +8,7 @@ public class NextCommand extends Command {
 
     @Override
     public void execute(Ui ui, Investigation investigation) {
-        boolean currentScene = investigation.getNextScene();
+        boolean currentScene = investigation.getNextSceneFromSceneList();
         if (currentScene) {
             hasCompleted = investigation.completedGame();
         } else {
