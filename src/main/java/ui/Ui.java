@@ -27,6 +27,10 @@ public class Ui {
     private static final String LIST_OF_NOTES_MESSAGE =
             "Here are the list of notes available to you.";
     private static final String lineSeparator = "==============================";
+    private static final String WHO_KILLED_YOU = "Who do you think killed you?";
+    private static final String CORRECT_ANSWER = "Correct answer";
+    private static final String WRONG_ANSWER = "Wrong answer";
+
     private Scanner scanner;
 
     public void printEmptyLine() {
@@ -89,5 +93,17 @@ public class Ui {
             System.out.println((i + 1) + ". " + suspectEntry.getKey());
             i++;
         }
+    }
+
+    public void printSuspectKillerMessage() {
+        System.out.println(WHO_KILLED_YOU);
+    }
+
+    public void printCorrectMessage() {
+        System.out.println(CORRECT_ANSWER);
+    }
+
+    public void printWrongMessage() {
+        System.out.println(WRONG_ANSWER);
     }
 }

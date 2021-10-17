@@ -17,6 +17,13 @@ public class Investigation {
     private static Parser parser;
     private static Ui ui;
 
+    private static final String FILE_NOT_FOUND = "File not found for scene";
+    private static final String WRONG_INDEX_GIVEN = "Sorry please enter index within range";
+    private static final String ENTER_VALID_COMMAND = "Please enter a valid user command";
+    private static final String INVALID_COMMAND = "Invalid command";
+
+    private static final String KILLER_WENDY = "Wendy";
+
     public Investigation(Parser parser, Ui ui) {
         this.parser = parser;
         this.ui = ui;
@@ -27,7 +34,7 @@ public class Investigation {
         try {
             currentScene.runScene();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found for scene");
+            System.out.println(FILE_NOT_FOUND);
         }
     }
 
@@ -45,45 +52,45 @@ public class Investigation {
         }
     }
 
-    public boolean performUserCommand(String userInput) {
-        switch (userInput) {
-        case "/exit":
-            return true;
-        case "/help":
-            ui.printListOfCommands();
-            return false;
-        case "/next":
-            boolean isEndScene = sceneList.nextScene();
-            if (isEndScene) {
-                System.out.println("Who do you think killed you?");
-                String guess = ui.readUserInput();
-                if (guess.equals("Wendy")) {
-                    System.out.println("Correct answer");
-                } else {
-                    System.out.println("Wrong answer");
-                }
-                return true;
-            }
-            currentScene = sceneList.getCurrentScene();
-            stage = InvestigationStages.SUSPECT_STAGE;
-            try {
-                currentScene.runScene();
-            } catch (FileNotFoundException e) {
-                System.out.println("File not found for scene");
-            }
-            return false;
-        default:
-            investigateScene(userInput);
-        }
-        return false;
-    }
+    //public boolean performUserCommand(String userInput) {
+    //    switch (userInput) {
+    //    case "/exit":
+    //        return true;
+    //    case "/help":
+    //        ui.printListOfCommands();
+    //        return false;
+    //    case "/next":
+    //        boolean isEndScene = sceneList.nextScene();
+    //        if (isEndScene) {
+    //            System.out.println(WHO_KILLED_YOU);
+    //            String guess = ui.readUserInput();
+    //           if (guess.equals(KILLER_WENDY)) {
+    //                System.out.println(CORRECT_ANSWER);
+    //            } else {
+    //                System.out.println(WRONG_ANSWER);
+    //            }
+    //            return true;
+    //        }
+    //        currentScene = sceneList.getCurrentScene();
+    //        stage = InvestigationStages.SUSPECT_STAGE;
+    //        try {
+    //            currentScene.runScene();
+    //        } catch (FileNotFoundException e) {
+    //            System.out.println(FILE_NOT_FOUND);
+    //        }
+    //        return false;
+    //    default:
+    //        investigateScene(userInput);
+    //    }
+    //    return false;
+    //}
 
-    private void investigateScene(String userInput) {
+    public void investigateScene(String userInput) {
         switch (stage) {
         case SUSPECT_STAGE:
             currentSuspect = parser.getSuspectNameFromIndex(sceneList.getCurrentSceneIndex(), userInput);
             if (currentSuspect == null) {
-                System.out.println("Sorry please enter index within range");
+                System.out.println(WRONG_INDEX_GIVEN);
             } else {
                 stage = InvestigationStages.CLUE_STAGE;
             }
@@ -93,20 +100,54 @@ public class Investigation {
             try {
                 int index = Integer.parseInt(userInput);
                 if (index > suspectNumClues) {
-                    System.out.println("Sorry please enter index within range");
+                    System.out.println(WRONG_INDEX_GIVEN);
                 } else if (index == 0) {
                     stage = InvestigationStages.SUSPECT_STAGE;
                 } else {
                     System.out.println(currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1));
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid user command");
+                System.out.println(ENTER_VALID_COMMAND);
                 return;
             }
             break;
         default:
-            System.out.println("Invalid command");
+            System.out.println(INVALID_COMMAND);
         }
     }
 
+    public boolean completedGame() {
+        boolean isLastScene = getNextScene();
+        if (isLastScene) {
+            ui.printSuspectKillerMessage();
+            String suspectedKiller = ui.readUserInput();
+            return checkSuspectedKiller(suspectedKiller);
+        } else {
+            return false;
+        }
+    }
+
+    private boolean checkSuspectedKiller(String suspectedKiller) {
+        if (suspectedKiller.equals(KILLER_WENDY)) {
+            ui.printCorrectMessage();
+            return true;
+        } else {
+            ui.printWrongMessage();
+            return false;
+        }
+    }
+
+    public boolean getNextScene() {
+        return sceneList.nextScene();
+    }
+
+    public void runScenes() {
+        currentScene = sceneList.getCurrentScene();
+        stage = InvestigationStages.SUSPECT_STAGE;
+        try {
+            currentScene.runScene();
+        } catch (FileNotFoundException e) {
+            System.out.println(FILE_NOT_FOUND);
+        }
+    }
 }
