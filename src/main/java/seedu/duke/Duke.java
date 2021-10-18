@@ -58,7 +58,7 @@ public class Duke {
                 commandFromUser.execute(ui, investigation);
             } catch (InvalidSuspectException e1) {
                 ui.printInvalidSuspectMessage();
-            } catch (InvalidClueException e2 ) {
+            } catch (InvalidClueException e2) {
                 ui.printInvalidClueMessage();
             } catch (InvalidInputException e3) {
                 ui.printInvalidCommandMessage();
