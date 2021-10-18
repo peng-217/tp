@@ -5,6 +5,8 @@ import command.Command;
 import command.ExitCommand;
 import command.HelpCommand;
 import command.InvestigateCommand;
+import exceptions.InvalidInputException;
+import exceptions.InvalidSuspectException;
 
 public class Parser {
     private static final String HELP = "/help";
@@ -31,42 +33,42 @@ public class Parser {
         return clueNumber;
     }
 
-    public String getSuspectNameFromIndex(int currentScene, String userInput) {
-        try {
-            int index = Integer.parseInt(userInput);
-            if (index == 1) {
-                return "Father";
-            } else if (index == 2 & currentScene >= 1) {
-                return "Kevin";
-            } else if (index == 3 & currentScene >= 1) {
-                return "Wendy";
-            } else if (index == 4 & currentScene >= 2) {
-                return "Ling";
-            } else if (index == 5 & currentScene >= 2) {
-                return "Zack";
-            } else {
-                return null;
-            }
-        } catch (NumberFormatException e) {
-            return null;
+    public String getSuspectNameFromIndex(int currentScene, int userInput) throws InvalidSuspectException {
+        if (userInput == 1) {
+            return "Father";
+        } else if (userInput == 2 & currentScene >= 1) {
+            return "Kevin";
+        } else if (userInput == 3 & currentScene >= 1) {
+            return "Wendy";
+        } else if (userInput == 4 & currentScene >= 2) {
+            return "Ling";
+        } else if (userInput == 5 & currentScene >= 2) {
+            return "Zack";
+        } else {
+            throw new InvalidSuspectException("Input out of range");
         }
     }
 
-    public Command getCommandFromUser(String userInput) {
-        Command commandToReturn;
+    public Command getCommandFromUser(String userInput) throws InvalidInputException {
         switch (userInput) {
         case EXIT:
-            commandToReturn = new ExitCommand();
-            return commandToReturn;
+            return new ExitCommand();
         case HELP:
-            commandToReturn = new HelpCommand();
-            return commandToReturn;
+            return new HelpCommand();
         case NEXT:
-            commandToReturn = new NextCommand();
-            return commandToReturn;
+            return new NextCommand();
         default:
-            commandToReturn = new InvestigateCommand(userInput);
-            return commandToReturn;
+            validInput(userInput);
+            int inputParsedToInt = Integer.parseInt(userInput);
+            return new InvestigateCommand(inputParsedToInt);
+        }
+    }
+
+    private void validInput(String userInput) throws InvalidInputException {
+        try {
+            Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException("Invalid input!");
         }
     }
 
