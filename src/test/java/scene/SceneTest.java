@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/*public class SceneTest {
+public class SceneTest {
 
     @Test
     public void getNarrative() {
@@ -26,4 +26,4 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         String result = scene.toString();
         assertEquals(expectedResult, result);
     }
-}*/
+}
