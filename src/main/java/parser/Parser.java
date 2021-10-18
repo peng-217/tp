@@ -5,6 +5,8 @@ import command.Command;
 import command.ExitCommand;
 import command.HelpCommand;
 import command.InvestigateCommand;
+import exceptions.InvalidInputException;
+import exceptions.InvalidSuspectException;
 
 public class Parser {
     private static final String HELP = "/help";
@@ -15,12 +17,13 @@ public class Parser {
     private static final String SUSPECT_WENDY = "Wendy";
     private static final String SUSPECT_LING = "Ling";
     private static final String SUSPECT_ZACK = "Zack";
+    private static final String INVALID_SUSPECT = "No suspect with corresponding number.";
 
     private String suspectFromFirstScene(int suspectNumber) {
         if (suspectNumber == 1) {
             return SUSPECT_FATHER;
         }
-        return null;
+        throw new InvalidSuspectException(INVALID_SUSPECT);
     }
 
     private String suspectFromSecondScene(int suspectNumber) {
@@ -32,7 +35,7 @@ public class Parser {
         case 3:
             return SUSPECT_WENDY;
         default:
-            return null;
+            throw new InvalidSuspectException(INVALID_SUSPECT);
         }
     }
 
@@ -49,12 +52,11 @@ public class Parser {
         case 5:
             return SUSPECT_ZACK;
         default:
-            return null;
+            throw new InvalidSuspectException(INVALID_SUSPECT);
         }
     }
 
-    public String getSuspectNameFromIndex(int currentScene, String userInput) {
-        int suspectNumber = Integer.parseInt(userInput);
+    public String getSuspectNameFromIndex(int currentScene, int suspectNumber) throws InvalidSuspectException {
         switch (currentScene) {
         case 0:
             return suspectFromFirstScene(suspectNumber);
@@ -63,25 +65,30 @@ public class Parser {
         case 2:
             return suspectFromThirdScene(suspectNumber);
         default:
-            return null;
+            throw new InvalidSuspectException(INVALID_SUSPECT);
         }
     }
 
-    public Command getCommandFromUser(String userInput) {
-        Command commandToReturn;
+    public Command getCommandFromUser(String userInput) throws InvalidInputException {
         switch (userInput) {
         case EXIT:
-            commandToReturn = new ExitCommand();
-            return commandToReturn;
+            return new ExitCommand();
         case HELP:
-            commandToReturn = new HelpCommand();
-            return commandToReturn;
+            return new HelpCommand();
         case NEXT:
-            commandToReturn = new NextCommand();
-            return commandToReturn;
+            return new NextCommand();
         default:
-            commandToReturn = new InvestigateCommand(userInput);
-            return commandToReturn;
+            validInput(userInput);
+            int inputParsedToInt = Integer.parseInt(userInput);
+            return new InvestigateCommand(inputParsedToInt);
+        }
+    }
+
+    private void validInput(String userInput) throws InvalidInputException {
+        try {
+            Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException("Invalid input!");
         }
     }
 
