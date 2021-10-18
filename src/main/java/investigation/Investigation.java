@@ -1,5 +1,7 @@
 package investigation;
 
+import exceptions.InvalidClueException;
+import exceptions.InvalidSuspectException;
 import parser.Parser;
 import scene.Scene;
 import scene.SceneList;
@@ -52,30 +54,21 @@ public class Investigation {
         }
     }
 
-    public void investigateScene(String userInput) {
+
+    public void investigateScene(Integer index) throws InvalidSuspectException, InvalidClueException {
         switch (stage) {
         case SUSPECT_STAGE:
-            currentSuspect = parser.getSuspectNameFromIndex(sceneList.getCurrentSceneIndex(), userInput);
-            if (currentSuspect == null) {
-                System.out.println(WRONG_INDEX_GIVEN);
-            } else {
-                stage = InvestigationStages.CLUE_STAGE;
-            }
+            currentSuspect = parser.getSuspectNameFromIndex(sceneList.getCurrentSceneIndex(), index);
+            stage = InvestigationStages.CLUE_STAGE;
             break;
         case CLUE_STAGE:
             int suspectNumClues = currentScene.investigateSuspect(currentSuspect).getNumClues();
-            try {
-                int index = Integer.parseInt(userInput);
-                if (index > suspectNumClues) {
-                    System.out.println(WRONG_INDEX_GIVEN);
-                } else if (index == 0) {
-                    stage = InvestigationStages.SUSPECT_STAGE;
-                } else {
-                    System.out.println(currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1));
-                }
-            } catch (NumberFormatException e) {
-                System.out.println(ENTER_VALID_COMMAND);
-                return;
+            if (index > suspectNumClues) {
+                throw new InvalidClueException(WRONG_INDEX_GIVEN);
+            } else if (index == 0) {
+                stage = InvestigationStages.SUSPECT_STAGE;
+            } else {
+                System.out.println(currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1));
             }
             break;
         default:

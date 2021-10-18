@@ -1,5 +1,9 @@
 package seedu.duke;
 
+import command.InvalidCommand;
+import exceptions.InvalidInputException;
+import exceptions.InvalidClueException;
+import exceptions.InvalidSuspectException;
 import investigation.Investigation;
 import ui.Ui;
 import parser.Parser;
@@ -48,8 +52,17 @@ public class Duke {
         while (!isExit) {
             investigation.printCurrentInvestigation();
             String userInput = ui.readUserInput();
-            Command commandFromUser = parser.getCommandFromUser(userInput);
-            commandFromUser.execute(ui, investigation);
+            Command commandFromUser = new InvalidCommand();
+            try {
+                commandFromUser = parser.getCommandFromUser(userInput);
+                commandFromUser.execute(ui, investigation);
+            } catch (InvalidSuspectException e1) {
+                ui.printInvalidSuspectMessage();
+            } catch (InvalidClueException e2) {
+                ui.printInvalidClueMessage();
+            } catch (InvalidInputException e3) {
+                ui.printInvalidCommandMessage();
+            }
             isExit = commandFromUser.exit();
         }
     }

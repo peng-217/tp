@@ -66,6 +66,7 @@ public class Ui {
         System.out.println("/help");
         System.out.println("/exit");
         System.out.println("/next");
+        System.out.println("To investigate suspects or clues, please input their corresponding number.");
     }
 
     public void printListOfClues(ArrayList<Clue> clues) {
@@ -105,5 +106,17 @@ public class Ui {
 
     public void printWrongMessage() {
         System.out.println(WRONG_ANSWER);
+    }
+
+    public void printInvalidClueMessage() {
+        System.out.println("Invalid number! To select a clue, please input its corresponding number.");
+    }
+
+    public void printInvalidSuspectMessage() {
+        System.out.println("Invalid number! To select a suspect, please input its corresponding number.");
+    }
+
+    public void printInvalidCommandMessage() {
+        System.out.println("Invalid input! Type '/help' to see the available commands.");
     }
 }
