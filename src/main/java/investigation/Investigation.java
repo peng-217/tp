@@ -6,6 +6,8 @@ import scene.SceneList;
 import scene.SceneListBuilder;
 import suspect.Suspect;
 import ui.Ui;
+import note.Note;
+import note.NoteList;
 
 import java.io.FileNotFoundException;
 
@@ -16,10 +18,13 @@ public class Investigation {
     private static String currentSuspect;
     private static Parser parser;
     private static Ui ui;
+    private static NoteList notes;
+    private static int defaultTitleCounter = 1;
 
     public Investigation(Parser parser, Ui ui) {
         this.parser = parser;
         this.ui = ui;
+        notes = new NoteList(ui);
         stage = InvestigationStages.SUSPECT_STAGE;
         sceneList = SceneListBuilder.buildSceneList(ui);
 
@@ -72,6 +77,9 @@ public class Investigation {
                 System.out.println("File not found for scene");
             }
             return false;
+        case "/note":
+            processNote();
+            break;
         default:
             investigateScene(userInput);
         }
@@ -108,5 +116,47 @@ public class Investigation {
             System.out.println("Invalid command");
         }
     }
+
+    private void processNote() {
+        System.out.println("Do you want to create a new note or open a existing note?");
+        String userChoice = ui.readUserInput();
+        if(userChoice.equals("create")) {
+            System.out.println("Please enter the title for this note (if you do not need title, type a spacing instead:");
+            String transientTitle = ui.readUserInput();
+            String noteTitle;
+            if(!transientTitle.equals(" ")) {
+                noteTitle = transientTitle;
+            } else{
+                noteTitle = "DEFAULT(" + (defaultTitleCounter++) + ")";
+            }
+            System.out.println("Please enter your note:");
+            String noteContent = ui.readUserInput();
+            Note newNote = new Note(noteContent, noteTitle, sceneList.getCurrentSceneIndex());
+            notes.createNote(newNote);
+        } else {
+            ui.printNoteTitle(notes);
+            System.out.println("Do you want to search a note (type in 'search <keywords>') or directly open a note(type in 'open')?");
+            String userInput = ui.readUserInput();
+            if(userInput.contains("search")) {
+                System.out.println("Do you want to search by keyword or scene index?");
+                userInput = ui.readUserInput();
+                if(userInput.equals("keyword")) {
+                    System.out.println("Please enter keywords");
+                    String keywords = ui.readUserInput();
+                    ui.printSelectedNote(notes.searchNoteUsingTitle(keywords, notes));
+                } else {
+                    System.out.println("Please enter scene index:");
+                    int sceneIndex = Integer.parseInt(ui.readUserInput());
+                    ui.printSelectedNote(notes.searchNotesUsingSceneIndex(sceneIndex,notes));
+                }
+            } else {
+                System.out.println("Please type in the index of the note to open it:"); //here the index is not scene index, it is the index in the list
+                int inputOrderIndex = Integer.parseInt(ui.readUserInput());
+                ui.printExistingNotes(notes,inputOrderIndex);
+            }
+        }
+    }
+
+
 
 }

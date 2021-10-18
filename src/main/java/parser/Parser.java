@@ -10,6 +10,7 @@ public class Parser {
 
     private static final int COMMAND_INDEX = 0;
     private static final int CLUE_NUMBER_INDEX = 1;
+    private static final int NOTE_SCENE_INDEX = 1;
 
     public String parseUserInput(String userInput) {
         String[] userInputSplit = userInput.split(INPUT_SPLITTER);
@@ -22,6 +23,14 @@ public class Parser {
         int clueNumber = Integer.parseInt(userInputSplit[CLUE_NUMBER_INDEX]);
         return clueNumber;
     }
+
+    public static int parseNoteSceneIndex(String userInput) {
+        String[] userInputSplit = userInput.split(INPUT_SPLITTER);
+        int noteSceneIndex = Integer.parseInt(userInputSplit[NOTE_SCENE_INDEX]);
+        return noteSceneIndex;
+    }
+
+
 
     public String getSuspectNameFromIndex(int currentScene, String userInput) {
         try {
@@ -43,5 +52,7 @@ public class Parser {
             return null;
         }
     }
+
+
 
 }

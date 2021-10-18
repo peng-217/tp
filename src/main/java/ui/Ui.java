@@ -3,6 +3,8 @@ package ui;
 import clue.Clue;
 import suspect.Suspect;
 import suspect.SuspectList;
+import note.Note;
+import note.NoteList;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -27,7 +29,12 @@ public class Ui {
     private static final String LIST_OF_NOTES_MESSAGE =
             "Here are the list of notes available to you.";
     private static final String lineSeparator = "==============================";
+    private static final String SELECTED_NOTES_MESSAGE =
+            "Here are the list of notes found given keywords:";
+    private static final String SAVE_NOTE_MESSAGE =
+            "Ok! The new note has been successfully created and saved.";
     private Scanner scanner;
+
 
     public void printEmptyLine() {
         System.out.println(lineSeparator);
@@ -62,6 +69,7 @@ public class Ui {
         System.out.println("/help");
         System.out.println("/exit");
         System.out.println("/next");
+        System.out.println("/note scene <Index of scene>");
     }
 
     public void printListOfClues(ArrayList<Clue> clues) {
@@ -72,10 +80,30 @@ public class Ui {
         }
     }
 
-    public void printNotesMessage() {
-        System.out.println(LIST_OF_NOTES_MESSAGE);
-        System.out.println("1. This is a place holder");
+    public void printSaveNoteMessage() {
+        System.out.println(SAVE_NOTE_MESSAGE);
     }
+
+    public void printExistingNotes(NoteList notes,int orderIndex) {
+        System.out.println("Here is the note you want:");
+        System.out.println(notes.getIndexNote(orderIndex).getNoteContent());
+    }
+
+    public void printNoteTitle(NoteList notes){
+        System.out.println(LIST_OF_NOTES_MESSAGE);
+        for(int i = 0; i < notes.getSize(); i++){
+            System.out.println((i + 1) + "." + " " + notes.getIndexNote(i).getNoteTitle());
+        }
+    }
+
+    public void printSelectedNote(ArrayList<Note> result){
+        System.out.println(SELECTED_NOTES_MESSAGE);
+        for(int i = 0; i < result.size(); i++){
+            System.out.println((i + 1) + "." + " " + result.get(i));
+        }
+        System.out.println();
+    }
+
 
     public void getClue(int clueNumber) {
         String str = "this is a clue placeholder";
