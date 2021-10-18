@@ -3,6 +3,7 @@ package seedu.duke;
 import investigation.Investigation;
 import ui.Ui;
 import parser.Parser;
+import command.Command;
 
 public class Duke {
     /**
@@ -40,7 +41,6 @@ public class Duke {
     public static void main(String[] args) {
         initializeGame();
         runUntilExitCommand();
-        ui.printExitMessage();
     }
 
     private static void runUntilExitCommand() {
@@ -48,8 +48,9 @@ public class Duke {
         while (!isExit) {
             investigation.printCurrentInvestigation();
             String userInput = ui.readUserInput();
-            String userInputParsed = parser.parseUserInput(userInput);
-            isExit = investigation.performUserCommand(userInput);
+            Command commandFromUser = parser.getCommandFromUser(userInput);
+            commandFromUser.execute(ui, investigation);
+            isExit = commandFromUser.exit();
         }
     }
 }
