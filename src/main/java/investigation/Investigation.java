@@ -40,10 +40,10 @@ public class Investigation {
 
     public void printCurrentInvestigation() {
         if (stage == InvestigationStages.SUSPECT_STAGE) {
-            if (sceneList.getCurrentSceneIndex() == 0 |
-                    sceneList.getCurrentSceneIndex() == 4 |
-                    sceneList.getCurrentSceneIndex() == 5 |
-                    sceneList.getCurrentSceneIndex() == 6) {
+            if (sceneList.getCurrentSceneIndex() == 0
+                    | sceneList.getCurrentSceneIndex() == 4
+                    | sceneList.getCurrentSceneIndex() == 5
+                    | sceneList.getCurrentSceneIndex() == 6) {
                 return;
             }
             System.out.println("Scene " + (sceneList.getCurrentSceneIndex()) + " Investigation");
