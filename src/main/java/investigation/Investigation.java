@@ -40,11 +40,17 @@ public class Investigation {
 
     public void printCurrentInvestigation() {
         if (stage == InvestigationStages.SUSPECT_STAGE) {
-            System.out.println("Scene " + (sceneList.getCurrentSceneIndex() + 1) + " Investigation");
+            if (sceneList.getCurrentSceneIndex() == 0 |
+                    sceneList.getCurrentSceneIndex() == 4 |
+                    sceneList.getCurrentSceneIndex() == 5 |
+                    sceneList.getCurrentSceneIndex() == 6) {
+                return;
+            }
+            System.out.println("Scene " + (sceneList.getCurrentSceneIndex()) + " Investigation");
             System.out.println("Who do you want to investigate?");
             ui.printSuspects(currentScene.getSuspectList());
         } else {
-            System.out.print("Scene " + (sceneList.getCurrentSceneIndex() + 1) + " Investigation");
+            System.out.print("Scene " + (sceneList.getCurrentSceneIndex()) + " Investigation");
             System.out.println(" - " + currentSuspect);
             System.out.println("0. Go back to list of suspects");
             Suspect suspect = currentScene.investigateSuspect(currentSuspect);
@@ -83,29 +89,29 @@ public class Investigation {
         }
     }
 
-    public boolean completedGame() {
-        boolean isLastScene = getNextSceneFromSceneList();
-        if (isLastScene) {
-            ui.printSuspectKillerMessage();
-            String suspectedKiller = ui.readUserInput();
-            return checkSuspectedKiller(suspectedKiller);
-        } else {
-            return false;
-        }
+    public boolean isACorrectGuess() {
+        // int isTimeToGuess = getNextSceneFromSceneList();
+        ui.printSuspectKillerMessage();
+        String suspectedKiller = ui.readUserInput();
+        return checkSuspectedKiller(suspectedKiller);
     }
 
     private boolean checkSuspectedKiller(String suspectedKiller) {
         if (suspectedKiller.equals(KILLER_WENDY)) {
-            ui.printCorrectMessage();
+            //ui.printCorrectMessage();
             return true;
         } else {
-            ui.printWrongMessage();
+            //ui.printWrongMessage();
             return false;
         }
     }
 
-    public boolean getNextSceneFromSceneList() {
-        return sceneList.nextScene();
+    public int getNextSceneFromSceneList() {
+        return sceneList.isLastScene();
+    }
+
+    public void getNextSceneFromSceneList(boolean isACorrectGuess) {
+        sceneList.incrementSeceneAfterGuessing(isACorrectGuess);
     }
 
     public void runScenes() {
