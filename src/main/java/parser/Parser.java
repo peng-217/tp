@@ -10,42 +10,62 @@ import exceptions.InvalidSuspectException;
 
 public class Parser {
     private static final String HELP = "/help";
-    private static final String CLUES = "/clues";
-    private static final String SUSPECT = "/suspect";
-    private static final String NOTE = "/note";
     private static final String EXIT = "/exit";
     private static final String NEXT = "/next";
+    private static final String SUSPECT_FATHER = "Father";
+    private static final String SUSPECT_KEVIN = "Kevin";
+    private static final String SUSPECT_WENDY = "Wendy";
+    private static final String SUSPECT_LING = "Ling";
+    private static final String SUSPECT_ZACK = "Zack";
+    private static final String INVALID_SUSPECT = "No suspect with corresponding number.";
 
-    private static final String INPUT_SPLITTER = " ";
-
-    private static final int COMMAND_INDEX = 0;
-    private static final int CLUE_NUMBER_INDEX = 1;
-
-    public String parseUserInput(String userInput) {
-        String[] userInputSplit = userInput.split(INPUT_SPLITTER);
-        String userCommand = userInputSplit[COMMAND_INDEX];
-        return userCommand;
+    private String suspectFromFirstScene(int suspectNumber) {
+        if (suspectNumber == 1) {
+            return SUSPECT_FATHER;
+        }
+        throw new InvalidSuspectException(INVALID_SUSPECT);
     }
 
-    public int parseClueNumber(String userInput) {
-        String[] userInputSplit = userInput.split(INPUT_SPLITTER);
-        int clueNumber = Integer.parseInt(userInputSplit[CLUE_NUMBER_INDEX]);
-        return clueNumber;
+    private String suspectFromSecondScene(int suspectNumber) {
+        switch (suspectNumber) {
+        case 1:
+            return SUSPECT_FATHER;
+        case 2:
+            return SUSPECT_KEVIN;
+        case 3:
+            return SUSPECT_WENDY;
+        default:
+            throw new InvalidSuspectException(INVALID_SUSPECT);
+        }
     }
 
-    public String getSuspectNameFromIndex(int currentScene, int userInput) throws InvalidSuspectException {
-        if (userInput == 1) {
-            return "Father";
-        } else if (userInput == 2 & currentScene >= 1) {
-            return "Kevin";
-        } else if (userInput == 3 & currentScene >= 1) {
-            return "Wendy";
-        } else if (userInput == 4 & currentScene >= 2) {
-            return "Ling";
-        } else if (userInput == 5 & currentScene >= 2) {
-            return "Zack";
-        } else {
-            throw new InvalidSuspectException("Input out of range");
+    private String suspectFromThirdScene(int suspectNumber) {
+        switch (suspectNumber) {
+        case 1:
+            return SUSPECT_FATHER;
+        case 2:
+            return SUSPECT_KEVIN;
+        case 3:
+            return SUSPECT_WENDY;
+        case 4:
+            return SUSPECT_LING;
+        case 5:
+            return SUSPECT_ZACK;
+        default:
+            throw new InvalidSuspectException(INVALID_SUSPECT);
+        }
+    }
+
+    public String getSuspectNameFromIndex(int currentScene, int suspectNumber) throws InvalidSuspectException {
+        switch (currentScene) {
+        case 0:
+            return suspectFromFirstScene(suspectNumber);
+        case 1:
+            return suspectFromSecondScene(suspectNumber);
+        case 2:
+            return suspectFromThirdScene(suspectNumber);
+        default:
+            throw new InvalidSuspectException(INVALID_SUSPECT);
         }
     }
 
