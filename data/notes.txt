@@ -1,0 +1,12 @@
+scene 1
+TEST
+test
+End of this note.
+scene 1
+MERCEDES
+AMG C63, AMG S65, AMG A45
+End of this note.
+scene 1
+HELLO
+helo
+End of this note.

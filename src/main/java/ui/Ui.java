@@ -86,7 +86,9 @@ public class Ui {
 
     public void printExistingNotes(NoteList notes,int orderIndex) {
         System.out.println("Here is the note you want:");
-        System.out.println(notes.getIndexNote(orderIndex).getNoteContent());
+        System.out.println("scene " + notes.getIndexNote(orderIndex - 1).getNoteSceneIndex());
+        System.out.println(notes.getIndexNote(orderIndex - 1).getNoteTitle());
+        System.out.println(notes.getIndexNote(orderIndex - 1).getNoteContent());
     }
 
     public void printNoteTitle(NoteList notes){
@@ -99,7 +101,9 @@ public class Ui {
     public void printSelectedNote(ArrayList<Note> result){
         System.out.println(SELECTED_NOTES_MESSAGE);
         for(int i = 0; i < result.size(); i++){
-            System.out.println((i + 1) + "." + " " + result.get(i));
+            System.out.println((i + 1) + "." + " " + "scene " + result.get(i).getNoteSceneIndex());
+            System.out.println(result.get(i).getNoteTitle());
+            System.out.println(result.get(i).getNoteContent());
         }
         System.out.println();
     }

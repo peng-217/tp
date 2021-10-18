@@ -1,5 +1,6 @@
 package investigation;
 
+import Storage.Storage;
 import parser.Parser;
 import scene.Scene;
 import scene.SceneList;
@@ -18,15 +19,18 @@ public class Investigation {
     private static String currentSuspect;
     private static Parser parser;
     private static Ui ui;
+    private static Storage storage;
     private static NoteList notes;
     private static int defaultTitleCounter = 1;
 
     public Investigation(Parser parser, Ui ui) {
         this.parser = parser;
         this.ui = ui;
+        storage = new Storage();
         notes = new NoteList(ui);
         stage = InvestigationStages.SUSPECT_STAGE;
         sceneList = SceneListBuilder.buildSceneList(ui);
+        storage.openNoteFromFile(notes);
 
         currentScene = sceneList.getCurrentScene();
         try {
@@ -118,6 +122,7 @@ public class Investigation {
     }
 
     private void processNote() {
+
         System.out.println("Do you want to create a new note or open a existing note?");
         String userChoice = ui.readUserInput();
         if(userChoice.equals("create")) {
@@ -131,11 +136,11 @@ public class Investigation {
             }
             System.out.println("Please enter your note:");
             String noteContent = ui.readUserInput();
-            Note newNote = new Note(noteContent, noteTitle, sceneList.getCurrentSceneIndex());
-            notes.createNote(newNote);
+            Note newNote = new Note(noteContent, noteTitle, (sceneList.getCurrentSceneIndex()+1));
+            notes.createNote(newNote,sceneList.getCurrentSceneIndex());
         } else {
             ui.printNoteTitle(notes);
-            System.out.println("Do you want to search a note (type in 'search <keywords>') or directly open a note(type in 'open')?");
+            System.out.println("Do you want to search a note (type in 'search') or directly open a note(type in 'open')?");
             String userInput = ui.readUserInput();
             if(userInput.contains("search")) {
                 System.out.println("Do you want to search by keyword or scene index?");
@@ -152,6 +157,7 @@ public class Investigation {
             } else {
                 System.out.println("Please type in the index of the note to open it:"); //here the index is not scene index, it is the index in the list
                 int inputOrderIndex = Integer.parseInt(ui.readUserInput());
+                //System.out.println(inputOrderIndex);
                 ui.printExistingNotes(notes,inputOrderIndex);
             }
         }

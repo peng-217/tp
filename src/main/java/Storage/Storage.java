@@ -1,5 +1,6 @@
 package Storage;
-
+import scene.Scene;
+import scene.SceneList;
 import note.NoteList;
 import note.Note;
 import java.io.File;
@@ -17,7 +18,7 @@ private final static int NUMBER_OF_BLANK_LINE = 1;
 
     }
 
-    public static void saveNote(NoteList notes) {
+    public static void saveNote(NoteList notes,int inputSceneIndex) {
         File saveDirection =  new File("data");
         saveDirection.mkdir();
         File saveNote = new File(saveDirection,"notes.txt");
@@ -25,11 +26,15 @@ private final static int NUMBER_OF_BLANK_LINE = 1;
             saveNote.createNewFile();
             FileWriter noteWriter = new FileWriter(saveNote);
             for (int i = 0; i < notes.getSize(); i++) {
+
                 String titleToWrite = notes.getIndexNote(i).getNoteTitle();
                 String contentToWrite = notes.getIndexNote(i).getNoteContent();
+                noteWriter.write("scene " + (inputSceneIndex + 1));
+                noteWriter.write("\n");
                 noteWriter.write(titleToWrite);
                 noteWriter.write("\n");
                 noteWriter.write(contentToWrite);
+                noteWriter.write("\n");
                 noteWriter.write("End of this note.");
                 for (int j = 0; j < NUMBER_OF_BLANK_LINE; j++) {
                     noteWriter.write("\n");
@@ -59,7 +64,7 @@ private final static int NUMBER_OF_BLANK_LINE = 1;
                         contentPart = scanNote.nextLine();
                     }
                     Note savedNote = new Note(content, title, sceneIndex);
-                    notes.createNote(savedNote);
+                    notes.createNote(savedNote,sceneIndex);
                 }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

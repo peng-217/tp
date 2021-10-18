@@ -63,10 +63,11 @@ public class NoteList {
         return notes.get(Index);
     }
 
-    public void createNote(Note newNote) {
+    public void createNote(Note newNote, int inputSceneIndex) {
         notes.add(newNote);
+        Storage.saveNote(this,inputSceneIndex);
         ui.printSaveNoteMessage();
-        Storage.saveNote(this);
+
     }
 
 
