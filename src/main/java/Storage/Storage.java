@@ -1,8 +1,10 @@
-package Storage;
+package storage;
+
 import scene.Scene;
 import scene.SceneList;
 import note.NoteList;
 import note.Note;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -10,11 +12,11 @@ import java.io.IOException;
 import java.util.Scanner;
 
 
-public class Storage {
+public class storage {
 
-private final static int NUMBER_OF_BLANK_LINE = 1;
+    private static final  int NUMBER_OF_BLANK_LINE = 1;
 
-    public Storage() {
+    public storage() {
 
     }
 
@@ -41,7 +43,7 @@ private final static int NUMBER_OF_BLANK_LINE = 1;
                 }
             }
             noteWriter.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -50,7 +52,7 @@ private final static int NUMBER_OF_BLANK_LINE = 1;
         File saveDirection = new File("data");
         saveDirection.mkdir();
         File saveNote = new File(saveDirection,"notes.txt");
-        if(saveNote.exists()) {
+        if (saveNote.exists()) {
             try {
                 Scanner scanNote = new Scanner(saveNote);
                 while (scanNote.hasNext()) {
@@ -72,6 +74,3 @@ private final static int NUMBER_OF_BLANK_LINE = 1;
 
     }
 }
-
-
-

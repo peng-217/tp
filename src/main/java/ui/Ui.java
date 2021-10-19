@@ -92,16 +92,16 @@ public class Ui {
         System.out.println(lineSeparator);
     }
 
-    public void printNoteTitle(NoteList notes){
+    public void printNoteTitle(NoteList notes) {
         System.out.println(LIST_OF_NOTES_MESSAGE);
-        for(int i = 0; i < notes.getSize(); i++){
+        for (int i = 0; i < notes.getSize(); i++) {
             System.out.println((i + 1) + "." + " " + notes.getIndexNote(i).getNoteTitle());
         }
     }
 
-    public void printSelectedNote(ArrayList<Note> result){
+    public void printSelectedNote(ArrayList<Note> result) {
         System.out.println(SELECTED_NOTES_MESSAGE);
-        for(int i = 0; i < result.size(); i++){
+        for (int i = 0; i < result.size(); i++) {
             System.out.println((i + 1) + "." + " " + "scene " + result.get(i).getNoteSceneIndex());
             System.out.println(result.get(i).getNoteTitle());
             System.out.println(result.get(i).getNoteContent());
