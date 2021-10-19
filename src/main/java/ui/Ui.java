@@ -29,10 +29,17 @@ public class Ui {
     private static final String LIST_OF_NOTES_MESSAGE =
             "Here are the list of notes available to you.";
     private static final String lineSeparator = "==============================";
+
     private static final String SELECTED_NOTES_MESSAGE =
             "Here are the list of notes found given keywords:";
     private static final String SAVE_NOTE_MESSAGE =
             "Ok! The new note has been successfully created and saved.";
+
+    private static final String WHO_KILLED_YOU = "Who do you think killed you?";
+    private static final String CORRECT_ANSWER = "Correct answer";
+    private static final String WRONG_ANSWER = "Wrong answer";
+
+
     private Scanner scanner;
 
 
@@ -69,7 +76,11 @@ public class Ui {
         System.out.println("/help");
         System.out.println("/exit");
         System.out.println("/next");
+
         System.out.println("/note scene <Index of scene>");
+
+        System.out.println("To investigate suspects or clues, please input their corresponding number.");
+
     }
 
     public void printListOfClues(ArrayList<Clue> clues) {
@@ -123,5 +134,29 @@ public class Ui {
             System.out.println((i + 1) + ". " + suspectEntry.getKey());
             i++;
         }
+    }
+
+    public void printSuspectKillerMessage() {
+        System.out.println(WHO_KILLED_YOU);
+    }
+
+    public void printCorrectMessage() {
+        System.out.println(CORRECT_ANSWER);
+    }
+
+    public void printWrongMessage() {
+        System.out.println(WRONG_ANSWER);
+    }
+
+    public void printInvalidClueMessage() {
+        System.out.println("Invalid number! To select a clue, please input its corresponding number.");
+    }
+
+    public void printInvalidSuspectMessage() {
+        System.out.println("Invalid number! To select a suspect, please input its corresponding number.");
+    }
+
+    public void printInvalidCommandMessage() {
+        System.out.println("Invalid input! Type '/help' to see the available commands.");
     }
 }

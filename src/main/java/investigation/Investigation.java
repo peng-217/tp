@@ -1,6 +1,9 @@
 package investigation;
 
+
 import storage.Storage;
+import exceptions.InvalidClueException;
+import exceptions.InvalidSuspectException;
 import parser.Parser;
 import scene.Scene;
 import scene.SceneList;
@@ -24,6 +27,13 @@ public class Investigation {
     private static NoteList notes;
     private static int defaultTitleCounter = 1;
 
+    private static final String FILE_NOT_FOUND = "File not found for scene";
+    private static final String WRONG_INDEX_GIVEN = "Sorry please enter index within range";
+    private static final String ENTER_VALID_COMMAND = "Please enter a valid user command";
+    private static final String INVALID_COMMAND = "Invalid command";
+
+    private static final String KILLER_WENDY = "Wendy";
+
     public Investigation(Parser parser, Ui ui) {
         this.parser = parser;
         this.ui = ui;
@@ -37,7 +47,7 @@ public class Investigation {
         try {
             currentScene.runScene();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found for scene");
+            System.out.println(FILE_NOT_FOUND);
         }
     }
 
@@ -54,6 +64,7 @@ public class Investigation {
             ui.printListOfClues(suspect.getClues());
         }
     }
+
 
     public boolean performUserCommand(String userInput) {
         switch (userInput) {
@@ -91,36 +102,27 @@ public class Investigation {
         return false;
     }
 
-    private void investigateScene(String userInput) {
+    public void investigateScene(Integer index) throws InvalidSuspectException, InvalidClueException {
         switch (stage) {
         case SUSPECT_STAGE:
-            currentSuspect = parser.getSuspectNameFromIndex(sceneList.getCurrentSceneIndex(), userInput);
-            if (currentSuspect == null) {
-                System.out.println("Sorry please enter index within range");
-            } else {
-                stage = InvestigationStages.CLUE_STAGE;
-            }
+            currentSuspect = parser.getSuspectNameFromIndex(sceneList.getCurrentSceneIndex(), index);
+            stage = InvestigationStages.CLUE_STAGE;
             break;
         case CLUE_STAGE:
             int suspectNumClues = currentScene.investigateSuspect(currentSuspect).getNumClues();
-            try {
-                int index = Integer.parseInt(userInput);
-                if (index > suspectNumClues) {
-                    System.out.println("Sorry please enter index within range");
-                } else if (index == 0) {
-                    stage = InvestigationStages.SUSPECT_STAGE;
-                } else {
-                    System.out.println(currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1));
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid user command");
-                return;
+            if (index > suspectNumClues) {
+                throw new InvalidClueException(WRONG_INDEX_GIVEN);
+            } else if (index == 0) {
+                stage = InvestigationStages.SUSPECT_STAGE;
+            } else {
+                System.out.println(currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1));
             }
             break;
         default:
-            System.out.println("Invalid command");
+            System.out.println(INVALID_COMMAND);
         }
     }
+
 
     private void processNote() {
         System.out.println("Do you want to create a new note or open a existing note?");
@@ -168,4 +170,39 @@ public class Investigation {
 
 
 
+
+    public boolean completedGame() {
+        boolean isLastScene = getNextSceneFromSceneList();
+        if (isLastScene) {
+            ui.printSuspectKillerMessage();
+            String suspectedKiller = ui.readUserInput();
+            return checkSuspectedKiller(suspectedKiller);
+        } else {
+            return false;
+        }
+    }
+
+    private boolean checkSuspectedKiller(String suspectedKiller) {
+        if (suspectedKiller.equals(KILLER_WENDY)) {
+            ui.printCorrectMessage();
+            return true;
+        } else {
+            ui.printWrongMessage();
+            return false;
+        }
+    }
+
+    public boolean getNextSceneFromSceneList() {
+        return sceneList.nextScene();
+    }
+
+    public void runScenes() {
+        currentScene = sceneList.getCurrentScene();
+        stage = InvestigationStages.SUSPECT_STAGE;
+        try {
+            currentScene.runScene();
+        } catch (FileNotFoundException e) {
+            System.out.println(FILE_NOT_FOUND);
+        }
+    }
 }

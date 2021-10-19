@@ -1,28 +1,95 @@
 package parser;
 
+import command.NextCommand;
+import command.Command;
+import command.ExitCommand;
+import command.HelpCommand;
+import command.InvestigateCommand;
+import exceptions.InvalidInputException;
+import exceptions.InvalidSuspectException;
+
 public class Parser {
     private static final String HELP = "/help";
-    private static final String CLUES = "/clues";
-    private static final String SUSPECT = "/suspect";
-    private static final String NOTE = "/note";
+    private static final String EXIT = "/exit";
+    private static final String NEXT = "/next";
+    private static final String SUSPECT_FATHER = "Father";
+    private static final String SUSPECT_KEVIN = "Kevin";
+    private static final String SUSPECT_WENDY = "Wendy";
+    private static final String SUSPECT_LING = "Ling";
+    private static final String SUSPECT_ZACK = "Zack";
+    private static final String INVALID_SUSPECT = "No suspect with corresponding number.";
 
-    private static final String INPUT_SPLITTER = " ";
+    private String suspectFromFirstScene(int suspectNumber) {
+        if (suspectNumber == 1) {
+            return SUSPECT_FATHER;
+        }
+        throw new InvalidSuspectException(INVALID_SUSPECT);
+    }
+
+    private String suspectFromSecondScene(int suspectNumber) {
+        switch (suspectNumber) {
+        case 1:
+            return SUSPECT_FATHER;
+        case 2:
+            return SUSPECT_KEVIN;
+        case 3:
+            return SUSPECT_WENDY;
+        default:
+            throw new InvalidSuspectException(INVALID_SUSPECT);
+        }
+    }
+
 
     private static final int COMMAND_INDEX = 0;
     private static final int CLUE_NUMBER_INDEX = 1;
     private static final int NOTE_SCENE_INDEX = 1;
 
-    public String parseUserInput(String userInput) {
-        String[] userInputSplit = userInput.split(INPUT_SPLITTER);
-        String userCommand = userInputSplit[COMMAND_INDEX];
-        return userCommand;
+    private String suspectFromThirdScene(int suspectNumber) {
+        switch (suspectNumber) {
+        case 1:
+            return SUSPECT_FATHER;
+        case 2:
+            return SUSPECT_KEVIN;
+        case 3:
+            return SUSPECT_WENDY;
+        case 4:
+            return SUSPECT_LING;
+        case 5:
+            return SUSPECT_ZACK;
+        default:
+            throw new InvalidSuspectException(INVALID_SUSPECT);
+        }
     }
 
-    public int parseClueNumber(String userInput) {
-        String[] userInputSplit = userInput.split(INPUT_SPLITTER);
-        int clueNumber = Integer.parseInt(userInputSplit[CLUE_NUMBER_INDEX]);
-        return clueNumber;
+
+    public String getSuspectNameFromIndex(int currentScene, int suspectNumber) throws InvalidSuspectException {
+        switch (currentScene) {
+        case 0:
+            return suspectFromFirstScene(suspectNumber);
+        case 1:
+            return suspectFromSecondScene(suspectNumber);
+        case 2:
+            return suspectFromThirdScene(suspectNumber);
+        default:
+            throw new InvalidSuspectException(INVALID_SUSPECT);
+        }
     }
+
+    public Command getCommandFromUser(String userInput) throws InvalidInputException {
+        switch (userInput) {
+        case EXIT:
+            return new ExitCommand();
+        case HELP:
+            return new HelpCommand();
+        case NEXT:
+            return new NextCommand();
+        default:
+            validInput(userInput);
+            int inputParsedToInt = Integer.parseInt(userInput);
+            return new InvestigateCommand(inputParsedToInt);
+        }
+    }
+
 
     public static int parseNoteSceneIndex(String userInput) {
         String[] userInputSplit = userInput.split(INPUT_SPLITTER);
@@ -33,23 +100,13 @@ public class Parser {
 
 
     public String getSuspectNameFromIndex(int currentScene, String userInput) {
+
+    private void validInput(String userInput) throws InvalidInputException {
+
         try {
-            int index = Integer.parseInt(userInput);
-            if (index == 1) {
-                return "Father";
-            } else if (index == 2 & currentScene >= 1) {
-                return "Kevin";
-            } else if (index == 3 & currentScene >= 1) {
-                return "Wendy";
-            } else if (index == 4 & currentScene >= 2) {
-                return "Ling";
-            } else if (index == 5 & currentScene >= 2) {
-                return "Zack";
-            } else {
-                return null;
-            }
+            Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            return null;
+            throw new InvalidInputException("Invalid input!");
         }
     }
 
