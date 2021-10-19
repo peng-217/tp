@@ -1,15 +1,17 @@
 package parser;
 
-import command.NextCommand;
 import command.Command;
-import command.ExitCommand;
-import command.HelpCommand;
+import command.NoteCommand;
 import command.InvestigateCommand;
+import command.HelpCommand;
+import command.ExitCommand;
+import command.NextCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
 
 public class Parser {
     private static final String HELP = "/help";
+    private static final String NOTE = "/note";
     private static final String EXIT = "/exit";
     private static final String NEXT = "/next";
     private static final String SUSPECT_FATHER = "Father";
@@ -18,6 +20,10 @@ public class Parser {
     private static final String SUSPECT_LING = "Ling";
     private static final String SUSPECT_ZACK = "Zack";
     private static final String INVALID_SUSPECT = "No suspect with corresponding number.";
+    private static final String INPUT_SPLITTER = " ";
+    private static final int COMMAND_INDEX = 0;
+    private static final int CLUE_NUMBER_INDEX = 1;
+    private static final int NOTE_SCENE_INDEX = 1;
 
     private String suspectFromFirstScene(int suspectNumber) {
         if (suspectNumber == 1) {
@@ -56,6 +62,7 @@ public class Parser {
         }
     }
 
+
     public String getSuspectNameFromIndex(int currentScene, int suspectNumber) throws InvalidSuspectException {
         switch (currentScene) {
         case 0:
@@ -71,6 +78,8 @@ public class Parser {
 
     public Command getCommandFromUser(String userInput) throws InvalidInputException {
         switch (userInput) {
+        case NOTE:
+            return new NoteCommand();
         case EXIT:
             return new ExitCommand();
         case HELP:
@@ -84,6 +93,13 @@ public class Parser {
         }
     }
 
+
+    public static int parseNoteSceneIndex(String userInput) {
+        String[] userInputSplit = userInput.split(INPUT_SPLITTER);
+        int noteSceneIndex = Integer.parseInt(userInputSplit[NOTE_SCENE_INDEX]);
+        return noteSceneIndex;
+    }
+
     private void validInput(String userInput) throws InvalidInputException {
         try {
             Integer.parseInt(userInput);
@@ -93,3 +109,5 @@ public class Parser {
     }
 
 }
+
+

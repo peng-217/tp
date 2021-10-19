@@ -14,14 +14,26 @@ public class SceneList {
     public void addScene(Scene scene) {
         this.scenes.add(scene);
     }
-
-    // Returns false if unable to move to next scene (last scene)
-    public boolean nextScene() {
+    
+    public int isLastScene() {
         if (currentSceneIndex == scenes.size() - 1) {
-            return true;
+            return 0;
+        } else if (currentSceneIndex == 3) {
+            return 1;
+        } else if (currentSceneIndex == 4 | currentSceneIndex == 5) {
+            this.currentSceneIndex = 6;
+            return 2;
         }
         this.currentSceneIndex++;
-        return false;
+        return 2;
+    }
+
+    public void incrementSeceneAfterGuessing(boolean isACorrectGuess) {
+        if (isACorrectGuess) {
+            this.currentSceneIndex += 1;
+        } else {
+            this.currentSceneIndex += 2;
+        }
     }
 
     public Scene getCurrentScene() {
