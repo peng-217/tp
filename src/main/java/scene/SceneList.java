@@ -14,8 +14,7 @@ public class SceneList {
     public void addScene(Scene scene) {
         this.scenes.add(scene);
     }
-
-    // Returns false if unable to move to next scene (last scene)
+    
     public int isLastScene() {
         if (currentSceneIndex == scenes.size() - 1) {
             return 0;
