@@ -23,9 +23,7 @@ import clue.thirdscene.WendyRude;
 import clue.thirdscene.ZackDrink;
 import clue.thirdscene.ZackMemo;
 import clue.thirdscene.ZackNotif;
-import narrative.FirstNarrative;
-import narrative.SecondNarrative;
-import narrative.ThirdNarrative;
+import narrative.Narrative;
 import ui.Ui;
 import suspect.Suspect;
 import suspect.SuspectList;
@@ -74,9 +72,9 @@ public class SceneListBuilder {
         suspectsScene3.addClueForSuspect("Zack", new ZackNotif());
 
         SceneList sceneList = new SceneList();
-        Scene firstScene = new Scene(new FirstNarrative(), suspectsScene1);
-        Scene secondScene = new Scene(new SecondNarrative(), suspectsScene2);
-        Scene thirdScene = new Scene(new ThirdNarrative(), suspectsScene3);
+        Scene firstScene = new Scene(new Narrative("First_Scene.txt"), suspectsScene1);
+        Scene secondScene = new Scene(new Narrative("Second_Scene.txt"), suspectsScene2);
+        Scene thirdScene = new Scene(new Narrative("Third_Scene.txt"), suspectsScene3);
 
         sceneList.addScene(firstScene);
         sceneList.addScene(secondScene);
