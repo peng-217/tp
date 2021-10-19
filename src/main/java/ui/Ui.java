@@ -28,7 +28,7 @@ public class Ui {
             "Here are the list of clues available to you.";
     private static final String LIST_OF_NOTES_MESSAGE =
             "Here are the list of notes available to you.";
-    private static final String lineSeparator = "==============================";
+    private static final String LINE_SEPARATOR = "==============================";
 
     private static final String SELECTED_NOTES_MESSAGE =
             "Here are the list of notes found given keywords:";
@@ -44,7 +44,7 @@ public class Ui {
 
 
     public void printEmptyLine() {
-        System.out.println(lineSeparator);
+        System.out.println(LINE_SEPARATOR);
     }
 
     public void printWelcomeMessage() {
@@ -100,7 +100,7 @@ public class Ui {
         System.out.println("scene " + notes.getIndexNote(orderIndex - 1).getNoteSceneIndex());
         System.out.println(notes.getIndexNote(orderIndex - 1).getNoteTitle());
         System.out.println(notes.getIndexNote(orderIndex - 1).getNoteContent());
-        System.out.println(lineSeparator);
+        System.out.println(LINE_SEPARATOR);
     }
 
     public void printNoteTitle(NoteList notes) {
@@ -118,7 +118,7 @@ public class Ui {
             System.out.println(result.get(i).getNoteContent());
         }
         System.out.println();
-        System.out.println(lineSeparator);
+        System.out.println(LINE_SEPARATOR);
     }
 
 

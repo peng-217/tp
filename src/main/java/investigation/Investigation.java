@@ -66,42 +66,6 @@ public class Investigation {
     }
 
 
-    public boolean performUserCommand(String userInput) {
-        switch (userInput) {
-        case "/exit":
-            return true;
-        case "/help":
-            ui.printListOfCommands();
-            return false;
-        case "/next":
-            boolean isEndScene = sceneList.nextScene();
-            if (isEndScene) {
-                System.out.println("Who do you think killed you?");
-                String guess = ui.readUserInput();
-                if (guess.equals("Wendy")) {
-                    System.out.println("Correct answer");
-                } else {
-                    System.out.println("Wrong answer");
-                }
-                return true;
-            }
-            currentScene = sceneList.getCurrentScene();
-            stage = InvestigationStages.SUSPECT_STAGE;
-            try {
-                currentScene.runScene();
-            } catch (FileNotFoundException e) {
-                System.out.println("File not found for scene");
-            }
-            return false;
-        case "/note":
-            processNote();
-            break;
-        default:
-            investigateScene(userInput);
-        }
-        return false;
-    }
-
     public void investigateScene(Integer index) throws InvalidSuspectException, InvalidClueException {
         switch (stage) {
         case SUSPECT_STAGE:
@@ -167,8 +131,6 @@ public class Investigation {
             }
         }
     }
-
-
 
 
     public boolean completedGame() {
