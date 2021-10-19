@@ -98,6 +98,7 @@ public class Investigation {
         ui.printSuspectKillerMessage();
         String suspectedKiller = ui.readUserInput();
         return checkSuspectedKiller(suspectedKiller);
+    }
 
     public void processNote() {
         System.out.println("Do you want to create a new note or open a existing note?");
@@ -141,8 +142,6 @@ public class Investigation {
                 ui.printExistingNotes(notes,inputOrderIndex);
             }
         }
-    }
-
     }
 
     private boolean checkSuspectedKiller(String suspectedKiller) {
