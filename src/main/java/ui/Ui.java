@@ -76,8 +76,7 @@ public class Ui {
         System.out.println("/help");
         System.out.println("/exit");
         System.out.println("/next");
-
-        System.out.println("/note scene <Index of scene>");
+        System.out.println("/note");
 
         System.out.println("To investigate suspects or clues, please input their corresponding number.");
 
