@@ -14,7 +14,7 @@ public class SceneListTest {
         Scene currentScene = sceneList.getCurrentScene();
         currentScene.runScene();
 
-        sceneList.nextScene();
+        sceneList.isLastScene();
         currentScene = sceneList.getCurrentScene();
 
         System.out.println(currentScene.getSuspectList().getSuspectAvailableClues("Father"));
@@ -36,12 +36,12 @@ public class SceneListTest {
         Scene currentScene = sceneList.getCurrentScene();
         currentScene.runScene();
 
-        sceneList.nextScene();
+        sceneList.isLastScene();
         currentScene = sceneList.getCurrentScene();
         System.out.println("------------------------------------------");
         currentScene.runScene();
 
-        sceneList.nextScene();
+        sceneList.isLastScene();
         currentScene = sceneList.getCurrentScene();
         System.out.println("------------------------------------------");
         currentScene.runScene();
