@@ -126,8 +126,8 @@ public class Investigation {
         System.out.println("Do you want to create a new note or open a existing note?");
         String userChoice = ui.readUserInput();
         if (userChoice.equals("create")) {
-            System.out.println("Please enter the title for this note" +
-                    " (if you do not need title, type a spacing instead:");
+            System.out.println("Please enter the title for this note"
+                    + " (if you do not need title, type a spacing instead:");
             String transientTitle = ui.readUserInput();
             String noteTitle;
             if (!transientTitle.equals(" ")) {
@@ -141,8 +141,8 @@ public class Investigation {
             notes.createNote(newNote,(sceneList.getCurrentSceneIndex() + 1));
         } else {
             ui.printNoteTitle(notes);
-            System.out.println("Do you want to search a note (type in 'search') or " +
-                    "directly open a note (type in 'open')?");
+            System.out.println("Do you want to search a note (type in 'search') or "
+                    + "directly open a note (type in 'open')?");
             String userInput = ui.readUserInput();
             if (userInput.contains("search")) {
                 System.out.println("Do you want to search by keyword or scene index?");
