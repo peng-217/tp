@@ -1,8 +1,4 @@
 scene 1
-TEST
-test
-End of this note.
-scene 1
 HELLO
 helo
 End of this note.
