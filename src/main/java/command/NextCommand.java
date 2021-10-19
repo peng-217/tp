@@ -8,10 +8,15 @@ public class NextCommand extends Command {
 
     @Override
     public void execute(Ui ui, Investigation investigation) {
-        boolean currentScene = investigation.getNextSceneFromSceneList();
-        if (currentScene) {
-            hasCompleted = investigation.completedGame();
-        } else {
+        int getNextScene = investigation.getNextSceneFromSceneList();
+        if (getNextScene == 0) { // is the last scene
+            hasCompleted = true;
+            //hasCompleted = investigation.completedGame();
+        } else if (getNextScene == 1) { // has finished investigation and needs to vote now
+            boolean isCorrect = investigation.isACorrectGuess();
+            investigation.getNextSceneFromSceneList(isCorrect);
+            investigation.runScenes();
+        } else { // neither of the other two
             investigation.runScenes();
         }
     }

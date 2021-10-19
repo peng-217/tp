@@ -72,13 +72,22 @@ public class SceneListBuilder {
         suspectsScene3.addClueForSuspect("Zack", new ZackNotif());
 
         SceneList sceneList = new SceneList();
+
+        Scene introScene = new Scene(new Narrative("Introduction.txt"), null);
         Scene firstScene = new Scene(new Narrative("First_Scene.txt"), suspectsScene1);
         Scene secondScene = new Scene(new Narrative("Second_Scene.txt"), suspectsScene2);
         Scene thirdScene = new Scene(new Narrative("Third_Scene.txt"), suspectsScene3);
+        Scene correctEndingScene = new Scene(new Narrative("correctEnding.txt"), null);
+        Scene wrongEndingScene = new Scene(new Narrative("WrongEnding.txt"), null);
+        Scene truthScene = new Scene(new Narrative("Truth.txt"), null);
 
+        sceneList.addScene(introScene);
         sceneList.addScene(firstScene);
         sceneList.addScene(secondScene);
         sceneList.addScene(thirdScene);
+        sceneList.addScene(correctEndingScene);
+        sceneList.addScene(wrongEndingScene);
+        sceneList.addScene(truthScene);
 
         return sceneList;
     }
