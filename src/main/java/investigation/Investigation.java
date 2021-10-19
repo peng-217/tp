@@ -1,5 +1,7 @@
 package investigation;
 
+
+import storage.Storage;
 import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
 import parser.Parser;
@@ -8,8 +10,11 @@ import scene.SceneList;
 import scene.SceneListBuilder;
 import suspect.Suspect;
 import ui.Ui;
+import note.Note;
+import note.NoteList;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class Investigation {
     private static InvestigationStages stage;
@@ -18,6 +23,9 @@ public class Investigation {
     private static String currentSuspect;
     private static Parser parser;
     private static Ui ui;
+    private static Storage storage;
+    private static NoteList notes;
+    private static int defaultTitleCounter = 1;
 
     private static final String FILE_NOT_FOUND = "File not found for scene";
     private static final String WRONG_INDEX_GIVEN = "Sorry please enter index within range";
@@ -29,8 +37,11 @@ public class Investigation {
     public Investigation(Parser parser, Ui ui) {
         this.parser = parser;
         this.ui = ui;
+        storage = new Storage();
+        notes = new NoteList(ui);
         stage = InvestigationStages.SUSPECT_STAGE;
         sceneList = SceneListBuilder.buildSceneList(ui);
+        Storage.openNoteFromFile(notes);
 
         currentScene = sceneList.getCurrentScene();
         try {
@@ -55,6 +66,42 @@ public class Investigation {
     }
 
 
+    public boolean performUserCommand(String userInput) {
+        switch (userInput) {
+        case "/exit":
+            return true;
+        case "/help":
+            ui.printListOfCommands();
+            return false;
+        case "/next":
+            boolean isEndScene = sceneList.nextScene();
+            if (isEndScene) {
+                System.out.println("Who do you think killed you?");
+                String guess = ui.readUserInput();
+                if (guess.equals("Wendy")) {
+                    System.out.println("Correct answer");
+                } else {
+                    System.out.println("Wrong answer");
+                }
+                return true;
+            }
+            currentScene = sceneList.getCurrentScene();
+            stage = InvestigationStages.SUSPECT_STAGE;
+            try {
+                currentScene.runScene();
+            } catch (FileNotFoundException e) {
+                System.out.println("File not found for scene");
+            }
+            return false;
+        case "/note":
+            processNote();
+            break;
+        default:
+            investigateScene(userInput);
+        }
+        return false;
+    }
+
     public void investigateScene(Integer index) throws InvalidSuspectException, InvalidClueException {
         switch (stage) {
         case SUSPECT_STAGE:
@@ -75,6 +122,54 @@ public class Investigation {
             System.out.println(INVALID_COMMAND);
         }
     }
+
+
+    private void processNote() {
+        System.out.println("Do you want to create a new note or open a existing note?");
+        String userChoice = ui.readUserInput();
+        if (userChoice.equals("create")) {
+            System.out.println("Please enter the title for this note"
+                    + " (if you do not need title, type a spacing instead:");
+            String transientTitle = ui.readUserInput();
+            String noteTitle;
+            if (!transientTitle.equals(" ")) {
+                noteTitle = transientTitle;
+            } else {
+                noteTitle = "DEFAULT(" + (defaultTitleCounter++) + ")";
+            }
+            System.out.println("Please enter your note:");
+            String noteContent = ui.readUserInput();
+            Note newNote = new Note(noteContent, noteTitle, (sceneList.getCurrentSceneIndex() + 1));
+            notes.createNote(newNote,(sceneList.getCurrentSceneIndex() + 1));
+        } else {
+            ui.printNoteTitle(notes);
+            System.out.println("Do you want to search a note (type in 'search') or "
+                    + "directly open a note (type in 'open')?");
+            String userInput = ui.readUserInput();
+            if (userInput.contains("search")) {
+                System.out.println("Do you want to search by keyword or scene index?");
+                userInput = ui.readUserInput();
+                if (userInput.equals("keyword")) {
+                    System.out.println("Please enter keywords");
+                    String keywords = ui.readUserInput();
+                    System.out.println(keywords);
+                    ui.printSelectedNote(notes.searchNoteUsingTitle(keywords, notes));
+                } else {
+                    System.out.println("Please enter scene index:");
+                    int sceneIndex = Integer.parseInt(ui.readUserInput());
+                    ui.printSelectedNote(notes.searchNotesUsingSceneIndex(sceneIndex,notes));
+                }
+            } else {
+                System.out.println("Please type in the index of the note to open it:");
+                //here the index is not scene index, it is the index in the list
+                int inputOrderIndex = Integer.parseInt(ui.readUserInput());
+                ui.printExistingNotes(notes,inputOrderIndex);
+            }
+        }
+    }
+
+
+
 
     public boolean completedGame() {
         boolean isLastScene = getNextSceneFromSceneList();

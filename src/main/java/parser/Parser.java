@@ -39,6 +39,11 @@ public class Parser {
         }
     }
 
+
+    private static final int COMMAND_INDEX = 0;
+    private static final int CLUE_NUMBER_INDEX = 1;
+    private static final int NOTE_SCENE_INDEX = 1;
+
     private String suspectFromThirdScene(int suspectNumber) {
         switch (suspectNumber) {
         case 1:
@@ -55,6 +60,7 @@ public class Parser {
             throw new InvalidSuspectException(INVALID_SUSPECT);
         }
     }
+
 
     public String getSuspectNameFromIndex(int currentScene, int suspectNumber) throws InvalidSuspectException {
         switch (currentScene) {
@@ -84,12 +90,26 @@ public class Parser {
         }
     }
 
+
+    public static int parseNoteSceneIndex(String userInput) {
+        String[] userInputSplit = userInput.split(INPUT_SPLITTER);
+        int noteSceneIndex = Integer.parseInt(userInputSplit[NOTE_SCENE_INDEX]);
+        return noteSceneIndex;
+    }
+
+
+
+    public String getSuspectNameFromIndex(int currentScene, String userInput) {
+
     private void validInput(String userInput) throws InvalidInputException {
+
         try {
             Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
             throw new InvalidInputException("Invalid input!");
         }
     }
+
+
 
 }
