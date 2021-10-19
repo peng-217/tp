@@ -2,7 +2,7 @@ package note;
 
 import java.util.ArrayList;
 
-import storage.storage;
+import storage.Storage;
 import scene.Scene;
 import scene.SceneList;
 import ui.Ui;
@@ -64,13 +64,13 @@ public class NoteList {
 
     public void createNote(Note newNote, int inputSceneIndex) {
         notes.add(newNote);
-        storage.saveNote(this,inputSceneIndex);
+        Storage.saveNote(this,inputSceneIndex);
         ui.printSaveNoteMessage();
     }
 
     public void createNoteFromFile(Note newNote, int inputSceneIndex) {
         notes.add(newNote);
-        storage.saveNote(this,inputSceneIndex);
+        Storage.saveNote(this,inputSceneIndex);
     }
 
 

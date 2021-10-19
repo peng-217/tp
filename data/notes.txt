@@ -22,3 +22,7 @@ scene 1
 DEFAULT(2)
 fjaiefjal;
 End of this note.
+scene 1
+FINAL
+thsi is final test
+End of this note.

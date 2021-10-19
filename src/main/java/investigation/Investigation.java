@@ -1,6 +1,6 @@
 package investigation;
 
-import storage.storage;
+import storage.Storage;
 import parser.Parser;
 import scene.Scene;
 import scene.SceneList;
@@ -20,18 +20,18 @@ public class Investigation {
     private static String currentSuspect;
     private static Parser parser;
     private static Ui ui;
-    private static storage storage;
+    private static Storage storage;
     private static NoteList notes;
     private static int defaultTitleCounter = 1;
 
     public Investigation(Parser parser, Ui ui) {
         this.parser = parser;
         this.ui = ui;
-        storage = new storage();
+        storage = new Storage();
         notes = new NoteList(ui);
         stage = InvestigationStages.SUSPECT_STAGE;
         sceneList = SceneListBuilder.buildSceneList(ui);
-        storage.openNoteFromFile(notes);
+        Storage.openNoteFromFile(notes);
 
         currentScene = sceneList.getCurrentScene();
         try {
