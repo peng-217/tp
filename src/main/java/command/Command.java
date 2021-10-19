@@ -1,5 +1,7 @@
 package command;
 
+import exceptions.InvalidClueException;
+import exceptions.InvalidSuspectException;
 import ui.Ui;
 import investigation.Investigation;
 

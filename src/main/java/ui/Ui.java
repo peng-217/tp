@@ -3,6 +3,8 @@ package ui;
 import clue.Clue;
 import suspect.Suspect;
 import suspect.SuspectList;
+import note.Note;
+import note.NoteList;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -26,15 +28,23 @@ public class Ui {
             "Here are the list of clues available to you.";
     private static final String LIST_OF_NOTES_MESSAGE =
             "Here are the list of notes available to you.";
-    private static final String lineSeparator = "==============================";
+    private static final String LINE_SEPARATOR = "==============================";
+
+    private static final String SELECTED_NOTES_MESSAGE =
+            "Here are the list of notes found given keywords:";
+    private static final String SAVE_NOTE_MESSAGE =
+            "Ok! The new note has been successfully created and saved.";
+
     private static final String WHO_KILLED_YOU = "Who do you think killed you?";
     private static final String CORRECT_ANSWER = "Correct answer";
     private static final String WRONG_ANSWER = "Wrong answer";
 
+
     private Scanner scanner;
 
+
     public void printEmptyLine() {
-        System.out.println(lineSeparator);
+        System.out.println(LINE_SEPARATOR);
     }
 
     public void printWelcomeMessage() {
@@ -66,6 +76,10 @@ public class Ui {
         System.out.println("/help");
         System.out.println("/exit");
         System.out.println("/next");
+        System.out.println("/note");
+
+        System.out.println("To investigate suspects or clues, please input their corresponding number.");
+
     }
 
     public void printListOfClues(ArrayList<Clue> clues) {
@@ -76,10 +90,36 @@ public class Ui {
         }
     }
 
-    public void printNotesMessage() {
-        System.out.println(LIST_OF_NOTES_MESSAGE);
-        System.out.println("1. This is a place holder");
+    public void printSaveNoteMessage() {
+        System.out.println(SAVE_NOTE_MESSAGE);
     }
+
+    public void printExistingNotes(NoteList notes,int orderIndex) {
+        System.out.println("Here is the note you want:");
+        System.out.println("scene " + notes.getIndexNote(orderIndex - 1).getNoteSceneIndex());
+        System.out.println(notes.getIndexNote(orderIndex - 1).getNoteTitle());
+        System.out.println(notes.getIndexNote(orderIndex - 1).getNoteContent());
+        System.out.println(LINE_SEPARATOR);
+    }
+
+    public void printNoteTitle(NoteList notes) {
+        System.out.println(LIST_OF_NOTES_MESSAGE);
+        for (int i = 0; i < notes.getSize(); i++) {
+            System.out.println((i + 1) + "." + " " + notes.getIndexNote(i).getNoteTitle());
+        }
+    }
+
+    public void printSelectedNote(ArrayList<Note> result) {
+        System.out.println(SELECTED_NOTES_MESSAGE);
+        for (int i = 0; i < result.size(); i++) {
+            System.out.println((i + 1) + "." + " " + "scene " + result.get(i).getNoteSceneIndex());
+            System.out.println(result.get(i).getNoteTitle());
+            System.out.println(result.get(i).getNoteContent());
+        }
+        System.out.println();
+        System.out.println(LINE_SEPARATOR);
+    }
+
 
     public void getClue(int clueNumber) {
         String str = "this is a clue placeholder";
@@ -105,5 +145,17 @@ public class Ui {
 
     public void printWrongMessage() {
         System.out.println(WRONG_ANSWER);
+    }
+
+    public void printInvalidClueMessage() {
+        System.out.println("Invalid number! To select a clue, please input its corresponding number.");
+    }
+
+    public void printInvalidSuspectMessage() {
+        System.out.println("Invalid number! To select a suspect, please input its corresponding number.");
+    }
+
+    public void printInvalidCommandMessage() {
+        System.out.println("Invalid input! Type '/help' to see the available commands.");
     }
 }
