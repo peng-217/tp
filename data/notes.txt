@@ -3,16 +3,8 @@ TEST
 test
 End of this note.
 scene 1
-MERCEDES
-AMG C63, AMG S65, AMG A45
-End of this note.
-scene 1
 HELLO
 helo
-End of this note.
-scene 1
-THIS IS A LONG NOTE TEST
-Part 1: type of public health resources
 End of this note.
 scene 1
 DEFAULT(1)
@@ -21,10 +13,6 @@ End of this note.
 scene 1
 DEFAULT(2)
 fjaiefjal;
-End of this note.
-scene 1
-FINAL
-thsi is final test
 End of this note.
 scene 1
 THIS IS A TEST

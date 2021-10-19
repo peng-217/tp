@@ -73,5 +73,12 @@ public class NoteList {
         Storage.saveNote(this,inputSceneIndex);
     }
 
+    public void deleteNote(int index) {
+        Note noteToDelete = notes.get(index);
+        notes.remove(index);
+        Storage.saveNote(this,noteToDelete.getNoteSceneIndex());
+        ui.printDeleteNoteMessage();
+    }
+
 
 }
