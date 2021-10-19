@@ -29,7 +29,7 @@ private final static int NUMBER_OF_BLANK_LINE = 1;
 
                 String titleToWrite = notes.getIndexNote(i).getNoteTitle();
                 String contentToWrite = notes.getIndexNote(i).getNoteContent();
-                noteWriter.write("scene " + (inputSceneIndex + 1));
+                noteWriter.write("scene " + inputSceneIndex);
                 noteWriter.write("\n");
                 noteWriter.write(titleToWrite);
                 noteWriter.write("\n");
@@ -47,7 +47,6 @@ private final static int NUMBER_OF_BLANK_LINE = 1;
     }
 
     public static void openNoteFromFile(NoteList notes) {
-        //String cursorIndicator;
         File saveDirection = new File("data");
         saveDirection.mkdir();
         File saveNote = new File(saveDirection,"notes.txt");
@@ -64,7 +63,7 @@ private final static int NUMBER_OF_BLANK_LINE = 1;
                         contentPart = scanNote.nextLine();
                     }
                     Note savedNote = new Note(content, title, sceneIndex);
-                    notes.createNote(savedNote,sceneIndex);
+                    notes.createNoteFromFile(savedNote,sceneIndex);
                 }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

@@ -89,6 +89,7 @@ public class Ui {
         System.out.println("scene " + notes.getIndexNote(orderIndex - 1).getNoteSceneIndex());
         System.out.println(notes.getIndexNote(orderIndex - 1).getNoteTitle());
         System.out.println(notes.getIndexNote(orderIndex - 1).getNoteContent());
+        System.out.println(lineSeparator);
     }
 
     public void printNoteTitle(NoteList notes){
@@ -106,6 +107,7 @@ public class Ui {
             System.out.println(result.get(i).getNoteContent());
         }
         System.out.println();
+        System.out.println(lineSeparator);
     }
 
 

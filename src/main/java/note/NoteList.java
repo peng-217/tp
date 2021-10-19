@@ -36,9 +36,8 @@ public class NoteList {
     public ArrayList<Note> searchNoteUsingTitle(String keyword,NoteList notes) {
         String[] words = stringSpliter(keyword);
         ArrayList<Note> result = new ArrayList<>();
-        boolean titleNotContains = false;
-        //String[] words = keywords.split("\\s+");
         for(int i = 0; i < notes.getSize(); i++) {
+            boolean titleNotContains = false;
             for(int j = 0; j < words.length; j++) {
                 if(!notes.getIndexNote(i).getNoteTitle().contains(words[j])) {
                     titleNotContains = true;
@@ -67,7 +66,11 @@ public class NoteList {
         notes.add(newNote);
         Storage.saveNote(this,inputSceneIndex);
         ui.printSaveNoteMessage();
+    }
 
+    public void createNoteFromFile(Note newNote, int inputSceneIndex) {
+        notes.add(newNote);
+        Storage.saveNote(this,inputSceneIndex);
     }
 
 

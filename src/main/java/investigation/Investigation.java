@@ -11,6 +11,7 @@ import note.Note;
 import note.NoteList;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class Investigation {
     private static InvestigationStages stage;
@@ -122,7 +123,6 @@ public class Investigation {
     }
 
     private void processNote() {
-
         System.out.println("Do you want to create a new note or open a existing note?");
         String userChoice = ui.readUserInput();
         if(userChoice.equals("create")) {
@@ -137,7 +137,7 @@ public class Investigation {
             System.out.println("Please enter your note:");
             String noteContent = ui.readUserInput();
             Note newNote = new Note(noteContent, noteTitle, (sceneList.getCurrentSceneIndex()+1));
-            notes.createNote(newNote,sceneList.getCurrentSceneIndex());
+            notes.createNote(newNote,(sceneList.getCurrentSceneIndex() + 1));
         } else {
             ui.printNoteTitle(notes);
             System.out.println("Do you want to search a note (type in 'search') or directly open a note(type in 'open')?");
@@ -148,6 +148,7 @@ public class Investigation {
                 if(userInput.equals("keyword")) {
                     System.out.println("Please enter keywords");
                     String keywords = ui.readUserInput();
+                    System.out.println(keywords);
                     ui.printSelectedNote(notes.searchNoteUsingTitle(keywords, notes));
                 } else {
                     System.out.println("Please enter scene index:");
@@ -157,7 +158,6 @@ public class Investigation {
             } else {
                 System.out.println("Please type in the index of the note to open it:"); //here the index is not scene index, it is the index in the list
                 int inputOrderIndex = Integer.parseInt(ui.readUserInput());
-                //System.out.println(inputOrderIndex);
                 ui.printExistingNotes(notes,inputOrderIndex);
             }
         }
