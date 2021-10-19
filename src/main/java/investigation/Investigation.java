@@ -88,7 +88,7 @@ public class Investigation {
     }
 
 
-    private void processNote() {
+    public void processNote() {
         System.out.println("Do you want to create a new note or open a existing note?");
         String userChoice = ui.readUserInput();
         if (userChoice.equals("create")) {

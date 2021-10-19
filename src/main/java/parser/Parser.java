@@ -1,15 +1,12 @@
 package parser;
 
-import command.NextCommand;
-import command.Command;
-import command.ExitCommand;
-import command.HelpCommand;
-import command.InvestigateCommand;
+import command.*;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
 
 public class Parser {
     private static final String HELP = "/help";
+    private static final String NOTE = "/note";
     private static final String EXIT = "/exit";
     private static final String NEXT = "/next";
     private static final String SUSPECT_FATHER = "Father";
@@ -76,6 +73,8 @@ public class Parser {
 
     public Command getCommandFromUser(String userInput) throws InvalidInputException {
         switch (userInput) {
+        case NOTE:
+            return new NoteCommand();
         case EXIT:
             return new ExitCommand();
         case HELP:
