@@ -41,7 +41,7 @@ public class GameDataFileManager {
 
 
     /**
-     * Reads from the file and return ArrayList<String> lines object that stores information.
+     * Reads from the file and return ArrayList lines object that stores information.
      *
      * @return ArrayList<String> lines object that stores information.
      * @throws IOException If the filepath cannot be created or cannot be found.
@@ -59,7 +59,7 @@ public class GameDataFileManager {
 
 
     /**
-     * writes the ArrayList<Task> lines into the files.
+     * writes the ArrayList lines into the files.
      *
      * @param lines representing the list of tasks information.
      * @throws IOException If the file cannot be created or cannot be found.
