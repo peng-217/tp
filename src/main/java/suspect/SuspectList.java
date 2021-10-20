@@ -37,7 +37,7 @@ public class SuspectList {
     }
 
     public int getClueIndex(String suspectName, String clueName) {
-        ArrayList<Clue> clues = this.getSuspectAvailableClues(suspectName);
+        ArrayList<Clue> clues = this.getSuspectAllClues(suspectName);
         for (int i = 0; i < clues.size(); i++) {
             if (clues.get(i).getClueName().equals(clueName)) {
                 return i;
