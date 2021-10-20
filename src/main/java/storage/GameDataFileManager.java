@@ -42,7 +42,7 @@ public class GameDataFileManager {
 
 
     /**
-     * reads from the file and return ArrayList<String> lines object that stores information
+     * reads from the file and return ArrayList<String> lines object that stores information.
      *
      * @return ArrayList<String> lines object that stores information.
      * @throws IOException If the filepath cannot be created or cannot be found.
@@ -62,8 +62,8 @@ public class GameDataFileManager {
     /**
      * writes the ArrayList<Task> lines into the files.
      *
-     * @param lines representing the list of tasks information
-     * @throws IOException If the file cannot be created or cannot be found
+     * @param lines representing the list of tasks information.
+     * @throws IOException If the file cannot be created or cannot be found.
      */
     public void rewriteFile(ArrayList<String> lines) throws IOException {
         checkPath();
