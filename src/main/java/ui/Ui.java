@@ -13,10 +13,10 @@ import java.util.Scanner;
 public class Ui {
     private static final String LOGO =
             " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
+                    + "|  _ \\ _   _| | _____ \n"
+                    + "| | | | | | | |/ / _ \\\n"
+                    + "| |_| | |_| |   <  __/\n"
+                    + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String GAME_NAME = "Classic Adventure Text Game";
     private static final String WELCOME_MESSAGE = "Welcome to the " + GAME_NAME + "!\n";
     private static final String INTRODUCE_MYSELF = "HELLO! I am \n" + LOGO;
@@ -42,10 +42,7 @@ public class Ui {
     private static final String WRONG_ANSWER = "Wrong answer";
     private static final String VIEWING_CHECKED_CLUES_MESSAGE = "Here are the clues that you have gathered.\n";
 
-
-
     private Scanner scanner;
-
 
     public void printEmptyLine() {
         System.out.println(LINE_SEPARATOR);
@@ -113,7 +110,7 @@ public class Ui {
         System.out.println(SAVE_NOTE_MESSAGE);
     }
 
-    public void printExistingNotes(NoteList notes,int orderIndex) {
+    public void printExistingNotes(NoteList notes, int orderIndex) {
         System.out.println("Here is the note you want:");
         System.out.println("scene " + notes.getIndexNote(orderIndex - 1).getNoteSceneIndex());
         System.out.println(notes.getIndexNote(orderIndex - 1).getNoteTitle());
