@@ -43,6 +43,7 @@ public class Ui {
     private static final String VIEWING_CHECKED_CLUES_MESSAGE = "Here are the clues that you have gathered.\n";
 
 
+
     private Scanner scanner;
 
 
@@ -91,6 +92,16 @@ public class Ui {
         for (Clue clue : clues) {
             System.out.println((i + 1) + ". " + clue.getClueName().trim());
             i++;
+        }
+    }
+
+    public void printListOfSearchedClues(ArrayList<Clue> clues) {
+        int i = 0;
+        for (Clue clue : clues) {
+            if (clue.isChecked()) {
+                System.out.println((i + 1) + ". " + clue.getClueName().trim());
+                i++;
+            }
         }
     }
 

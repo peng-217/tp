@@ -67,11 +67,11 @@ public class Parser {
 
     public String getSuspectNameFromIndex(int currentScene, int suspectNumber) throws InvalidSuspectException {
         switch (currentScene) {
-        case 0:
-            return suspectFromFirstScene(suspectNumber);
         case 1:
-            return suspectFromSecondScene(suspectNumber);
+            return suspectFromFirstScene(suspectNumber);
         case 2:
+            return suspectFromSecondScene(suspectNumber);
+        case 3:
             return suspectFromThirdScene(suspectNumber);
         default:
             throw new InvalidSuspectException(INVALID_SUSPECT);
