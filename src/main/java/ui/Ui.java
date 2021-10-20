@@ -92,6 +92,16 @@ public class Ui {
         }
     }
 
+    public void printListOfSearchedClues(ArrayList<Clue> clues) {
+        int i = 0;
+        for (Clue clue : clues) {
+            if (clue.isChecked()) {
+                System.out.println((i + 1) + ". " + clue.getClueName().trim());
+                i++;
+            }
+        }
+    }
+
     public void printSaveNoteMessage() {
         System.out.println(SAVE_NOTE_MESSAGE);
     }
