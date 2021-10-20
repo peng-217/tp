@@ -1,13 +1,18 @@
 package scene;
 
+import storage.GameDataFileDecoder;
+import storage.GameDataFileManager;
+
 import java.util.ArrayList;
 
 public class SceneList {
     private ArrayList<Scene> scenes;
     private int currentSceneIndex;
+    GameDataFileDecoder dataFile;
 
-    public SceneList() {
-        this.currentSceneIndex = 0;
+    public SceneList(int index, GameDataFileDecoder dataFile) {
+        this.dataFile = dataFile;
+        this.currentSceneIndex = index;
         this.scenes = new ArrayList<>();
     }
 
@@ -25,6 +30,7 @@ public class SceneList {
             return 2;
         }
         this.currentSceneIndex++;
+        dataFile.resetFile(currentSceneIndex);
         return 2;
     }
 
@@ -34,9 +40,11 @@ public class SceneList {
         } else {
             this.currentSceneIndex += 2;
         }
+        dataFile.resetFile(currentSceneIndex);
     }
 
     public Scene getCurrentScene() {
+
         return this.scenes.get(currentSceneIndex);
     }
 

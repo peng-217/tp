@@ -24,12 +24,14 @@ import clue.thirdscene.ZackDrink;
 import clue.thirdscene.ZackMemo;
 import clue.thirdscene.ZackNotif;
 import narrative.Narrative;
+import storage.GameDataFileDecoder;
 import ui.Ui;
 import suspect.Suspect;
 import suspect.SuspectList;
 
 public class SceneListBuilder {
-    public static SceneList buildSceneList(Ui ui) {
+    public static SceneList buildSceneList(Ui ui,GameDataFileDecoder dataFile) {
+
         SuspectList suspectsScene1 = new SuspectList(ui);
         suspectsScene1.addSuspect("Father", new Suspect());
 
@@ -71,8 +73,7 @@ public class SceneListBuilder {
         suspectsScene3.addClueForSuspect("Zack", new ZackMemo());
         suspectsScene3.addClueForSuspect("Zack", new ZackNotif());
 
-        SceneList sceneList = new SceneList();
-
+        SceneList sceneList = new SceneList(dataFile.getCurrentSceneIndex(),dataFile);
         Scene introScene = new Scene(new Narrative("Introduction.txt"), null);
         Scene firstScene = new Scene(new Narrative("First_Scene.txt"), suspectsScene1);
         Scene secondScene = new Scene(new Narrative("Second_Scene.txt"), suspectsScene2);
