@@ -36,4 +36,14 @@ public class Suspect {
         }
         return availableClues;
     }
+
+    public ArrayList<Clue> getCheckedClues() {
+        ArrayList<Clue> checkedClues = new ArrayList<>();
+        for (Clue clue : clues) {
+            if (clue.isChecked()) {
+                checkedClues.add(clue);
+            }
+        }
+        return checkedClues;
+    }
 }
