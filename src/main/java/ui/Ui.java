@@ -40,6 +40,7 @@ public class Ui {
     private static final String WHO_KILLED_YOU = "Who do you think killed you?";
     private static final String CORRECT_ANSWER = "Correct answer";
     private static final String WRONG_ANSWER = "Wrong answer";
+    private static final String VIEWING_CHECKED_CLUES_MESSAGE = "Here are the clues that you have checked.\n";
 
 
     private Scanner scanner;
@@ -100,6 +101,10 @@ public class Ui {
                 i++;
             }
         }
+    }
+
+    public void printViewingCheckedCluesMessage() {
+        System.out.println(VIEWING_CHECKED_CLUES_MESSAGE);
     }
 
     public void printSaveNoteMessage() {
