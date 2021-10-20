@@ -152,18 +152,13 @@ public class Investigation {
     }
 
     private boolean checkSuspectedKiller(String suspectedKiller) {
-        if (suspectedKiller.equals(KILLER_WENDY)) {
-            //ui.printCorrectMessage();
-            return true;
-        } else {
-            //ui.printWrongMessage();
-            return false;
-        }
+        return suspectedKiller.equals(KILLER_WENDY);
     }
 
     public int getNextSceneFromSceneList() {
         return sceneList.isLastScene();
     }
+
 
     public void getNextSceneFromSceneList(boolean isACorrectGuess) {
         sceneList.incrementSeceneAfterGuessing(isACorrectGuess);
