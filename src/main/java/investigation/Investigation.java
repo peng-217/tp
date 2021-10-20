@@ -3,6 +3,8 @@ package investigation;
 
 import clue.Clue;
 import clue.CheckedClueTrackerBuilder;
+import storage.GameDataFileDecoder;
+import storage.GameDataFileManager;
 import storage.Storage;
 import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
@@ -17,6 +19,7 @@ import note.Note;
 import note.NoteList;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Investigation {
@@ -27,6 +30,7 @@ public class Investigation {
     private static Parser parser;
     private static Ui ui;
     private static Storage storage;
+    private static GameDataFileDecoder dataFile;
     private static NoteList notes;
     private static SuspectList clueTracker;
     private static int defaultTitleCounter = 1;
@@ -41,17 +45,20 @@ public class Investigation {
     public Investigation(Parser parser, Ui ui) {
         this.parser = parser;
         this.ui = ui;
+        dataFile = new GameDataFileDecoder(ui,new GameDataFileManager("GameData.txt"));
         storage = new Storage();
         notes = new NoteList(ui);
         stage = InvestigationStages.SUSPECT_STAGE;
-        sceneList = SceneListBuilder.buildSceneList(ui);
+
+        sceneList = SceneListBuilder.buildSceneList(ui,dataFile);
         clueTracker = CheckedClueTrackerBuilder.buildClueTracker(ui);
+
         Storage.openNoteFromFile(notes);
 
         currentScene = sceneList.getCurrentScene();
         try {
             currentScene.runScene();
-        } catch (FileNotFoundException e) {
+        }  catch (IOException e) {
             System.out.println(FILE_NOT_FOUND);
         }
     }

@@ -30,12 +30,14 @@ import narrative.SecondNarrative;
 import narrative.ThirdNarrative;
 import narrative.TruthNarrative;
 import narrative.WrongEndingNarrative;
+import storage.GameDataFileDecoder;
 import ui.Ui;
 import suspect.Suspect;
 import suspect.SuspectList;
 
 public class SceneListBuilder {
-    public static SceneList buildSceneList(Ui ui) {
+    public static SceneList buildSceneList(Ui ui,GameDataFileDecoder dataFile) {
+
         SuspectList suspectsScene1 = new SuspectList(ui);
         suspectsScene1.addSuspect("Father", new Suspect());
 
@@ -77,7 +79,7 @@ public class SceneListBuilder {
         suspectsScene3.addClueForSuspect("Zack", new ZackMemo());
         suspectsScene3.addClueForSuspect("Zack", new ZackNotif());
 
-        SceneList sceneList = new SceneList();
+        SceneList sceneList = new SceneList(dataFile.getCurrentSceneIndex(),dataFile);
         Scene introScene = new Scene(new IntroNarrative(), null);
         Scene firstScene = new Scene(new FirstNarrative(), suspectsScene1);
         Scene secondScene = new Scene(new SecondNarrative(), suspectsScene2);

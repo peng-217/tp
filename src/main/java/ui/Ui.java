@@ -176,6 +176,10 @@ public class Ui {
         System.out.println(WHO_KILLED_YOU);
     }
 
+    public void printFileErrorMessage() {
+        System.out.println("File not Found");
+    }
+
     public void printInvalidClueMessage() {
         System.out.println(INVALID_NUMBER_CLUE);
     }
