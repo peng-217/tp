@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 /**
- * Represents a file manager that read from or write to a file, fileName representing the name of the storage file
+ * Represents a file manager that read from or write to a file, fileName representing the name of the storage file,
  * filePath representing the path to the storage file.
  */
 public class GameDataFileManager {
@@ -20,7 +20,7 @@ public class GameDataFileManager {
     /**
      * Constructor of Storage, sets the fileName and filePath.
      *
-     * @param fileName the name of the storage file
+     * @param fileName the name of the storage file.
      */
     public GameDataFileManager(String fileName) {
         this.fileName = fileName;
