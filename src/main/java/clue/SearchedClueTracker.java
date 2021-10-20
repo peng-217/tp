@@ -14,13 +14,13 @@ public class SearchedClueTracker {
         this.suspects = suspects;
     }
     
-    public ArrayList<Clue> SearcherdClues(String name) {
+    public ArrayList<Clue> searcherdClues(String name) {
         ArrayList<Clue> checkedClues = new ArrayList<>();
-         for(Clue clue : suspects.getSuspectAvailableClues(name)) {
-             if(clue.isChecked()) {
-                 checkedClues.add(clue);
-             }
+        for(Clue clue : suspects.getSuspectAvailableClues(name)) {
+         if(clue.isChecked()) {
+             checkedClues.add(clue);
          }
-         return checkedClues;
+        }
+        return checkedClues;
     }
 }

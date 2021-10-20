@@ -1,18 +1,14 @@
 package clue;
 
 import clue.firstscene.FatherInsurance;
-import clue.firstscene.FatherMap;
 import clue.firstscene.FatherTextMessage;
-import narrative.Narrative;
 import org.junit.jupiter.api.Test;
 import suspect.Suspect;
 import suspect.SuspectList;
 import ui.Ui;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SearchedClueTrackerTest {
@@ -30,7 +26,7 @@ class SearchedClueTrackerTest {
         suspects.addClueForSuspect("Tom", fatherTextMessage);
 
         SearchedClueTracker tracker = new SearchedClueTracker(ui, suspects);
-        ArrayList<Clue> actualResult = tracker.SearcherdClues("Tom");
+        ArrayList<Clue> actualResult = tracker.searcherdClues("Tom");
 
         assertEquals(0, actualResult.size());
     }
