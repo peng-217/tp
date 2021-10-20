@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class Storage {
 
-    private static final  int NUMBER_OF_BLANK_LINE = 1;
+    private static final int NUMBER_OF_BLANK_LINE = 1;
 
     public Storage() {
 

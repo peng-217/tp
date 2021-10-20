@@ -1,6 +1,8 @@
 package investigation;
 
 
+import clue.Clue;
+import clue.BuildCheckedClueTracker;
 import storage.Storage;
 import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
@@ -9,6 +11,7 @@ import scene.Scene;
 import scene.SceneList;
 import scene.SceneListBuilder;
 import suspect.Suspect;
+import suspect.SuspectList;
 import ui.Ui;
 import note.Note;
 import note.NoteList;
@@ -25,6 +28,7 @@ public class Investigation {
     private static Ui ui;
     private static Storage storage;
     private static NoteList notes;
+    private static SuspectList clueTracker;
     private static int defaultTitleCounter = 1;
 
     private static final String FILE_NOT_FOUND = "File not found for scene";
@@ -41,6 +45,7 @@ public class Investigation {
         notes = new NoteList(ui);
         stage = InvestigationStages.SUSPECT_STAGE;
         sceneList = SceneListBuilder.buildSceneList(ui);
+        clueTracker = BuildCheckedClueTracker.buildClueTracker(ui);
         Storage.openNoteFromFile(notes);
 
         currentScene = sceneList.getCurrentScene();
@@ -71,7 +76,6 @@ public class Investigation {
         }
     }
 
-
     public void investigateScene(Integer index) throws InvalidSuspectException, InvalidClueException {
         switch (stage) {
         case SUSPECT_STAGE:
@@ -85,7 +89,9 @@ public class Investigation {
             } else if (index == 0) {
                 stage = InvestigationStages.SUSPECT_STAGE;
             } else {
-                System.out.println(currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1));
+                Clue currentClue = currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1);
+                clueTracker.setClueChecked(currentSuspect, currentClue);
+                System.out.println(currentClue);
             }
             break;
         default:
@@ -117,7 +123,7 @@ public class Investigation {
             System.out.println("Please enter your note:");
             String noteContent = ui.readUserInput();
             Note newNote = new Note(noteContent, noteTitle, (sceneList.getCurrentSceneIndex() + 1));
-            notes.createNote(newNote,(sceneList.getCurrentSceneIndex() + 1));
+            notes.createNote(newNote, (sceneList.getCurrentSceneIndex() + 1));
         } else if (userChoice.equals("open")) {
             ui.printNoteTitle(notes);
             System.out.println("Do you want to search a note (type in 'search') or "
@@ -134,13 +140,13 @@ public class Investigation {
                 } else {
                     System.out.println("Please enter scene index:");
                     int sceneIndex = Integer.parseInt(ui.readUserInput());
-                    ui.printSelectedNote(notes.searchNotesUsingSceneIndex(sceneIndex,notes));
+                    ui.printSelectedNote(notes.searchNotesUsingSceneIndex(sceneIndex, notes));
                 }
             } else {
                 System.out.println("Please type in the index of the note to open it:");
                 //here the index is not scene index, it is the index in the list
                 int inputOrderIndex = Integer.parseInt(ui.readUserInput());
-                ui.printExistingNotes(notes,inputOrderIndex);
+                ui.printExistingNotes(notes, inputOrderIndex);
             }
         } else {
             System.out.println("Here are the notes you have: ");
@@ -167,6 +173,10 @@ public class Investigation {
 
     public void getNextSceneFromSceneList(boolean isACorrectGuess) {
         sceneList.incrementSeceneAfterGuessing(isACorrectGuess);
+    }
+
+    public ArrayList<Clue> getSuspectCheckedClues(String name) {
+        return clueTracker.getSuspectCheckedClues(name);
     }
 
     public void runScenes() {

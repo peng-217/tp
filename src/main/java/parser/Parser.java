@@ -1,11 +1,6 @@
 package parser;
 
-import command.Command;
-import command.NoteCommand;
-import command.InvestigateCommand;
-import command.HelpCommand;
-import command.ExitCommand;
-import command.NextCommand;
+import command.*;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
 
@@ -14,6 +9,7 @@ public class Parser {
     private static final String NOTE = "/note";
     private static final String EXIT = "/exit";
     private static final String NEXT = "/next";
+    private static final String VIEW = "/view";
     private static final String SUSPECT_FATHER = "Father";
     private static final String SUSPECT_KEVIN = "Kevin";
     private static final String SUSPECT_WENDY = "Wendy";
@@ -86,6 +82,8 @@ public class Parser {
             return new HelpCommand();
         case NEXT:
             return new NextCommand();
+        case VIEW:
+            return new ViewCommand();
         default:
             validInput(userInput);
             int inputParsedToInt = Integer.parseInt(userInput);

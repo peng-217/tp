@@ -40,6 +40,10 @@ public class SuspectList {
         return suspects.get(name).getAvailableClues();
     }
 
+    public ArrayList<Clue> getSuspectCheckedClues(String name) {
+        return suspects.get(name).getCheckedClues();
+    }
+
     public ArrayList<Clue> getAllClues() {
         ArrayList<Clue> clues = new ArrayList<>();
         for (Map.Entry<String, Suspect> suspectEntry : suspects.entrySet()) {
