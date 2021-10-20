@@ -31,6 +31,16 @@ Then ```file.checkPath()``` will check for existing data file and creates a new 
 Then read the file and store the information into array list using ```ArrayList<String> content = file.readFile()```.
 Eventually, edit the content and rewrite to data file using ```file.rewriteFile(content)```
 
+### [Proposed] Clue Reader and Organizer
+
+Clues used in different scenes can be kept in txt file and created following a specific format.
+It uses `java.io.File` and implements:
+* `clueReader(TEXT_LOCATION.txt)` -- where `TEXT_LOCATION.txt` is the directory containing the specified text file.
+
+This method will search for the specified text file, throwing a `FileNotFoundException` if it is missing.
+It will read the file and store the clues as the Class `Clue`, under the specified `Suspect` instance which is then stored in a `SuspectList` class.
+
+
 
 ## Product scope
 ### Target user profile
