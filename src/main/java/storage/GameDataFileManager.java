@@ -1,6 +1,5 @@
 package storage;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
@@ -9,8 +8,8 @@ import java.io.IOException;
 
 
 /**
- * Represents a file manager that read from or write to a file, fileName representing the name of the storage file,
- * filePath representing the path to the storage file.
+ * Represents a file manager that read from or write to a file, fileName representing the name of the storage file.
+ * FilePath representing the path to the storage file.
  */
 public class GameDataFileManager {
     String fileName;
@@ -42,7 +41,7 @@ public class GameDataFileManager {
 
 
     /**
-     * reads from the file and return ArrayList<String> lines object that stores information.
+     * Reads from the file and return ArrayList<String> lines object that stores information.
      *
      * @return ArrayList<String> lines object that stores information.
      * @throws IOException If the filepath cannot be created or cannot be found.
