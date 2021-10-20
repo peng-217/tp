@@ -1,6 +1,12 @@
 package parser;
 
-import command.*;
+import command.Command;
+import command.ExitCommand;
+import command.HelpCommand;
+import command.InvestigateCommand;
+import command.NextCommand;
+import command.NoteCommand;
+import command.ViewCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
 

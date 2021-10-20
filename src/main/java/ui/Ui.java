@@ -40,7 +40,7 @@ public class Ui {
     private static final String WHO_KILLED_YOU = "Who do you think killed you?";
     private static final String CORRECT_ANSWER = "Correct answer";
     private static final String WRONG_ANSWER = "Wrong answer";
-    private static final String VIEWING_CHECKED_CLUES_MESSAGE = "Here are the clues that you have checked.\n";
+    private static final String VIEWING_CHECKED_CLUES_MESSAGE = "Here are the clues that you have gathered.\n";
 
 
     private Scanner scanner;
@@ -77,9 +77,10 @@ public class Ui {
     public void printListOfCommands() {
         System.out.println(LIST_OF_COMMAND_AVAILABLE_MESSAGE);
         System.out.println("/help");
-        System.out.println("/exit");
         System.out.println("/next");
         System.out.println("/note");
+        System.out.println("/view");
+        System.out.println("/exit");
 
         System.out.println("To investigate suspects or clues, please input their corresponding number.");
 

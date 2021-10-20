@@ -7,12 +7,6 @@ import ui.Ui;
 import java.util.ArrayList;
 
 public class ViewCommand extends Command {
-    private final String FATHER = "Father";
-    private final String KEVIN = "Kevin";
-    private final String WENDY = "Wendy";
-    private final String LING = "Ling";
-    private final String ZACK = "Zack";
-
     private String[] suspects = {"Father", "Kevin", "Wendy", "Ling", "Zack"};
 
     @Override
