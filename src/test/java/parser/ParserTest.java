@@ -1,7 +1,11 @@
 package parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import exceptions.InvalidInputException;
 import org.junit.jupiter.api.Test;
+import command.Command;
 
 public class ParserTest {
 
@@ -17,5 +21,7 @@ public class ParserTest {
 
         String suspectZack = parser.getSuspectNameFromIndex(3, 5);
         assertEquals("Zack", suspectZack);
+
+        assertThrows(InvalidInputException.class, () -> parser.getCommandFromUser(""));
     }
 }
