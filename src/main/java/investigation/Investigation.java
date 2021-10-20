@@ -65,15 +65,18 @@ public class Investigation {
 
     public void printCurrentInvestigation() {
         if (stage == InvestigationStages.SUSPECT_STAGE) {
-            if (sceneList.getCurrentSceneIndex() == 0
-                    | sceneList.getCurrentSceneIndex() == 4
-                    | sceneList.getCurrentSceneIndex() == 5
-                    | sceneList.getCurrentSceneIndex() == 6) {
-                return;
+            String sceneType = sceneList.getSceneType();
+            switch (sceneType) {
+            case "initial_scene":
+                break;
+            case "final_scene":
+                break;
+            default:
+                System.out.println("Scene " + (sceneList.getCurrentSceneIndex()) + " Investigation");
+                System.out.println("Who do you want to investigate?");
+                ui.printSuspects(currentScene.getSuspectList());
             }
-            System.out.println("Scene " + (sceneList.getCurrentSceneIndex()) + " Investigation");
-            System.out.println("Who do you want to investigate?");
-            ui.printSuspects(currentScene.getSuspectList());
+
         } else {
             System.out.print("Scene " + (sceneList.getCurrentSceneIndex()) + " Investigation");
             System.out.println(" - " + currentSuspect);
@@ -106,13 +109,6 @@ public class Investigation {
         default:
             System.out.println(INVALID_COMMAND);
         }
-    }
-
-    public boolean isACorrectGuess() {
-        // int isTimeToGuess = getNextSceneFromSceneList();
-        ui.printSuspectKillerMessage();
-        String suspectedKiller = ui.readUserInput();
-        return checkSuspectedKiller(suspectedKiller);
     }
 
     public void processNote() {
@@ -166,17 +162,15 @@ public class Investigation {
         }
     }
 
-    private boolean checkSuspectedKiller(String suspectedKiller) {
-        return suspectedKiller.equals(KILLER_WENDY);
+    public void checkSuspectedKiller() {
+        ui.printSuspectKillerMessage();
+        String suspectedKiller = ui.readUserInput();
+        boolean killerFound = suspectedKiller.equals(KILLER_WENDY);
+        goToCorrectFinalScene(killerFound);
     }
 
-    public int getNextSceneFromSceneList() {
-        return sceneList.isLastScene();
-    }
-
-
-    public void getNextSceneFromSceneList(boolean isACorrectGuess) {
-        sceneList.incrementSeceneAfterGuessing(isACorrectGuess);
+    private void goToCorrectFinalScene(boolean killerFound) {
+        sceneList.incrementSeceneAfterGuessing(killerFound);
     }
 
     public ArrayList<Clue> getSuspectCheckedClues(String name) {
@@ -191,5 +185,13 @@ public class Investigation {
         } catch (FileNotFoundException e) {
             System.out.println(FILE_NOT_FOUND);
         }
+    }
+
+    public String getSceneType() {
+        return sceneList.getSceneType();
+    }
+
+    public void updateScene() {
+        sceneList.incrementSceneNumber();
     }
 }
