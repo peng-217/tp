@@ -13,10 +13,10 @@ import java.util.Scanner;
 public class Ui {
     private static final String LOGO =
             " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
+                    + "|  _ \\ _   _| | _____ \n"
+                    + "| | | | | | | |/ / _ \\\n"
+                    + "| |_| | |_| |   <  __/\n"
+                    + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String GAME_NAME = "Classic Adventure Text Game";
     private static final String WELCOME_MESSAGE = "Welcome to the " + GAME_NAME + "!\n";
     private static final String INTRODUCE_MYSELF = "HELLO! I am \n" + LOGO;
@@ -52,10 +52,9 @@ public class Ui {
     private static final String ASK_FOR_CLUE_OR_SUSPECT_NUMBER =
             "To investigate suspects or clues, please input their corresponding number.";
     private static final String LIST_ALL_NOTES_MESSAGE = "Here is the note you want:";
-
+    private static final String VIEWING_CHECKED_CLUES_MESSAGE = "Here are the clues that you have gathered.\n";
 
     private Scanner scanner;
-
 
     public void printEmptyLine() {
         System.out.println(LINE_SEPARATOR);
@@ -102,6 +101,20 @@ public class Ui {
             System.out.println((i + 1) + ". " + clue.getClueName().trim());
             i++;
         }
+    }
+
+    public void printListOfSearchedClues(ArrayList<Clue> clues) {
+        int i = 0;
+        for (Clue clue : clues) {
+            if (clue.isChecked()) {
+                System.out.println((i + 1) + ". " + clue.getClueName().trim());
+                i++;
+            }
+        }
+    }
+
+    public void printViewingCheckedCluesMessage() {
+        System.out.println(VIEWING_CHECKED_CLUES_MESSAGE);
     }
 
     public void printSaveNoteMessage() {
