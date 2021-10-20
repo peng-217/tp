@@ -2,7 +2,7 @@ package investigation;
 
 
 import clue.Clue;
-import clue.BuildCheckedClueTracker;
+import clue.CheckedClueTrackerBuilder;
 import storage.Storage;
 import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
@@ -45,7 +45,7 @@ public class Investigation {
         notes = new NoteList(ui);
         stage = InvestigationStages.SUSPECT_STAGE;
         sceneList = SceneListBuilder.buildSceneList(ui);
-        clueTracker = BuildCheckedClueTracker.buildClueTracker(ui);
+        clueTracker = CheckedClueTrackerBuilder.buildClueTracker(ui);
         Storage.openNoteFromFile(notes);
 
         currentScene = sceneList.getCurrentScene();
@@ -89,9 +89,11 @@ public class Investigation {
             } else if (index == 0) {
                 stage = InvestigationStages.SUSPECT_STAGE;
             } else {
-                Clue currentClue = currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1);
-                clueTracker.setClueChecked(currentSuspect, currentClue);
-                System.out.println(currentClue);
+                Clue currentClueInScene = currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1);
+                int indexInClueTracker = clueTracker.getClueIndex(currentSuspect, currentClueInScene.getClueName());
+                Clue currentClueInTracker = clueTracker.getSuspectAllClues(currentSuspect).get(indexInClueTracker);
+                clueTracker.setClueChecked(currentSuspect, currentClueInTracker);
+                System.out.println(currentClueInScene);
             }
             break;
         default:

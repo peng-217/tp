@@ -30,7 +30,7 @@ import suspect.SuspectList;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class BuildCheckedClueTracker {
+public class CheckedClueTrackerBuilder {
     /*private Ui ui;
     private SuspectList suspects;
 
