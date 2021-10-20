@@ -101,7 +101,8 @@ public class Investigation {
     }
 
     public void processNote() {
-        System.out.println("Do you want to create a new note or open a existing note?");
+        System.out.println("Do you want to create a new note"
+                + " or open a existing note or delete a note?");
         String userChoice = ui.readUserInput();
         if (userChoice.equals("create")) {
             System.out.println("Please enter the title for this note"
@@ -117,7 +118,7 @@ public class Investigation {
             String noteContent = ui.readUserInput();
             Note newNote = new Note(noteContent, noteTitle, (sceneList.getCurrentSceneIndex() + 1));
             notes.createNote(newNote,(sceneList.getCurrentSceneIndex() + 1));
-        } else {
+        } else if (userChoice.equals("open")) {
             ui.printNoteTitle(notes);
             System.out.println("Do you want to search a note (type in 'search') or "
                     + "directly open a note (type in 'open')?");
@@ -141,6 +142,12 @@ public class Investigation {
                 int inputOrderIndex = Integer.parseInt(ui.readUserInput());
                 ui.printExistingNotes(notes,inputOrderIndex);
             }
+        } else {
+            System.out.println("Here are the notes you have: ");
+            ui.printAllNotes(notes);
+            System.out.println("Please enter the index of the note you want to delete");
+            int deletedNoteIndex = Integer.parseInt(ui.readUserInput()) - 1;
+            notes.deleteNote(deletedNoteIndex);
         }
     }
 

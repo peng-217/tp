@@ -32,6 +32,8 @@ public class Ui {
 
     private static final String SELECTED_NOTES_MESSAGE =
             "Here are the list of notes found given keywords:";
+    private static final String DELETE_NOTE_MESSAGE =
+            "Ok! The note has been successfully deleted!";
     private static final String SAVE_NOTE_MESSAGE =
             "Ok! The new note has been successfully created and saved.";
 
@@ -100,6 +102,16 @@ public class Ui {
         System.out.println(notes.getIndexNote(orderIndex - 1).getNoteTitle());
         System.out.println(notes.getIndexNote(orderIndex - 1).getNoteContent());
         System.out.println(LINE_SEPARATOR);
+    }
+
+    public void printAllNotes(NoteList notes) {
+        for (int i = 0; i < notes.getSize(); i++) {
+            System.out.println((i + 1) + "." + notes.getIndexNote(i).getNoteTitle());
+        }
+    }
+
+    public void printDeleteNoteMessage() {
+        System.out.println(DELETE_NOTE_MESSAGE);
     }
 
     public void printNoteTitle(NoteList notes) {
