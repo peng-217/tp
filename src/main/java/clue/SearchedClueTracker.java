@@ -15,6 +15,7 @@ public class SearchedClueTracker {
     }
     
     public ArrayList<Clue> searcherdClues(String name) {
+        assert suspects.getSuspectAvailableClues(name).size() > 0;
         ArrayList<Clue> checkedClues = new ArrayList<>();
         for (Clue clue : suspects.getSuspectAvailableClues(name)) {
             if (clue.isChecked()) {
