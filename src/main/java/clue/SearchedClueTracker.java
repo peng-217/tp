@@ -14,8 +14,13 @@ public class SearchedClueTracker {
         this.suspects = suspects;
     }
     
-    public void viewSearcherdCLues(String name) {
-        ArrayList<Clue> availableClues = suspects.getSuspectAvailableClues(name);
-        ui.printListOfClues(availableClues);
+    public ArrayList<Clue> SearcherdClues(String name) {
+        ArrayList<Clue> checkedClues = new ArrayList<>();
+         for(Clue clue : suspects.getSuspectAvailableClues(name)) {
+             if(clue.isChecked()) {
+                 checkedClues.add(clue);
+             }
+         }
+         return checkedClues;
     }
 }
