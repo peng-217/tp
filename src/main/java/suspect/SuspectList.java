@@ -36,16 +36,6 @@ public class SuspectList {
         return suspects.get(name).getClues();
     }
 
-    public int getClueIndex(String suspectName, String clueName) {
-        ArrayList<Clue> clues = this.getSuspectAllClues(suspectName);
-        for (int i = 0; i < clues.size(); i++) {
-            if (clues.get(i).getClueName().equals(clueName)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     public ArrayList<Clue> getSuspectAvailableClues(String name) {
         return suspects.get(name).getAvailableClues();
     }
