@@ -18,13 +18,13 @@ public class GameDataFileManager {
 
 
     /**
-     * Constructor of Storage, sets the fileName and filePath
+     * Constructor of Storage, sets the fileName and filePath.
      *
      * @param fileName the name of the storage file
      */
     public GameDataFileManager(String fileName) {
         this.fileName = fileName;
-        this.filePath = "data/"+ this.fileName;
+        this.filePath = "data/" + this.fileName;
     }
 
 
@@ -44,7 +44,7 @@ public class GameDataFileManager {
     /**
      * reads from the file and return ArrayList<String> lines object that stores information
      *
-     * @return ArrayList<String> lines object that stores information
+     * @return ArrayList<String> lines object that stores information.
      * @throws IOException If the filepath cannot be created or cannot be found.
      */
     public ArrayList<String> readFile() throws IOException {
@@ -60,7 +60,7 @@ public class GameDataFileManager {
 
 
     /**
-     * writes the ArrayList<Task> lines into the files
+     * writes the ArrayList<Task> lines into the files.
      *
      * @param lines representing the list of tasks information
      * @throws IOException If the file cannot be created or cannot be found

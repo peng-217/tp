@@ -9,6 +9,7 @@ public class SceneList {
     private ArrayList<Scene> scenes;
     private int currentSceneIndex;
     GameDataFileDecoder dataFile;
+
     public SceneList(int index, GameDataFileDecoder dataFile) {
         this.dataFile = dataFile;
         this.currentSceneIndex = index;

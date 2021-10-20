@@ -19,7 +19,7 @@ public class GameDataFileDecoder {
         try {
             dataFile.checkPath();
             this.lines = dataFile.readFile();
-            if (this.lines.size() == 0 || !this.lines.get(0).equals( "The Great Detective Data File")) {
+            if (this.lines.size() == 0 || !this.lines.get(0).equals("The Great Detective Data File")) {
                 resetFile(0);
                 this.lines = dataFile.readFile();
                 assert lines.size() != 0;
