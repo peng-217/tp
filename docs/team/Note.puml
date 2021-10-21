@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+Duke-> Ui
+Duke-> Parser
+Duke-> Investigation : Investigation(Ui,Parser)
+
+Investigation-> NoteList : NoteList(Ui)
+Investigation-> Storage : Storage()
+
+activate NoteList
+
+@enduml
