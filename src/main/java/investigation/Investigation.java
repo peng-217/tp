@@ -34,13 +34,14 @@ public class Investigation {
     private static NoteList notes;
     private static SuspectList clueTracker;
     private static int defaultTitleCounter = 1;
-
     private static final String FILE_NOT_FOUND = "File not found for scene";
     private static final String WRONG_INDEX_GIVEN = "Sorry please enter index within range";
-    private static final String ENTER_VALID_COMMAND = "Please enter a valid user command";
     private static final String INVALID_COMMAND = "Invalid command";
-
     private static final String KILLER_WENDY = "Wendy";
+    private static final String INITIAL_SCENE = "initial_scene";
+    private static final String CORRECT_KILLER_SCENE = "correct_killer_scene";
+    private static final String WRONG_KILLER_SCENE = "wrong_killer_scene";
+    private static final String TRUTH_SCENE = "truth_scene";
 
     public Investigation(Parser parser, Ui ui) {
         this.parser = parser;
@@ -67,9 +68,13 @@ public class Investigation {
         if (stage == InvestigationStages.SUSPECT_STAGE) {
             String sceneType = sceneList.getSceneType();
             switch (sceneType) {
-            case "initial_scene":
+            case INITIAL_SCENE:
                 break;
-            case "final_scene":
+            case CORRECT_KILLER_SCENE:
+                break;
+            case WRONG_KILLER_SCENE:
+                break;
+            case TRUTH_SCENE:
                 break;
             default:
                 System.out.println("Scene " + (sceneList.getCurrentSceneIndex()) + " Investigation");

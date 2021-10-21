@@ -69,8 +69,12 @@ public class SceneList {
             return "next_scene";
         } else if (sceneNumber == 3) {
             return "guess_killer_scene";
+        } else if (sceneNumber == 4) {
+            return "correct_killer_scene";
+        } else if (sceneNumber == 5) {
+            return "wrong_killer_scene";
         } else {
-            return "final_scene";
+            return "truth_scene";
         }
     }
 
