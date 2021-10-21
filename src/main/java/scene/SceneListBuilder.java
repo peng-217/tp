@@ -23,13 +23,7 @@ import clue.thirdscene.WendyRude;
 import clue.thirdscene.ZackDrink;
 import clue.thirdscene.ZackMemo;
 import clue.thirdscene.ZackNotif;
-import narrative.CorrectEndingNarrative;
-import narrative.FirstNarrative;
-import narrative.IntroNarrative;
-import narrative.SecondNarrative;
-import narrative.ThirdNarrative;
-import narrative.TruthNarrative;
-import narrative.WrongEndingNarrative;
+import narrative.Narrative;
 import storage.GameDataFileDecoder;
 import ui.Ui;
 import suspect.Suspect;
@@ -80,13 +74,13 @@ public class SceneListBuilder {
         suspectsScene3.addClueForSuspect("Zack", new ZackNotif());
 
         SceneList sceneList = new SceneList(dataFile.getCurrentSceneIndex(),dataFile);
-        Scene introScene = new Scene(new IntroNarrative(), null);
-        Scene firstScene = new Scene(new FirstNarrative(), suspectsScene1);
-        Scene secondScene = new Scene(new SecondNarrative(), suspectsScene2);
-        Scene thirdScene = new Scene(new ThirdNarrative(), suspectsScene3);
-        Scene correctEndingScene = new Scene(new CorrectEndingNarrative(), null);
-        Scene wrongEndingScene = new Scene(new WrongEndingNarrative(), null);
-        Scene truthScene = new Scene(new TruthNarrative(), null);
+        Scene introScene = new Scene(new Narrative("Introduction.txt"), null);
+        Scene firstScene = new Scene(new Narrative("First_Scene.txt"), suspectsScene1);
+        Scene secondScene = new Scene(new Narrative("Second_Scene.txt"), suspectsScene2);
+        Scene thirdScene = new Scene(new Narrative("Third_Scene.txt"), suspectsScene3);
+        Scene correctEndingScene = new Scene(new Narrative("correctEnding.txt"), null);
+        Scene wrongEndingScene = new Scene(new Narrative("WrongEnding.txt"), null);
+        Scene truthScene = new Scene(new Narrative("Truth.txt"), null);
 
         sceneList.addScene(introScene);
         sceneList.addScene(firstScene);
