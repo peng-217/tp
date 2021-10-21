@@ -34,17 +34,16 @@ public class SceneList {
         return 2;
     }
 
-    public void incrementSeceneAfterGuessing(boolean killerFound) {
+    public void incrementSceneAfterGuessing(boolean killerFound) {
         if (killerFound) {
             this.currentSceneIndex += 1;
         } else {
             this.currentSceneIndex += 2;
         }
-        dataFile.resetFile(currentSceneIndex);
+        dataFile.resetFile(0);
     }
 
     public Scene getCurrentScene() {
-
         return this.scenes.get(currentSceneIndex);
     }
 
@@ -54,6 +53,7 @@ public class SceneList {
 
     public void incrementSceneNumber() {
         this.currentSceneIndex++;
+        dataFile.resetFile(currentSceneIndex);
     }
 
     public String getSceneType() {

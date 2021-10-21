@@ -50,7 +50,7 @@ public class Investigation {
         notes = new NoteList(ui);
         stage = InvestigationStages.SUSPECT_STAGE;
 
-        sceneList = SceneListBuilder.buildSceneList(ui,dataFile);
+        sceneList = SceneListBuilder.buildSceneList(ui, dataFile);
         clueTracker = CheckedClueTrackerBuilder.buildClueTracker(ui);
 
         Storage.openNoteFromFile(notes);
@@ -170,7 +170,7 @@ public class Investigation {
     }
 
     private void goToCorrectFinalScene(boolean killerFound) {
-        sceneList.incrementSeceneAfterGuessing(killerFound);
+        sceneList.incrementSceneAfterGuessing(killerFound);
     }
 
     public ArrayList<Clue> getSuspectCheckedClues(String name) {
