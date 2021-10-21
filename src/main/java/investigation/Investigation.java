@@ -1,6 +1,10 @@
 package investigation;
 
 
+import clue.Clue;
+import clue.CheckedClueTrackerBuilder;
+import storage.GameDataFileDecoder;
+import storage.GameDataFileManager;
 import storage.Storage;
 import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
@@ -9,11 +13,13 @@ import scene.Scene;
 import scene.SceneList;
 import scene.SceneListBuilder;
 import suspect.Suspect;
+import suspect.SuspectList;
 import ui.Ui;
 import note.Note;
 import note.NoteList;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Investigation {
@@ -24,7 +30,9 @@ public class Investigation {
     private static Parser parser;
     private static Ui ui;
     private static Storage storage;
+    private static GameDataFileDecoder dataFile;
     private static NoteList notes;
+    private static SuspectList clueTracker;
     private static int defaultTitleCounter = 1;
 
     private static final String FILE_NOT_FOUND = "File not found for scene";
@@ -37,31 +45,38 @@ public class Investigation {
     public Investigation(Parser parser, Ui ui) {
         this.parser = parser;
         this.ui = ui;
+        dataFile = new GameDataFileDecoder(ui,new GameDataFileManager("GameData.txt"));
         storage = new Storage();
         notes = new NoteList(ui);
         stage = InvestigationStages.SUSPECT_STAGE;
-        sceneList = SceneListBuilder.buildSceneList(ui);
+
+        sceneList = SceneListBuilder.buildSceneList(ui,dataFile);
+        clueTracker = CheckedClueTrackerBuilder.buildClueTracker(ui);
+
         Storage.openNoteFromFile(notes);
 
         currentScene = sceneList.getCurrentScene();
         try {
             currentScene.runScene();
-        } catch (FileNotFoundException e) {
+        }  catch (IOException e) {
             System.out.println(FILE_NOT_FOUND);
         }
     }
 
     public void printCurrentInvestigation() {
         if (stage == InvestigationStages.SUSPECT_STAGE) {
-            if (sceneList.getCurrentSceneIndex() == 0
-                    | sceneList.getCurrentSceneIndex() == 4
-                    | sceneList.getCurrentSceneIndex() == 5
-                    | sceneList.getCurrentSceneIndex() == 6) {
-                return;
+            String sceneType = sceneList.getSceneType();
+            switch (sceneType) {
+            case "initial_scene":
+                break;
+            case "final_scene":
+                break;
+            default:
+                System.out.println("Scene " + (sceneList.getCurrentSceneIndex()) + " Investigation");
+                System.out.println("Who do you want to investigate?");
+                ui.printSuspects(currentScene.getSuspectList());
             }
-            System.out.println("Scene " + (sceneList.getCurrentSceneIndex()) + " Investigation");
-            System.out.println("Who do you want to investigate?");
-            ui.printSuspects(currentScene.getSuspectList());
+
         } else {
             System.out.print("Scene " + (sceneList.getCurrentSceneIndex()) + " Investigation");
             System.out.println(" - " + currentSuspect);
@@ -70,7 +85,6 @@ public class Investigation {
             ui.printListOfClues(suspect.getClues());
         }
     }
-
 
     public void investigateScene(Integer index) throws InvalidSuspectException, InvalidClueException {
         switch (stage) {
@@ -85,7 +99,11 @@ public class Investigation {
             } else if (index == 0) {
                 stage = InvestigationStages.SUSPECT_STAGE;
             } else {
-                System.out.println(currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1));
+                Clue currentClueInScene = currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1);
+                int indexInClueTracker = clueTracker.getClueIndex(currentSuspect, currentClueInScene.getClueName());
+                Clue currentClueInTracker = clueTracker.getSuspectAllClues(currentSuspect).get(indexInClueTracker);
+                clueTracker.setClueChecked(currentSuspect, currentClueInTracker);
+                System.out.println(currentClueInScene);
             }
             break;
         default:
@@ -93,16 +111,9 @@ public class Investigation {
         }
     }
 
-    public boolean isACorrectGuess() {
-        // int isTimeToGuess = getNextSceneFromSceneList();
-        ui.printSuspectKillerMessage();
-        String suspectedKiller = ui.readUserInput();
-        return checkSuspectedKiller(suspectedKiller);
-    }
-
     public void processNote() {
-        System.out.println("Do you want to create a new note" +
-                " or open a existing note or delete a note?");
+        System.out.println("Do you want to create a new note"
+                + " or open a existing note or delete a note?");
         String userChoice = ui.readUserInput();
         if (userChoice.equals("create")) {
             System.out.println("Please enter the title for this note"
@@ -117,7 +128,7 @@ public class Investigation {
             System.out.println("Please enter your note:");
             String noteContent = ui.readUserInput();
             Note newNote = new Note(noteContent, noteTitle, (sceneList.getCurrentSceneIndex() + 1));
-            notes.createNote(newNote,(sceneList.getCurrentSceneIndex() + 1));
+            notes.createNote(newNote, (sceneList.getCurrentSceneIndex() + 1));
         } else if (userChoice.equals("open")) {
             ui.printNoteTitle(notes);
             System.out.println("Do you want to search a note (type in 'search') or "
@@ -134,13 +145,13 @@ public class Investigation {
                 } else {
                     System.out.println("Please enter scene index:");
                     int sceneIndex = Integer.parseInt(ui.readUserInput());
-                    ui.printSelectedNote(notes.searchNotesUsingSceneIndex(sceneIndex,notes));
+                    ui.printSelectedNote(notes.searchNotesUsingSceneIndex(sceneIndex, notes));
                 }
             } else {
                 System.out.println("Please type in the index of the note to open it:");
                 //here the index is not scene index, it is the index in the list
                 int inputOrderIndex = Integer.parseInt(ui.readUserInput());
-                ui.printExistingNotes(notes,inputOrderIndex);
+                ui.printExistingNotes(notes, inputOrderIndex);
             }
         } else {
             System.out.println("Here are the notes you have: ");
@@ -151,22 +162,19 @@ public class Investigation {
         }
     }
 
-    private boolean checkSuspectedKiller(String suspectedKiller) {
-        if (suspectedKiller.equals(KILLER_WENDY)) {
-            //ui.printCorrectMessage();
-            return true;
-        } else {
-            //ui.printWrongMessage();
-            return false;
-        }
+    public void checkSuspectedKiller() {
+        ui.printSuspectKillerMessage();
+        String suspectedKiller = ui.readUserInput();
+        boolean killerFound = suspectedKiller.equals(KILLER_WENDY);
+        goToCorrectFinalScene(killerFound);
     }
 
-    public int getNextSceneFromSceneList() {
-        return sceneList.isLastScene();
+    private void goToCorrectFinalScene(boolean killerFound) {
+        sceneList.incrementSeceneAfterGuessing(killerFound);
     }
 
-    public void getNextSceneFromSceneList(boolean isACorrectGuess) {
-        sceneList.incrementSeceneAfterGuessing(isACorrectGuess);
+    public ArrayList<Clue> getSuspectCheckedClues(String name) {
+        return clueTracker.getSuspectCheckedClues(name);
     }
 
     public void runScenes() {
@@ -177,5 +185,13 @@ public class Investigation {
         } catch (FileNotFoundException e) {
             System.out.println(FILE_NOT_FOUND);
         }
+    }
+
+    public String getSceneType() {
+        return sceneList.getSceneType();
+    }
+
+    public void updateScene() {
+        sceneList.incrementSceneNumber();
     }
 }

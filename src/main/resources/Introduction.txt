@@ -11,6 +11,8 @@ I woke up and found myself dead. The Spirit Guide from the Hell told me that the
 Here are the commands that you can enter:
 "/next" - move on to the next scene or the next stage of a scene
 "/help" - view this command list
+"/note" - create a new note/ open a note/ delete a note
+"/view" - view all the clues that you have gathered
 "/exit" - exit the game
 
 Now, enter "/next" to start your journey to the truth.

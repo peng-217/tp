@@ -40,6 +40,10 @@ public class SuspectList {
         return suspects.get(name).getAvailableClues();
     }
 
+    public ArrayList<Clue> getSuspectCheckedClues(String name) {
+        return suspects.get(name).getCheckedClues();
+    }
+
     public ArrayList<Clue> getAllClues() {
         ArrayList<Clue> clues = new ArrayList<>();
         for (Map.Entry<String, Suspect> suspectEntry : suspects.entrySet()) {
@@ -63,5 +67,15 @@ public class SuspectList {
     @Override
     public String toString() {
         return String.valueOf(suspects.keySet());
+    }
+
+    public int getClueIndex(String suspectName, String clueName) {
+        ArrayList<Clue> clues = this.getSuspectAllClues(suspectName);
+        for (int i = 0; i < clues.size(); i++) {
+            if (clues.get(i).getClueName().equals(clueName)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

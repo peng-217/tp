@@ -5,18 +5,23 @@ import ui.Ui;
 
 public class NextCommand extends Command {
     private boolean hasCompleted = false;
+    private static final String GUESS_KILLER_SCENE = "guess_killer_scene";
+    private static final String FINAL_SCENE = "final_scene";
 
     @Override
     public void execute(Ui ui, Investigation investigation) {
-        int getNextScene = investigation.getNextSceneFromSceneList();
-        if (getNextScene == 0) { // is the last scene
+        String sceneType = investigation.getSceneType();
+        switch (sceneType) {
+        case FINAL_SCENE:
             hasCompleted = true;
-            //hasCompleted = investigation.completedGame();
-        } else if (getNextScene == 1) { // has finished investigation and needs to vote now
-            boolean isCorrect = investigation.isACorrectGuess();
-            investigation.getNextSceneFromSceneList(isCorrect);
             investigation.runScenes();
-        } else { // neither of the other two
+            break;
+        case GUESS_KILLER_SCENE:
+            investigation.checkSuspectedKiller();
+            investigation.runScenes();
+            break;
+        default:
+            investigation.updateScene();
             investigation.runScenes();
         }
     }
