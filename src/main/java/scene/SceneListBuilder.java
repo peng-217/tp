@@ -30,7 +30,7 @@ import suspect.Suspect;
 import suspect.SuspectList;
 
 public class SceneListBuilder {
-    public static SceneList buildSceneList(Ui ui,GameDataFileDecoder dataFile) {
+    public static SceneList buildSceneList(Ui ui, GameDataFileDecoder dataFile) {
 
         SuspectList suspectsScene1 = new SuspectList(ui);
         suspectsScene1.addSuspect("Father", new Suspect());

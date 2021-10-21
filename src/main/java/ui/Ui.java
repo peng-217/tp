@@ -44,6 +44,8 @@ public class Ui {
     private static final String EXIT_COMMAND = "/exit";
     private static final String NEXT_COMMAND = "/next";
     private static final String NOTE_COMMAND = "/note";
+    private static final String VIEW_COMMAND = "/view";
+    private static final String RESTART_COMMAND = "/restart";
     private static final String INVALID_INPUT_GIVEN = "Invalid input! Type '/help' to see the available commands.";
     private static final String INVALID_NUMBER_SUSPECT =
             "Invalid number! To select a suspect, please input its corresponding number.";
@@ -90,6 +92,8 @@ public class Ui {
         System.out.println(EXIT_COMMAND);
         System.out.println(NEXT_COMMAND);
         System.out.println(NOTE_COMMAND);
+        System.out.println(VIEW_COMMAND);
+        System.out.println(RESTART_COMMAND);
 
         System.out.println(ASK_FOR_CLUE_OR_SUSPECT_NUMBER);
 
