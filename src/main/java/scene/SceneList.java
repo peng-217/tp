@@ -47,6 +47,11 @@ public class SceneList {
         return this.scenes.get(currentSceneIndex);
     }
 
+    public void resetCurrentSceneIndex() {
+        this.currentSceneIndex = 0;
+        dataFile.resetFile(0);
+    }
+
     public int getCurrentSceneIndex() {
         return this.currentSceneIndex;
     }

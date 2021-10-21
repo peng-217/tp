@@ -194,4 +194,10 @@ public class Investigation {
     public void updateScene() {
         sceneList.incrementSceneNumber();
     }
+
+    public void restartGame() {
+        sceneList.resetCurrentSceneIndex();
+        stage = InvestigationStages.SUSPECT_STAGE;
+        runScenes();
+    }
 }

@@ -6,6 +6,7 @@ import command.HelpCommand;
 import command.InvestigateCommand;
 import command.NextCommand;
 import command.NoteCommand;
+import command.RestartCommand;
 import command.ViewCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
@@ -16,6 +17,7 @@ public class Parser {
     private static final String EXIT = "/exit";
     private static final String NEXT = "/next";
     private static final String VIEW = "/view";
+    private static final String RESTART = "/restart";
     private static final String SUSPECT_FATHER = "Father";
     private static final String SUSPECT_KEVIN = "Kevin";
     private static final String SUSPECT_WENDY = "Wendy";
@@ -90,6 +92,8 @@ public class Parser {
             return new NextCommand();
         case VIEW:
             return new ViewCommand();
+        case RESTART:
+            return new RestartCommand();
         default:
             validInput(userInput);
             int inputParsedToInt = Integer.parseInt(userInput);
