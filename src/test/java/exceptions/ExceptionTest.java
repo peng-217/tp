@@ -10,7 +10,8 @@ public class ExceptionTest {
 
     @Test
     public void throwInvalidSuspectExceptionTest() {
-        assertThrows(InvalidSuspectException.class, () -> new Investigation(new Parser(), new Ui()).investigateScene(0));
+        assertThrows(InvalidSuspectException.class,
+                () -> new Investigation(new Parser(), new Ui()).investigateScene(0));
     }
 
     @Test
