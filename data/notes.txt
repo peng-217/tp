@@ -14,3 +14,7 @@ scene 1
 THIS IS A TEST
 this is a simple test
 End of this note.
+scene 1
+DEFAULT(1)
+i think wendy is the murderer
+End of this note.

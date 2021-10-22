@@ -10,6 +10,9 @@ import command.RestartCommand;
 import command.ViewCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
+import suspect.SuspectNames;
+
+import java.util.Objects;
 
 public class Parser {
     private static final String HELP = "/help";
@@ -81,6 +84,10 @@ public class Parser {
     }
 
     public Command getCommandFromUser(String userInput) throws InvalidInputException {
+        boolean isNotOneWord = userInput.contains(" ");
+        if (isNotOneWord) {
+            return parseInputForViewCommand(userInput);
+        }
         switch (userInput) {
         case NOTE:
             return new NoteCommand();
@@ -101,11 +108,43 @@ public class Parser {
         }
     }
 
+    private Command parseInputForViewCommand(String userInput) throws InvalidInputException {
+        String[] userInputArr = userInput.split(" ",2);
+        System.out.println(userInputArr[0]);
+        if (!Objects.equals(userInputArr[0], VIEW)) {
+            throw new InvalidInputException("invalid input");
+        }
+        if (containInvalidArgument(userInputArr[1])) {
+            throw new InvalidInputException("invalid input");
+        }
+        return new ViewCommand(userInputArr[1]);
+    }
+
+    private boolean containInvalidArgument(String args) {
+        String[] argsArr = args.split(" ");
+        for (String arg : argsArr) {
+            switch (arg) {
+            case SUSPECT_FATHER:
+                // fallthrough
+            case SUSPECT_ZACK:
+                // fallthrough
+            case SUSPECT_WENDY:
+                // fallthrough
+            case SUSPECT_KEVIN:
+                // fallthrough
+            case SUSPECT_LING:
+                break;
+            default:
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public static int parseNoteSceneIndex(String userInput) {
         String[] userInputSplit = userInput.split(INPUT_SPLITTER);
-        int noteSceneIndex = Integer.parseInt(userInputSplit[NOTE_SCENE_INDEX]);
-        return noteSceneIndex;
+        return Integer.parseInt(userInputSplit[NOTE_SCENE_INDEX]);
     }
 
     private void validInput(String userInput) throws InvalidInputException {
