@@ -11,6 +11,8 @@ import command.ViewCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
 
+import java.util.Objects;
+
 public class Parser {
     private static final String HELP = "/help";
     private static final String NOTE = "/note";
@@ -81,6 +83,10 @@ public class Parser {
     }
 
     public Command getCommandFromUser(String userInput) throws InvalidInputException {
+        boolean isNotOneWord = userInput.contains(" ");
+        if (isNotOneWord) {
+            return parseInputForViewCommand(userInput);
+        }
         switch (userInput) {
         case NOTE:
             return new NoteCommand();
@@ -99,6 +105,15 @@ public class Parser {
             int inputParsedToInt = Integer.parseInt(userInput);
             return new InvestigateCommand(inputParsedToInt);
         }
+    }
+
+    private Command parseInputForViewCommand(String userInput) throws InvalidInputException {
+        String[] userInputArr = userInput.split(" ",2);
+        System.out.println(userInputArr[0]);
+        if (!Objects.equals(userInputArr[0], VIEW)) {
+            throw new InvalidInputException("invalid input");
+        }
+        return new ViewCommand(userInputArr[1]);
     }
 
 

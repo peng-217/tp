@@ -7,7 +7,15 @@ import ui.Ui;
 import java.util.ArrayList;
 
 public class ViewCommand extends Command {
-    private String[] suspects = {"Father", "Kevin", "Wendy", "Ling", "Zack"};
+    private String[] suspects;
+
+    public ViewCommand() {
+        suspects = new String[]{"Father", "Kevin", "Wendy", "Ling", "Zack"};
+    }
+
+    public ViewCommand(String args) {
+        suspects = args.split(" ");
+    }
 
     @Override
     public void execute(Ui ui, Investigation investigation) {
