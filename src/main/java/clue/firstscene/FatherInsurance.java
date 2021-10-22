@@ -20,6 +20,5 @@ public class FatherInsurance extends Clue {
                 + "It seemed that my father bought insurance for\n"
                 + "our family members a few years ago, amount\n"
                 + "insured more than ten thousand.";
-        //this.suspect = ;
     }
 }
