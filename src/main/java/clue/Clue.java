@@ -2,13 +2,19 @@ package clue;
 
 public class Clue {
 
-    //Suspect suspect;
     protected String clueName = "default name";
     protected String image = "default image :)";
     protected String description = "default description";
     protected boolean isChecked;
 
     public Clue() {
+        isChecked = false;
+    }
+
+    public Clue(String clueName, String image, String description) {
+        this.clueName = clueName;
+        this.image = image;
+        this.description = description;
         isChecked = false;
     }
 
@@ -33,8 +39,6 @@ public class Clue {
                 + clueName
                 + "\n"
                 + image
-                + "\n"
-                + description
-                + "\n";
+                + description;
     }
 }
