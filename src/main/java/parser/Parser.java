@@ -10,6 +10,7 @@ import command.RestartCommand;
 import command.ViewCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
+import suspect.SuspectNames;
 
 import java.util.Objects;
 
@@ -113,7 +114,31 @@ public class Parser {
         if (!Objects.equals(userInputArr[0], VIEW)) {
             throw new InvalidInputException("invalid input");
         }
+        if (containInvalidArgument(userInputArr[1])) {
+            throw new InvalidInputException("invalid input");
+        }
         return new ViewCommand(userInputArr[1]);
+    }
+
+    private boolean containInvalidArgument(String args) {
+        String[] argsArr = args.split(" ");
+        for (String arg : argsArr) {
+            switch(arg) {
+            case SUSPECT_FATHER:
+                // fallthrough
+            case SUSPECT_ZACK:
+                // fallthrough
+            case SUSPECT_WENDY:
+                // fallthrough
+            case SUSPECT_KEVIN:
+                // fallthrough
+            case SUSPECT_LING:
+                break;
+            default:
+                return true;
+            }
+        }
+        return false;
     }
 
 
