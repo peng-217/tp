@@ -28,9 +28,8 @@ public class Parser {
     private static final String SUSPECT_ZACK = "Zack";
     private static final String INVALID_SUSPECT = "No suspect with corresponding number.";
     private static final String INPUT_SPLITTER = " ";
-    private static final int COMMAND_INDEX = 0;
-    private static final int CLUE_NUMBER_INDEX = 1;
     private static final int NOTE_SCENE_INDEX = 1;
+    private static final String INVALID_INPUT = "Invalid input!";
 
     private String suspectFromFirstScene(int suspectNumber) {
         if (suspectNumber == 1) {
@@ -109,19 +108,19 @@ public class Parser {
     }
 
     private Command parseInputForViewCommand(String userInput) throws InvalidInputException {
-        String[] userInputArr = userInput.split(" ",2);
+        String[] userInputArr = userInput.split(INPUT_SPLITTER,2);
         System.out.println(userInputArr[0]);
         if (!Objects.equals(userInputArr[0], VIEW)) {
-            throw new InvalidInputException("invalid input");
+            throw new InvalidInputException(INVALID_INPUT);
         }
         if (containInvalidArgument(userInputArr[1])) {
-            throw new InvalidInputException("invalid input");
+            throw new InvalidInputException(INVALID_INPUT);
         }
         return new ViewCommand(userInputArr[1]);
     }
 
     private boolean containInvalidArgument(String args) {
-        String[] argsArr = args.split(" ");
+        String[] argsArr = args.split(INPUT_SPLITTER);
         for (String arg : argsArr) {
             switch (arg) {
             case SUSPECT_FATHER:
@@ -151,7 +150,7 @@ public class Parser {
         try {
             Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new InvalidInputException("Invalid input!");
+            throw new InvalidInputException(INVALID_INPUT);
         }
     }
 

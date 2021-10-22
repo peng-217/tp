@@ -8,6 +8,9 @@ import java.util.ArrayList;
 public class SceneList {
     private ArrayList<Scene> scenes;
     private int currentSceneIndex;
+    private static final int STARTING_INDEX_FOR_FILE = 0;
+    private static final int CORRECT_KILLER_SCENE_INDEX = 5;
+    private static final int WRONG_KILLER_SCENE_INDEX = 6;
     GameDataFileDecoder dataFile;
 
     public SceneList(int index, GameDataFileDecoder dataFile) {
@@ -19,26 +22,12 @@ public class SceneList {
     public void addScene(Scene scene) {
         this.scenes.add(scene);
     }
-    
-    public int isLastScene() {
-        if (currentSceneIndex == scenes.size() - 1) {
-            return 0;
-        } else if (currentSceneIndex == 3) {
-            return 1;
-        } else if (currentSceneIndex == 4 | currentSceneIndex == 5) {
-            this.currentSceneIndex = 6;
-            return 2;
-        }
-        this.currentSceneIndex++;
-        dataFile.resetFile(currentSceneIndex);
-        return 2;
-    }
 
     public void incrementSceneAfterGuessing(boolean killerFound) {
         if (killerFound) {
-            this.currentSceneIndex += 1;
+            this.currentSceneIndex = CORRECT_KILLER_SCENE_INDEX;
         } else {
-            this.currentSceneIndex += 2;
+            this.currentSceneIndex = WRONG_KILLER_SCENE_INDEX;
         }
         dataFile.resetFile(0);
     }
@@ -48,8 +37,8 @@ public class SceneList {
     }
 
     public void resetCurrentSceneIndex() {
-        this.currentSceneIndex = 0;
-        dataFile.resetFile(0);
+        this.currentSceneIndex = STARTING_INDEX_FOR_FILE;
+        dataFile.resetFile(STARTING_INDEX_FOR_FILE);
     }
 
     public int getCurrentSceneIndex() {
@@ -61,21 +50,9 @@ public class SceneList {
         dataFile.resetFile(currentSceneIndex);
     }
 
-    public String getSceneType() {
-        int sceneNumber = getCurrentSceneIndex();
-        if (sceneNumber == 0) {
-            return "initial_scene";
-        } else if (sceneNumber < 3) {
-            return "next_scene";
-        } else if (sceneNumber == 3) {
-            return "guess_killer_scene";
-        } else if (sceneNumber == 4) {
-            return "correct_killer_scene";
-        } else if (sceneNumber == 5) {
-            return "wrong_killer_scene";
-        } else {
-            return "truth_scene";
-        }
+    public SceneTypes getSceneType() {
+        Scene currentScene = getCurrentScene();
+        return currentScene.getSceneType();
     }
 
 }

@@ -74,18 +74,20 @@ public class SceneListBuilder {
         suspectsScene3.addClueForSuspect("Zack", new ZackNotif());
 
         SceneList sceneList = new SceneList(dataFile.getCurrentSceneIndex(),dataFile);
-        Scene introScene = new Scene(new Narrative("Introduction.txt"), null);
-        Scene firstScene = new Scene(new Narrative("First_Scene.txt"), suspectsScene1);
-        Scene secondScene = new Scene(new Narrative("Second_Scene.txt"), suspectsScene2);
-        Scene thirdScene = new Scene(new Narrative("Third_Scene.txt"), suspectsScene3);
-        Scene correctEndingScene = new Scene(new Narrative("correctEnding.txt"), null);
-        Scene wrongEndingScene = new Scene(new Narrative("WrongEnding.txt"), null);
-        Scene truthScene = new Scene(new Narrative("Truth.txt"), null);
+        Scene introScene = new IntroductionScene(new Narrative("Introduction.txt"), null);
+        Scene firstScene = new InvestigateScene(new Narrative("FirstScene.txt"), suspectsScene1);
+        Scene secondScene = new InvestigateScene(new Narrative("SecondScene.txt"), suspectsScene2);
+        Scene thirdScene = new InvestigateScene(new Narrative("ThirdScene.txt"), suspectsScene3);
+        Scene guessKillerScene = new GuessKillerScene(new Narrative("GuessKillerScene.txt"), suspectsScene3);
+        Scene correctEndingScene = new CorrectKillerScene(new Narrative("CorrectEnding.txt"), null);
+        Scene wrongEndingScene = new WrongKillerScene(new Narrative("WrongEnding.txt"), null);
+        Scene truthScene = new TruthScene(new Narrative("Truth.txt"), null);
 
         sceneList.addScene(introScene);
         sceneList.addScene(firstScene);
         sceneList.addScene(secondScene);
         sceneList.addScene(thirdScene);
+        sceneList.addScene(guessKillerScene);
         sceneList.addScene(correctEndingScene);
         sceneList.addScene(wrongEndingScene);
         sceneList.addScene(truthScene);
