@@ -1,6 +1,7 @@
 package command;
 
 import investigation.Investigation;
+import scene.SceneTypes;
 import ui.Ui;
 
 public class NextCommand extends Command {
@@ -8,15 +9,22 @@ public class NextCommand extends Command {
 
     @Override
     public void execute(Ui ui, Investigation investigation) {
-        int getNextScene = investigation.getNextSceneFromSceneList();
-        if (getNextScene == 0) { // is the last scene
+        SceneTypes sceneType = investigation.getSceneType();
+        switch (sceneType) {
+        case CORRECT_KILLER_SCENE:
             hasCompleted = true;
-            //hasCompleted = investigation.completedGame();
-        } else if (getNextScene == 1) { // has finished investigation and needs to vote now
-            boolean isCorrect = investigation.isACorrectGuess();
-            investigation.getNextSceneFromSceneList(isCorrect);
             investigation.runScenes();
-        } else { // neither of the other two
+            break;
+        case TRUTH_SCENE:
+            hasCompleted = true;
+            investigation.runScenes();
+            break;
+        case GUESS_KILLER_SCENE:
+            investigation.checkSuspectedKiller();
+            investigation.runScenes();
+            break;
+        default:
+            investigation.updateScene();
             investigation.runScenes();
         }
     }

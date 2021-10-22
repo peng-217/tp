@@ -19,7 +19,9 @@ public class GameDataFileDecoder {
         try {
             dataFile.checkPath();
             this.lines = dataFile.readFile();
-            if (this.lines.size() == 0 || !this.lines.get(0).equals("The Great Detective Data File")) {
+            this.currentSceneIndex = Integer.parseInt(this.lines.get(1).substring(19));
+            if (this.lines.size() == 0 || !this.lines.get(0).equals("The Great Detective Data File")
+                    || currentSceneIndex > 3) {
                 resetFile(0);
                 this.lines = dataFile.readFile();
                 assert lines.size() != 0;

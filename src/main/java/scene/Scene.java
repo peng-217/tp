@@ -8,7 +8,7 @@ import suspect.SuspectList;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class Scene {
+public abstract class Scene {
     private final Narrative narrative;
     private final SuspectList suspectList;
 
@@ -16,6 +16,7 @@ public class Scene {
         this.narrative = narrative;
         this.suspectList = suspectList;
     }
+
 
     public Narrative getNarrative() {
         return narrative;
@@ -49,4 +50,6 @@ public class Scene {
             return "Incomplete Scene";
         }
     }
+
+    public abstract SceneTypes getSceneType();
 }

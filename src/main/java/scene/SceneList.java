@@ -8,6 +8,9 @@ import java.util.ArrayList;
 public class SceneList {
     private ArrayList<Scene> scenes;
     private int currentSceneIndex;
+    private static final int STARTING_INDEX_FOR_FILE = 0;
+    private static final int CORRECT_KILLER_SCENE_INDEX = 5;
+    private static final int WRONG_KILLER_SCENE_INDEX = 6;
     GameDataFileDecoder dataFile;
 
     public SceneList(int index, GameDataFileDecoder dataFile) {
@@ -19,36 +22,37 @@ public class SceneList {
     public void addScene(Scene scene) {
         this.scenes.add(scene);
     }
-    
-    public int isLastScene() {
-        if (currentSceneIndex == scenes.size() - 1) {
-            return 0;
-        } else if (currentSceneIndex == 3) {
-            return 1;
-        } else if (currentSceneIndex == 4 | currentSceneIndex == 5) {
-            this.currentSceneIndex = 6;
-            return 2;
-        }
-        this.currentSceneIndex++;
-        dataFile.resetFile(currentSceneIndex);
-        return 2;
-    }
 
-    public void incrementSeceneAfterGuessing(boolean isACorrectGuess) {
-        if (isACorrectGuess) {
-            this.currentSceneIndex += 1;
+    public void incrementSceneAfterGuessing(boolean killerFound) {
+        if (killerFound) {
+            this.currentSceneIndex = CORRECT_KILLER_SCENE_INDEX;
         } else {
-            this.currentSceneIndex += 2;
+            this.currentSceneIndex = WRONG_KILLER_SCENE_INDEX;
         }
-        dataFile.resetFile(currentSceneIndex);
+        dataFile.resetFile(0);
     }
 
     public Scene getCurrentScene() {
-
         return this.scenes.get(currentSceneIndex);
     }
 
-    public int getCurrentSceneIndex() {
-        return currentSceneIndex;
+    public void resetCurrentSceneIndex() {
+        this.currentSceneIndex = STARTING_INDEX_FOR_FILE;
+        dataFile.resetFile(STARTING_INDEX_FOR_FILE);
     }
+
+    public int getCurrentSceneIndex() {
+        return this.currentSceneIndex;
+    }
+
+    public void incrementSceneNumber() {
+        this.currentSceneIndex++;
+        dataFile.resetFile(currentSceneIndex);
+    }
+
+    public SceneTypes getSceneType() {
+        Scene currentScene = getCurrentScene();
+        return currentScene.getSceneType();
+    }
+
 }
