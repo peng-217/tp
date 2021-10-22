@@ -44,6 +44,7 @@ public class Ui {
     private static final String FILE_NOT_FOUND = "File not Found";
     private static final String ALL_SUSPECT_MESSAGE = "Here are all the suspects";
     private static final String WHO_TO_INVESTIGATE_MESSAGE = "Who do you want to investigate?";
+    private static final String NEXT_SCENE = "Enter \"/next\" to go to the next scene.";
 
     private Scanner scanner;
 
@@ -175,10 +176,14 @@ public class Ui {
     }
 
     public void printInvestigationMessage(int sceneNumber) {
-        System.out.print("Scene " + sceneNumber + " Investigation");
+        System.out.println("Scene " + sceneNumber + " Investigation");
     }
 
     public void printWhoToInvestigate() {
         System.out.println(WHO_TO_INVESTIGATE_MESSAGE);
+    }
+
+    public void printGoNextSceneMessage() {
+        System.out.println(NEXT_SCENE);
     }
 }
