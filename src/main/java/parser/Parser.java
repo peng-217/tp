@@ -123,7 +123,7 @@ public class Parser {
     private boolean containInvalidArgument(String args) {
         String[] argsArr = args.split(" ");
         for (String arg : argsArr) {
-            switch(arg) {
+            switch (arg) {
             case SUSPECT_FATHER:
                 // fallthrough
             case SUSPECT_ZACK:
@@ -144,8 +144,7 @@ public class Parser {
 
     public static int parseNoteSceneIndex(String userInput) {
         String[] userInputSplit = userInput.split(INPUT_SPLITTER);
-        int noteSceneIndex = Integer.parseInt(userInputSplit[NOTE_SCENE_INDEX]);
-        return noteSceneIndex;
+        return Integer.parseInt(userInputSplit[NOTE_SCENE_INDEX]);
     }
 
     private void validInput(String userInput) throws InvalidInputException {
