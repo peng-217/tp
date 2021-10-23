@@ -16,9 +16,9 @@ public class SceneListBuilder {
         SuspectList suspectsScene3 = new SuspectList(ui);
 
         try {
-            suspectListBuilder("data/scene1.txt", suspectsScene1);
-            suspectListBuilder("data/scene2.txt", suspectsScene2);
-            suspectListBuilder("data/scene3.txt", suspectsScene3);
+            suspectListBuilder("data/scene1clues.txt", suspectsScene1);
+            suspectListBuilder("data/scene2clues.txt", suspectsScene2);
+            suspectListBuilder("data/scene3clues.txt", suspectsScene3);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
