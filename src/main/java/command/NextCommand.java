@@ -13,7 +13,6 @@ public class NextCommand extends Command {
         switch (sceneType) {
         case CORRECT_KILLER_SCENE:
             hasCompleted = true;
-            investigation.runScenes();
             break;
         case TRUTH_SCENE:
             hasCompleted = true;
