@@ -9,6 +9,8 @@ import ui.Ui;
 import parser.Parser;
 import command.Command;
 
+import java.io.FileNotFoundException;
+
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -19,7 +21,7 @@ public class Duke {
 
     private static String userName;
 
-    public static void initializeGame() {
+    public static void initializeGame() throws FileNotFoundException {
         // Initialise new parser object
         parser = new Parser();
 
@@ -42,7 +44,7 @@ public class Duke {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         initializeGame();
         runUntilExitCommand();
     }

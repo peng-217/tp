@@ -41,10 +41,10 @@ public class Investigation {
     private static final String KILLER_WENDY = "Wendy";
     private static final String GAME_DATA_FILE_NAME = "GameData.txt";
 
-    public Investigation(Parser parser, Ui ui) {
+    public Investigation(Parser parser, Ui ui) throws FileNotFoundException {
         this.parser = parser;
         this.ui = ui;
-        dataFile = new GameDataFileDecoder(ui,new GameDataFileManager(GAME_DATA_FILE_NAME));
+        dataFile = new GameDataFileDecoder(ui, new GameDataFileManager(GAME_DATA_FILE_NAME));
         storage = new Storage();
         notes = new NoteList(ui);
         stage = InvestigationStages.SUSPECT_STAGE;
@@ -57,7 +57,7 @@ public class Investigation {
         currentScene = sceneList.getCurrentScene();
         try {
             currentScene.runScene();
-        }  catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(FILE_NOT_FOUND);
         }
     }
