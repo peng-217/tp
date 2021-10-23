@@ -82,9 +82,9 @@ class NoteListTest {
         Note testTwo = new Note("test 2","TEST 2",2);
         notes.createNote(testOne,1);
         notes.createNote(testTwo,2);
-        assertEquals(testOne,notes.getIndexNote(1));
-        assertEquals(testTwo, notes.getIndexNote(2));
-        /*assertTrue(testOne.equals(notes.getIndexNote(1)));
-        assertTrue(testTwo.equals(notes.getIndexNote(2)));*/
+        //assertEquals(testOne,notes.getIndexNote(1));
+        //assertEquals(testTwo,notes.getIndexNote(2));
+        assertTrue(notes.getIndexNote(1).getNoteSceneIndex() == 1);
+        assertTrue(notes.getIndexNote(2).getNoteSceneIndex() == 2);
     }
 }
