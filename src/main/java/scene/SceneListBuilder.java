@@ -16,45 +16,8 @@ import static suspect.SuspectList.suspectListBuilder;
 public class SceneListBuilder {
 
     public static SceneList buildSceneList(Ui ui, GameDataFileDecoder dataFile) throws FileNotFoundException {
-        /*
-        SuspectList suspectsScene1 = new SuspectList(ui);
-        SuspectList suspectsScene2 = new SuspectList(ui);
-        SuspectList suspectsScene3 = new SuspectList(ui);
-
-        try {
-            suspectListBuilder("data/scene1clues.txt", suspectsScene1);
-            suspectListBuilder("data/scene2clues.txt", suspectsScene2);
-            suspectListBuilder("data/scene3clues.txt", suspectsScene3);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-         */
-
         SceneList sceneList = new SceneList(dataFile.getCurrentSceneIndex(), dataFile);
         addScenes("data/scenesWithNarratives.txt", sceneList, ui);
-        /*
-        Scene introScene = new IntroductionScene(new Narrative("resources/Introduction.txt"), null);
-        Scene firstScene = new InvestigateScene(new Narrative("resources/FirstScene.txt"), suspectsScene1);
-        Scene secondScene = new InvestigateScene(new Narrative("resources/SecondScene.txt"), suspectsScene2);
-        Scene thirdScene = new InvestigateScene(new Narrative("resources/ThirdScene.txt"), suspectsScene3);
-        Scene guessKillerScene = new GuessKillerScene(new Narrative("GuessKillerScene.txt"), suspectsScene3);
-        Scene correctEndingScene = new CorrectKillerScene(new Narrative("CorrectEnding.txt"), null);
-        Scene wrongEndingScene = new WrongKillerScene(new Narrative("WrongEnding.txt"), null);
-        Scene truthScene = new TruthScene(new Narrative("Truth.txt"), null);
-
-        sceneList.addScene(introScene);
-        sceneList.addScene(firstScene);
-        sceneList.addScene(secondScene);
-        sceneList.addScene(thirdScene);
-        sceneList.addScene(guessKillerScene);
-        sceneList.addScene(correctEndingScene);
-        sceneList.addScene(wrongEndingScene);
-        sceneList.addScene(truthScene);
-
-         */
-
-
         return sceneList;
     }
 
