@@ -1,20 +1,28 @@
-scene 1
-HELLO
-helo
-End of this note.
-scene 1
-DEFAULT(1)
-dk9djoaj j dfopa jfojadfli fjeoajhgyhrtv n  cjadpwoadjl;oajd pjd aoj;an dzzn ljaml;jl;wa dj oa;j l;ajp;'jp'ajjda'  jd aohl;fhioaf;hioa;fl
-End of this note.
-scene 1
-DEFAULT(2)
-fjaiefjal;
-End of this note.
-scene 1
-THIS IS A TEST
-this is a simple test
-End of this note.
-scene 1
+scene 2
 DEFAULT(1)
 i think wendy is the murderer
+End of this note.
+scene 2
+TEST
+ttest
+End of this note.
+scene 2
+TEST NEW ONE
+He is suspect.
+End of this note.
+scene 2
+FINAL
+he is the murder
+End of this note.
+scene 2
+TEST_SCENE_4
+this should be scene 4
+End of this note.
+scene 2
+TEST_SCENE_1
+this should be scene 1
+End of this note.
+scene 2
+scene2
+2
 End of this note.

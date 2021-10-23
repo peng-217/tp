@@ -31,6 +31,14 @@ Then ```file.checkPath()``` will check for existing data file and creates a new 
 Then read the file and store the information into array list using ```ArrayList<String> content = file.readFile()```.
 Eventually, edit the content and rewrite to data file using ```file.rewriteFile(content)```
 
+###Taking Notes For Specified Scene
+
+This note-taking feature allows users to take note whenever they want, and store these notes locally. All the locally saved notes will be loaded and accessible
+for users to open. Each note contains three parts: scene index, title and content. The note index will be automatically set according to the current scene that 
+user is investigating. Note tile and content are fulfilled by users. Default title will be given if user does not give a title. User can also search for an 
+existing note by either search its title/scene index or directly open it by its sequence number (in the note list). User can also delete the unwanted notes by
+typing in its sequence number.
+
 ### [Proposed] Clue Reader and Organizer
 
 Clues used in different scenes can be kept in txt file and created following a specific format.
