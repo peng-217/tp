@@ -112,6 +112,7 @@ public class Investigation {
         }
     }
 
+    // @@ author peng-217
     public void processNote() {
         System.out.println("Do you want to create a new note"
                 + " or open a existing note or delete a note?");
@@ -162,7 +163,7 @@ public class Investigation {
             notes.deleteNote(deletedNoteIndex);
         }
     }
-
+    // @@ author peng-217
     public void checkSuspectedKiller() {
         ui.printAllSuspectsMessage();
         ui.printSuspects(currentScene.getSuspectList());
