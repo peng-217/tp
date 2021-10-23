@@ -66,13 +66,13 @@ class NoteListTest {
         String testString = "THIS IS A TEST OF DUKE";
         String[] expectedResult = {"THIS","IS","A","TEST","OF","DUKE"};
         String[] underTest = notes.stringSpliter(testString);
-        assertTrue(expectedResult.equals(underTest));
-        /*assertEquals("THIS",underTest[0]);
+        //assertTrue(expectedResult.equals(underTest));
+        assertEquals("THIS",underTest[0]);
         assertEquals("IS",underTest[1]);
         assertEquals("A",underTest[2]);
         assertEquals("TEST",underTest[3]);
         assertEquals("OF",underTest[4]);
-        assertEquals("DUKE",underTest[5]);*/
+        assertEquals("DUKE",underTest[5]);
     }
 
     @Test
@@ -82,9 +82,9 @@ class NoteListTest {
         Note testTwo = new Note("test 2","TEST 2",2);
         notes.createNote(testOne,1);
         notes.createNote(testTwo,2);
-        /*assertEquals(testOne,notes.getIndexNote(1));
-        assertEquals(testTwo, notes.getIndexNote(2));*/
-        assertTrue(testOne.equals(notes.getIndexNote(1)));
-        assertTrue(testTwo.equals(notes.getIndexNote(2)));
+        assertEquals(testOne,notes.getIndexNote(1));
+        assertEquals(testTwo, notes.getIndexNote(2));
+        /*assertTrue(testOne.equals(notes.getIndexNote(1)));
+        assertTrue(testTwo.equals(notes.getIndexNote(2)));*/
     }
 }
