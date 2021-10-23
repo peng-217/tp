@@ -129,8 +129,8 @@ public class Investigation {
             }
             System.out.println("Please enter your note:");
             String noteContent = ui.readUserInput();
-            Note newNote = new Note(noteContent, noteTitle, (sceneList.getCurrentSceneIndex() + 1));
-            notes.createNote(newNote, (sceneList.getCurrentSceneIndex() + 1));
+            Note newNote = new Note(noteContent, noteTitle,sceneList.getCurrentSceneIndex());
+            notes.createNote(newNote, (sceneList.getCurrentSceneIndex()));
         } else if (userChoice.equals("open")) {
             ui.printNoteTitle(notes);
             System.out.println("Do you want to search a note (type in 'search') or "
