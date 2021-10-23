@@ -84,7 +84,7 @@ class NoteListTest {
         notes.createNote(testTwo,2);
         //assertEquals(testOne,notes.getIndexNote(1));
         //assertEquals(testTwo,notes.getIndexNote(2));
-        assertTrue(notes.getIndexNote(1).getNoteSceneIndex() == 1);
-        assertTrue(notes.getIndexNote(2).getNoteSceneIndex() == 2);
+        assertTrue(notes.getIndexNote(0).getNoteSceneIndex() == 1);
+        assertTrue(notes.getIndexNote(1).getNoteSceneIndex() == 2);
     }
 }
