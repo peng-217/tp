@@ -77,6 +77,7 @@ public class Investigation {
         System.out.println("0. Go back to list of suspects");
         Suspect suspect = currentScene.investigateSuspect(currentSuspect);
         ui.printListOfClues(suspect.getClues());
+        ui.printGoNextSceneMessage();
     }
 
     public void printCurrentInvestigation() {
