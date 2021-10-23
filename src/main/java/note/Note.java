@@ -1,4 +1,3 @@
-// @@ author peng-217
 package note;
 
 import scene.Scene;
