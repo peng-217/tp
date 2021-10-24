@@ -1,6 +1,7 @@
 package command;
 
 import investigation.Investigation;
+import scene.SceneList;
 import scene.SceneTypes;
 import ui.Ui;
 
@@ -8,8 +9,8 @@ public class NextCommand extends Command {
     private boolean hasCompleted = false;
 
     @Override
-    public void execute(Ui ui, Investigation investigation) {
-        SceneTypes sceneType = investigation.getSceneType();
+    public void execute(Ui ui, Investigation investigation, SceneList sceneList) {
+        SceneTypes sceneType = sceneList.getCurrentSceneType();
         switch (sceneType) {
         case CORRECT_KILLER_SCENE:
             hasCompleted = true;

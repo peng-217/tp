@@ -1,10 +1,17 @@
 package seedu.duke;
 
+import clue.CheckedClueTrackerBuilder;
 import command.InvalidCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
+import exceptions.MissingSceneFileException;
 import investigation.Investigation;
+import scene.SceneList;
+import scene.SceneListBuilder;
+import storage.GameDataFileDecoder;
+import storage.GameDataFileManager;
+import suspect.SuspectList;
 import ui.Ui;
 import parser.Parser;
 import command.Command;
@@ -21,6 +28,11 @@ public class Duke {
 
     private static String userName;
 
+    private static GameDataFileDecoder dataFile;
+    private static SceneList sceneList;
+    private static SuspectList clueTracker;
+    private static final String GAME_DATA_FILE_NAME = "GameData.txt";
+
     public static void initializeGame() throws FileNotFoundException {
         // Initialise new parser object
         parser = new Parser();
@@ -28,19 +40,17 @@ public class Duke {
         // Initialise a new Ui object
         ui = new Ui();
         ui.printWelcomeMessage();
-        investigation = new Investigation();
 
-        // We ask the user to give a name
-        // ui.askForUsername();
-        // ui.printEmptyLine();
-        // userName = ui.readUserInput();
-        // ui.printEmptyLine();
+        dataFile = new GameDataFileDecoder(ui, new GameDataFileManager(GAME_DATA_FILE_NAME));
 
-        // print welcome message with username
-        // ui.printEmptyLine();
-        // ui.printWelcomeUser(userName);
-        // ui.printEmptyLine();
-        // SuspectList suspects = new SuspectList(ui);
+        try {
+            sceneList = SceneListBuilder.buildSceneList(ui, dataFile);
+            clueTracker = CheckedClueTrackerBuilder.buildClueTracker();
+        } catch (MissingSceneFileException e) {
+            ui.printMissingSceneFileMessage();
+        }
+
+        investigation = new Investigation(sceneList, clueTracker);
 
     }
 
@@ -57,7 +67,7 @@ public class Duke {
             Command commandFromUser = new InvalidCommand();
             try {
                 commandFromUser = parser.getCommandFromUser(userInput);
-                commandFromUser.execute(ui, investigation);
+                commandFromUser.execute(ui, investigation, sceneList);
             } catch (InvalidSuspectException e1) {
                 ui.printInvalidSuspectMessage();
             } catch (InvalidClueException e2) {

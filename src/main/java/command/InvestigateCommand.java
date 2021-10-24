@@ -2,6 +2,7 @@ package command;
 
 import exceptions.InvalidSuspectException;
 import investigation.Investigation;
+import scene.SceneList;
 import ui.Ui;
 
 public class InvestigateCommand extends Command {
@@ -12,7 +13,7 @@ public class InvestigateCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Investigation investigation) throws InvalidSuspectException {
+    public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws InvalidSuspectException {
         investigation.investigateScene(this.parsedUserInput);
     }
 
