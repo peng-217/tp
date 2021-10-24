@@ -1,8 +1,6 @@
 package suspect;
 
 import clue.Clue;
-import ui.Ui;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -12,10 +10,8 @@ import java.util.Scanner;
 
 public class SuspectList {
     protected LinkedHashMap<String, Suspect> suspects;
-    protected Ui ui;
 
-    public SuspectList(Ui ui) {
-        this.ui = ui;
+    public SuspectList() {
         this.suspects = new LinkedHashMap<>();
     }
 

@@ -1,8 +1,9 @@
 package investigation;
 
-
 import clue.Clue;
 import clue.CheckedClueTrackerBuilder;
+import exceptions.MissingNarrativeException;
+import exceptions.MissingSceneFileException;
 import scene.SceneTypes;
 import storage.GameDataFileDecoder;
 import storage.GameDataFileManager;
@@ -20,44 +21,45 @@ import note.Note;
 import note.NoteList;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Investigation {
     private static InvestigationStages stage;
     private static SceneList sceneList;
     private static Scene currentScene;
     private static String currentSuspect;
-    private static Parser parser;
-    private static Ui ui;
-    private static Storage storage;
-    private static GameDataFileDecoder dataFile;
+    private static Parser parser = new Parser();
+    private static Ui ui = new Ui();
+    private final GameDataFileDecoder dataFile;
     private static NoteList notes;
     private static SuspectList clueTracker;
     private static int defaultTitleCounter = 1;
     private static final String FILE_NOT_FOUND = "File not found for scene";
+    private static final String NARRATIVE_NOT_FOUND = "Narrative file not found for scene";
     private static final String WRONG_INDEX_GIVEN = "Sorry please enter index within range";
     private static final String INVALID_COMMAND = "Invalid command";
     private static final String KILLER_WENDY = "Wendy";
     private static final String GAME_DATA_FILE_NAME = "GameData.txt";
 
-    public Investigation(Parser parser, Ui ui) throws FileNotFoundException {
-        this.parser = parser;
-        this.ui = ui;
-        dataFile = new GameDataFileDecoder(ui, new GameDataFileManager(GAME_DATA_FILE_NAME));
-        storage = new Storage();
+    public Investigation() {
+        this.dataFile = new GameDataFileDecoder(ui, new GameDataFileManager(GAME_DATA_FILE_NAME));
         notes = new NoteList(ui);
         stage = InvestigationStages.SUSPECT_STAGE;
-
-        sceneList = SceneListBuilder.buildSceneList(ui, dataFile);
-        clueTracker = CheckedClueTrackerBuilder.buildClueTracker(ui);
+        try {
+            sceneList = SceneListBuilder.buildSceneList(ui, dataFile);
+            clueTracker = CheckedClueTrackerBuilder.buildClueTracker();
+        } catch (MissingSceneFileException e) {
+            ui.printMissingSceneFileMessage();
+        }
 
         Storage.openNoteFromFile(notes);
 
         currentScene = sceneList.getCurrentScene();
+
         try {
             currentScene.runScene();
-        } catch (IOException e) {
+        } catch (MissingNarrativeException e) {
             System.out.println(FILE_NOT_FOUND);
         }
     }

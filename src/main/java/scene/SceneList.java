@@ -6,21 +6,17 @@ import storage.GameDataFileManager;
 import java.util.ArrayList;
 
 public class SceneList {
-    private ArrayList<Scene> scenes;
+    private Scene[] scenes;
     private int currentSceneIndex;
     private static final int STARTING_INDEX_FOR_FILE = 0;
     private static final int CORRECT_KILLER_SCENE_INDEX = 5;
     private static final int WRONG_KILLER_SCENE_INDEX = 6;
     GameDataFileDecoder dataFile;
 
-    public SceneList(int index, GameDataFileDecoder dataFile) {
+    public SceneList(Scene[] scenes, GameDataFileDecoder dataFile) {
         this.dataFile = dataFile;
-        this.currentSceneIndex = index;
-        this.scenes = new ArrayList<>();
-    }
-
-    public void addScene(Scene scene) {
-        this.scenes.add(scene);
+        this.currentSceneIndex = dataFile.getCurrentSceneIndex();
+        this.scenes = scenes;
     }
 
     public void incrementSceneAfterGuessing(boolean killerFound) {
@@ -33,7 +29,7 @@ public class SceneList {
     }
 
     public Scene getCurrentScene() {
-        return this.scenes.get(currentSceneIndex);
+        return this.scenes[currentSceneIndex];
     }
 
     public void resetCurrentSceneIndex() {

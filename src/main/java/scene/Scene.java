@@ -1,6 +1,7 @@
 package scene;
 
 import clue.Clue;
+import exceptions.MissingNarrativeException;
 import narrative.Narrative;
 import suspect.Suspect;
 import suspect.SuspectList;
@@ -35,8 +36,12 @@ public class Scene {
         return suspectList.getSuspects().get(name);
     }
 
-    public void runScene() throws FileNotFoundException {
-        this.narrative.displayNarrative();
+    public void runScene() throws MissingNarrativeException {
+        try {
+            this.narrative.displayNarrative();
+        } catch (FileNotFoundException e) {
+            throw new MissingNarrativeException("Narrative file is missing");
+        }
     }
 
     @Override

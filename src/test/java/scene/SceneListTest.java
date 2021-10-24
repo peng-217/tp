@@ -6,6 +6,7 @@ import storage.GameDataFileManager;
 import ui.Ui;
 
 import java.io.FileNotFoundException;
+import java.util.Objects;
 
 public class SceneListTest {
 
@@ -39,6 +40,7 @@ public class SceneListTest {
         GameDataFileDecoder datafile = new GameDataFileDecoder(ui,new GameDataFileManager("GameData.txt"));
         datafile.resetFile(0);
         SceneList sceneList = SceneListBuilder.buildSceneList(ui,datafile);
+
         Scene currentScene = sceneList.getCurrentScene();
         currentScene.runScene();
 

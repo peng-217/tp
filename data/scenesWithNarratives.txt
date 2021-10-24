@@ -14,9 +14,10 @@ data/scene2clues.txt
 ThirdScene.txt
 INVESTIGATE_SCENE
 data/scene3clues.txt
-
+*
 GuessKillerScene.txt
 GUESS_KILLER_SCENE
+data/scene4clues.txt
 
 CorrectEnding.txt
 CORRECT_KILLER_SCENE

@@ -6,11 +6,10 @@ import suspect.SuspectList;
 import java.util.ArrayList;
 
 public class SearchedClueTracker {
-    private Ui ui;
+
     private SuspectList suspects;
 
-    public SearchedClueTracker(Ui ui, SuspectList suspects) {
-        this.ui = ui;
+    public SearchedClueTracker(SuspectList suspects) {
         this.suspects = suspects;
     }
     
