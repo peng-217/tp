@@ -4,9 +4,87 @@
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
-## Design & implementation
+## Design
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+### Architecture
+
+### Parser component
+**API:** Parser.java 
+
+The parser component is used to parse the input given by the user. 
+
+How the parser work
+- When the user gives an input, the parser tries to return a command based the input given.
+- If the input does not generate a valid command type, it throws the invalidInputException.
+
+
+### UI component
+**API:** Ui.java 
+
+The ui component communicates with the user via the terminal.
+
+How the ui work
+- Print messages to terminal depending on the scene.
+
+### Command component
+**API:** Command.java 
+
+The command component takes in the input given by the user
+and generates a command based on the input given. 
+
+Command component is an abstract class.
+Functional command extends the command class. 
+Eg NextCommand, ViewCommand Etc.
+
+How the command work
+- Each command has an execute command.
+- Execute command based on the command type.
+
+### Investigation component
+**API:** Investigation.java
+
+The investigation class manages the investigation scene in each
+investigation scene. 
+
+How the investigation works
+- When an investigation command is returned from the parser, we investigate the input given by the user.
+- For each scene, the investigation class display the scene's narrative.
+- The investigation class is also used to determine if the user has managed to find the correct killer from the game.
+
+
+### Clue component
+**API:** Clue.java
+
+### Narrative component
+**API:** Narrative.java
+
+The narrative class generates the story for each of the scene.
+
+### Scene component
+**API:** Scene.java
+
+The scene class contains and produces the narrative for the scene.
+
+How the scene class work
+- Each scene has a scene type.
+- For each scene type, we interact differently from the user.
+
+See below for example.
+- The introduction scene shows the introductory message to the user.
+- The investigation scene asks the user either investigate a suspect or look into a clue.
+
+### Search component
+**API:** Search.java
+
+### Storage component
+**API:** Storage.java
+
+### Suspect component
+**API:** Suspect.java
+
+
+## Implementation
 
 ### Display checked-clues feature
 
@@ -49,13 +127,22 @@ This method will search for the specified text file, throwing a `FileNotFoundExc
 It will read the file and store the clues as the Class `Clue`, under the specified `Suspect` instance which is then stored in a `SuspectList` class.
 
 
+## Appendix
+
 
 ## Product scope
 ### Target user profile
 
+- enjoy the playing interactive game
+- enjoy mystery genre
+- enjoy reading
+- wants to take a break from visual games
+
 {Describe the target user profile}
 
 ### Value proposition
+
+- Provide an alternative game for users to exercise creative thinking
 
 {Describe the value proposition: what problem does it solve?}
 
@@ -63,10 +150,17 @@ It will read the file and store the clues as the Class `Clue`, under the specifi
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|new user|see all commands available|understand the game mechanics|
+|v1.0|user|investigate the suspects available|better understand the suspect|
+|v1.0|user|investigate the clues available|understand the story line better|
+|v1.0|user|choose the suspect|see if I am able to solve the crime|
+|v2.0|user|resume the game after exiting|continue the game instead of restarting|
+|v2.0|user|write notes|look at the notes I have written for each scene and suspect|
+
 
 ## Non-Functional Requirements
+1. The game should work as long as java 11 is installed on the local machine.
+2. A working keyboard to play the game and a monitor to read the text.
 
 {Give non-functional requirements}
 
