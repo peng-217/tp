@@ -16,8 +16,8 @@ public class CheckedClueTrackerBuilder {
         buildSuspectList();
     }*/
 
-    public static SuspectList buildClueTracker(Ui ui) {
-        SuspectList suspects = new SuspectList(ui);
+    public static SuspectList buildClueTracker() {
+        SuspectList suspects = new SuspectList();
 
         try {
             suspectListBuilder("data/clueTracker.txt", suspects);

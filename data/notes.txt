@@ -1,28 +1,20 @@
 scene 2
-DEFAULT(1)
-i think wendy is the murderer
+DEFAULT 0
+Test
 End of this note.
 scene 2
-TEST
-ttest
+DEFAULT 1
+Test
 End of this note.
 scene 2
-TEST NEW ONE
-He is suspect.
+DEFAULT 2
+Test
 End of this note.
 scene 2
-FINAL
-he is the murder
+DEFAULT 3
+Test
 End of this note.
 scene 2
-TEST_SCENE_4
-this should be scene 4
-End of this note.
-scene 2
-TEST_SCENE_1
-this should be scene 1
-End of this note.
-scene 2
-scene2
-2
+DEFAULT 4
+Test
 End of this note.

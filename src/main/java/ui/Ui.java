@@ -45,6 +45,8 @@ public class Ui {
     private static final String ALL_SUSPECT_MESSAGE = "Here are all the suspects";
     private static final String WHO_TO_INVESTIGATE_MESSAGE = "Who do you want to investigate?";
     private static final String NEXT_SCENE = "Enter \"/next\" to go to the next scene.";
+    private static final String SCENE_FILE_MISSING_MESSAGE =
+            "File containing number of scene and its order is missing";
 
     private Scanner scanner;
 
@@ -169,6 +171,10 @@ public class Ui {
 
     public void printInvalidCommandMessage() {
         System.out.println(INVALID_INPUT_GIVEN);
+    }
+
+    public void printMissingSceneFileMessage() {
+        System.out.println(SCENE_FILE_MISSING_MESSAGE);
     }
 
     public void printAllSuspectsMessage() {

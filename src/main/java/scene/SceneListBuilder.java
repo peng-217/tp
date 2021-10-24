@@ -1,5 +1,6 @@
 package scene;
 
+import exceptions.MissingSceneFileException;
 import narrative.Narrative;
 import storage.GameDataFileDecoder;
 import ui.Ui;
@@ -7,6 +8,7 @@ import suspect.SuspectList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -15,17 +17,22 @@ import static suspect.SuspectList.suspectListBuilder;
 
 public class SceneListBuilder {
 
-    public static SceneList buildSceneList(Ui ui, GameDataFileDecoder dataFile) throws FileNotFoundException {
-        SceneList sceneList = new SceneList(dataFile.getCurrentSceneIndex(), dataFile);
-        addScenes("data/scenesWithNarratives.txt", sceneList, ui);
-        return sceneList;
+    public static SceneList buildSceneList(Ui ui, GameDataFileDecoder dataFile) throws MissingSceneFileException {
+        Scene[] scenes;
+        try {
+            scenes = getScenesFromFile("data/scenesWithNarratives.txt");
+        } catch (FileNotFoundException e) {
+            throw new MissingSceneFileException("Text file containing scene order is missing!");
+        }
+        return new SceneList(scenes, dataFile);
     }
 
-    private static void addScenes(String fileLocation, SceneList sceneList, Ui ui) throws FileNotFoundException {
+    private static Scene[] getScenesFromFile(String fileLocation) throws FileNotFoundException {
         File f = new File(fileLocation);
         Scanner sc = new Scanner(f);
 
         int numOfScenes = sc.nextInt();
+        Scene[] scenes = new Scene[numOfScenes];
         sc.nextLine();
 
         for (int i = 0; i < numOfScenes; i++) {
@@ -35,11 +42,11 @@ public class SceneListBuilder {
             SceneTypes sceneType = Enum.valueOf(SceneTypes.class, sceneTypeInString);
             SuspectList suspectList;
             Scene scene;
-            if (Objects.equals(condition, "")) {
+            if (condition.equals("")) {
                 suspectList = null;
             } else {
                 String cluesFileLocation = sc.nextLine();
-                suspectList = new SuspectList(ui);
+                suspectList = new SuspectList();
                 try {
                     suspectListBuilder(cluesFileLocation, suspectList);
                 } catch (FileNotFoundException e) {
@@ -47,7 +54,8 @@ public class SceneListBuilder {
                 }
             }
             scene = new Scene(new Narrative(narrativeFileLocation), suspectList, sceneType);
-            sceneList.addScene(scene);
+            scenes[i] = scene;
         }
+        return scenes;
     }
 }

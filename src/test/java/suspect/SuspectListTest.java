@@ -9,14 +9,12 @@ import clue.firstscene.FatherInsurance;
 import clue.firstscene.FatherMap;
 import clue.firstscene.FatherTextMessage;
 import org.junit.jupiter.api.Test;
-import ui.Ui;
 
 public class SuspectListTest {
 
     @Test
     public void listOfSuspects() {
-        Ui ui = new Ui();
-        SuspectList suspects = new SuspectList(ui);
+        SuspectList suspects = new SuspectList();
         suspects.addSuspect("Jerry", new Suspect());
         suspects.addSuspect("Tom", new Suspect());
 
@@ -25,8 +23,7 @@ public class SuspectListTest {
 
     @Test
     public void listOfSuspectsWithClues() {
-        Ui ui = new Ui();
-        SuspectList suspects = new SuspectList(ui);
+        SuspectList suspects = new SuspectList();
         suspects.addSuspect("Jerry", new Suspect());
         suspects.addSuspect("Tom", new Suspect());
 
