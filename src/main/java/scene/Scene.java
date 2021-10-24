@@ -8,15 +8,16 @@ import suspect.SuspectList;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public abstract class Scene {
+public class Scene {
     private final Narrative narrative;
     private final SuspectList suspectList;
+    private final SceneTypes sceneType;
 
-    public Scene(Narrative narrative, SuspectList suspectList) {
+    public Scene(Narrative narrative, SuspectList suspectList, SceneTypes sceneType) {
         this.narrative = narrative;
         this.suspectList = suspectList;
+        this.sceneType = sceneType;
     }
-
 
     public Narrative getNarrative() {
         return narrative;
@@ -51,5 +52,7 @@ public abstract class Scene {
         }
     }
 
-    public abstract SceneTypes getSceneType();
+    public SceneTypes getSceneType() {
+        return this.sceneType;
+    }
 }
