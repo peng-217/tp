@@ -116,11 +116,11 @@ public class Parser {
         case RESTART:
             return new RestartCommand();
         default:
-            return differentCommandsForInvestigating(userInput);
+            return useSuspectNameOrIndexForInvestigating(userInput);
         }
     }
 
-    private Command differentCommandsForInvestigating(String userInput) throws InvalidInputException {
+    private Command useSuspectNameOrIndexForInvestigating(String userInput) throws InvalidInputException {
         Pattern stringPattern = Pattern.compile("[a-zA-Z]");
         Pattern numberPattern = Pattern.compile("[0-9]");
         Matcher stringPatternMatcher = stringPattern.matcher(userInput);
@@ -179,7 +179,7 @@ public class Parser {
         case VIEW:
             return parseInputForViewCommand(argsGiven);
         case INVESTIGATE:
-            return parseInputForInvestigateCommand(argsGiven);
+            return useSuspectNameOrIndexForInvestigating(argsGiven);
         default:
             throw new InvalidInputException(INVALID_INPUT);
         }
