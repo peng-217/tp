@@ -2,6 +2,7 @@ package command;
 
 import clue.Clue;
 import investigation.Investigation;
+import scene.SceneList;
 import ui.Ui;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Investigation investigation) {
+    public void execute(Ui ui, Investigation investigation, SceneList sceneList) {
         ui.printViewingCheckedCluesMessage();
         for (String name : suspects) {
             ArrayList<Clue> clues = investigation.getSuspectCheckedClues(name);

@@ -3,6 +3,7 @@ package command;
 import investigation.Investigation;
 import note.Note;
 import note.NoteList;
+import scene.SceneList;
 import ui.Ui;
 
 public class NoteCommand extends Command {
@@ -11,7 +12,7 @@ public class NoteCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Investigation investigation) {
+    public void execute(Ui ui, Investigation investigation, SceneList sceneList) {
         investigation.processNote();
     }
 

@@ -47,6 +47,7 @@ public class Ui {
     private static final String NEXT_SCENE = "Enter \"/next\" to go to the next scene.";
     private static final String SCENE_FILE_MISSING_MESSAGE =
             "File containing number of scene and its order is missing";
+    private static final String INVALID_INDEX = "Invalid index";
 
     private Scanner scanner;
 
@@ -191,5 +192,9 @@ public class Ui {
 
     public void printGoNextSceneMessage() {
         System.out.println(NEXT_SCENE);
+    }
+
+    public void printIndexCommand() {
+        System.out.println(INVALID_INDEX);
     }
 }
