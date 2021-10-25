@@ -11,8 +11,8 @@ import command.ViewCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
 import suspect.SuspectNames;
-
-import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Parser {
     private static final String HELP = "/help";
@@ -30,9 +30,26 @@ public class Parser {
     private static final String INPUT_SPLITTER = " ";
     private static final int NOTE_SCENE_INDEX = 1;
     private static final String INVALID_INPUT = "Invalid input!";
+    private static final String INVESTIGATE = "/investigate";
+    private static final String INVALID_SUSPECT_NAME = "Invalid suspect given!";
+
+    private static final String SUSPECT_FATHER_LOWER = "father";
+    private static final String SUSPECT_KEVIN_LOWER = "kevin";
+    private static final String SUSPECT_WENDY_LOWER = "wendy";
+    private static final String SUSPECT_LING_LOWER = "ling";
+    private static final String SUSPECT_ZACK_LOWER = "zack";
+
+    private static final int SUSPECT_FATHER_INDEX = 1;
+    private static final int SUSPECT_KEVIN_INDEX = 2;
+    private static final int SUSPECT_WENDY_INDEX = 3;
+    private static final int SUSPECT_LING_INDEX = 4;
+    private static final int SUSPECT_ZACK_INDEX = 5;
+
+    private static final String STRING_PATTERN = "[a-zA-Z]";
+    private static final String NUMBER_PATTERN = "[0-9]";
 
     private String suspectFromFirstScene(int suspectNumber) {
-        if (suspectNumber == 1) {
+        if (suspectNumber == SUSPECT_FATHER_INDEX) {
             return SUSPECT_FATHER;
         }
         throw new InvalidSuspectException(INVALID_SUSPECT);
@@ -40,11 +57,11 @@ public class Parser {
 
     private String suspectFromSecondScene(int suspectNumber) {
         switch (suspectNumber) {
-        case 1:
+        case SUSPECT_FATHER_INDEX:
             return SUSPECT_FATHER;
-        case 2:
+        case SUSPECT_KEVIN_INDEX:
             return SUSPECT_KEVIN;
-        case 3:
+        case SUSPECT_WENDY_INDEX:
             return SUSPECT_WENDY;
         default:
             throw new InvalidSuspectException(INVALID_SUSPECT);
@@ -53,15 +70,15 @@ public class Parser {
 
     private String suspectFromThirdScene(int suspectNumber) {
         switch (suspectNumber) {
-        case 1:
+        case SUSPECT_FATHER_INDEX:
             return SUSPECT_FATHER;
-        case 2:
+        case SUSPECT_KEVIN_INDEX:
             return SUSPECT_KEVIN;
-        case 3:
+        case SUSPECT_WENDY_INDEX:
             return SUSPECT_WENDY;
-        case 4:
+        case SUSPECT_LING_INDEX:
             return SUSPECT_LING;
-        case 5:
+        case SUSPECT_ZACK_INDEX:
             return SUSPECT_ZACK;
         default:
             throw new InvalidSuspectException(INVALID_SUSPECT);
@@ -83,10 +100,11 @@ public class Parser {
     }
 
     public Command getCommandFromUser(String userInput) throws InvalidInputException {
-        boolean isNotOneWord = userInput.contains(" ");
-        if (isNotOneWord) {
-            return parseInputForViewCommand(userInput);
+        boolean multipleArgumentsGiven = userInput.contains(INPUT_SPLITTER);
+        if (multipleArgumentsGiven) {
+            return parseInputMultipleArguments(userInput);
         }
+
         switch (userInput) {
         case NOTE:
             return new NoteCommand();
@@ -101,22 +119,73 @@ public class Parser {
         case RESTART:
             return new RestartCommand();
         default:
-            validInput(userInput);
-            int inputParsedToInt = Integer.parseInt(userInput);
-            return new InvestigateCommand(inputParsedToInt);
+            return useSuspectNameOrIndexForInvestigating(userInput);
         }
     }
 
-    private Command parseInputForViewCommand(String userInput) throws InvalidInputException {
-        String[] userInputArr = userInput.split(INPUT_SPLITTER,2);
-        System.out.println(userInputArr[0]);
-        if (!Objects.equals(userInputArr[0], VIEW)) {
+    private Command useSuspectNameOrIndexForInvestigating(String userInput) throws InvalidInputException {
+        Pattern stringPattern = Pattern.compile(STRING_PATTERN);
+        Pattern numberPattern = Pattern.compile(NUMBER_PATTERN);
+        Matcher stringPatternMatcher = stringPattern.matcher(userInput);
+        Matcher numberPatternMatcher = numberPattern.matcher(userInput);
+
+        boolean numberFound = numberPatternMatcher.find();
+        boolean stringFound = stringPatternMatcher.find();
+
+        if (numberFound) {
+            int inputParsedToInt = Integer.parseInt(userInput);
+            return new InvestigateCommand(inputParsedToInt);
+        } else if (stringFound) {
+            return parseInputForInvestigateCommand(userInput);
+        } else {
             throw new InvalidInputException(INVALID_INPUT);
         }
-        if (containInvalidArgument(userInputArr[1])) {
+    }
+
+    private Command parseInputForViewCommand(String argsGiven) throws InvalidInputException {
+        if (containInvalidArgument(argsGiven)) {
             throw new InvalidInputException(INVALID_INPUT);
         }
-        return new ViewCommand(userInputArr[1]);
+        return new ViewCommand(argsGiven);
+    }
+
+
+    private Command parseInputForInvestigateCommand(String suspectName) throws InvalidInputException {
+        String suspectNameLowerCase = suspectName.toLowerCase();
+        int suspectIndex = getSuspectIndexFromSuspectName(suspectNameLowerCase);
+        return new InvestigateCommand(suspectIndex);
+    }
+
+    private int getSuspectIndexFromSuspectName(String suspectName) throws InvalidInputException {
+        switch (suspectName) {
+        case SUSPECT_FATHER_LOWER:
+            return 1;
+        case SUSPECT_KEVIN_LOWER:
+            return 2;
+        case SUSPECT_WENDY_LOWER:
+            return 3;
+        case SUSPECT_LING_LOWER:
+            return 4;
+        case SUSPECT_ZACK_LOWER:
+            return 5;
+        default:
+            throw new InvalidInputException(INVALID_SUSPECT_NAME);
+        }
+    }
+
+    private Command parseInputMultipleArguments(String userInput) throws InvalidInputException {
+        String[] userInputArr = userInput.split(INPUT_SPLITTER, 2);
+        String commandType = userInputArr[0];
+        String argsGiven = userInputArr[1];
+
+        switch (commandType) {
+        case VIEW:
+            return parseInputForViewCommand(argsGiven);
+        case INVESTIGATE:
+            return useSuspectNameOrIndexForInvestigating(argsGiven);
+        default:
+            throw new InvalidInputException(INVALID_INPUT);
+        }
     }
 
     private boolean containInvalidArgument(String args) {
@@ -144,14 +213,6 @@ public class Parser {
     public static int parseNoteSceneIndex(String userInput) {
         String[] userInputSplit = userInput.split(INPUT_SPLITTER);
         return Integer.parseInt(userInputSplit[NOTE_SCENE_INDEX]);
-    }
-
-    private void validInput(String userInput) throws InvalidInputException {
-        try {
-            Integer.parseInt(userInput);
-        } catch (NumberFormatException e) {
-            throw new InvalidInputException(INVALID_INPUT);
-        }
     }
 
 }
