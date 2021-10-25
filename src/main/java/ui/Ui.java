@@ -48,6 +48,8 @@ public class Ui {
     private static final String SCENE_FILE_MISSING_MESSAGE =
             "File containing number of scene and its order is missing";
     private static final String INVALID_INDEX = "Invalid index";
+    private static final String ASK_USER_RETYPE_KILLER_NAME =
+            "Invalid suspect name given. Please enter one of the suspect name below.";
 
     private Scanner scanner;
 
@@ -196,5 +198,9 @@ public class Ui {
 
     public void printIndexCommand() {
         System.out.println(INVALID_INDEX);
+    }
+
+    public void printAskUserEnterSuspectName() {
+        System.out.println(ASK_USER_RETYPE_KILLER_NAME);
     }
 }

@@ -15,7 +15,6 @@ import note.Note;
 import note.NoteList;
 import java.util.ArrayList;
 
-
 public class Investigation {
     private static InvestigationStages stage;
     private final SceneList sceneList;
@@ -28,7 +27,11 @@ public class Investigation {
     private static int defaultTitleCounter = 1;
     private static final String WRONG_INDEX_GIVEN = "Sorry please enter index within range";
     private static final String INVALID_COMMAND = "Invalid command";
-    private static final String KILLER_WENDY = "Wendy";
+    private static final String SUSPECT_WENDY = "wendy";
+    private static final String SUSPECT_FATHER = "father";
+    private static final String SUSPECT_LING = "ling";
+    private static final String SUSPECT_ZACK = "zack";
+    private static final String SUSPECT_KEVIN = "kevin";
 
     public Investigation(SceneList sceneList, SuspectList clueTracker) {
         this.sceneList = sceneList;
@@ -149,9 +152,44 @@ public class Investigation {
         ui.printAllSuspectsMessage();
         ui.printSuspects(currentScene.getSuspectList());
         ui.printSuspectKillerMessage();
-        String suspectedKiller = ui.readUserInput();
-        boolean killerFound = suspectedKiller.equals(KILLER_WENDY);
-        goToCorrectFinalScene(killerFound);
+        boolean killerFound;
+        boolean nameGivenIsASuspect = false;
+
+        while (!nameGivenIsASuspect) {
+            String suspectedKiller = ui.readUserInput();
+            nameGivenIsASuspect = correctSuspectNameGiven(suspectedKiller);
+            if (nameGivenIsASuspect) {
+                killerFound = killerFoundCorrectly(suspectedKiller);
+                goToCorrectFinalScene(killerFound);
+            } else {
+                ui.printAskUserEnterSuspectName();
+                ui.printSuspects(currentScene.getSuspectList());
+                ui.printSuspectKillerMessage();
+            }
+        }
+    }
+
+    private boolean killerFoundCorrectly(String suspectedKiller) {
+        String suspectedKillerLowerCase = suspectedKiller.toLowerCase();
+        return suspectedKillerLowerCase.equals(SUSPECT_WENDY);
+    }
+
+    private boolean correctSuspectNameGiven(String suspectedKiller) {
+        String suspectedKillerLowerCase = suspectedKiller.toLowerCase();
+        switch (suspectedKillerLowerCase) {
+        case SUSPECT_WENDY:
+            return true;
+        case SUSPECT_FATHER:
+            return true;
+        case SUSPECT_KEVIN:
+            return true;
+        case SUSPECT_LING:
+            return true;
+        case SUSPECT_ZACK:
+            return true;
+        default:
+            return false;
+        }
     }
 
     private void goToCorrectFinalScene(boolean killerFound) {
