@@ -249,5 +249,6 @@ This is an ending for guessing correctly.
 | Next | /next |
 | Restart | /restart |
 | Exit | /exit |
+| Back | /back |
 | Investigate | [/investigate] INDEX or KEYWORD e.g., /investigate father |
 | Choose Killer | KEYWORD e.g., Father |
