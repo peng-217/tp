@@ -70,8 +70,12 @@ public class SceneList {
     }
 
     private void decreaseSceneNumber() {
-        this.currentSceneIndex--;
-        dataFile.resetFile(currentSceneIndex);
+        // We do not allow users to go back to any scene with
+        // scene number less than 0
+        if (this.currentSceneIndex > 0) {
+            this.currentSceneIndex--;
+            dataFile.resetFile(currentSceneIndex);
+        }
     }
 
     public void previousScene() {
