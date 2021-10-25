@@ -34,19 +34,16 @@ public class Parser {
     private static final String INVALID_INPUT = "Invalid input!";
     private static final String INVESTIGATE = "/investigate";
     private static final String INVALID_SUSPECT_NAME = "Invalid suspect given!";
-
     private static final String SUSPECT_FATHER_LOWER = "father";
     private static final String SUSPECT_KEVIN_LOWER = "kevin";
     private static final String SUSPECT_WENDY_LOWER = "wendy";
     private static final String SUSPECT_LING_LOWER = "ling";
     private static final String SUSPECT_ZACK_LOWER = "zack";
-
     private static final int SUSPECT_FATHER_INDEX = 1;
     private static final int SUSPECT_KEVIN_INDEX = 2;
     private static final int SUSPECT_WENDY_INDEX = 3;
     private static final int SUSPECT_LING_INDEX = 4;
     private static final int SUSPECT_ZACK_INDEX = 5;
-
     private static final String STRING_PATTERN = "[a-zA-Z]";
     private static final String NUMBER_PATTERN = "[0-9]";
 
