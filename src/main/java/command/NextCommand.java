@@ -17,15 +17,16 @@ public class NextCommand extends Command {
             break;
         case TRUTH_SCENE:
             hasCompleted = true;
-            investigation.runScenes();
+            sceneList.runCurrentScene();
             break;
         case GUESS_KILLER_SCENE:
             investigation.checkSuspectedKiller();
-            investigation.runScenes();
+            sceneList.runCurrentScene();
             break;
         default:
-            investigation.updateScene();
-            investigation.runScenes();
+            investigation.setSuspectStage();
+            sceneList.updateSceneNumber();
+            sceneList.runCurrentScene();
         }
     }
 

@@ -1,11 +1,8 @@
 package scene;
 
 import storage.GameDataFileDecoder;
-import storage.GameDataFileManager;
 import ui.Ui;
-
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 public class SceneList {
     private static final Ui ui = new Ui();
@@ -13,6 +10,7 @@ public class SceneList {
     private int currentSceneIndex;
     private static final int STARTING_INDEX_FOR_FILE = 0;
     private static final int INTRODUCTION_SCENE_INDEX = 0;
+    private static final int GUESS_KILLER_SCENE_INDEX = 4;
     private static final int CORRECT_KILLER_SCENE_INDEX = 5;
     private static final int WRONG_KILLER_SCENE_INDEX = 6;
     GameDataFileDecoder dataFile;
@@ -72,10 +70,24 @@ public class SceneList {
     private void decreaseSceneNumber() {
         // We do not allow users to go back to any scene with
         // scene number less than 0
-        if (this.currentSceneIndex > 0) {
+
+        SceneTypes sceneType = getCurrentSceneType();
+        switch (sceneType) {
+        case INTRODUCTION_SCENE:
+            break;
+        case WRONG_KILLER_SCENE:
+            this.currentSceneIndex = GUESS_KILLER_SCENE_INDEX;
+            dataFile.resetFile(GUESS_KILLER_SCENE_INDEX);
+            break;
+        case CORRECT_KILLER_SCENE:
+            this.currentSceneIndex = GUESS_KILLER_SCENE_INDEX;
+            dataFile.resetFile(GUESS_KILLER_SCENE_INDEX);
+            break;
+        default:
             this.currentSceneIndex--;
             dataFile.resetFile(currentSceneIndex);
         }
+
     }
 
     public void previousScene() {
