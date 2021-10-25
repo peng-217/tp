@@ -36,6 +36,41 @@ Example of usage:
 Goodbye.
 ```
 
+### Go back to the previous scene: `/back`
+This allows the user to return to the previous scene.
+
+Example of usage:
+
+```
+Scene 1 Investigation
+Who do you want to investigate?
+1. Father
+```
+```
+/back
+```
+```
+------------------
+| Who Killed Me? |
+------------------
+
+I woke up and found myself dead. The Spirit Guide from the Hell told me that the only way to revive my soul is for me to find the murderer, eliminating the grudge in my soul. So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
+
+----------------
+| Instructions |
+----------------
+
+Here are the commands that you can enter:
+"/help" - view this command list
+"/exit" - exit the game
+"/next" - move on to the next scene or the next stage of a scene
+"/note" - create a new note/ open a note/ delete a note
+"/view" - view all the clues that you have gathered
+"/restart" - restart the game from beginning
+
+Now, enter "/next" to start your journey to the truth.
+```
+
 ### View the list of commands available: `/help`
 This allows the user to view the list of commands available.
 
@@ -170,10 +205,10 @@ Scene 1 Investigation
 Enter "/next" to go to the next scene.
 ```
 
-### Choose the killer: `NAME`
+### Choose the killer: `KEYWORD`
 This allows the user to choose the killer based on the user name.
 
-Format: `NAME`
+Format: `KEYWORD`
 
 - The name has to be one of the name of the suspects given to the users to choose.
 - The name given by the user is not case-sensitive.
