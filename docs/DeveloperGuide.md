@@ -18,6 +18,9 @@ How the parser work
 - When the user gives an input, the parser tries to return a command based the input given.
 - If the input does not generate a valid command type, it throws the invalidInputException.
 
+The sequence diagram below demonstrates how the parser works.
+
+{INSERT DIAGRAM HERE}
 
 ### UI component
 **API:** Ui.java 

@@ -8,6 +8,7 @@ import command.NextCommand;
 import command.NoteCommand;
 import command.RestartCommand;
 import command.ViewCommand;
+import command.BackCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
 import suspect.SuspectNames;
@@ -20,6 +21,7 @@ public class Parser {
     private static final String EXIT = "/exit";
     private static final String NEXT = "/next";
     private static final String VIEW = "/view";
+    private static final String BACK = "/back";
     private static final String RESTART = "/restart";
     private static final String SUSPECT_FATHER = "Father";
     private static final String SUSPECT_KEVIN = "Kevin";
@@ -118,6 +120,8 @@ public class Parser {
             return new ViewCommand();
         case RESTART:
             return new RestartCommand();
+        case BACK:
+            return new BackCommand();
         default:
             return useSuspectNameOrIndexForInvestigating(userInput);
         }

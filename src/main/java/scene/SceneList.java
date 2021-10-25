@@ -68,4 +68,14 @@ public class SceneList {
         resetCurrentSceneIndex();
         runCurrentScene();
     }
+
+    private void decreaseSceneNumber() {
+        this.currentSceneIndex--;
+        dataFile.resetFile(currentSceneIndex);
+    }
+
+    public void previousScene() {
+        decreaseSceneNumber();
+        runCurrentScene();
+    }
 }
