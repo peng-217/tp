@@ -149,9 +149,7 @@ public class Investigation {
 
     public void checkSuspectedKiller() {
         currentScene = sceneList.getCurrentScene();
-        ui.printAllSuspectsMessage();
-        ui.printSuspects(currentScene.getSuspectList());
-        ui.printSuspectKillerMessage();
+        ui.printAllSuspectInCurrentScene(currentScene);
         boolean killerFound;
         boolean nameGivenIsASuspect = false;
 
@@ -163,8 +161,7 @@ public class Investigation {
                 goToCorrectFinalScene(killerFound);
             } else {
                 ui.printAskUserEnterSuspectName();
-                ui.printSuspects(currentScene.getSuspectList());
-                ui.printSuspectKillerMessage();
+                ui.printAllSuspectInCurrentScene(currentScene);
             }
         }
     }

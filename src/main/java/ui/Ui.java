@@ -1,6 +1,7 @@
 package ui;
 
 import clue.Clue;
+import scene.Scene;
 import suspect.Suspect;
 import suspect.SuspectList;
 import note.Note;
@@ -80,7 +81,6 @@ public class Ui {
         System.out.println(NOTE_COMMAND);
         System.out.println(VIEW_COMMAND);
         System.out.println(RESTART_COMMAND);
-
         System.out.println(ASK_FOR_CLUE_OR_SUSPECT_NUMBER);
 
     }
@@ -202,5 +202,11 @@ public class Ui {
 
     public void printAskUserEnterSuspectName() {
         System.out.println(ASK_USER_RETYPE_KILLER_NAME);
+    }
+
+    public void printAllSuspectInCurrentScene(Scene scene) {
+        printAllSuspectsMessage();
+        printSuspects(scene.getSuspectList());
+        printSuspectKillerMessage();
     }
 }
