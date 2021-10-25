@@ -45,6 +45,9 @@ public class Parser {
     private static final int SUSPECT_LING_INDEX = 4;
     private static final int SUSPECT_ZACK_INDEX = 5;
 
+    private static final String STRING_PATTERN = "[a-zA-Z]";
+    private static final String NUMBER_PATTERN = "[0-9]";
+
     private String suspectFromFirstScene(int suspectNumber) {
         if (suspectNumber == SUSPECT_FATHER_INDEX) {
             return SUSPECT_FATHER;
@@ -121,8 +124,8 @@ public class Parser {
     }
 
     private Command useSuspectNameOrIndexForInvestigating(String userInput) throws InvalidInputException {
-        Pattern stringPattern = Pattern.compile("[a-zA-Z]");
-        Pattern numberPattern = Pattern.compile("[0-9]");
+        Pattern stringPattern = Pattern.compile(STRING_PATTERN);
+        Pattern numberPattern = Pattern.compile(NUMBER_PATTERN);
         Matcher stringPatternMatcher = stringPattern.matcher(userInput);
         Matcher numberPatternMatcher = numberPattern.matcher(userInput);
 
