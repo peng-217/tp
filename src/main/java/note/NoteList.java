@@ -163,8 +163,5 @@ public class NoteList {
             int deletedNoteIndex = Integer.parseInt(userInput) - 1;
             this.deleteNote(deletedNoteIndex);
         }
-        int deletedNoteIndex = Integer.parseInt(ui.readUserInput()) - 1;
-        this.deleteNote(deletedNoteIndex);
-
     }
 }
