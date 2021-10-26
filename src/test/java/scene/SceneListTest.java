@@ -13,12 +13,12 @@ public class SceneListTest {
     public void scenesTest() throws FileNotFoundException {
         Ui ui = new Ui();
         GameDataFileDecoder datafile = new GameDataFileDecoder(ui,new GameDataFileManager("GameData.txt"));
-        datafile.resetFile(0);
+        datafile.setFile(0);
         SceneList sceneList = SceneListBuilder.buildSceneList(ui,datafile);
         Scene currentScene = sceneList.getCurrentScene();
         currentScene.runScene();
 
-        sceneList.isLastScene();
+        sceneList.updateSceneNumber();
         currentScene = sceneList.getCurrentScene();
 
         System.out.println(currentScene.getSuspectList().getSuspectAvailableClues("Father"));
@@ -37,17 +37,16 @@ public class SceneListTest {
     public void scene2Test() throws FileNotFoundException {
         Ui ui = new Ui();
         GameDataFileDecoder datafile = new GameDataFileDecoder(ui,new GameDataFileManager("GameData.txt"));
-        datafile.resetFile(0);
+        datafile.setFile(0);
         SceneList sceneList = SceneListBuilder.buildSceneList(ui,datafile);
+
         Scene currentScene = sceneList.getCurrentScene();
         currentScene.runScene();
 
-        sceneList.isLastScene();
         currentScene = sceneList.getCurrentScene();
         System.out.println("------------------------------------------");
         currentScene.runScene();
 
-        sceneList.isLastScene();
         currentScene = sceneList.getCurrentScene();
         System.out.println("------------------------------------------");
         currentScene.runScene();

@@ -14,19 +14,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SearchedClueTrackerTest {
     @Test
     public void viewSearcherdCLues_Tom_empty() {
-        Ui ui = new Ui();
-        SuspectList suspects = new SuspectList(ui);
+        SuspectList suspects = new SuspectList();
 
-        suspects.addSuspect("Tom", new Suspect());
+        suspects.addSuspect("Father", new Suspect());
 
         Clue fatherInsurance = new FatherInsurance();
         Clue fatherTextMessage = new FatherTextMessage();
 
-        suspects.addClueForSuspect("Tom", fatherInsurance);
-        suspects.addClueForSuspect("Tom", fatherTextMessage);
+        suspects.addClueForSuspect("Father", fatherInsurance);
+        suspects.addClueForSuspect("Father", fatherTextMessage);
 
-        SearchedClueTracker tracker = new SearchedClueTracker(ui, suspects);
-        ArrayList<Clue> actualResult = tracker.searcherdClues("Tom");
+        SearchedClueTracker tracker = new SearchedClueTracker(suspects);
+        ArrayList<Clue> actualResult = tracker.searcherdClues("Father");
 
         assertEquals(0, actualResult.size());
     }

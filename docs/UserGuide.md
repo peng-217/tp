@@ -15,19 +15,222 @@
 
 {Give detailed description of each feature}
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
-
-Format: `todo n/TODO_NAME d/DEADLINE`
-
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+### Moving to the next scene: `/next`
+This allows the user to go the next scene.
 
 Example of usage: 
 
-`todo n/Write the rest of the User Guide d/next week`
+```
+/next
+```
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+### Exit the game: `/exit`
+This allows the user to exit the game.
+
+Example of usage:
+
+```
+/exit
+```
+```
+Goodbye.
+```
+
+### Go back to the previous scene: `/back`
+This allows the user to return to the previous scene.
+
+Example of usage:
+
+```
+Scene 1 Investigation
+Who do you want to investigate?
+1. Father
+```
+```
+/back
+```
+```
+------------------
+| Who Killed Me? |
+------------------
+
+I woke up and found myself dead. The Spirit Guide from the Hell told me that the only way to revive my soul is for me to find the murderer, eliminating the grudge in my soul. So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
+
+----------------
+| Instructions |
+----------------
+
+Here are the commands that you can enter:
+"/help" - view this command list
+"/exit" - exit the game
+"/next" - move on to the next scene or the next stage of a scene
+"/note" - create a new note/ open a note/ delete a note
+"/view" - view all the clues that you have gathered
+"/restart" - restart the game from beginning
+
+Now, enter "/next" to start your journey to the truth.
+```
+
+### View the list of commands available: `/help`
+This allows the user to view the list of commands available.
+
+Format: `/help`
+
+Example of usage:
+
+```
+/help
+```
+```
+Here are the list of commands available to you.
+/help
+/exit
+/next
+/note
+/view
+/restart
+```
+
+### Restart the game: `/restart`
+This allows the user to restart the game.
+
+Example of usage:
+
+```
+/restart
+```
+```
+------------------
+| Who Killed Me? |
+------------------
+
+I woke up and found myself dead. The Spirit Guide from the Hell told me that the only way to revive my soul is for me to find the murderer, eliminating the grudge in my soul. So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
+
+----------------
+| Instructions |
+----------------
+
+Here are the commands that you can enter:
+"/help" - view this command list
+"/exit" - exit the game
+"/next" - move on to the next scene or the next stage of a scene
+"/note" - create a new note/ open a note/ delete a note
+"/view" - view all the clues that you have gathered
+"/restart" - restart the game from beginning
+
+Now, enter "/next" to start your journey to the truth.
+```
+
+
+### Investigate suspect: `KEYWORD OR INDEX`
+Users can investigate the suspect using either the suspect's name or the suspect number.
+
+Format: `[/investigate] KEYWORD OR INDEX`
+
+- /investigate is an optional command for the user to use.
+- The user has to enter a valid suspect name or the suspect number.
+- Suspect name is not case-sensitive.
+
+Example of usage:
+
+```
+Scene 1 Investigation
+Who do you want to investigate?
+1. Father
+```
+
+The following command below are valid commands
+- 1
+- father
+- /investigate father
+
+```
+Scene 1 Investigation
+ - Father
+0. Go back to list of suspects
+1. Insurance Documents
+2. Map
+3. Phone Call
+4. Text Message
+Enter "/next" to go to the next scene.
+```
+
+
+### Investigate clue: `INDEX`
+This allows the user to investigate the clue based on the index.
+
+Format: `INDEX`
+
+- The index has to be a number based on the clue number given to the users to choose.
+
+Example of usage:
+
+```
+Scene 1 Investigation
+ - Father
+0. Go back to list of suspects
+1. Insurance Documents
+2. Map
+3. Phone Call
+4. Text Message
+Enter "/next" to go to the next scene.
+```
+```
+1
+```
+```
+------------------------------------------------
+              Insurance Documents
+                __________
+               ()_________)
+                \ ~~~~~~~~ \
+                  \ ~~~~~~   \
+                    \__________\
+                     ()__________)
+I went to the room and asked my father to have
+lunch. He hurriedly put away the paper on his
+hand. I recognized it from the perspective of
+my soul that it was a few insurance documents.
+It seemed that my father bought insurance for
+our family members a few years ago, amount
+insured more than ten thousand.
+
+Scene 1 Investigation
+ - Father
+0. Go back to list of suspects
+1. Insurance Documents
+2. Map
+3. Phone Call
+4. Text Message
+Enter "/next" to go to the next scene.
+```
+
+### Choose the killer: `KEYWORD`
+This allows the user to choose the killer based on the user name.
+
+Format: `KEYWORD`
+
+- The name has to be one of the name of the suspects given to the users to choose.
+- The name given by the user is not case-sensitive.
+
+Example of usage:
+
+```
+Here are all the suspects
+1. Father
+2. Kevin
+3. Wendy
+4. Ling
+5. Zack
+Who do you think killed you?
+```
+```
+Wendy
+```
+```
+This is an ending for guessing correctly.
+```
+
 
 ## FAQ
 
@@ -40,3 +243,12 @@ Example of usage:
 {Give a 'cheat sheet' of commands here}
 
 * Add todo `todo n/TODO_NAME d/DEADLINE`
+
+|Action| Format & Example |
+|--------|----------|
+| Next | /next |
+| Restart | /restart |
+| Exit | /exit |
+| Back | /back |
+| Investigate | [/investigate] INDEX or KEYWORD e.g., /investigate father |
+| Choose Killer | KEYWORD e.g., Father |

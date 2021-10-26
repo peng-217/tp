@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+box
+participant "Main" as Main
+participant ":Parser" as Parser
+participant ":Ui" as Ui
+participant ":Investigation" as Investigation
+participant ":Command" as Command
+
+Main --> Parser
+Main --> Ui
+Main -> Investigation
+
+Parser -> Command
+end box
+@enduml

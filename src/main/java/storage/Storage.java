@@ -31,7 +31,7 @@ public class Storage {
 
                 String titleToWrite = notes.getIndexNote(i).getNoteTitle();
                 String contentToWrite = notes.getIndexNote(i).getNoteContent();
-                noteWriter.write("scene " + inputSceneIndex);
+                noteWriter.write("scene " + notes.getIndexNote(i).getNoteSceneIndex());
                 noteWriter.write("\n");
                 noteWriter.write(titleToWrite);
                 noteWriter.write("\n");

@@ -1,40 +1,41 @@
 package scene;
 
-import clue.Clue;
+import exceptions.MissingNarrativeException;
 import narrative.Narrative;
 import suspect.Suspect;
 import suspect.SuspectList;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 public class Scene {
     private final Narrative narrative;
     private final SuspectList suspectList;
+    private final SceneTypes sceneType;
 
-    public Scene(Narrative narrative, SuspectList suspectList) {
+    public Scene(Narrative narrative, SuspectList suspectList, SceneTypes sceneType) {
         this.narrative = narrative;
         this.suspectList = suspectList;
-    }
-
-    public Narrative getNarrative() {
-        return narrative;
+        this.sceneType = sceneType;
     }
 
     public SuspectList getSuspectList() {
         return suspectList;
     }
 
-    public ArrayList<Clue> getAllAvailableClues() {
-        return suspectList.getAllAvailableClues();
+    public SceneTypes getSceneType() {
+        return this.sceneType;
     }
 
     public Suspect investigateSuspect(String name) {
         return suspectList.getSuspects().get(name);
     }
 
-    public void runScene() throws FileNotFoundException {
-        this.narrative.displayNarrative();
+    public void runScene() throws MissingNarrativeException {
+        try {
+            this.narrative.displayNarrative();
+        } catch (FileNotFoundException e) {
+            throw new MissingNarrativeException("Narrative file is missing");
+        }
     }
 
     @Override

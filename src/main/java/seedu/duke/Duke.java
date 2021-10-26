@@ -1,13 +1,24 @@
 package seedu.duke;
 
+import clue.CheckedClueTrackerBuilder;
 import command.InvalidCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
+import exceptions.MissingSceneFileException;
 import investigation.Investigation;
+import note.NoteList;
+import scene.SceneList;
+import scene.SceneListBuilder;
+import storage.GameDataFileDecoder;
+import storage.GameDataFileManager;
+import storage.Storage;
+import suspect.SuspectList;
 import ui.Ui;
 import parser.Parser;
 import command.Command;
+
+import java.io.FileNotFoundException;
 
 public class Duke {
     /**
@@ -16,8 +27,11 @@ public class Duke {
     private static Ui ui;
     private static Parser parser;
     private static Investigation investigation;
-
-    private static String userName;
+    private static GameDataFileDecoder dataFile;
+    private static SceneList sceneList;
+    private static SuspectList clueTracker;
+    private static final String GAME_DATA_FILE_NAME = "GameData.txt";
+    private static NoteList notes;
 
     public static void initializeGame() {
         // Initialise new parser object
@@ -26,23 +40,22 @@ public class Duke {
         // Initialise a new Ui object
         ui = new Ui();
         ui.printWelcomeMessage();
-        investigation = new Investigation(parser, ui);
 
-        // We ask the user to give a name
-        // ui.askForUsername();
-        // ui.printEmptyLine();
-        // userName = ui.readUserInput();
-        // ui.printEmptyLine();
+        dataFile = new GameDataFileDecoder(ui, new GameDataFileManager(GAME_DATA_FILE_NAME));
 
-        // print welcome message with username
-        // ui.printEmptyLine();
-        // ui.printWelcomeUser(userName);
-        // ui.printEmptyLine();
-        // SuspectList suspects = new SuspectList(ui);
+        try {
+            sceneList = SceneListBuilder.buildSceneList(ui, dataFile);
+            clueTracker = CheckedClueTrackerBuilder.buildClueTracker();
+        } catch (MissingSceneFileException e) {
+            ui.printMissingSceneFileMessage();
+        }
 
+        investigation = new Investigation(clueTracker);
+        Storage.openNoteFromFile(new NoteList(ui));
+        sceneList.runCurrentScene();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         initializeGame();
         runUntilExitCommand();
     }
@@ -50,12 +63,12 @@ public class Duke {
     private static void runUntilExitCommand() {
         boolean isExit = false;
         while (!isExit) {
-            investigation.printCurrentInvestigation();
+            ui.printCurrentInvestigation(investigation, sceneList);
             String userInput = ui.readUserInput();
             Command commandFromUser = new InvalidCommand();
             try {
                 commandFromUser = parser.getCommandFromUser(userInput);
-                commandFromUser.execute(ui, investigation);
+                commandFromUser.execute(ui, investigation, sceneList);
             } catch (InvalidSuspectException e1) {
                 ui.printInvalidSuspectMessage();
             } catch (InvalidClueException e2) {

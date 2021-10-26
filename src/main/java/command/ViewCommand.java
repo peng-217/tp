@@ -2,15 +2,24 @@ package command;
 
 import clue.Clue;
 import investigation.Investigation;
+import scene.SceneList;
 import ui.Ui;
 
 import java.util.ArrayList;
 
 public class ViewCommand extends Command {
-    private String[] suspects = {"Father", "Kevin", "Wendy", "Ling", "Zack"};
+    private final String[] suspects;
+
+    public ViewCommand() {
+        suspects = new String[]{"Father", "Kevin", "Wendy", "Ling", "Zack"};
+    }
+
+    public ViewCommand(String args) {
+        suspects = args.split(" ");
+    }
 
     @Override
-    public void execute(Ui ui, Investigation investigation) {
+    public void execute(Ui ui, Investigation investigation, SceneList sceneList) {
         ui.printViewingCheckedCluesMessage();
         for (String name : suspects) {
             ArrayList<Clue> clues = investigation.getSuspectCheckedClues(name);

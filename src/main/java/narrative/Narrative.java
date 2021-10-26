@@ -14,6 +14,11 @@ public class Narrative {
         filePath = "src/main/resources/";
     }
 
+    public Narrative(String fileName) {
+        this.fileName = fileName;
+        this.filePath = "src/main/resources/";
+    }
+
     public String getNarrative() throws FileNotFoundException {
         File file = new File(filePath + fileName);
         //InputStream file = getClass().getResourceAsStream(filePath + fileName);

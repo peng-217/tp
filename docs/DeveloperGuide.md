@@ -4,9 +4,106 @@
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
-## Design & implementation
+## Design
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+### Architecture
+![High Level Architectural design](./main_architecture.png)
+
+### Parser component
+**API:** Parser.java 
+
+The parser component is used to parse the input given by the user. 
+
+How the parser work
+- When the user gives an input, the parser tries to return a command based the input given.
+- If the input does not generate a valid command type, it throws the invalidInputException.
+
+The sequence diagram below demonstrates how the parser works.
+
+![Parser design](./ParserUML.png)
+
+### Note component
+**API:** Note.java
+
+The note component allows user to create / open / delete /search note. 
+
+How the note work
+- When user want to take note, a note with title and content will be created and added 
+  to note list.
+- Notes in the note list can be found by their titles and scene index.
+- Unwanted notes can be deleted.
+
+### UI component
+**API:** `Ui.java`
+
+The ui component communicates with the user via the terminal. Other component call methods of 
+ui to print output to terminal. 
+
+How the ui work
+- Print messages to terminal depending on the scene.
+- Print corresponding output to terminal according to input command.
+
+### Command component
+**API:** `Command.java` 
+
+Here’s a (partial) class diagram of the `Command` component:
+
+[(partial class) diagram of Command component](./Command_Class_Diagram.png)
+
+How the `Command` componnet works:
+1. The user input is first parsed using the `Parse` component
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., NextCommand), which is executed by `Duke`.
+3. The command can communicate with the `Ui`, `Investigation` and `SceneList` when it is executed (e.g. to go to the next scene).
+4. Some of the commands may update the `Storage`.
+
+The Sequence Diagram [below](./next_command_sequence_diagram.png) illustrates within the `Command` component for the `execute(ui,investigation,sceneList)` method call of the `NextCommand` class.
+
+[Sequence diagram for execute(ui,investigation,sceneList) method call of NextCommand](./next_command_sequence_diagram.png)
+
+### Investigation component
+**API:** `Investigation.java`
+
+The investigation class manages the investigation scene in each
+investigation scene. 
+
+How the investigation works
+- When an investigation command is returned from the parser, we investigate the input given by the user.
+- For each scene, the investigation class display the scene's narrative.
+- The investigation class is also used to determine if the user has managed to find the correct killer from the game.
+
+
+### Clue component
+**API:** `Clue.java`
+
+### Narrative component
+**API:** `Narrative.java`
+
+The narrative class generates the story for each of the scene.
+
+### Scene component
+**API:** `Scene.java`
+
+The scene class contains and produces the narrative for the scene.
+
+How the scene class work
+- Each scene has a scene type.
+- For each scene type, we interact differently from the user.
+
+See below for example.
+- The introduction scene shows the introductory message to the user.
+- The investigation scene asks the user either investigate a suspect or look into a clue.
+
+### Search component
+**API:** `Search.java`
+
+### Storage component
+**API:** `Storage.java`
+
+### Suspect component
+**API:** `Suspect.java`
+
+## Implementation
 
 ### Display checked-clues feature
 
@@ -31,13 +128,40 @@ Then ```file.checkPath()``` will check for existing data file and creates a new 
 Then read the file and store the information into array list using ```ArrayList<String> content = file.readFile()```.
 Eventually, edit the content and rewrite to data file using ```file.rewriteFile(content)```
 
+###Taking Notes For Specified Scene
+
+This note-taking feature allows users to take note whenever they want, and store these notes locally. All the locally saved notes will be loaded and accessible
+for users to open. Each note contains three parts: scene index, title and content. The note index will be automatically set according to the current scene that 
+user is investigating. Note tile and content are fulfilled by users. Default title will be given if user does not give a title. User can also search for an 
+existing note by either search its title/scene index or directly open it by its sequence number (in the note list). User can also delete the unwanted notes by
+typing in its sequence number.
+
+### [Proposed] Clue Reader and Organizer
+
+Clues used in different scenes can be kept in txt file and created following a specific format.
+It uses `java.io.File` and implements:
+* `clueReader(TEXT_LOCATION.txt)` -- where `TEXT_LOCATION.txt` is the directory containing the specified text file.
+
+This method will search for the specified text file, throwing a `FileNotFoundException` if it is missing.
+It will read the file and store the clues as the Class `Clue`, under the specified `Suspect` instance which is then stored in a `SuspectList` class.
+
+
+## Appendix
+
 
 ## Product scope
 ### Target user profile
 
+- enjoy the playing interactive game
+- enjoy mystery genre
+- enjoy reading
+- wants to take a break from visual games
+
 {Describe the target user profile}
 
 ### Value proposition
+
+- Provide an alternative game for users to exercise creative thinking
 
 {Describe the value proposition: what problem does it solve?}
 
@@ -45,10 +169,23 @@ Eventually, edit the content and rewrite to data file using ```file.rewriteFile(
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|new user|see all commands available|understand the game mechanics|
+|v1.0|user|investigate the suspects available|better understand the suspect|
+|v1.0|user|investigate the clues available|understand the story line better|
+|v1.0|user|choose the suspect|see if I am able to solve the crime|
+|v2.0|user|resume the game after exiting|continue the game instead of restarting|
+|v2.0|user|write notes|look at the notes I have written for each scene and suspect|
+
+## Use Cases
+
+(Use /next as an example)
+=======
+|v2.0|user|go back to the previous scene|recap the previous scene|
+|v2.0|user|investigate suspect using name or their index|more than one way to investigate a suspect|
 
 ## Non-Functional Requirements
+1. The game should work as long as java 11 is installed on the local machine.
+2. A working keyboard to play the game and a monitor to read the text.
 
 {Give non-functional requirements}
 

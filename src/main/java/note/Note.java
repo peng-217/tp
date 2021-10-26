@@ -1,10 +1,5 @@
 package note;
 
-import scene.Scene;
-import scene.SceneList;
-import ui.Ui;
-import parser.Parser;
-
 public class Note {
     private int noteSceneIndex;
     private String noteContent;
@@ -31,3 +26,4 @@ public class Note {
 
 
 }
+// @@ author peng-217
