@@ -60,4 +60,5 @@ public class Scene {
     public SceneTypes getSceneType() {
         return this.sceneType;
     }
+
 }

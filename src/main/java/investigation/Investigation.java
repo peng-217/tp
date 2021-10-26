@@ -15,7 +15,6 @@ import note.Note;
 import note.NoteList;
 import java.util.ArrayList;
 
-
 public class Investigation {
     private static InvestigationStages stage;
     private final SceneList sceneList;
@@ -28,13 +27,18 @@ public class Investigation {
     private static int defaultTitleCounter = 1;
     private static final String WRONG_INDEX_GIVEN = "Sorry please enter index within range";
     private static final String INVALID_COMMAND = "Invalid command";
-    private static final String KILLER_WENDY = "Wendy";
+    private static final String SUSPECT_WENDY_LOWER = "wendy";
+    private static final String SUSPECT_FATHER_LOWER = "father";
+    private static final String SUSPECT_LING_LOWER = "ling";
+    private static final String SUSPECT_ZACK_LOWER = "zack";
+    private static final String SUSPECT_KEVIN_LOWER = "kevin";
 
     public Investigation(SceneList sceneList, SuspectList clueTracker) {
         this.sceneList = sceneList;
         this.clueTracker = clueTracker;
         Storage.openNoteFromFile(notes);
-        runScenes();
+        setSuspectStage();
+        sceneList.runCurrentScene();
     }
 
     private void chooseSuspectToInvestigate() {
@@ -70,7 +74,7 @@ public class Investigation {
         switch (stage) {
         case SUSPECT_STAGE:
             currentSuspect = parser.getSuspectNameFromIndex(sceneList.getCurrentSceneIndex(), index);
-            stage = InvestigationStages.CLUE_STAGE;
+            setClueStage();
             break;
         case CLUE_STAGE:
             currentScene = sceneList.getCurrentScene();
@@ -78,7 +82,7 @@ public class Investigation {
             if (index > suspectNumClues) {
                 throw new InvalidClueException(WRONG_INDEX_GIVEN);
             } else if (index == 0) {
-                stage = InvestigationStages.SUSPECT_STAGE;
+                setSuspectStage();
             } else {
                 Clue currentClueInScene = currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1);
                 int indexInClueTracker = clueTracker.getClueIndex(currentSuspect, currentClueInScene.getClueName());
@@ -146,12 +150,44 @@ public class Investigation {
 
     public void checkSuspectedKiller() {
         currentScene = sceneList.getCurrentScene();
-        ui.printAllSuspectsMessage();
-        ui.printSuspects(currentScene.getSuspectList());
-        ui.printSuspectKillerMessage();
-        String suspectedKiller = ui.readUserInput();
-        boolean killerFound = suspectedKiller.equals(KILLER_WENDY);
-        goToCorrectFinalScene(killerFound);
+        ui.printAllSuspectInCurrentScene(currentScene);
+        boolean killerFound;
+        boolean nameGivenIsASuspect = false;
+
+        while (!nameGivenIsASuspect) {
+            String suspectedKiller = ui.readUserInput();
+            nameGivenIsASuspect = correctSuspectNameGiven(suspectedKiller);
+            if (nameGivenIsASuspect) {
+                killerFound = killerFoundCorrectly(suspectedKiller);
+                goToCorrectFinalScene(killerFound);
+            } else {
+                ui.printAskUserEnterSuspectName();
+                ui.printAllSuspectInCurrentScene(currentScene);
+            }
+        }
+    }
+
+    private boolean killerFoundCorrectly(String suspectedKiller) {
+        String suspectedKillerLowerCase = suspectedKiller.toLowerCase();
+        return suspectedKillerLowerCase.equals(SUSPECT_WENDY_LOWER);
+    }
+
+    private boolean correctSuspectNameGiven(String suspectedKiller) {
+        String suspectedKillerLowerCase = suspectedKiller.toLowerCase();
+        switch (suspectedKillerLowerCase) {
+        case SUSPECT_WENDY_LOWER:
+            return true;
+        case SUSPECT_FATHER_LOWER:
+            return true;
+        case SUSPECT_KEVIN_LOWER:
+            return true;
+        case SUSPECT_LING_LOWER:
+            return true;
+        case SUSPECT_ZACK_LOWER:
+            return true;
+        default:
+            return false;
+        }
     }
 
     private void goToCorrectFinalScene(boolean killerFound) {
@@ -162,17 +198,16 @@ public class Investigation {
         return clueTracker.getSuspectCheckedClues(name);
     }
 
-    public void runScenes() {
-        stage = InvestigationStages.SUSPECT_STAGE;
-        sceneList.runCurrentScene();
-    }
-
-    public void updateScene() {
-        sceneList.updateSceneNumber();
-    }
-
     public void restartGame() {
-        stage = InvestigationStages.SUSPECT_STAGE;
+        setSuspectStage();
         sceneList.resetAllScenes();
+    }
+
+    public void setSuspectStage() {
+        stage = InvestigationStages.SUSPECT_STAGE;
+    }
+
+    private void setClueStage() {
+        stage = InvestigationStages.CLUE_STAGE;
     }
 }
