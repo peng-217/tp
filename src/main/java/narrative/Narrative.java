@@ -24,7 +24,9 @@ public class Narrative {
         //File file = new File(filePath + fileName);
         //System.out.println(filePath + fileName);
         InputStream file = getClass().getResourceAsStream(filePath + fileName);
-        assert file != null;
+        if(file == null) {
+            throw new FileNotFoundException();
+        }
         Scanner in = new Scanner(file);
         StringBuilder content = new StringBuilder();
         while (in.hasNext()) {
