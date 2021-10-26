@@ -25,7 +25,7 @@ class SearchedClueTrackerTest {
         suspects.addClueForSuspect("Father", fatherTextMessage);
 
         SearchedClueTracker tracker = new SearchedClueTracker(suspects);
-        ArrayList<Clue> actualResult = tracker.searcherdClues("Tom");
+        ArrayList<Clue> actualResult = tracker.searcherdClues("Father");
 
         assertEquals(0, actualResult.size());
     }
