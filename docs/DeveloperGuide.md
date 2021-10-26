@@ -21,7 +21,7 @@ How the parser work
 
 The sequence diagram below demonstrates how the parser works.
 
-{INSERT DIAGRAM HERE}
+![Parser design](./ParserUML.png)
 
 ### Note component
 **API:** Note.java
