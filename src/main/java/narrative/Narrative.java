@@ -3,6 +3,7 @@ package narrative;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Narrative {
@@ -32,6 +33,29 @@ public class Narrative {
     }
 
     public void displayNarrative() throws FileNotFoundException {
+        if(fileName.toLowerCase(Locale.ROOT).contains("scene")) {
+            displaySceneNarrative();
+        }
         System.out.println(this.getNarrative());
+    }
+    public void displaySceneNarrative() throws FileNotFoundException {
+        String content = this.getNarrative();
+        int index = 0;
+        while(content.contains("\n")) {
+            for(int i=0;i<4 && content.contains("\n");i++) {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                System.out.print(content.substring(0, 1+content.indexOf("\n")));
+                content = content.substring(1+content.indexOf("\n"));
+            }
+            pressEnterKeyToContinue();
+        }
+        System.out.print(content);
+    }
+    public void pressEnterKeyToContinue()
+    {
+        System.out.println("\nPress Enter key to continue...");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 }

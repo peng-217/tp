@@ -240,6 +240,7 @@ public class Ui {
         printSuspectKillerMessage();
     }
 
+
     public void printSelectedClue(Clue currentClueInScene) {
         System.out.println(currentClueInScene.toString());
     }

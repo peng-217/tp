@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class GameDataFileDecoder {
 
+    final static int MAX_SCENE_NUMBER = 3;
     GameDataFileManager dataFile;
     ArrayList<String> lines;
     Ui ui;
@@ -18,11 +19,11 @@ public class GameDataFileDecoder {
         try {
             dataFile.checkPath();
             this.lines = dataFile.readFile();
-            this.currentSceneIndex = Integer.parseInt(this.lines.get(1).substring(19));
             if (this.lines.size() == 0 || !this.lines.get(0).equals("The Great Detective Data File")
-                    || currentSceneIndex > 3) {
-                setFile(0);
+                    || currentSceneIndex > MAX_SCENE_NUMBER) {
+                setCurrentSceneIndex(0);
                 this.lines = dataFile.readFile();
+                this.currentSceneIndex = getCurrentSceneIndex();
                 assert lines.size() != 0;
             }
         } catch (IOException e) {
@@ -35,12 +36,15 @@ public class GameDataFileDecoder {
         return currentSceneIndex;
     }
 
-    public void setFile(int index) {
+    public void setCurrentSceneIndex(int index) {
         ArrayList<String> factorySetting = new ArrayList<>();
         factorySetting.add("The Great Detective Data File");
         factorySetting.add("CurrentSceneIndex: " + index);
         try {
             dataFile.rewriteFile(factorySetting);
+            this.lines = dataFile.readFile();
+            this.currentSceneIndex = getCurrentSceneIndex();
+            assert lines.size() != 0;
         } catch (IOException e) {
             ui.printFileErrorMessage();
         }
