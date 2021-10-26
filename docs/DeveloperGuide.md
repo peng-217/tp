@@ -2,12 +2,41 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+The plot of the game was adopted from one of the games available in the Mini Program in WeChat called Ju Ben Sha. The original story was in Chinese and was translated to English with the help of Google Translate. 
 
 ## Design
 
 ### Architecture
-![High Level Architectural design](./main_architecture.png)
+
+![High Level Architecture Diagram](./high_level_architecture.png)
+
+The _**Architecture Diagram**_ given above explains the high-level design of the App.
+
+Given below is a quick overview of main components and how they interact with each other.
+
+**Main components of the architecture**
+
+`Duke` is responsible for,
+
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* During the game: Takes in user input and coordinates other components to parse and execute the input in a while loop, until the game is shut down.
+
+The rest of the App consists of eight components.
+
+`Parser`:
+`Ui`:
+`Command`: The command executor.
+`Investigation`:
+`Scene`:
+`Suspect`:
+`Note`:
+`Storage`:
+
+**How the architecture components interact with each other**
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command `/next`.
+
+![High Level Sequence Digram for "/next"](./main_architecture.png)
 
 ### Parser component
 **API:** Parser.java 
@@ -56,7 +85,7 @@ How the ui work
 
 Here’s a (partial) class diagram of the `Command` component:
 
-[(partial class) diagram of Command component](./Command_Class_Diagram.png)
+![(partial class) diagram of Command component](./Command_Class_Diagram.png)
 
 How the `Command` componnet works:
 1. The user input is first parsed using the `Parse` component
@@ -66,27 +95,26 @@ How the `Command` componnet works:
 
 The Sequence Diagram [below](./next_command_sequence_diagram.png) illustrates within the `Command` component for the `execute(ui,investigation,sceneList)` method call of the `NextCommand` class.
 
-[Sequence diagram for execute(ui,investigation,sceneList) method call of NextCommand](./next_command_sequence_diagram.png)
+![Sequence diagram for execute(ui,investigation,sceneList) method call of NextCommand](./next_command_sequence_diagram.png)
 
 ### Investigation component
 **API:** `Investigation.java`
 
-The investigation class manages the investigation scene in each
-investigation scene. 
+![Investigation Sequence Diagram](./Investigation_Sequence_Diagram.png)
 
-How the investigation works
+The investigation class manages the investigation in each investigation scene. 
+
+How the `Investigation` component works:
 - When an investigation command is returned from the parser, we investigate the input given by the user.
-- For each scene, the investigation class display the scene's narrative.
-- The investigation class is also used to determine if the user has managed to find the correct killer from the game.
-
-
-### Clue component
-**API:** `Clue.java`
-
-### Narrative component
-**API:** `Narrative.java`
-
-The narrative class generates the story for each of the scene.
+- Investigation are divided into two parts, suspect stage and clue stage
+  - `Suspect Stage`: Prints the list of suspects and prompts user for input, user selects which suspect he/she wants 
+to investigate. Proceeds to clue stage when input entered are valid
+  - `Clue Stage`: Prints the list of clues available for viewing for the selected suspect previously and prompts user
+for input, user selects which clue he/she wants to view. The user may enter the number '0' to return to the 
+`Suspect Stage`. Otherwise, after selecting the clue, the clue is then marked as checked and contents of the selected 
+clue is displayed on the terminal.
+- The Investigation class is also used to determine if the user has managed to find the correct killer
+at the end of the game.
 
 ### Scene component
 **API:** `Scene.java`
@@ -101,16 +129,29 @@ See below for example.
 - The introduction scene shows the introductory message to the user.
 - The investigation scene asks the user either investigate a suspect or look into a clue.
 
-### Search component
-**API:** `Search.java`
-
 ### Storage component
 **API:** `Storage.java`
 
 ### Suspect component
-**API:** `Suspect.java`
+**API:** Suspect.java
+
+The `Suspect` class contains an `ArrayList` of the class `Clue`. 
+
+How the suspect class work:
+
+  * Different suspects in a particular scene are stored in the `SuspectList` class.
+  * Suspects are stored via a `LinkedHashMap<String, Suspect>`, with the string being the suspect's name.
+
+See below for example:
+
+  * The first investigation scene has a `SuspectList` containing one name, "Father", 
+and four clues within its corresponding `Suspect` class.
+
+![](Suspect.png)
 
 ## Implementation
+
+This section describes some noteworthy details on how certain features are implemented.
 
 ### Display checked-clues feature
 
@@ -143,21 +184,27 @@ user is investigating. Note tile and content are fulfilled by users. Default tit
 existing note by either search its title/scene index or directly open it by its sequence number (in the note list). User can also delete the unwanted notes by
 typing in its sequence number.
 
-### [Proposed] Clue Reader and Organizer
+### SuspectListBuilder
 
-Clues used in different scenes can be kept in txt file and created following a specific format.
-It uses `java.io.File` and implements:
-* `clueReader(TEXT_LOCATION.txt)` -- where `TEXT_LOCATION.txt` is the directory containing the specified text file.
+Suspects and clues used in different scenes can be kept in a txt file and created following a specific format.
+It uses `java.io.File`, `java.util.Scanner`, and is implemented as:
+* `suspectListBuilder(String fileLocation, SuspectList suspectList)` -- where `fileLocation` is the directory 
+containing the specified text file and `suspectList` is the instance of class `SuspectList` that the suspects 
+and clues are to be added into.
 
 This method will search for the specified text file, throwing a `FileNotFoundException` if it is missing.
-It will read the file and store the clues as the Class `Clue`, under the specified `Suspect` instance which is then stored in a `SuspectList` class.
+The text file will be written in such a way that the program can recognize how many suspects
+and how many clues there are. It will first add the suspects from the file into the suspectList 
+via the method `addSuspect(String suspectName, Suspect suspect)`, and then the clues via the 
+method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect with the corresponding `suspectName`.
+
 
 
 ## Appendix
 
+### Product scope
 
-## Product scope
-### Target user profile
+**Target user profile：**
 
 - enjoy the playing interactive game
 - enjoy mystery genre
@@ -165,7 +212,7 @@ It will read the file and store the clues as the Class `Clue`, under the specifi
 - wants to take a break from visual games
 
 
-### Value proposition
+**Value proposition：**
 
 - Provide an alternative game for users to exercise creative thinking
 
@@ -182,10 +229,10 @@ It will read the file and store the clues as the Class `Clue`, under the specifi
 | * * |v2.0|user|write notes|look at the notes I have written for each scene and suspect|
 | * |v2.0|user|go to previous scene|look at the narrative for the previous scene|
 
-## Use Cases
+
+### Use Cases
 
 (Use /next as an example)
-=======
 
 Use case: Navigate to the next scene.
 
@@ -195,15 +242,16 @@ Use case: Navigate to the next scene.
 4. NextCommand returns a boolean by self-invocating the `.exit()` method.
 5. If it is the last scene of the game, `.exit()` returns true else false.
 
-## Non-Functional Requirements
+### Non-Functional Requirements
 1. The game should work as long as java 11 is installed on the local machine.
 2. A working keyboard to play the game and a monitor to read the text.
 
 
-## Glossary
+### Glossary
+
 
 - Mainstream OS: Windows, Mac OS X, Unix, Linux
 
-## Instructions for manual testing
+## Appendix: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
