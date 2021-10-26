@@ -25,9 +25,6 @@ public class Duke {
     private static Ui ui;
     private static Parser parser;
     private static Investigation investigation;
-
-    private static String userName;
-
     private static GameDataFileDecoder dataFile;
     private static SceneList sceneList;
     private static SuspectList clueTracker;

@@ -8,6 +8,7 @@ import command.NextCommand;
 import command.NoteCommand;
 import command.RestartCommand;
 import command.ViewCommand;
+import command.BackCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
 import suspect.SuspectNames;
@@ -20,6 +21,7 @@ public class Parser {
     private static final String EXIT = "/exit";
     private static final String NEXT = "/next";
     private static final String VIEW = "/view";
+    private static final String BACK = "/back";
     private static final String RESTART = "/restart";
     private static final String SUSPECT_FATHER = "Father";
     private static final String SUSPECT_KEVIN = "Kevin";
@@ -32,21 +34,22 @@ public class Parser {
     private static final String INVALID_INPUT = "Invalid input!";
     private static final String INVESTIGATE = "/investigate";
     private static final String INVALID_SUSPECT_NAME = "Invalid suspect given!";
-
     private static final String SUSPECT_FATHER_LOWER = "father";
     private static final String SUSPECT_KEVIN_LOWER = "kevin";
     private static final String SUSPECT_WENDY_LOWER = "wendy";
     private static final String SUSPECT_LING_LOWER = "ling";
     private static final String SUSPECT_ZACK_LOWER = "zack";
-
     private static final int SUSPECT_FATHER_INDEX = 1;
     private static final int SUSPECT_KEVIN_INDEX = 2;
     private static final int SUSPECT_WENDY_INDEX = 3;
     private static final int SUSPECT_LING_INDEX = 4;
     private static final int SUSPECT_ZACK_INDEX = 5;
-
-    private static final String STRING_PATTERN = "[a-zA-Z]";
+    private static final String ALPHABET_PATTERN = "[a-zA-Z]";
     private static final String NUMBER_PATTERN = "[0-9]";
+    private static final int SCENE_NUMBER_ONE = 1;
+    private static final int SCENE_NUMBER_TWO = 2;
+    private static final int SCENE_NUMBER_THREE = 3;
+
 
     private String suspectFromFirstScene(int suspectNumber) {
         if (suspectNumber == SUSPECT_FATHER_INDEX) {
@@ -86,13 +89,13 @@ public class Parser {
     }
 
 
-    public String getSuspectNameFromIndex(int currentScene, int suspectNumber) throws InvalidSuspectException {
-        switch (currentScene) {
-        case 1:
+    public String getSuspectNameFromIndex(int sceneNumber, int suspectNumber) throws InvalidSuspectException {
+        switch (sceneNumber) {
+        case SCENE_NUMBER_ONE:
             return suspectFromFirstScene(suspectNumber);
-        case 2:
+        case SCENE_NUMBER_TWO:
             return suspectFromSecondScene(suspectNumber);
-        case 3:
+        case SCENE_NUMBER_THREE:
             return suspectFromThirdScene(suspectNumber);
         default:
             throw new InvalidSuspectException(INVALID_SUSPECT);
@@ -118,24 +121,26 @@ public class Parser {
             return new ViewCommand();
         case RESTART:
             return new RestartCommand();
+        case BACK:
+            return new BackCommand();
         default:
             return useSuspectNameOrIndexForInvestigating(userInput);
         }
     }
 
     private Command useSuspectNameOrIndexForInvestigating(String userInput) throws InvalidInputException {
-        Pattern stringPattern = Pattern.compile(STRING_PATTERN);
+        Pattern alphabetPattern = Pattern.compile(ALPHABET_PATTERN);
         Pattern numberPattern = Pattern.compile(NUMBER_PATTERN);
-        Matcher stringPatternMatcher = stringPattern.matcher(userInput);
+        Matcher alphabetPatternMatcher = alphabetPattern.matcher(userInput);
         Matcher numberPatternMatcher = numberPattern.matcher(userInput);
 
         boolean numberFound = numberPatternMatcher.find();
-        boolean stringFound = stringPatternMatcher.find();
+        boolean alphabetFound = alphabetPatternMatcher.find();
 
         if (numberFound) {
             int inputParsedToInt = Integer.parseInt(userInput);
             return new InvestigateCommand(inputParsedToInt);
-        } else if (stringFound) {
+        } else if (alphabetFound) {
             return parseInputForInvestigateCommand(userInput);
         } else {
             throw new InvalidInputException(INVALID_INPUT);
@@ -159,15 +164,15 @@ public class Parser {
     private int getSuspectIndexFromSuspectName(String suspectName) throws InvalidInputException {
         switch (suspectName) {
         case SUSPECT_FATHER_LOWER:
-            return 1;
+            return SUSPECT_FATHER_INDEX;
         case SUSPECT_KEVIN_LOWER:
-            return 2;
+            return SUSPECT_KEVIN_INDEX;
         case SUSPECT_WENDY_LOWER:
-            return 3;
+            return SUSPECT_WENDY_INDEX;
         case SUSPECT_LING_LOWER:
-            return 4;
+            return SUSPECT_LING_INDEX;
         case SUSPECT_ZACK_LOWER:
-            return 5;
+            return SUSPECT_ZACK_INDEX;
         default:
             throw new InvalidInputException(INVALID_SUSPECT_NAME);
         }
