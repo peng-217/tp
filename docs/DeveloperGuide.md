@@ -41,15 +41,23 @@ The Sequence Diagram below shows how the components interact with each other for
 ### Parser component
 **API:** Parser.java 
 
-The parser component is used to parse the input given by the user. 
+The parser component is used to parse the input given by the user.
+
+The Sequence Diagram below illustrates the interactions within the 
+`Parser` component for the `getCommandFromUser("/next")` API call.
+
+![Parser sequence diagram](./ParserUML.png)
+
+The class diagram below shows how the parser interacts with the other classes
+
+![Parser class diagram design](./ParserClassDiagram.png)
 
 How the parser work
-- When the user gives an input, the parser tries to return a command based the input given.
+- When the user gives an input, the parser will the appropriate command for this input.
+- In the case of `/next` as the input, the NextCommand will be generated.
+- The NextCommand is inherits from the abstract class Command.
 - If the input does not generate a valid command type, it throws the invalidInputException.
-
-The sequence diagram below demonstrates how the parser works.
-
-![Parser design](./ParserUML.png)
+- The abstract Command class requires SceneList, Ui and Investigate component as its dependencies. 
 
 ### Note component
 **API:** Note.java
@@ -208,30 +216,41 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 
 - Provide an alternative game for users to exercise creative thinking
 
-### User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see all commands available|understand the game mechanics|
-|v1.0|user|investigate the suspects available|better understand the suspect|
-|v1.0|user|investigate the clues available|understand the story line better|
-|v1.0|user|choose the suspect|see if I am able to solve the crime|
-|v2.0|user|resume the game after exiting|continue the game instead of restarting|
-|v2.0|user|write notes|look at the notes I have written for each scene and suspect|
-|v2.0|user|go back to the previous scene|recap the previous scene|
-|v2.0|user|investigate suspect using name or their index|more than one way to investigate a suspect|
+## User Stories
+
+|Priority|Version| As a ... | I want to ... | So that I can ...|
+|--------|--------|----------|---------------|------------------|
+| * * *|v1.0|new user|see all commands available|understand the game mechanics|
+| * * *|v1.0|user|investigate the suspects available|better understand the suspect|
+| * * *|v1.0|user|investigate the clues available|understand the story line better|
+| * * *|v1.0|user|choose the suspect|see if I am able to solve the crime|
+| * * |v2.0|user|resume the game after exiting|continue the game instead of restarting|
+| * * |v2.0|user|write notes|look at the notes I have written for each scene and suspect|
+| * |v2.0|user|go to previous scene|look at the narrative for the previous scene|
+
 
 ### Use Cases
 
 (Use /next as an example)
 
+Use case: Navigate to the next scene.
+
+1. The user gives `/next` as input.
+2. Parser parsed the `/next` input, returns a NextCommand.
+3. NextCommand does a self-invocation and calls the `execute()` method.
+4. NextCommand returns a boolean by self-invocating the `.exit()` method.
+5. If it is the last scene of the game, `.exit()` returns true else false.
+
 ### Non-Functional Requirements
 1. The game should work as long as java 11 is installed on the local machine.
 2. A working keyboard to play the game and a monitor to read the text.
 
+
 ### Glossary
 
-* *glossary item* - Definition
+
+- Mainstream OS: Windows, Mac OS X, Unix, Linux
 
 ## Appendix: Instructions for manual testing
 
