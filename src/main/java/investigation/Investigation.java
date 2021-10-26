@@ -149,7 +149,7 @@ public class Investigation {
         } else {
 
             openNoteDirectly();
-            
+
         }
     }
 
@@ -181,6 +181,7 @@ public class Investigation {
         int sceneIndex = Integer.parseInt(ui.readUserInput());
         ui.printSelectedNote(notes.searchNotesUsingSceneIndex(sceneIndex, notes));
     }
+
     public void checkSuspectedKiller() {
         currentScene = sceneList.getCurrentScene();
         ui.printAllSuspectInCurrentScene(currentScene);
