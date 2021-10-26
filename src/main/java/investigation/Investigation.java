@@ -1,14 +1,12 @@
 package investigation;
 
 import clue.Clue;
-import scene.SceneTypes;
 import storage.Storage;
 import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
 import parser.Parser;
 import scene.Scene;
 import scene.SceneList;
-import suspect.Suspect;
 import suspect.SuspectList;
 import ui.Ui;
 import note.Note;
@@ -38,40 +36,23 @@ public class Investigation {
         setSuspectStage();
     }
 
-    private void chooseSuspectToInvestigate(SceneList sceneList) {
-        SceneTypes sceneType = sceneList.getCurrentSceneType();
-        currentScene = sceneList.getCurrentScene();
-
-        if (sceneType == SceneTypes.INVESTIGATE_SCENE) {
-            ui.printInvestigationMessage(sceneList.getCurrentSceneIndex());
-            ui.printWhoToInvestigate();
-            ui.printSuspects(currentScene.getSuspectList());
-        }
+    public InvestigationStages getStage() {
+        return stage;
     }
 
-    private void chooseClueToInvestigate(SceneList sceneList) {
-        currentScene = sceneList.getCurrentScene();
-        ui.printInvestigationMessage(sceneList.getCurrentSceneIndex());
-        System.out.println(" - " + currentSuspect);
-        System.out.println("0. Go back to list of suspects");
-        Suspect suspect = currentScene.investigateSuspect(currentSuspect);
-        ui.printListOfClues(suspect.getClues());
-        ui.printGoNextSceneMessage();
+    public String getCurrentSuspectName() {
+        return currentSuspect;
     }
 
-    public void printCurrentInvestigation(SceneList sceneList) {
-        if (stage == InvestigationStages.SUSPECT_STAGE) {
-            chooseSuspectToInvestigate(sceneList);
-        } else {
-            chooseClueToInvestigate(sceneList);
-        }
+    public void setCurrentSuspect(int index) {
+        currentSuspect = parser.getSuspectNameFromIndex(currentScene, index);
     }
 
     public void investigateScene(Integer index, SceneList sceneList)
             throws InvalidSuspectException, InvalidClueException {
         switch (stage) {
         case SUSPECT_STAGE:
-            currentSuspect = parser.getSuspectNameFromIndex(sceneList.getCurrentScene(), index);
+            setCurrentSuspect(index);
             setClueStage();
             break;
         case CLUE_STAGE:
@@ -83,10 +64,8 @@ public class Investigation {
                 setSuspectStage();
             } else {
                 Clue currentClueInScene = currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1);
-                int indexInClueTracker = clueTracker.getClueIndex(currentSuspect, currentClueInScene.getClueName());
-                Clue currentClueInTracker = clueTracker.getSuspectAllClues(currentSuspect).get(indexInClueTracker);
-                clueTracker.setClueChecked(currentSuspect, currentClueInTracker);
-                System.out.println(currentClueInScene);
+                clueTracker.setClueChecked(currentSuspect, currentClueInScene);
+                ui.printSelectedClue(currentClueInScene);
             }
             break;
         default:
@@ -146,23 +125,20 @@ public class Investigation {
         }
     }
 
-    public void checkSuspectedKiller(SceneList sceneList) {
-        currentScene = sceneList.getCurrentScene();
-        ui.printAllSuspectInCurrentScene(currentScene);
+    public boolean checkSuspectedKiller(SceneList sceneList) {
+        ui.printAllSuspectInCurrentScene(sceneList.getCurrentScene());
         boolean killerFound;
-        boolean nameGivenIsASuspect = false;
-
-        while (!nameGivenIsASuspect) {
-            String suspectedKiller = ui.readUserInput();
-            nameGivenIsASuspect = correctSuspectNameGiven(suspectedKiller);
-            if (nameGivenIsASuspect) {
-                killerFound = killerFoundCorrectly(suspectedKiller);
-                goToCorrectFinalScene(sceneList, killerFound);
-            } else {
-                ui.printAskUserEnterSuspectName();
-                ui.printAllSuspectInCurrentScene(currentScene);
-            }
+        boolean nameGivenIsASuspect;
+        String suspectedKiller = ui.readUserInput();
+        nameGivenIsASuspect = parser.validSuspectNameGiven(suspectedKiller);
+        if (nameGivenIsASuspect) {
+            killerFound = killerFoundCorrectly(suspectedKiller);
+            return killerFound;
+        } else {
+            ui.printAskUserEnterSuspectName();
+            killerFound = checkSuspectedKiller(sceneList);
         }
+        return killerFound;
     }
 
     private boolean killerFoundCorrectly(String suspectedKiller) {
@@ -170,35 +146,12 @@ public class Investigation {
         return suspectedKillerLowerCase.equals(SUSPECT_WENDY_LOWER);
     }
 
-    private boolean correctSuspectNameGiven(String suspectedKiller) {
-        String suspectedKillerLowerCase = suspectedKiller.toLowerCase();
-        switch (suspectedKillerLowerCase) {
-        case SUSPECT_WENDY_LOWER:
-            return true;
-        case SUSPECT_FATHER_LOWER:
-            return true;
-        case SUSPECT_KEVIN_LOWER:
-            return true;
-        case SUSPECT_LING_LOWER:
-            return true;
-        case SUSPECT_ZACK_LOWER:
-            return true;
-        default:
-            return false;
-        }
-    }
-
-    private void goToCorrectFinalScene(SceneList sceneList, boolean killerFound) {
-        sceneList.setSceneNumberAfterSuspecting(killerFound);
-    }
-
     public ArrayList<Clue> getSuspectCheckedClues(String name) {
         return clueTracker.getSuspectCheckedClues(name);
     }
 
-    public void restartGame(SceneList sceneList) {
+    public void restartGame() {
         setSuspectStage();
-        sceneList.resetAllScenes();
     }
 
     public void setSuspectStage() {

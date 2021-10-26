@@ -167,6 +167,19 @@ public class Parser {
         return false;
     }
 
+    public boolean validSuspectNameGiven(String suspectedKiller) {
+        String suspectedKillerLowerCase = suspectedKiller.toLowerCase();
+        switch (suspectedKillerLowerCase) {
+        case SUSPECT_WENDY_LOWER:
+        case SUSPECT_FATHER_LOWER:
+        case SUSPECT_KEVIN_LOWER:
+        case SUSPECT_LING_LOWER:
+        case SUSPECT_ZACK_LOWER:
+            return true;
+        default:
+            return false;
+        }
+    }
 
     public static int parseNoteSceneIndex(String userInput) {
         String[] userInputSplit = userInput.split(INPUT_SPLITTER);

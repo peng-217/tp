@@ -20,7 +20,8 @@ public class NextCommand extends Command {
             sceneList.runCurrentScene();
             break;
         case GUESS_KILLER_SCENE:
-            investigation.checkSuspectedKiller(sceneList);
+            boolean isUserCorrect = investigation.checkSuspectedKiller(sceneList);
+            sceneList.setSceneNumberAfterSuspecting(isUserCorrect);
             sceneList.runCurrentScene();
             break;
         default:

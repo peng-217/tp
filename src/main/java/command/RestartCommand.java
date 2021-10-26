@@ -7,7 +7,8 @@ import ui.Ui;
 public class RestartCommand extends Command {
     @Override
     public void execute(Ui ui, Investigation investigation, SceneList sceneList) {
-        investigation.restartGame(sceneList);
+        investigation.restartGame();
+        sceneList.resetAllScenes();
     }
 
     @Override

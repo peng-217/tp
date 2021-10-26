@@ -59,7 +59,7 @@ public class Duke {
     private static void runUntilExitCommand() {
         boolean isExit = false;
         while (!isExit) {
-            investigation.printCurrentInvestigation(sceneList);
+            ui.printCurrentInvestigation(investigation, sceneList);
             String userInput = ui.readUserInput();
             Command commandFromUser = new InvalidCommand();
             try {

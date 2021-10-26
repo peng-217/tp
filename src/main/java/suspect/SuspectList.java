@@ -28,8 +28,10 @@ public class SuspectList {
         suspects.get(name).addClue(clue);
     }
 
-    public void setClueChecked(String name, Clue clue) {
-        suspects.get(name).setChecked(clue);
+    public void setClueChecked(String name, Clue clueInScene) {
+        int indexInClueTracker = this.getClueIndex(name, clueInScene.getClueName());
+        Clue clueInTracker = this.getSuspectAllClues(name).get(indexInClueTracker);
+        this.suspects.get(name).setChecked(clueInTracker);
     }
 
     public ArrayList<Clue> getSuspectAllClues(String name) {
@@ -74,7 +76,11 @@ public class SuspectList {
 
     @Override
     public String toString() {
-        return String.valueOf(suspects.keySet());
+        StringBuilder toReturn = new StringBuilder();
+        for (int i = 0; i < getNumSuspects(); i++) {
+            toReturn.append(i + 1).append(". ").append((String) suspects.keySet().toArray()[i]).append("\n");
+        }
+        return toReturn.toString();
     }
 
     public int getClueIndex(String suspectName, String clueName) {
