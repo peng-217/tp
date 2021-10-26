@@ -24,7 +24,12 @@ public class Suspect {
     }
 
     public void setChecked(Clue clue) {
-        clue.setChecked();
+        int index = clues.indexOf(clue);
+        try {
+            clues.get(index).setChecked();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Unable to find clue to set checked");
+        }
     }
 
     public ArrayList<Clue> getAvailableClues() {

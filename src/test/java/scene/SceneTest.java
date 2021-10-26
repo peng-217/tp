@@ -15,14 +15,14 @@ public class SceneTest {
 
     @Test
     public void getNarrative() {
-        Scene scene = new IntroductionScene(new Narrative(), new SuspectList(), SceneTypes.INTRODUCTION_SCENE);
+        Scene scene = new Scene(new Narrative(), new SuspectList(), SceneTypes.INTRODUCTION_SCENE);
         assertThrows(FileNotFoundException.class, scene::runScene);
     }
 
     @Test
     public void toString_InstantiateScene_printNoNarrativeMessage() {
         String expectedResult = "Incomplete Scene";
-        Scene scene = new IntroductionScene(new Narrative(), new SuspectList(), SceneTypes.INTRODUCTION_SCENE);
+        Scene scene = new Scene(new Narrative(), new SuspectList(), SceneTypes.INTRODUCTION_SCENE);
         String result = scene.toString();
         assertEquals(expectedResult, result);
     }

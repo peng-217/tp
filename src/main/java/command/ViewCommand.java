@@ -8,7 +8,7 @@ import ui.Ui;
 import java.util.ArrayList;
 
 public class ViewCommand extends Command {
-    private String[] suspects;
+    private final String[] suspects;
 
     public ViewCommand() {
         suspects = new String[]{"Father", "Kevin", "Wendy", "Ling", "Zack"};
