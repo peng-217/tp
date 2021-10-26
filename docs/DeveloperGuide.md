@@ -112,6 +112,7 @@ at the end of the game.
 **API:** `Scene.java`
 
 The scene class contains and produces the narrative for the scene.
+It also holds a suspectList, which contains the suspects and their respective clues.
 
 How the scene class work
 - Each scene has a scene type.
@@ -120,6 +121,7 @@ How the scene class work
 See below for example.
 - The introduction scene shows the introductory message to the user.
 - The investigation scene asks the user either investigate a suspect or look into a clue.
+![](Scene.png)
 
 ### Storage component
 **API:** `Storage.java`

@@ -14,7 +14,7 @@ public class SceneListTest {
         Ui ui = new Ui();
         GameDataFileDecoder datafile = new GameDataFileDecoder(ui,new GameDataFileManager("GameData.txt"));
         datafile.setFile(0);
-        SceneList sceneList = SceneListBuilder.buildSceneList(ui,datafile);
+        SceneList sceneList = SceneListBuilder.buildSceneList(datafile);
         Scene currentScene = sceneList.getCurrentScene();
         currentScene.runScene();
 
@@ -38,7 +38,7 @@ public class SceneListTest {
         Ui ui = new Ui();
         GameDataFileDecoder datafile = new GameDataFileDecoder(ui,new GameDataFileManager("GameData.txt"));
         datafile.setFile(0);
-        SceneList sceneList = SceneListBuilder.buildSceneList(ui,datafile);
+        SceneList sceneList = SceneListBuilder.buildSceneList(datafile);
 
         Scene currentScene = sceneList.getCurrentScene();
         currentScene.runScene();

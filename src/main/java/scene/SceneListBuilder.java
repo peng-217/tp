@@ -15,7 +15,7 @@ import static suspect.SuspectList.suspectListBuilder;
 
 public class SceneListBuilder {
 
-    public static SceneList buildSceneList(Ui ui, GameDataFileDecoder dataFile) throws MissingSceneFileException {
+    public static SceneList buildSceneList(GameDataFileDecoder dataFile) throws MissingSceneFileException {
         Scene[] scenes;
         try {
             scenes = getScenesFromFile("data/scenesWithNarratives.txt");
@@ -51,7 +51,8 @@ public class SceneListBuilder {
                     e.printStackTrace();
                 }
             }
-            scene = new Scene(new Narrative(narrativeFileLocation), suspectList, sceneType);
+            Narrative narrative = new Narrative(narrativeFileLocation);
+            scene = new Scene(narrative, suspectList, sceneType);
             scenes[i] = scene;
         }
         return scenes;
