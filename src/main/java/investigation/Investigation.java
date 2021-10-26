@@ -128,37 +128,52 @@ public class Investigation {
         System.out.println("Please enter your note:");
         String noteContent = ui.readUserInput();
         Note newNote = new Note(noteContent, noteTitle, sceneList.getCurrentSceneIndex());
-        notes.createNote(newNote, (sceneList.getCurrentSceneIndex()));
+        notes.createNote(newNote);
     }
 
     public void openNoteProcess() {
-        ui.printOpenNoteMessage(notes);
-        String userInput = ui.readUserInput();
-        if (userInput.contains("search")) {
-            System.out.println("Do you want to search by keyword or scene index?");
-            userInput = ui.readUserInput();
-            if (userInput.equals("keyword")) {
+        if (notes.getSize() == 0) {
+            ui.printNoNoteMessage();
+        } else {
+            ui.printOpenNoteMessage(notes);
+            String userInput = ui.readUserInput();
+            if (userInput.contains("search")) {
+                System.out.println("Do you want to search by keyword (type 'keyword')" 
+                       + " or scene index (type 'index')?");
+                userInput = ui.readUserInput();
+                if (userInput.equals("keyword")) {
 
-                keywordSearch();
+                    keywordSearch();
 
+                } else {
+
+                    indexSearch();
+
+                }
             } else {
 
-                indexSearch();
+                openNoteDirectly();
 
             }
-        } else {
-
-            openNoteDirectly();
-
         }
     }
 
     public void deleteNoteProcess() {
-        System.out.println("Here are the notes you have: ");
-        ui.printAllNotes(notes);
-        System.out.println("Please enter the index of the note you want to delete");
-        int deletedNoteIndex = Integer.parseInt(ui.readUserInput()) - 1;
-        notes.deleteNote(deletedNoteIndex);
+        if (notes.getSize() == 0) {
+            ui.printNoNoteMessage();
+        } else {
+            System.out.println("Here are the notes you have: ");
+            ui.printAllNotes(notes);
+            System.out.println("Please enter the index of the note you want to delete"
+                    + " (type in 'all' if you want to delete all notes)");
+            String userInput = ui.readUserInput();
+            if (userInput.equals("all")) {
+                notes.deleteAllNote();
+            } else {
+                int deletedNoteIndex = Integer.parseInt(ui.readUserInput()) - 1;
+                notes.deleteNote(deletedNoteIndex);
+            }
+        }
     }
 
 

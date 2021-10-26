@@ -51,6 +51,8 @@ public class Ui {
     private static final String INVALID_INDEX = "Invalid index";
     private static final String ASK_USER_RETYPE_KILLER_NAME =
             "Invalid suspect name given. Please enter one of the suspect name below.";
+    private static final String DELETE_ALL_NOTE_MESSAGE = "Ok! All notes has been deleted!";
+    private static final String NO_NOTE_MESSAGE = "There is no note now, try to add one!";
 
     private Scanner scanner;
 
@@ -131,15 +133,25 @@ public class Ui {
         }
     }
 
+    public void printDeleteAllNoteMessage(){
+        System.out.println(DELETE_ALL_NOTE_MESSAGE);
+    }
+
     public void printDeleteNoteMessage() {
         System.out.println(DELETE_NOTE_MESSAGE);
     }
 
+    public void printNoNoteMessage() {
+        System.out.println(NO_NOTE_MESSAGE);
+        System.out.println(LINE_SEPARATOR);
+    }
+
     public void printNoteTitle(NoteList notes) {
-        System.out.println(LIST_OF_NOTES_MESSAGE);
-        for (int i = 0; i < notes.getSize(); i++) {
-            System.out.println((i + 1) + "." + " " + notes.getIndexNote(i).getNoteTitle());
-        }
+
+            System.out.println(LIST_OF_NOTES_MESSAGE);
+            for (int i = 0; i < notes.getSize(); i++) {
+                System.out.println((i + 1) + "." + " " + notes.getIndexNote(i).getNoteTitle());
+            }
     }
 
     public void printSelectedNote(ArrayList<Note> result) {

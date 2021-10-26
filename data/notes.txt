@@ -1,16 +1,4 @@
-scene 1
-SCENE 1
-1
-End of this note.
 scene 2
-SCENE 2
-2
-End of this note.
-scene 3
-SCENE 3
-3
-End of this note.
-scene 3
-this is 2
-test
+TEST 2
+scene 2
 End of this note.

@@ -62,22 +62,28 @@ public class NoteList {
         return notes.get(index);
     }
 
-    public void createNote(Note newNote, int inputSceneIndex) {
+    public void createNote(Note newNote) {
         notes.add(newNote);
-        Storage.saveNote(this,inputSceneIndex);
+        Storage.saveNote(this);
         ui.printSaveNoteMessage();
     }
 
-    public void createNoteFromFile(Note newNote, int inputSceneIndex) {
+    public void createNoteFromFile(Note newNote) {
         notes.add(newNote);
-        Storage.saveNote(this,inputSceneIndex);
+        Storage.saveNote(this);
     }
 
     public void deleteNote(int index) {
         Note noteToDelete = notes.get(index);
         notes.remove(index);
-        Storage.saveNote(this,noteToDelete.getNoteSceneIndex());
+        Storage.saveNote(this);
         ui.printDeleteNoteMessage();
+    }
+
+    public void deleteAllNote() {
+        notes.removeAll(notes);
+        Storage.saveNote(this);
+        ui.printDeleteAllNoteMessage();
     }
 
 
