@@ -135,9 +135,11 @@ public class Ui {
         System.out.println(VIEWING_CHECKED_CLUES_MESSAGE);
     }
 
+    //@@ author peng-217
     public void printSaveNoteMessage() {
         System.out.println(SAVE_NOTE_MESSAGE);
     }
+
 
     public void printExistingNotes(NoteList notes,int orderIndex) {
         System.out.println(LIST_ALL_NOTES_MESSAGE);
@@ -180,7 +182,7 @@ public class Ui {
         System.out.println();
         System.out.println(LINE_SEPARATOR);
     }
-
+//@@ author
 
     public void printSuspects(SuspectList suspects) {
         System.out.println(suspects.toString());
@@ -244,6 +246,7 @@ public class Ui {
         System.out.println(currentClueInScene.toString());
     }
 
+    //@@ author peng-217
     public void printNoteInstructions() {
         System.out.println("Do you want to create a new note"
                 + " or open a existing note or delete a note?");
@@ -275,6 +278,7 @@ public class Ui {
         System.out.println("Please enter scene index:");
     }
 
+
     public void printNoteOpenInstructions() {
         System.out.println("Please type in the index of the note to open it:");
     }
@@ -290,4 +294,5 @@ public class Ui {
     public void printNoteMissingError(int size) {
         System.out.println("Invalid index! There are only " + size + " notes currently.");
     }
+    //@@ author
 }

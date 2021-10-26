@@ -3,9 +3,28 @@
 
 autonumber
 
- -> ":Ui": Authentication Request
-Bob --> Alice: Authentication Response
+ ->Ui:
+Ui --> Clue:getClueName()
+Ui --> Investigation : getStages()
+Investigation --> Investigation:getStage()
+Investigation <-- Ui
+Ui --> Investigation:getCurrentSceneType()
+Ui --> SceneList:getCurrentSceneType()
+Ui --> scene:investigateSuspect(suspectName)
+scene --> Suspect:getClues()
+Ui --> NoteList:getIndexNote()
+NoteList --> Note: getNoteTitle()
+Ui --> NoteList:getIndexNote()
+NoteList --> Note: getNoteTitle()
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+Ui --> SuspectList:printSuspects(suspects)
+SuspectList --> SuspectList:toString()
+Ui --> Scene:printAllSuspectInCurrentScene(scene)
+Scene --> Scene: toString()
+Ui --> Clue:printSelectedClue(scene)
+Clue --> Clue: toString()
+
+
+
+
 @enduml
