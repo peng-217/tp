@@ -8,12 +8,7 @@ import suspect.SuspectList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-<<<<<<< Updated upstream
-=======
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.Objects;
->>>>>>> Stashed changes
 import java.util.Scanner;
 
 import static suspect.SuspectList.suspectListBuilder;
