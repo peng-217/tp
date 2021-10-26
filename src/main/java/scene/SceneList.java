@@ -1,11 +1,8 @@
 package scene;
 
 import storage.GameDataFileDecoder;
-import storage.GameDataFileManager;
 import ui.Ui;
-
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 public class SceneList {
     private static final Ui ui = new Ui();
@@ -13,11 +10,12 @@ public class SceneList {
     private int currentSceneIndex;
     private static final int STARTING_INDEX_FOR_FILE = 0;
     private static final int INTRODUCTION_SCENE_INDEX = 0;
+    private static final int GUESS_KILLER_SCENE_INDEX = 4;
     private static final int CORRECT_KILLER_SCENE_INDEX = 5;
     private static final int WRONG_KILLER_SCENE_INDEX = 6;
     GameDataFileDecoder dataFile;
 
-    public SceneList(Scene[] scenes, GameDataFileDecoder dataFile) {
+    public SceneList(GameDataFileDecoder dataFile, Scene... scenes) {
         this.dataFile = dataFile;
         this.currentSceneIndex = dataFile.getCurrentSceneIndex();
         this.scenes = scenes;
@@ -29,16 +27,17 @@ public class SceneList {
         } else {
             this.currentSceneIndex = WRONG_KILLER_SCENE_INDEX;
         }
-        dataFile.resetFile(INTRODUCTION_SCENE_INDEX);
+        dataFile.setFile(INTRODUCTION_SCENE_INDEX);
     }
 
     public Scene getCurrentScene() {
+        assert currentSceneIndex <= 6;
         return this.scenes[currentSceneIndex];
     }
 
     public void resetCurrentSceneIndex() {
         this.currentSceneIndex = STARTING_INDEX_FOR_FILE;
-        dataFile.resetFile(STARTING_INDEX_FOR_FILE);
+        dataFile.setFile(STARTING_INDEX_FOR_FILE);
     }
 
     public int getCurrentSceneIndex() {
@@ -47,16 +46,17 @@ public class SceneList {
 
     public void updateSceneNumber() {
         this.currentSceneIndex++;
-        dataFile.resetFile(currentSceneIndex);
+        assert currentSceneIndex <= 6;
+        dataFile.setFile(currentSceneIndex);
     }
 
     public SceneTypes getCurrentSceneType() {
-        Scene currentScene = getCurrentScene();
+        Scene currentScene = this.getCurrentScene();
         return currentScene.getSceneType();
     }
 
     public void runCurrentScene() {
-        Scene currentScene = getCurrentScene();
+        Scene currentScene = this.getCurrentScene();
         try {
             currentScene.runScene();
         } catch (FileNotFoundException e) {
@@ -65,7 +65,32 @@ public class SceneList {
     }
 
     public void resetAllScenes() {
-        resetCurrentSceneIndex();
+        this.resetCurrentSceneIndex();
+        runCurrentScene();
+    }
+
+    private void decreaseSceneNumber() {
+        // We do not allow users to go back to any scene with
+        // scene number less than 0
+
+        SceneTypes sceneType = getCurrentSceneType();
+        switch (sceneType) {
+        case INTRODUCTION_SCENE:
+            break;
+        case WRONG_KILLER_SCENE:
+        case CORRECT_KILLER_SCENE:
+            this.currentSceneIndex = GUESS_KILLER_SCENE_INDEX;
+            dataFile.setFile(GUESS_KILLER_SCENE_INDEX);
+            break;
+        default:
+            this.currentSceneIndex--;
+            dataFile.setFile(currentSceneIndex);
+        }
+
+    }
+
+    public void previousScene() {
+        decreaseSceneNumber();
         runCurrentScene();
     }
 }

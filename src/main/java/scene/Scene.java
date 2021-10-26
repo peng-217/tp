@@ -1,13 +1,11 @@
 package scene;
 
-import clue.Clue;
 import exceptions.MissingNarrativeException;
 import narrative.Narrative;
 import suspect.Suspect;
 import suspect.SuspectList;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 public class Scene {
     private final Narrative narrative;
@@ -20,16 +18,12 @@ public class Scene {
         this.sceneType = sceneType;
     }
 
-    public Narrative getNarrative() {
-        return narrative;
-    }
-
     public SuspectList getSuspectList() {
         return suspectList;
     }
 
-    public ArrayList<Clue> getAllAvailableClues() {
-        return suspectList.getAllAvailableClues();
+    public SceneTypes getSceneType() {
+        return this.sceneType;
     }
 
     public Suspect investigateSuspect(String name) {
@@ -55,9 +49,5 @@ public class Scene {
             System.out.println("Narrative has not been selected!");
             return "Incomplete Scene";
         }
-    }
-
-    public SceneTypes getSceneType() {
-        return this.sceneType;
     }
 }

@@ -19,14 +19,30 @@ How the parser work
 - When the user gives an input, the parser tries to return a command based the input given.
 - If the input does not generate a valid command type, it throws the invalidInputException.
 
+The sequence diagram below demonstrates how the parser works.
+
+{INSERT DIAGRAM HERE}
+
+### Note component
+**API:** Note.java
+
+The note component allows user to create / open / delete /search note. 
+
+How the note work
+- When user want to take note, a note with title and content will be created and added 
+  to note list.
+- Notes in the note list can be found by their titles and scene index.
+- Unwanted notes can be deleted.
 
 ### UI component
 **API:** `Ui.java`
 
-The ui component communicates with the user via the terminal.
+The ui component communicates with the user via the terminal. Other component call methods of 
+ui to print output to terminal. 
 
 How the ui work
 - Print messages to terminal depending on the scene.
+- Print corresponding output to terminal according to input command.
 
 ### Command component
 **API:** `Command.java` 
@@ -163,6 +179,9 @@ It will read the file and store the clues as the Class `Clue`, under the specifi
 ## Use Cases
 
 (Use /next as an example)
+=======
+|v2.0|user|go back to the previous scene|recap the previous scene|
+|v2.0|user|investigate suspect using name or their index|more than one way to investigate a suspect|
 
 ## Non-Functional Requirements
 1. The game should work as long as java 11 is installed on the local machine.
