@@ -25,6 +25,7 @@ public class SuspectList {
     }
 
     public void addClueForSuspect(String name, Clue clue) {
+        assert suspects.containsKey(name);
         suspects.get(name).addClue(clue);
     }
 
@@ -101,8 +102,9 @@ public class SuspectList {
         sc.nextLine();
 
         for (int i = 0; i < numOfSuspect; i++) {
-            String suspect = sc.nextLine();
-            suspectList.addSuspect(suspect, new Suspect());
+            String suspectName = sc.nextLine();
+            Suspect suspect = new Suspect();
+            suspectList.addSuspect(suspectName, suspect);
         }
 
         int numOfClues = sc.nextInt();

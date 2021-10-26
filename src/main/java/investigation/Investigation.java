@@ -54,6 +54,7 @@ public class Investigation {
                 setSuspectStage();
             } else {
                 Clue currentClueInScene = currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1);
+                assert clueTracker.getAllClues().contains(currentClueInScene);
                 clueTracker.setClueChecked(currentSuspect, currentClueInScene);
                 ui.printSelectedClue(currentClueInScene);
             }

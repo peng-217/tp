@@ -100,6 +100,20 @@ See below for example.
 ### Suspect component
 **API:** Suspect.java
 
+The `Suspect` class contains an `ArrayList` of the class `Clue`. 
+
+How the suspect class work:
+
+  * Different suspects in a particular scene are stored in the `SuspectList` class.
+  * Suspects are stored via a `LinkedHashMap<String, Suspect>`, with the string being the suspect's name.
+
+See below for example:
+
+  * The first investigation scene has a `SuspectList` containing one name, "Father", 
+and four clues within its corresponding `Suspect` class.
+
+![](Suspect.png)
+
 
 ## Implementation
 
@@ -134,14 +148,20 @@ user is investigating. Note tile and content are fulfilled by users. Default tit
 existing note by either search its title/scene index or directly open it by its sequence number (in the note list). User can also delete the unwanted notes by
 typing in its sequence number.
 
-### [Proposed] Clue Reader and Organizer
+### SuspectListBuilder
 
-Clues used in different scenes can be kept in txt file and created following a specific format.
-It uses `java.io.File` and implements:
-* `clueReader(TEXT_LOCATION.txt)` -- where `TEXT_LOCATION.txt` is the directory containing the specified text file.
+Suspects and clues used in different scenes can be kept in a txt file and created following a specific format.
+It uses `java.io.File`, `java.util.Scanner`, and is implemented as:
+* `suspectListBuilder(String fileLocation, SuspectList suspectList)` -- where `fileLocation` is the directory 
+containing the specified text file and `suspectList` is the instance of class `SuspectList` that the suspects 
+and clues are to be added into.
 
 This method will search for the specified text file, throwing a `FileNotFoundException` if it is missing.
-It will read the file and store the clues as the Class `Clue`, under the specified `Suspect` instance which is then stored in a `SuspectList` class.
+The text file will be written in such a way that the program can recognize how many suspects
+and how many clues there are. It will first add the suspects from the file into the suspectList 
+via the method `addSuspect(String suspectName, Suspect suspect)`, and then the clues via the 
+method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect with the corresponding `suspectName`.
+
 
 
 ## Appendix

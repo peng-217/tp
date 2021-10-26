@@ -121,6 +121,19 @@ Here are the commands that you can enter:
 Now, enter "/next" to start your journey to the truth.
 ```
 
+### Taking down notes `/note`
+
+This allows the user to record their own notes for any particular scene.
+
+Example of usage:
+
+* Typing `/note` would bring up the prompt:
+```
+Do you want to create a new note or open an existing note or delete a note?
+```
+* The three available commands are `create`, `open`, and `delete`.
+* An available shortcut is to type the command after `/note`. 
+For example, you can input `/note create` to bring up the note creation prompt.
 
 ### Investigate suspect: `KEYWORD OR INDEX`
 Users can investigate the suspect using either the suspect's name or the suspect number.

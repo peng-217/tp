@@ -8,8 +8,6 @@ import suspect.SuspectList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 import static suspect.SuspectList.suspectListBuilder;
