@@ -7,6 +7,7 @@ import ui.Ui;
 public class BackCommand extends Command {
     @Override
     public void execute(Ui ui, Investigation investigation, SceneList sceneList) {
+        investigation.setSuspectStage();
         sceneList.previousScene();
     }
 

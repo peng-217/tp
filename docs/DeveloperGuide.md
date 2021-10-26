@@ -2,12 +2,41 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+The plot of the game was adopted from one of the games available in the Mini Program in WeChat called Ju Ben Sha. The original story was in Chinese and was translated to English with the help of Google Translate. 
 
 ## Design
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 ### Architecture
+
+![High Level Architecture Diagram](./high_level_architecture.png)
+
+The _**Architecture Diagram**_ given above explains the high-level design of the App.
+
+Given below is a quick overview of main components and how they interact with each other.
+
+**Main components of the architecture**
+
+`Duke` is responsible for,
+
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* During the game: Takes in user input and coordinates other components to parse and execute the input in a while loop, until the game is shut down.
+
+The rest of the App consists of eight components.
+
+`Parser`:
+`Ui`:
+`Command`: The command executor.
+`Investigation`:
+`Scene`:
+`Suspect`:
+`Note`:
+`Storage`:
+
+**How the architecture components interact with each other**
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command `/next`.
+
+![High Level Sequence Digram for "/next"](./main_architecture.png)
 
 ### Parser component
 **API:** Parser.java 
@@ -20,8 +49,7 @@ How the parser work
 
 The sequence diagram below demonstrates how the parser works.
 
-{INSERT DIAGRAM HERE}
->>>>>>> e7de3ad9b4526fbac1d798c6348b53efd66ad6a8
+![Parser design](./ParserUML.png)
 
 ### Note component
 **API:** Note.java
@@ -35,7 +63,7 @@ How the note work
 - Unwanted notes can be deleted.
 
 ### UI component
-**API:** Ui.java 
+**API:** `Ui.java`
 
 The ui component communicates with the user via the terminal. Other component call methods of 
 ui to print output to terminal. 
@@ -45,41 +73,43 @@ How the ui work
 - Print corresponding output to terminal according to input command.
 
 ### Command component
-**API:** Command.java 
+**API:** `Command.java` 
 
-The command component takes in the input given by the user
-and generates a command based on the input given. 
+Here’s a (partial) class diagram of the `Command` component:
 
-Command component is an abstract class.
-Functional command extends the command class. 
-Eg NextCommand, ViewCommand Etc.
+![(partial class) diagram of Command component](./Command_Class_Diagram.png)
 
-How the command work
-- Each command has an execute command.
-- Execute command based on the command type.
+How the `Command` componnet works:
+1. The user input is first parsed using the `Parse` component
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., NextCommand), which is executed by `Duke`.
+3. The command can communicate with the `Ui`, `Investigation` and `SceneList` when it is executed (e.g. to go to the next scene).
+4. Some of the commands may update the `Storage`.
+
+The Sequence Diagram [below](./next_command_sequence_diagram.png) illustrates within the `Command` component for the `execute(ui,investigation,sceneList)` method call of the `NextCommand` class.
+
+![Sequence diagram for execute(ui,investigation,sceneList) method call of NextCommand](./next_command_sequence_diagram.png)
 
 ### Investigation component
-**API:** Investigation.java
+**API:** `Investigation.java`
 
-The investigation class manages the investigation scene in each
-investigation scene. 
+![Investigation Sequence Diagram](./Investigation_Sequence_Diagram.png)
 
-How the investigation works
+The investigation class manages the investigation in each investigation scene. 
+
+How the `Investigation` component works:
 - When an investigation command is returned from the parser, we investigate the input given by the user.
-- For each scene, the investigation class display the scene's narrative.
-- The investigation class is also used to determine if the user has managed to find the correct killer from the game.
-
-
-### Clue component
-**API:** Clue.java
-
-### Narrative component
-**API:** Narrative.java
-
-The narrative class generates the story for each of the scene.
+- Investigation are divided into two parts, suspect stage and clue stage
+  - `Suspect Stage`: Prints the list of suspects and prompts user for input, user selects which suspect he/she wants 
+to investigate. Proceeds to clue stage when input entered are valid
+  - `Clue Stage`: Prints the list of clues available for viewing for the selected suspect previously and prompts user
+for input, user selects which clue he/she wants to view. The user may enter the number '0' to return to the 
+`Suspect Stage`. Otherwise, after selecting the clue, the clue is then marked as checked and contents of the selected 
+clue is displayed on the terminal.
+- The Investigation class is also used to determine if the user has managed to find the correct killer
+at the end of the game.
 
 ### Scene component
-**API:** Scene.java
+**API:** `Scene.java`
 
 The scene class contains and produces the narrative for the scene.
 
@@ -91,11 +121,8 @@ See below for example.
 - The introduction scene shows the introductory message to the user.
 - The investigation scene asks the user either investigate a suspect or look into a clue.
 
-### Search component
-**API:** Search.java
-
 ### Storage component
-**API:** Storage.java
+**API:** `Storage.java`
 
 ### Suspect component
 **API:** Suspect.java
@@ -114,8 +141,9 @@ and four clues within its corresponding `Suspect` class.
 
 ![](Suspect.png)
 
-
 ## Implementation
+
+This section describes some noteworthy details on how certain features are implemented.
 
 ### Display checked-clues feature
 
@@ -166,24 +194,21 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 
 ## Appendix
 
+### Product scope
 
-## Product scope
-### Target user profile
+**Target user profile：**
 
 - enjoy the playing interactive game
 - enjoy mystery genre
 - enjoy reading
 - wants to take a break from visual games
 
-{Describe the target user profile}
 
-### Value proposition
+**Value proposition：**
 
 - Provide an alternative game for users to exercise creative thinking
 
-{Describe the value proposition: what problem does it solve?}
-
-## User Stories
+### User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
@@ -196,16 +221,18 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 |v2.0|user|go back to the previous scene|recap the previous scene|
 |v2.0|user|investigate suspect using name or their index|more than one way to investigate a suspect|
 
-## Non-Functional Requirements
+### Use Cases
+
+(Use /next as an example)
+
+### Non-Functional Requirements
 1. The game should work as long as java 11 is installed on the local machine.
 2. A working keyboard to play the game and a monitor to read the text.
 
-{Give non-functional requirements}
-
-## Glossary
+### Glossary
 
 * *glossary item* - Definition
 
-## Instructions for manual testing
+## Appendix: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}

@@ -13,7 +13,13 @@
 
 ## Features 
 
-{Give detailed description of each feature}
+**Notes about the command format:**
+* Words in UPPER_CASE are the parameters to be supplied by the user.
+  e.g. in /view [NAME]..., NAME is a parameter which can be used as /view Father.
+* Items in square brackets are optional.
+  e.g /view [NAME]... can be used as /view or /view Father.
+* Items with ... after them can be used multiple times including zero times. 
+  e.g. [NAME]... can be used as   (i.e. 0 times), Father, Father Ling etc.
 
 ### Moving to the next scene: `/next`
 This allows the user to go the next scene.
@@ -71,7 +77,7 @@ Here are the commands that you can enter:
 Now, enter "/next" to start your journey to the truth.
 ```
 
-### View the list of commands available: `/help`
+### Viewing the list of commands available: `/help`
 This allows the user to view the list of commands available.
 
 Format: `/help`
@@ -91,7 +97,7 @@ Here are the list of commands available to you.
 /restart
 ```
 
-### Restart the game: `/restart`
+### Restarting the game: `/restart`
 This allows the user to restart the game.
 
 Example of usage:
@@ -135,7 +141,7 @@ Do you want to create a new note or open an existing note or delete a note?
 * An available shortcut is to type the command after `/note`. 
 For example, you can input `/note create` to bring up the note creation prompt.
 
-### Investigate suspect: `KEYWORD OR INDEX`
+### Investigating suspect: `KEYWORD OR INDEX`
 Users can investigate the suspect using either the suspect's name or the suspect number.
 
 Format: `[/investigate] KEYWORD OR INDEX`
@@ -169,7 +175,7 @@ Enter "/next" to go to the next scene.
 ```
 
 
-### Investigate clue: `INDEX`
+### Investigating clue: `INDEX`
 This allows the user to investigate the clue based on the index.
 
 Format: `INDEX`
@@ -218,7 +224,7 @@ Scene 1 Investigation
 Enter "/next" to go to the next scene.
 ```
 
-### Choose the killer: `KEYWORD`
+### Choosing the killer: `KEYWORD`
 This allows the user to choose the killer based on the user name.
 
 Format: `KEYWORD`
@@ -244,6 +250,19 @@ Wendy
 This is an ending for guessing correctly.
 ```
 
+### Viewing checked clues: `/view`
+
+Views the clues that have been gathered from investigations.
+
+Format: `/view [NAME]...`
+
+* NAME(s) provided must be one/more of the suspects' names.
+* If valid names are provided, only clues gathered that are specific to those suspects will be shown.
+
+Examples:
+
+* `/view` Displays all clues that have been gathered.
+* `/view Father` Displays clues that have been gathered and are specific to Father.
 
 ## FAQ
 
@@ -252,8 +271,6 @@ This is an ending for guessing correctly.
 **A**: {your answer here}
 
 ## Command Summary
-
-{Give a 'cheat sheet' of commands here}
 
 * Add todo `todo n/TODO_NAME d/DEADLINE`
 
@@ -265,3 +282,4 @@ This is an ending for guessing correctly.
 | Back | /back |
 | Investigate | [/investigate] INDEX or KEYWORD e.g., /investigate father |
 | Choose Killer | KEYWORD e.g., Father |
+| View Clues | /view [NAME]...

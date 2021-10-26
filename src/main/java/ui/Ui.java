@@ -29,12 +29,13 @@ public class Ui {
     private static final String SAVE_NOTE_MESSAGE =
             "Ok! The new note has been successfully created and saved.";
     private static final String WHO_KILLED_YOU = "Who do you think killed you?";
-    private static final String HELP_COMMAND = "/help";
-    private static final String EXIT_COMMAND = "/exit";
-    private static final String NEXT_COMMAND = "/next";
-    private static final String NOTE_COMMAND = "/note";
-    private static final String VIEW_COMMAND = "/view";
-    private static final String RESTART_COMMAND = "/restart";
+    private static final String HELP_COMMAND = "\"/help\" - view this command list";
+    private static final String EXIT_COMMAND = "\"/exit\" - exit the game";
+    private static final String NEXT_COMMAND = "\"/next\" - move on to the next scene or the next stage of a scene";
+    private static final String NOTE_COMMAND = "\"/note\" - create a new note/ open a note/ delete a note";
+    private static final String VIEW_COMMAND = "\"/view\" - view all the clues that you have gathered";
+    private static final String RESTART_COMMAND = "\"/restart\" - restart the game from beginning";
+
     private static final String INVALID_INPUT_GIVEN = "Invalid input! Type '/help' to see the available commands.";
     private static final String INVALID_NUMBER_SUSPECT =
             "Invalid number! To select a suspect, please input its corresponding number.";
@@ -51,6 +52,15 @@ public class Ui {
     private static final String SCENE_FILE_MISSING_MESSAGE =
             "File containing number of scene and its order is missing";
     private static final String INVALID_INDEX = "Invalid index";
+    private static final String CHOOSE_SUSPECT_OR_CLUE_INDEX =
+            "Key in the index (e.g. 1, 2) in front of the suspect/clue you want to investigate";
+
+    private Scanner scanner;
+
+    public void printEmptyLine() {
+        System.out.println(LINE_SEPARATOR);
+    }
+  
     private static final String ASK_USER_RETYPE_KILLER_NAME =
             "Invalid suspect name given. Please enter one of the suspect name below.";
 
@@ -67,7 +77,6 @@ public class Ui {
         System.out.println(GOODBYE_MESSAGE);
     }
 
-
     public void printListOfCommands() {
         System.out.println(LIST_OF_COMMAND_AVAILABLE_MESSAGE);
         System.out.println(HELP_COMMAND);
@@ -76,6 +85,7 @@ public class Ui {
         System.out.println(NOTE_COMMAND);
         System.out.println(VIEW_COMMAND);
         System.out.println(RESTART_COMMAND);
+        System.out.println(CHOOSE_SUSPECT_OR_CLUE_INDEX);
         System.out.println(ASK_FOR_CLUE_OR_SUSPECT_NUMBER);
     }
 

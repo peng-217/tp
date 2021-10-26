@@ -18,12 +18,7 @@ public class Investigation {
     private static final Ui ui = new Ui();
     private final SuspectList clueTracker;
     private static final String WRONG_INDEX_GIVEN = "Sorry please enter index within range";
-    private static final String INVALID_COMMAND = "Invalid command";
     private static final String SUSPECT_WENDY_LOWER = "wendy";
-    private static final String SUSPECT_FATHER_LOWER = "father";
-    private static final String SUSPECT_LING_LOWER = "ling";
-    private static final String SUSPECT_ZACK_LOWER = "zack";
-    private static final String SUSPECT_KEVIN_LOWER = "kevin";
 
     public Investigation(SuspectList clueTracker) {
         this.clueTracker = clueTracker;

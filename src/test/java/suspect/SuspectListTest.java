@@ -15,32 +15,32 @@ public class SuspectListTest {
     @Test
     public void listOfSuspects() {
         SuspectList suspects = new SuspectList();
-        suspects.addSuspect("Jerry", new Suspect());
-        suspects.addSuspect("Tom", new Suspect());
+        suspects.addSuspect("Father", new Suspect());
+        suspects.addSuspect("Wendy", new Suspect());
 
-        assertEquals("[Jerry, Tom]", suspects.getSuspects().keySet().toString());
+        assertEquals("[Father, Wendy]", suspects.getSuspects().keySet().toString());
     }
 
     @Test
     public void listOfSuspectsWithClues() {
         SuspectList suspects = new SuspectList();
-        suspects.addSuspect("Jerry", new Suspect());
-        suspects.addSuspect("Tom", new Suspect());
+        suspects.addSuspect("Father", new Suspect());
+        suspects.addSuspect("Wendy", new Suspect());
 
         Clue fatherInsurance = new FatherInsurance();
         Clue fatherTextMessage = new FatherTextMessage();
         Clue fatherMap = new FatherMap();
 
-        suspects.addClueForSuspect("Tom", fatherInsurance);
-        suspects.addClueForSuspect("Tom", fatherTextMessage);
-        suspects.addClueForSuspect("Jerry", fatherMap);
+        suspects.addClueForSuspect("Father", fatherInsurance);
+        suspects.addClueForSuspect("Father", fatherTextMessage);
+        suspects.addClueForSuspect("Wendy", fatherMap);
 
-        assertEquals(2, suspects.getSuspectAvailableClues("Tom").size());
+        assertEquals(2, suspects.getSuspectAvailableClues("Father").size());
 
-        assertFalse(suspects.getSuspectAllClues("Tom").get(0).isChecked());
-        suspects.setClueChecked("Tom", fatherInsurance);
-        assertTrue(suspects.getSuspectAllClues("Tom").get(0).isChecked());
+        assertFalse(suspects.getSuspectAllClues("Father").get(0).isChecked());
+        suspects.setClueChecked("Father", fatherInsurance);
+        assertTrue(suspects.getSuspectAllClues("Father").get(0).isChecked());
 
-        assertEquals(1, suspects.getSuspectAvailableClues("Tom").size());
+        assertEquals(1, suspects.getSuspectAvailableClues("Father").size());
     }
 }
