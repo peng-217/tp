@@ -29,12 +29,13 @@ public class Ui {
     private static final String SAVE_NOTE_MESSAGE =
             "Ok! The new note has been successfully created and saved.";
     private static final String WHO_KILLED_YOU = "Who do you think killed you?";
-    private static final String HELP_COMMAND = "/help";
-    private static final String EXIT_COMMAND = "/exit";
-    private static final String NEXT_COMMAND = "/next";
-    private static final String NOTE_COMMAND = "/note";
-    private static final String VIEW_COMMAND = "/view";
-    private static final String RESTART_COMMAND = "/restart";
+    private static final String HELP_COMMAND = "\"/help\" - view this command list";
+    private static final String EXIT_COMMAND = "\"/exit\" - exit the game";
+    private static final String NEXT_COMMAND = "\"/next\" - move on to the next scene or the next stage of a scene";
+    private static final String NOTE_COMMAND = "\"/note\" - create a new note/ open a note/ delete a note";
+    private static final String VIEW_COMMAND = "\"/view\" - view all the clues that you have gathered";
+    private static final String RESTART_COMMAND = "\"/restart\" - restart the game from beginning";
+
     private static final String INVALID_INPUT_GIVEN = "Invalid input! Type '/help' to see the available commands.";
     private static final String INVALID_NUMBER_SUSPECT =
             "Invalid number! To select a suspect, please input its corresponding number.";

@@ -3,14 +3,16 @@ package suspect;
 import clue.Clue;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Map;
-import java.util.LinkedHashMap;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
 public class SuspectList {
     protected LinkedHashMap<String, Suspect> suspects;
+    protected final String[] suspectsNames = new String[]{"Father", "Kevin", "Wendy", "Ling", "Zack"};
 
     public SuspectList() {
         this.suspects = new LinkedHashMap<>();
@@ -31,18 +33,22 @@ public class SuspectList {
     public void setClueChecked(String name, Clue clueInScene) {
         int indexInClueTracker = this.getClueIndex(name, clueInScene.getClueName());
         Clue clueInTracker = this.getSuspectAllClues(name).get(indexInClueTracker);
+        assert Arrays.asList(suspectsNames).contains(name);
         this.suspects.get(name).setChecked(clueInTracker);
     }
 
     public ArrayList<Clue> getSuspectAllClues(String name) {
+        assert Arrays.asList(suspectsNames).contains(name);
         return suspects.get(name).getClues();
     }
 
     public ArrayList<Clue> getSuspectAvailableClues(String name) {
+        assert Arrays.asList(suspectsNames).contains(name);
         return suspects.get(name).getAvailableClues();
     }
 
     public ArrayList<Clue> getSuspectCheckedClues(String name) {
+        assert Arrays.asList(suspectsNames).contains(name);
         return suspects.get(name).getCheckedClues();
     }
 
