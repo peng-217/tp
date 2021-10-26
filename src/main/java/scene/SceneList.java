@@ -84,6 +84,7 @@ public class SceneList {
             break;
         default:
             this.currentSceneIndex--;
+            assert this.currentSceneIndex >= 0;
             dataFile.setFile(currentSceneIndex);
         }
 
