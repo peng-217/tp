@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+User -> Duke: "/next"
+Duke -> Ui: readUserInput()
+Duke <- Ui: userInput
+Duke -> Command: new Command()
+Duke <- Command: CommandFromUser
+Duke -> Parser: getCommandFromUser(userInput)
+Duke <- Parser: CommandFromUser
+Duke -> Command: execute()
+Command -> Investigation: runScene()
+Duke -> Command: exit()
+User <- Duke
+
+@enduml

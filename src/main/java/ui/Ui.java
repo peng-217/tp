@@ -52,6 +52,15 @@ public class Ui {
     private static final String SCENE_FILE_MISSING_MESSAGE =
             "File containing number of scene and its order is missing";
     private static final String INVALID_INDEX = "Invalid index";
+    private static final String CHOOSE_SUSPECT_OR_CLUE_INDEX =
+            "Key in the index (e.g. 1, 2) in front of the suspect/clue you want to investigate";
+
+    private Scanner scanner;
+
+    public void printEmptyLine() {
+        System.out.println(LINE_SEPARATOR);
+    }
+  
     private static final String ASK_USER_RETYPE_KILLER_NAME =
             "Invalid suspect name given. Please enter one of the suspect name below.";
 
@@ -68,7 +77,6 @@ public class Ui {
         System.out.println(GOODBYE_MESSAGE);
     }
 
-
     public void printListOfCommands() {
         System.out.println(LIST_OF_COMMAND_AVAILABLE_MESSAGE);
         System.out.println(HELP_COMMAND);
@@ -77,6 +85,7 @@ public class Ui {
         System.out.println(NOTE_COMMAND);
         System.out.println(VIEW_COMMAND);
         System.out.println(RESTART_COMMAND);
+        System.out.println(CHOOSE_SUSPECT_OR_CLUE_INDEX);
         System.out.println(ASK_FOR_CLUE_OR_SUSPECT_NUMBER);
     }
 

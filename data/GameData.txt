@@ -1,2 +1,3 @@
 The Great Detective Data File
 CurrentSceneIndex: 4
+
