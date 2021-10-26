@@ -64,13 +64,21 @@ The Sequence Diagram [below](./next_command_sequence_diagram.png) illustrates wi
 ### Investigation component
 **API:** `Investigation.java`
 
-The investigation class manages the investigation scene in each
-investigation scene. 
+![Investigation Sequence Diagram](./Investigation_Sequence_Diagram.png)
 
-How the investigation works
+The investigation class manages the investigation in each investigation scene. 
+
+How the `Investigation` component works:
 - When an investigation command is returned from the parser, we investigate the input given by the user.
-- For each scene, the investigation class display the scene's narrative.
-- The investigation class is also used to determine if the user has managed to find the correct killer from the game.
+- Investigation are divided into two parts, suspect stage and clue stage
+  - `Suspect Stage`: Prints the list of suspects and prompts user for input, user selects which suspect he/she wants 
+to investigate. Proceeds to clue stage when input entered are valid
+  - `Clue Stage`: Prints the list of clues available for viewing for the selected suspect previously and prompts user
+for input, user selects which clue he/she wants to view. The user may enter the number '0' to return to the 
+`Suspect Stage`. Otherwise, after selecting the clue, the clue is then marked as checked and contents of the selected 
+clue is displayed on the terminal.
+- The Investigation class is also used to determine if the user has managed to find the correct killer
+at the end of the game.
 
 
 ### Clue component
