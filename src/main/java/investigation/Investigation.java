@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class Investigation {
     private static InvestigationStages stage;
-    private final SceneList sceneList;
     private static Scene currentScene;
     private static String currentSuspect;
     private static final Parser parser = new Parser();
@@ -33,15 +32,13 @@ public class Investigation {
     private static final String SUSPECT_ZACK_LOWER = "zack";
     private static final String SUSPECT_KEVIN_LOWER = "kevin";
 
-    public Investigation(SceneList sceneList, SuspectList clueTracker) {
-        this.sceneList = sceneList;
+    public Investigation(SuspectList clueTracker) {
         this.clueTracker = clueTracker;
         Storage.openNoteFromFile(notes);
         setSuspectStage();
-        sceneList.runCurrentScene();
     }
 
-    private void chooseSuspectToInvestigate() {
+    private void chooseSuspectToInvestigate(SceneList sceneList) {
         SceneTypes sceneType = sceneList.getCurrentSceneType();
         currentScene = sceneList.getCurrentScene();
 
@@ -52,7 +49,7 @@ public class Investigation {
         }
     }
 
-    private void chooseClueToInvestigate() {
+    private void chooseClueToInvestigate(SceneList sceneList) {
         currentScene = sceneList.getCurrentScene();
         ui.printInvestigationMessage(sceneList.getCurrentSceneIndex());
         System.out.println(" - " + currentSuspect);
@@ -62,18 +59,19 @@ public class Investigation {
         ui.printGoNextSceneMessage();
     }
 
-    public void printCurrentInvestigation() {
+    public void printCurrentInvestigation(SceneList sceneList) {
         if (stage == InvestigationStages.SUSPECT_STAGE) {
-            chooseSuspectToInvestigate();
+            chooseSuspectToInvestigate(sceneList);
         } else {
-            chooseClueToInvestigate();
+            chooseClueToInvestigate(sceneList);
         }
     }
 
-    public void investigateScene(Integer index) throws InvalidSuspectException, InvalidClueException {
+    public void investigateScene(Integer index, SceneList sceneList)
+            throws InvalidSuspectException, InvalidClueException {
         switch (stage) {
         case SUSPECT_STAGE:
-            currentSuspect = parser.getSuspectNameFromIndex(sceneList.getCurrentSceneIndex(), index);
+            currentSuspect = parser.getSuspectNameFromIndex(sceneList.getCurrentScene(), index);
             setClueStage();
             break;
         case CLUE_STAGE:
@@ -97,7 +95,7 @@ public class Investigation {
     }
 
 
-    public void processNote() {
+    public void processNote(SceneList sceneList) {
         System.out.println("Do you want to create a new note"
                 + " or open a existing note or delete a note?");
         String userChoice = ui.readUserInput();
@@ -148,7 +146,7 @@ public class Investigation {
         }
     }
 
-    public void checkSuspectedKiller() {
+    public void checkSuspectedKiller(SceneList sceneList) {
         currentScene = sceneList.getCurrentScene();
         ui.printAllSuspectInCurrentScene(currentScene);
         boolean killerFound;
@@ -159,7 +157,7 @@ public class Investigation {
             nameGivenIsASuspect = correctSuspectNameGiven(suspectedKiller);
             if (nameGivenIsASuspect) {
                 killerFound = killerFoundCorrectly(suspectedKiller);
-                goToCorrectFinalScene(killerFound);
+                goToCorrectFinalScene(sceneList, killerFound);
             } else {
                 ui.printAskUserEnterSuspectName();
                 ui.printAllSuspectInCurrentScene(currentScene);
@@ -190,7 +188,7 @@ public class Investigation {
         }
     }
 
-    private void goToCorrectFinalScene(boolean killerFound) {
+    private void goToCorrectFinalScene(SceneList sceneList, boolean killerFound) {
         sceneList.setSceneNumberAfterSuspecting(killerFound);
     }
 
@@ -198,7 +196,7 @@ public class Investigation {
         return clueTracker.getSuspectCheckedClues(name);
     }
 
-    public void restartGame() {
+    public void restartGame(SceneList sceneList) {
         setSuspectStage();
         sceneList.resetAllScenes();
     }

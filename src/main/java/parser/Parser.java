@@ -11,6 +11,7 @@ import command.ViewCommand;
 import command.BackCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
+import scene.Scene;
 import suspect.SuspectNames;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -46,58 +47,11 @@ public class Parser {
     private static final int SUSPECT_ZACK_INDEX = 5;
     private static final String ALPHABET_PATTERN = "[a-zA-Z]";
     private static final String NUMBER_PATTERN = "[0-9]";
-    private static final int SCENE_NUMBER_ONE = 1;
-    private static final int SCENE_NUMBER_TWO = 2;
-    private static final int SCENE_NUMBER_THREE = 3;
 
-
-    private String suspectFromFirstScene(int suspectNumber) {
-        if (suspectNumber == SUSPECT_FATHER_INDEX) {
-            return SUSPECT_FATHER;
-        }
-        throw new InvalidSuspectException(INVALID_SUSPECT);
-    }
-
-    private String suspectFromSecondScene(int suspectNumber) {
-        switch (suspectNumber) {
-        case SUSPECT_FATHER_INDEX:
-            return SUSPECT_FATHER;
-        case SUSPECT_KEVIN_INDEX:
-            return SUSPECT_KEVIN;
-        case SUSPECT_WENDY_INDEX:
-            return SUSPECT_WENDY;
-        default:
-            throw new InvalidSuspectException(INVALID_SUSPECT);
-        }
-    }
-
-    private String suspectFromThirdScene(int suspectNumber) {
-        switch (suspectNumber) {
-        case SUSPECT_FATHER_INDEX:
-            return SUSPECT_FATHER;
-        case SUSPECT_KEVIN_INDEX:
-            return SUSPECT_KEVIN;
-        case SUSPECT_WENDY_INDEX:
-            return SUSPECT_WENDY;
-        case SUSPECT_LING_INDEX:
-            return SUSPECT_LING;
-        case SUSPECT_ZACK_INDEX:
-            return SUSPECT_ZACK;
-        default:
-            throw new InvalidSuspectException(INVALID_SUSPECT);
-        }
-    }
-
-
-    public String getSuspectNameFromIndex(int sceneNumber, int suspectNumber) throws InvalidSuspectException {
-        switch (sceneNumber) {
-        case SCENE_NUMBER_ONE:
-            return suspectFromFirstScene(suspectNumber);
-        case SCENE_NUMBER_TWO:
-            return suspectFromSecondScene(suspectNumber);
-        case SCENE_NUMBER_THREE:
-            return suspectFromThirdScene(suspectNumber);
-        default:
+    public String getSuspectNameFromIndex(Scene currentScene, int suspectNumber) throws InvalidSuspectException {
+        if (suspectNumber <= currentScene.getSuspectList().getNumSuspects()) {
+            return currentScene.getSuspectList().getSuspectNames()[suspectNumber - 1];
+        } else {
             throw new InvalidSuspectException(INVALID_SUSPECT);
         }
     }
@@ -107,7 +61,6 @@ public class Parser {
         if (multipleArgumentsGiven) {
             return parseInputMultipleArguments(userInput);
         }
-
         switch (userInput) {
         case NOTE:
             return new NoteCommand();

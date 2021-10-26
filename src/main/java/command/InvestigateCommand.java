@@ -14,7 +14,7 @@ public class InvestigateCommand extends Command {
 
     @Override
     public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws InvalidSuspectException {
-        investigation.investigateScene(this.parsedUserInput);
+        investigation.investigateScene(this.parsedUserInput, sceneList);
     }
 
     @Override

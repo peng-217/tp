@@ -3,10 +3,11 @@ package suspect;
 import clue.Clue;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class SuspectList {
     protected LinkedHashMap<String, Suspect> suspects;
@@ -61,6 +62,14 @@ public class SuspectList {
 
     public int getNumSuspects() {
         return suspects.size();
+    }
+
+    public String[] getSuspectNames() {
+        String[] suspectNames = new String[getNumSuspects()];
+        for (int i = 0; i < getNumSuspects(); i++) {
+            suspectNames[i] = (String) suspects.keySet().toArray()[i];
+        }
+        return suspectNames;
     }
 
     @Override

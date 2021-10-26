@@ -47,8 +47,8 @@ public class Duke {
             ui.printMissingSceneFileMessage();
         }
 
-        investigation = new Investigation(sceneList, clueTracker);
-
+        investigation = new Investigation(clueTracker);
+        sceneList.runCurrentScene();
     }
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -59,7 +59,7 @@ public class Duke {
     private static void runUntilExitCommand() {
         boolean isExit = false;
         while (!isExit) {
-            investigation.printCurrentInvestigation();
+            investigation.printCurrentInvestigation(sceneList);
             String userInput = ui.readUserInput();
             Command commandFromUser = new InvalidCommand();
             try {

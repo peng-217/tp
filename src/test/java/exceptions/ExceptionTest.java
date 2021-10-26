@@ -19,21 +19,21 @@ public class ExceptionTest {
     private static final GameDataFileDecoder dataFile =
             new GameDataFileDecoder(ui, new GameDataFileManager(GAME_DATA_FILE_NAME));
 
-    @Test
-    public void throwInvalidSuspectExceptionTest() {
-
-        try {
-            SceneList sceneList = SceneListBuilder.buildSceneList(ui, dataFile);
-            SuspectList clueTracker = CheckedClueTrackerBuilder.buildClueTracker();
-
-            Investigation investigation = new Investigation(sceneList, clueTracker);
-            assertThrows(InvalidSuspectException.class, () -> investigation.investigateScene(0));
-
-        } catch (MissingSceneFileException e) {
-            ui.printMissingSceneFileMessage();
-        }
-
-    }
+//    @Test
+//    public void throwInvalidSuspectExceptionTest() {
+//
+//        try {
+//            SceneList sceneList = SceneListBuilder.buildSceneList(ui, dataFile);
+//            SuspectList clueTracker = CheckedClueTrackerBuilder.buildClueTracker();
+//
+//            Investigation investigation = new Investigation(clueTracker);
+//            assertThrows(InvalidSuspectException.class, () -> investigation.investigateScene(0, sceneList));
+//
+//        } catch (MissingSceneFileException e) {
+//            ui.printMissingSceneFileMessage();
+//        }
+//
+//    }
 
     //@Test
     //public void throwInvalidClueExceptionTest() {

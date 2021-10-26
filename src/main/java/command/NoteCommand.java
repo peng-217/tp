@@ -13,7 +13,7 @@ public class NoteCommand extends Command {
 
     @Override
     public void execute(Ui ui, Investigation investigation, SceneList sceneList) {
-        investigation.processNote();
+        investigation.processNote(sceneList);
     }
 
     @Override
