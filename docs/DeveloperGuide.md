@@ -6,7 +6,6 @@
 
 ## Design
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 ### Architecture
 ![High Level Architectural design](./main_architecture.png)
 
@@ -165,42 +164,45 @@ It will read the file and store the clues as the Class `Clue`, under the specifi
 - enjoy reading
 - wants to take a break from visual games
 
-{Describe the target user profile}
 
 ### Value proposition
 
 - Provide an alternative game for users to exercise creative thinking
 
-{Describe the value proposition: what problem does it solve?}
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see all commands available|understand the game mechanics|
-|v1.0|user|investigate the suspects available|better understand the suspect|
-|v1.0|user|investigate the clues available|understand the story line better|
-|v1.0|user|choose the suspect|see if I am able to solve the crime|
-|v2.0|user|resume the game after exiting|continue the game instead of restarting|
-|v2.0|user|write notes|look at the notes I have written for each scene and suspect|
-|v2.0|user|go to previous scene|look at the narrative for the previous scene|
+|Priority|Version| As a ... | I want to ... | So that I can ...|
+|--------|--------|----------|---------------|------------------|
+| * * *|v1.0|new user|see all commands available|understand the game mechanics|
+| * * *|v1.0|user|investigate the suspects available|better understand the suspect|
+| * * *|v1.0|user|investigate the clues available|understand the story line better|
+| * * *|v1.0|user|choose the suspect|see if I am able to solve the crime|
+| * * |v2.0|user|resume the game after exiting|continue the game instead of restarting|
+| * * |v2.0|user|write notes|look at the notes I have written for each scene and suspect|
+| * |v2.0|user|go to previous scene|look at the narrative for the previous scene|
 
 ## Use Cases
 
 (Use /next as an example)
 =======
-|v2.0|user|go back to the previous scene|recap the previous scene|
-|v2.0|user|investigate suspect using name or their index|more than one way to investigate a suspect|
+
+Use case: Navigate to the next scene.
+
+1. The user gives `/next` as input.
+2. Parser parsed the `/next` input, returns a NextCommand.
+3. NextCommand does a self-invocation and calls the `execute()` method.
+4. NextCommand returns a boolean by self-invocating the `.exit()` method.
+5. If it is the last scene of the game, `.exit()` returns true else false.
 
 ## Non-Functional Requirements
 1. The game should work as long as java 11 is installed on the local machine.
 2. A working keyboard to play the game and a monitor to read the text.
 
-{Give non-functional requirements}
 
 ## Glossary
 
-* *glossary item* - Definition
+- Mainstream OS: Windows, Mac OS X, Unix, Linux
 
 ## Instructions for manual testing
 
