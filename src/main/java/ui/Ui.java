@@ -1,14 +1,16 @@
 package ui;
 
 import clue.Clue;
+import investigation.Investigation;
+import investigation.InvestigationStages;
 import scene.Scene;
-import suspect.Suspect;
+import scene.SceneList;
+import scene.SceneTypes;
 import suspect.SuspectList;
 import note.Note;
 import note.NoteList;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Ui {
@@ -52,20 +54,13 @@ public class Ui {
     private static final String ASK_USER_RETYPE_KILLER_NAME =
             "Invalid suspect name given. Please enter one of the suspect name below.";
 
-    private Scanner scanner;
-
-    public void printEmptyLine() {
-        System.out.println(LINE_SEPARATOR);
-    }
-
     public void printWelcomeMessage() {
         System.out.println(WELCOME_MESSAGE);
     }
 
     public String readUserInput() {
-        this.scanner = new Scanner(System.in);
-        String userInput = this.scanner.nextLine();
-        return userInput;
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 
     public void printExitMessage() {
@@ -82,7 +77,6 @@ public class Ui {
         System.out.println(VIEW_COMMAND);
         System.out.println(RESTART_COMMAND);
         System.out.println(ASK_FOR_CLUE_OR_SUSPECT_NUMBER);
-
     }
 
     public void printListOfClues(ArrayList<Clue> clues) {
@@ -101,6 +95,30 @@ public class Ui {
                 i++;
             }
         }
+    }
+
+    public void printCurrentInvestigation(Investigation investigation, SceneList sceneList) {
+        if (investigation.getStage() == InvestigationStages.SUSPECT_STAGE) {
+            this.printCurrentSuspectPage(sceneList);
+        } else {
+            this.printInvestigationMessage(sceneList.getCurrentSceneIndex());
+            this.printCurrentCluePage(investigation.getCurrentSuspectName(), sceneList.getCurrentScene());
+            this.printGoNextSceneMessage();
+        }
+    }
+
+    public void printCurrentSuspectPage(SceneList sceneList) {
+        if (sceneList.getCurrentSceneType() == SceneTypes.INVESTIGATE_SCENE) {
+            this.printInvestigationMessage(sceneList.getCurrentSceneIndex());
+            this.printWhoToInvestigate();
+            this.printSuspects(sceneList.getCurrentScene().getSuspectList());
+        }
+    }
+
+    public void printCurrentCluePage(String suspectName, Scene scene) {
+        System.out.println(" - " + suspectName);
+        System.out.println("0. Go back to list of suspects");
+        this.printListOfClues(scene.investigateSuspect(suspectName).getClues());
     }
 
     public void printViewingCheckedCluesMessage() {
@@ -155,11 +173,7 @@ public class Ui {
 
 
     public void printSuspects(SuspectList suspects) {
-        int i = 0;
-        for (Map.Entry<String, Suspect> suspectEntry : suspects.getSuspects().entrySet()) {
-            System.out.println((i + 1) + ". " + suspectEntry.getKey());
-            i++;
-        }
+        System.out.println(suspects.toString());
     }
 
     public void printSuspectKillerMessage() {
@@ -214,5 +228,56 @@ public class Ui {
         printAllSuspectsMessage();
         printSuspects(scene.getSuspectList());
         printSuspectKillerMessage();
+    }
+
+    public void printSelectedClue(Clue currentClueInScene) {
+        System.out.println(currentClueInScene.toString());
+    }
+
+    public void printNoteInstructions() {
+        System.out.println("Do you want to create a new note"
+                + " or open a existing note or delete a note?");
+    }
+
+    public void printNoteTitleInstructions() {
+        System.out.println("Please enter the title for this note"
+                + " (if you do not need title, type a spacing instead:");
+    }
+
+    public void printNoteTextInstructions() {
+        System.out.println("Please enter your note:");
+    }
+
+    public void printNoteOpenSearchInstructions() {
+        System.out.println("Do you want to search a note (type in 'search') or "
+                + "directly open a note (type in 'open')?");
+    }
+
+    public void printNoteSearchInstructions() {
+        System.out.println("Do you want to search by keyword or scene index?");
+    }
+
+    public void printNoteSearchKeyWordInstructions() {
+        System.out.println("Please enter keywords");
+    }
+
+    public void printNoteSearchSceneIndexInstructions() {
+        System.out.println("Please enter scene index:");
+    }
+
+    public void printNoteOpenInstructions() {
+        System.out.println("Please type in the index of the note to open it:");
+    }
+
+    public void printNoteListStarter() {
+        System.out.println("Here are the notes you have: ");
+    }
+
+    public void printNoteDeleteInstructions() {
+        System.out.println("Please enter the index of the note you want to delete.");
+    }
+
+    public void printNoteMissingError(int size) {
+        System.out.println("Invalid index! There are only " + size + " notes currently.");
     }
 }

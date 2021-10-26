@@ -65,7 +65,7 @@ class NoteListTest {
         NoteList notes = new NoteList(new Ui());
         String testString = "THIS IS A TEST OF DUKE";
         String[] expectedResult = {"THIS","IS","A","TEST","OF","DUKE"};
-        String[] underTest = notes.stringSpliter(testString);
+        String[] underTest = notes.stringSplitter(testString);
         //assertTrue(expectedResult.equals(underTest));
         assertEquals("THIS",underTest[0]);
         assertEquals("IS",underTest[1]);

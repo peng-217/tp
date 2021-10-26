@@ -3,10 +3,11 @@ package suspect;
 import clue.Clue;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class SuspectList {
     protected LinkedHashMap<String, Suspect> suspects;
@@ -27,8 +28,10 @@ public class SuspectList {
         suspects.get(name).addClue(clue);
     }
 
-    public void setClueChecked(String name, Clue clue) {
-        suspects.get(name).setChecked(clue);
+    public void setClueChecked(String name, Clue clueInScene) {
+        int indexInClueTracker = this.getClueIndex(name, clueInScene.getClueName());
+        Clue clueInTracker = this.getSuspectAllClues(name).get(indexInClueTracker);
+        this.suspects.get(name).setChecked(clueInTracker);
     }
 
     public ArrayList<Clue> getSuspectAllClues(String name) {
@@ -63,9 +66,21 @@ public class SuspectList {
         return suspects.size();
     }
 
+    public String[] getSuspectNames() {
+        String[] suspectNames = new String[getNumSuspects()];
+        for (int i = 0; i < getNumSuspects(); i++) {
+            suspectNames[i] = (String) suspects.keySet().toArray()[i];
+        }
+        return suspectNames;
+    }
+
     @Override
     public String toString() {
-        return String.valueOf(suspects.keySet());
+        StringBuilder toReturn = new StringBuilder();
+        for (int i = 0; i < getNumSuspects(); i++) {
+            toReturn.append(i + 1).append(". ").append((String) suspects.keySet().toArray()[i]).append("\n");
+        }
+        return toReturn.toString();
     }
 
     public int getClueIndex(String suspectName, String clueName) {

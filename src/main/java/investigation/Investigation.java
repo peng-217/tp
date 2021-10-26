@@ -1,30 +1,22 @@
 package investigation;
 
 import clue.Clue;
-import scene.SceneTypes;
-import storage.Storage;
 import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
 import parser.Parser;
 import scene.Scene;
 import scene.SceneList;
-import suspect.Suspect;
 import suspect.SuspectList;
 import ui.Ui;
-import note.Note;
-import note.NoteList;
 import java.util.ArrayList;
 
 public class Investigation {
     private static InvestigationStages stage;
-    private final SceneList sceneList;
     private static Scene currentScene;
     private static String currentSuspect;
     private static final Parser parser = new Parser();
     private static final Ui ui = new Ui();
-    private static NoteList notes = new NoteList(ui);
     private final SuspectList clueTracker;
-    private static int defaultTitleCounter = 1;
     private static final String WRONG_INDEX_GIVEN = "Sorry please enter index within range";
     private static final String INVALID_COMMAND = "Invalid command";
     private static final String SUSPECT_WENDY_LOWER = "wendy";
@@ -33,51 +25,28 @@ public class Investigation {
     private static final String SUSPECT_ZACK_LOWER = "zack";
     private static final String SUSPECT_KEVIN_LOWER = "kevin";
 
-    public Investigation(SceneList sceneList, SuspectList clueTracker) {
-        this.sceneList = sceneList;
+    public Investigation(SuspectList clueTracker) {
         this.clueTracker = clueTracker;
-        Storage.openNoteFromFile(notes);
         setSuspectStage();
-        sceneList.runCurrentScene();
     }
 
-    private void chooseSuspectToInvestigate() {
-        SceneTypes sceneType = sceneList.getCurrentSceneType();
-        currentScene = sceneList.getCurrentScene();
-
-        if (sceneType == SceneTypes.INVESTIGATE_SCENE) {
-            ui.printInvestigationMessage(sceneList.getCurrentSceneIndex());
-            ui.printWhoToInvestigate();
-            ui.printSuspects(currentScene.getSuspectList());
-        }
+    public InvestigationStages getStage() {
+        return stage;
     }
 
-    private void chooseClueToInvestigate() {
-        currentScene = sceneList.getCurrentScene();
-        ui.printInvestigationMessage(sceneList.getCurrentSceneIndex());
-        System.out.println(" - " + currentSuspect);
-        System.out.println("0. Go back to list of suspects");
-        Suspect suspect = currentScene.investigateSuspect(currentSuspect);
-        ui.printListOfClues(suspect.getClues());
-        ui.printGoNextSceneMessage();
+    public String getCurrentSuspectName() {
+        return currentSuspect;
     }
 
-    public void printCurrentInvestigation() {
-        if (stage == InvestigationStages.SUSPECT_STAGE) {
-            chooseSuspectToInvestigate();
-        } else {
-            chooseClueToInvestigate();
-        }
-    }
-
-    public void investigateScene(Integer index) throws InvalidSuspectException, InvalidClueException {
+    public void investigateScene(Integer index, Scene scene)
+            throws InvalidSuspectException, InvalidClueException {
         switch (stage) {
         case SUSPECT_STAGE:
-            currentSuspect = parser.getSuspectNameFromIndex(sceneList.getCurrentSceneIndex(), index);
+            currentSuspect = parser.getSuspectNameFromIndex(scene, index);
             setClueStage();
             break;
         case CLUE_STAGE:
-            currentScene = sceneList.getCurrentScene();
+            currentScene = scene;
             int suspectNumClues = currentScene.investigateSuspect(currentSuspect).getNumClues();
             if (index > suspectNumClues) {
                 throw new InvalidClueException(WRONG_INDEX_GIVEN);
@@ -85,10 +54,8 @@ public class Investigation {
                 setSuspectStage();
             } else {
                 Clue currentClueInScene = currentScene.investigateSuspect(currentSuspect).getClues().get(index - 1);
-                int indexInClueTracker = clueTracker.getClueIndex(currentSuspect, currentClueInScene.getClueName());
-                Clue currentClueInTracker = clueTracker.getSuspectAllClues(currentSuspect).get(indexInClueTracker);
-                clueTracker.setClueChecked(currentSuspect, currentClueInTracker);
-                System.out.println(currentClueInScene);
+                clueTracker.setClueChecked(currentSuspect, currentClueInScene);
+                ui.printSelectedClue(currentClueInScene);
             }
             break;
         default:
@@ -96,136 +63,26 @@ public class Investigation {
         }
     }
 
+    public boolean checkSuspectedKiller(SceneList sceneList) {
+        ui.printAllSuspectInCurrentScene(sceneList.getCurrentScene());
 
-    public void processNote() {
-        System.out.println("Do you want to create a new note"
-                + " or open a existing note or delete a note?");
-        String userChoice = ui.readUserInput();
-        if (userChoice.equals("create")) {
-
-            createNoteProcess();
-
-        } else if (userChoice.equals("open")) {
-
-            openNoteProcess();
-
-        } else {
-
-            deleteNoteProcess();
-        }
-    }
-
-    public void createNoteProcess() {
-        System.out.println("Please enter the title for this note"
-                + " (if you do not need title, type a spacing instead:");
-        String transientTitle = ui.readUserInput();
-        String noteTitle;
-        if (!transientTitle.equals(" ")) {
-            noteTitle = transientTitle;
-        } else {
-            noteTitle = "DEFAULT(" + (defaultTitleCounter++) + ")";
-        }
-        System.out.println("Please enter your note:");
-        String noteContent = ui.readUserInput();
-        Note newNote = new Note(noteContent, noteTitle, sceneList.getCurrentSceneIndex());
-        notes.createNote(newNote, (sceneList.getCurrentSceneIndex()));
-    }
-
-    public void openNoteProcess() {
-        ui.printOpenNoteMessage(notes);
-        String userInput = ui.readUserInput();
-        if (userInput.contains("search")) {
-            System.out.println("Do you want to search by keyword or scene index?");
-            userInput = ui.readUserInput();
-            if (userInput.equals("keyword")) {
-
-                keywordSearch();
-
-            } else {
-
-                indexSearch();
-
-            }
-        } else {
-
-            openNoteDirectly();
-
-        }
-    }
-
-    public void deleteNoteProcess() {
-        System.out.println("Here are the notes you have: ");
-        ui.printAllNotes(notes);
-        System.out.println("Please enter the index of the note you want to delete");
-        int deletedNoteIndex = Integer.parseInt(ui.readUserInput()) - 1;
-        notes.deleteNote(deletedNoteIndex);
-    }
-
-
-    public void openNoteDirectly() {
-        System.out.println("Please type in the index of the note to open it:");
-        //here the index is not scene index, it is the index in the list
-        int inputOrderIndex = Integer.parseInt(ui.readUserInput());
-        ui.printExistingNotes(notes, inputOrderIndex);
-    }
-
-    public void keywordSearch() {
-        System.out.println("Please enter keywords");
-        String keywords = ui.readUserInput();
-        System.out.println(keywords);
-        ui.printSelectedNote(notes.searchNoteUsingTitle(keywords, notes));
-    }
-
-    public void indexSearch() {
-        System.out.println("Please enter scene index:");
-        int sceneIndex = Integer.parseInt(ui.readUserInput());
-        ui.printSelectedNote(notes.searchNotesUsingSceneIndex(sceneIndex, notes));
-    }
-
-    public void checkSuspectedKiller() {
-        currentScene = sceneList.getCurrentScene();
-        ui.printAllSuspectInCurrentScene(currentScene);
         boolean killerFound;
-        boolean nameGivenIsASuspect = false;
-
-        while (!nameGivenIsASuspect) {
-            String suspectedKiller = ui.readUserInput();
-            nameGivenIsASuspect = correctSuspectNameGiven(suspectedKiller);
-            if (nameGivenIsASuspect) {
-                killerFound = killerFoundCorrectly(suspectedKiller);
-                goToCorrectFinalScene(killerFound);
-            } else {
-                ui.printAskUserEnterSuspectName();
-                ui.printAllSuspectInCurrentScene(currentScene);
-            }
+        boolean nameGivenIsASuspect;
+        String suspectedKiller = ui.readUserInput();
+        nameGivenIsASuspect = parser.validSuspectNameGiven(suspectedKiller);
+        if (nameGivenIsASuspect) {
+            killerFound = killerFoundCorrectly(suspectedKiller);
+            return killerFound;
+        } else {
+            ui.printAskUserEnterSuspectName();
+            killerFound = checkSuspectedKiller(sceneList);
         }
+        return killerFound;
     }
 
     private boolean killerFoundCorrectly(String suspectedKiller) {
         String suspectedKillerLowerCase = suspectedKiller.toLowerCase();
         return suspectedKillerLowerCase.equals(SUSPECT_WENDY_LOWER);
-    }
-
-    private boolean correctSuspectNameGiven(String suspectedKiller) {
-        String suspectedKillerLowerCase = suspectedKiller.toLowerCase();
-        switch (suspectedKillerLowerCase) {
-        case SUSPECT_WENDY_LOWER:
-            return true;
-        case SUSPECT_FATHER_LOWER:
-            return true;
-        case SUSPECT_KEVIN_LOWER:
-            return true;
-        case SUSPECT_LING_LOWER:
-            return true;
-        case SUSPECT_ZACK_LOWER:
-            return true;
-        default:
-            return false;
-        }
-    }
-
-    private void goToCorrectFinalScene(boolean killerFound) {
-        sceneList.setSceneNumberAfterSuspecting(killerFound);
     }
 
     public ArrayList<Clue> getSuspectCheckedClues(String name) {
@@ -234,7 +91,6 @@ public class Investigation {
 
     public void restartGame() {
         setSuspectStage();
-        sceneList.resetAllScenes();
     }
 
     public void setSuspectStage() {

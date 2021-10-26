@@ -15,7 +15,7 @@ public class SceneList {
     private static final int WRONG_KILLER_SCENE_INDEX = 6;
     GameDataFileDecoder dataFile;
 
-    public SceneList(Scene[] scenes, GameDataFileDecoder dataFile) {
+    public SceneList(GameDataFileDecoder dataFile, Scene... scenes) {
         this.dataFile = dataFile;
         this.currentSceneIndex = dataFile.getCurrentSceneIndex();
         this.scenes = scenes;
@@ -27,7 +27,7 @@ public class SceneList {
         } else {
             this.currentSceneIndex = WRONG_KILLER_SCENE_INDEX;
         }
-        dataFile.resetFile(INTRODUCTION_SCENE_INDEX);
+        dataFile.setFile(INTRODUCTION_SCENE_INDEX);
     }
 
     public Scene getCurrentScene() {
@@ -36,7 +36,7 @@ public class SceneList {
 
     public void resetCurrentSceneIndex() {
         this.currentSceneIndex = STARTING_INDEX_FOR_FILE;
-        dataFile.resetFile(STARTING_INDEX_FOR_FILE);
+        dataFile.setFile(STARTING_INDEX_FOR_FILE);
     }
 
     public int getCurrentSceneIndex() {
@@ -45,16 +45,16 @@ public class SceneList {
 
     public void updateSceneNumber() {
         this.currentSceneIndex++;
-        dataFile.resetFile(currentSceneIndex);
+        dataFile.setFile(currentSceneIndex);
     }
 
     public SceneTypes getCurrentSceneType() {
-        Scene currentScene = getCurrentScene();
+        Scene currentScene = this.getCurrentScene();
         return currentScene.getSceneType();
     }
 
     public void runCurrentScene() {
-        Scene currentScene = getCurrentScene();
+        Scene currentScene = this.getCurrentScene();
         try {
             currentScene.runScene();
         } catch (FileNotFoundException e) {
@@ -63,7 +63,7 @@ public class SceneList {
     }
 
     public void resetAllScenes() {
-        resetCurrentSceneIndex();
+        this.resetCurrentSceneIndex();
         runCurrentScene();
     }
 
@@ -76,16 +76,13 @@ public class SceneList {
         case INTRODUCTION_SCENE:
             break;
         case WRONG_KILLER_SCENE:
-            this.currentSceneIndex = GUESS_KILLER_SCENE_INDEX;
-            dataFile.resetFile(GUESS_KILLER_SCENE_INDEX);
-            break;
         case CORRECT_KILLER_SCENE:
             this.currentSceneIndex = GUESS_KILLER_SCENE_INDEX;
-            dataFile.resetFile(GUESS_KILLER_SCENE_INDEX);
+            dataFile.setFile(GUESS_KILLER_SCENE_INDEX);
             break;
         default:
             this.currentSceneIndex--;
-            dataFile.resetFile(currentSceneIndex);
+            dataFile.setFile(currentSceneIndex);
         }
 
     }
