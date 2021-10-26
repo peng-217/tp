@@ -102,50 +102,84 @@ public class Investigation {
                 + " or open a existing note or delete a note?");
         String userChoice = ui.readUserInput();
         if (userChoice.equals("create")) {
-            System.out.println("Please enter the title for this note"
-                    + " (if you do not need title, type a spacing instead:");
-            String transientTitle = ui.readUserInput();
-            String noteTitle;
-            if (!transientTitle.equals(" ")) {
-                noteTitle = transientTitle;
-            } else {
-                noteTitle = "DEFAULT(" + (defaultTitleCounter++) + ")";
-            }
-            System.out.println("Please enter your note:");
-            String noteContent = ui.readUserInput();
-            Note newNote = new Note(noteContent, noteTitle, sceneList.getCurrentSceneIndex());
-            notes.createNote(newNote, (sceneList.getCurrentSceneIndex()));
+
+            createNoteProcess();
+
         } else if (userChoice.equals("open")) {
-            ui.printNoteTitle(notes);
-            System.out.println("Do you want to search a note (type in 'search') or "
-                    + "directly open a note (type in 'open')?");
-            String userInput = ui.readUserInput();
-            if (userInput.contains("search")) {
-                System.out.println("Do you want to search by keyword or scene index?");
-                userInput = ui.readUserInput();
-                if (userInput.equals("keyword")) {
-                    System.out.println("Please enter keywords");
-                    String keywords = ui.readUserInput();
-                    System.out.println(keywords);
-                    ui.printSelectedNote(notes.searchNoteUsingTitle(keywords, notes));
-                } else {
-                    System.out.println("Please enter scene index:");
-                    int sceneIndex = Integer.parseInt(ui.readUserInput());
-                    ui.printSelectedNote(notes.searchNotesUsingSceneIndex(sceneIndex, notes));
-                }
+
+            openNoteProcess();
+
+        } else {
+
+            deleteNoteProcess();
+        }
+    }
+
+    public void createNoteProcess() {
+        System.out.println("Please enter the title for this note"
+                + " (if you do not need title, type a spacing instead:");
+        String transientTitle = ui.readUserInput();
+        String noteTitle;
+        if (!transientTitle.equals(" ")) {
+            noteTitle = transientTitle;
+        } else {
+            noteTitle = "DEFAULT(" + (defaultTitleCounter++) + ")";
+        }
+        System.out.println("Please enter your note:");
+        String noteContent = ui.readUserInput();
+        Note newNote = new Note(noteContent, noteTitle, sceneList.getCurrentSceneIndex());
+        notes.createNote(newNote, (sceneList.getCurrentSceneIndex()));
+    }
+
+    public void openNoteProcess() {
+        ui.printOpenNoteMessage(notes);
+        String userInput = ui.readUserInput();
+        if (userInput.contains("search")) {
+            System.out.println("Do you want to search by keyword or scene index?");
+            userInput = ui.readUserInput();
+            if (userInput.equals("keyword")) {
+
+                keywordSearch();
+
             } else {
-                System.out.println("Please type in the index of the note to open it:");
-                //here the index is not scene index, it is the index in the list
-                int inputOrderIndex = Integer.parseInt(ui.readUserInput());
-                ui.printExistingNotes(notes, inputOrderIndex);
+
+                indexSearch();
+
             }
         } else {
-            System.out.println("Here are the notes you have: ");
-            ui.printAllNotes(notes);
-            System.out.println("Please enter the index of the note you want to delete");
-            int deletedNoteIndex = Integer.parseInt(ui.readUserInput()) - 1;
-            notes.deleteNote(deletedNoteIndex);
+
+            openNoteDirectly();
+
         }
+    }
+
+    public void deleteNoteProcess() {
+        System.out.println("Here are the notes you have: ");
+        ui.printAllNotes(notes);
+        System.out.println("Please enter the index of the note you want to delete");
+        int deletedNoteIndex = Integer.parseInt(ui.readUserInput()) - 1;
+        notes.deleteNote(deletedNoteIndex);
+    }
+
+
+    public void openNoteDirectly() {
+        System.out.println("Please type in the index of the note to open it:");
+        //here the index is not scene index, it is the index in the list
+        int inputOrderIndex = Integer.parseInt(ui.readUserInput());
+        ui.printExistingNotes(notes, inputOrderIndex);
+    }
+
+    public void keywordSearch() {
+        System.out.println("Please enter keywords");
+        String keywords = ui.readUserInput();
+        System.out.println(keywords);
+        ui.printSelectedNote(notes.searchNoteUsingTitle(keywords, notes));
+    }
+
+    public void indexSearch() {
+        System.out.println("Please enter scene index:");
+        int sceneIndex = Integer.parseInt(ui.readUserInput());
+        ui.printSelectedNote(notes.searchNotesUsingSceneIndex(sceneIndex, notes));
     }
 
     public void checkSuspectedKiller() {

@@ -119,6 +119,12 @@ public class Ui {
         System.out.println(LINE_SEPARATOR);
     }
 
+    public void printOpenNoteMessage(NoteList notes) {
+        printNoteTitle(notes);
+        System.out.println("Do you want to search a note (type in 'search') or "
+                + "directly open a note (type in 'open')?");
+    }
+
     public void printAllNotes(NoteList notes) {
         for (int i = 0; i < notes.getSize(); i++) {
             System.out.println((i + 1) + "." + notes.getIndexNote(i).getNoteTitle());
