@@ -108,7 +108,7 @@ public class Investigation {
             ui.printOpenNoteMessage(notes);
             String userInput = ui.readUserInput();
             if (userInput.contains("search")) {
-                System.out.println("Do you want to search by keyword (type 'keyword')"
+                System.out.println("Do you want to search by keyword (type 'keyword')" 
                        + " or scene index (type 'index')?");
                 userInput = ui.readUserInput();
                 if (userInput.equals("keyword")) {
