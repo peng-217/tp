@@ -52,6 +52,7 @@ public class Ui {
     private static final String SCENE_FILE_MISSING_MESSAGE =
             "File containing number of scene and its order is missing";
     private static final String INVALID_INDEX = "Invalid index";
+    private static final String NO_NOTE_MESSAGE = "There is no note now, try to add one!";
     private static final String CHOOSE_SUSPECT_OR_CLUE_INDEX =
             "Key in the index (e.g. 1, 2) in front of the suspect/clue you want to investigate";
 
@@ -135,7 +136,7 @@ public class Ui {
         System.out.println(VIEWING_CHECKED_CLUES_MESSAGE);
     }
 
-    //@@ author peng-217
+    //@@author peng-217
     public void printSaveNoteMessage() {
         System.out.println(SAVE_NOTE_MESSAGE);
     }
@@ -166,9 +167,13 @@ public class Ui {
     }
 
     public void printNoteTitle(NoteList notes) {
-        System.out.println(LIST_OF_NOTES_MESSAGE);
-        for (int i = 0; i < notes.getSize(); i++) {
-            System.out.println((i + 1) + "." + " " + notes.getIndexNote(i).getNoteTitle());
+        if (notes.getSize() == 0){
+            System.out.println(NO_NOTE_MESSAGE);
+        } else {
+            System.out.println(LIST_OF_NOTES_MESSAGE);
+            for (int i = 0; i < notes.getSize(); i++) {
+                System.out.println((i + 1) + "." + " " + notes.getIndexNote(i).getNoteTitle());
+            }
         }
     }
 
@@ -182,7 +187,7 @@ public class Ui {
         System.out.println();
         System.out.println(LINE_SEPARATOR);
     }
-//@@ author
+//@@author
 
     public void printSuspects(SuspectList suspects) {
         System.out.println(suspects.toString());
@@ -246,7 +251,7 @@ public class Ui {
         System.out.println(currentClueInScene.toString());
     }
 
-    //@@ author peng-217
+    //@@author peng-217
     public void printNoteInstructions() {
         System.out.println("Do you want to create a new note"
                 + " or open a existing note or delete a note?");
@@ -294,5 +299,5 @@ public class Ui {
     public void printNoteMissingError(int size) {
         System.out.println("Invalid index! There are only " + size + " notes currently.");
     }
-    //@@ author
+    //@@author
 }

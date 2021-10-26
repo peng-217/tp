@@ -1,4 +1,12 @@
 scene 2
-TEST 2
+BOOKSHELF
+There are many books on the bookshelf.
+End of this note.
 scene 2
+CAR
+
+End of this note.
+scene 2
+LIVING ROOM WITH BLOOD
+There is blood in living room, so I think suspect is Wendy.
 End of this note.

@@ -15,6 +15,11 @@
 
 {Give detailed description of each feature}
 
+### Taking notes whenever user want: `/note`
+This allows user to take note with title and content whenever they want.
+
+### Search notes with keywords: `keywords`
+This allows user to search the notes using keywords in title
 ### Moving to the next scene: `/next`
 This allows the user to go the next scene.
 
