@@ -15,7 +15,7 @@ public class SceneList {
     private static final int WRONG_KILLER_SCENE_INDEX = 6;
     GameDataFileDecoder dataFile;
 
-    public SceneList(Scene[] scenes, GameDataFileDecoder dataFile) {
+    public SceneList(GameDataFileDecoder dataFile, Scene... scenes) {
         this.dataFile = dataFile;
         this.currentSceneIndex = dataFile.getCurrentSceneIndex();
         this.scenes = scenes;

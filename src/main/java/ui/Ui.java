@@ -227,4 +227,51 @@ public class Ui {
     public void printSelectedClue(Clue currentClueInScene) {
         System.out.println(currentClueInScene.toString());
     }
+
+    public void printNoteInstructions() {
+        System.out.println("Do you want to create a new note"
+                + " or open a existing note or delete a note?");
+    }
+
+    public void printNoteTitleInstructions() {
+        System.out.println("Please enter the title for this note"
+                + " (if you do not need title, type a spacing instead:");
+    }
+
+    public void printNoteTextInstructions() {
+        System.out.println("Please enter your note:");
+    }
+
+    public void printNoteOpenSearchInstructions() {
+        System.out.println("Do you want to search a note (type in 'search') or "
+                + "directly open a note (type in 'open')?");
+    }
+
+    public void printNoteSearchInstructions() {
+        System.out.println("Do you want to search by keyword or scene index?");
+    }
+
+    public void printNoteSearchKeyWordInstructions() {
+        System.out.println("Please enter keywords");
+    }
+
+    public void printNoteSearchSceneIndexInstructions() {
+        System.out.println("Please enter scene index:");
+    }
+
+    public void printNoteOpenInstructions() {
+        System.out.println("Please type in the index of the note to open it:");
+    }
+
+    public void printNoteList() {
+        System.out.println("Here are the notes you have: ");
+    }
+
+    public void printNoteDeleteInstructions() {
+        System.out.println("Please enter the index of the note you want to delete.");
+    }
+
+    public void printNoteMissingError(int size) {
+        System.out.println("Invalid index! There are only " + size + " notes currently.");
+    }
 }

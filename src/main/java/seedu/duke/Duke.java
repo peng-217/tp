@@ -7,10 +7,12 @@ import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
 import exceptions.MissingSceneFileException;
 import investigation.Investigation;
+import note.NoteList;
 import scene.SceneList;
 import scene.SceneListBuilder;
 import storage.GameDataFileDecoder;
 import storage.GameDataFileManager;
+import storage.Storage;
 import suspect.SuspectList;
 import ui.Ui;
 import parser.Parser;
@@ -29,8 +31,9 @@ public class Duke {
     private static SceneList sceneList;
     private static SuspectList clueTracker;
     private static final String GAME_DATA_FILE_NAME = "GameData.txt";
+    private static NoteList notes;
 
-    public static void initializeGame() throws FileNotFoundException {
+    public static void initializeGame() {
         // Initialise new parser object
         parser = new Parser();
 
@@ -48,6 +51,8 @@ public class Duke {
         }
 
         investigation = new Investigation(clueTracker);
+        notes = new NoteList(ui);
+        Storage.openNoteFromFile(notes);
         sceneList.runCurrentScene();
     }
 

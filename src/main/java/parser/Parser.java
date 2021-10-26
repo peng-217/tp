@@ -12,7 +12,7 @@ import command.BackCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
 import scene.Scene;
-import suspect.SuspectNames;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,6 +40,9 @@ public class Parser {
     private static final String SUSPECT_WENDY_LOWER = "wendy";
     private static final String SUSPECT_LING_LOWER = "ling";
     private static final String SUSPECT_ZACK_LOWER = "zack";
+    private static final String NOTE_CREATE = "create";
+    private static final String NOTE_OPEN = "open";
+    private static final String NOTE_DELETE = "delete";
     private static final int SUSPECT_FATHER_INDEX = 1;
     private static final int SUSPECT_KEVIN_INDEX = 2;
     private static final int SUSPECT_WENDY_INDEX = 3;
@@ -101,10 +104,17 @@ public class Parser {
     }
 
     private Command parseInputForViewCommand(String argsGiven) throws InvalidInputException {
-        if (containInvalidArgument(argsGiven)) {
+        if (containInvalidViewArgument(argsGiven)) {
             throw new InvalidInputException(INVALID_INPUT);
         }
         return new ViewCommand(argsGiven);
+    }
+
+    private Command parseInputForNoteCommand(String argsGiven) throws InvalidInputException {
+        if (containInvalidNoteArgument(argsGiven)) {
+            throw new InvalidInputException(INVALID_INPUT);
+        }
+        return new NoteCommand(argsGiven);
     }
 
 
@@ -137,6 +147,8 @@ public class Parser {
         String argsGiven = userInputArr[1];
 
         switch (commandType) {
+        case NOTE:
+            return parseInputForNoteCommand(argsGiven);
         case VIEW:
             return parseInputForViewCommand(argsGiven);
         case INVESTIGATE:
@@ -146,7 +158,25 @@ public class Parser {
         }
     }
 
-    private boolean containInvalidArgument(String args) {
+    private boolean containInvalidNoteArgument(String args) {
+        String[] argsArr = args.split(INPUT_SPLITTER);
+        for (String arg : argsArr) {
+            switch (args) {
+            case NOTE_CREATE:
+                // fallthrough
+            case NOTE_OPEN:
+                //fallthrough
+            case NOTE_DELETE:
+                // fallthrough
+                break;
+            default:
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean containInvalidViewArgument(String args) {
         String[] argsArr = args.split(INPUT_SPLITTER);
         for (String arg : argsArr) {
             switch (arg) {
