@@ -18,6 +18,16 @@ How the parser work
 - When the user gives an input, the parser tries to return a command based the input given.
 - If the input does not generate a valid command type, it throws the invalidInputException.
 
+### Note component
+**API:** Note.java
+
+The note component allows user to create / open / delete /search note. 
+
+How the note work
+- When user want to take note, a note with title and content will be created and added 
+  to note list.
+- Notes in the note list can be found by their titles and scene index.
+- Unwanted notes can be deleted.
 
 ### UI component
 **API:** Ui.java 
