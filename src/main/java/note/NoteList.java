@@ -71,7 +71,7 @@ public class NoteList {
         ui.printSaveNoteMessage();
     }
 
-    public void createNoteFromFile(Note newNote) {
+    public void createNoteFromFile(Note newNote, int inputSceneIndex) {
         notes.add(newNote);
         Storage.saveNote(this);
     }
@@ -82,6 +82,7 @@ public class NoteList {
         Storage.saveNote(this);
         ui.printDeleteNoteMessage();
     }
+
 
     public void deleteAllNotes() {
         notes.removeAll(notes);
@@ -150,6 +151,7 @@ public class NoteList {
         ui.printExistingNotes(this, inputOrderIndex);
     }
 
+
     public void deleteNoteProcess() {
         ui.printNoteListStarter();
         ui.printAllNotes(this);
@@ -160,7 +162,9 @@ public class NoteList {
         } else {
             int deletedNoteIndex = Integer.parseInt(userInput) - 1;
             this.deleteNote(deletedNoteIndex);
-
         }
+        int deletedNoteIndex = Integer.parseInt(ui.readUserInput()) - 1;
+        this.deleteNote(deletedNoteIndex);
+
     }
 }

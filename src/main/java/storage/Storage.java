@@ -66,7 +66,7 @@ public class Storage {
                         contentPart = scanNote.nextLine();
                     }
                     Note savedNote = new Note(content, title, sceneIndex);
-                    notes.createNoteFromFile(savedNote);
+                    notes.createNoteFromFile(savedNote,sceneIndex);
                 }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

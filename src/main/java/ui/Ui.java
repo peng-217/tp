@@ -52,6 +52,7 @@ public class Ui {
     private static final String SCENE_FILE_MISSING_MESSAGE =
             "File containing number of scene and its order is missing";
     private static final String INVALID_INDEX = "Invalid index";
+
     private static final String DELETE_ALL_NOTE = "Ok! All notes have been deleted";
     private static final String NO_NOTE_MESSAGE = "There is no note now, try to add one!";
     private static final String CHOOSE_SUSPECT_OR_CLUE_INDEX =
@@ -251,6 +252,7 @@ public class Ui {
     public void printSelectedClue(Clue currentClueInScene) {
         System.out.println(currentClueInScene.toString());
     }
+
 
     //@@author peng-217
     public void printNoteInstructions() {

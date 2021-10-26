@@ -1,2 +1,6 @@
 The Great Detective Data File
+<<<<<<< HEAD
 CurrentSceneIndex: 3
+=======
+CurrentSceneIndex: 0
+>>>>>>> 929718479c9514f15e019e93011695f4cc5bac00
