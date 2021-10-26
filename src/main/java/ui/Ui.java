@@ -1,14 +1,16 @@
 package ui;
 
 import clue.Clue;
+import investigation.Investigation;
+import investigation.InvestigationStages;
 import scene.Scene;
-import suspect.Suspect;
+import scene.SceneList;
+import scene.SceneTypes;
 import suspect.SuspectList;
 import note.Note;
 import note.NoteList;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Ui {
@@ -27,12 +29,13 @@ public class Ui {
     private static final String SAVE_NOTE_MESSAGE =
             "Ok! The new note has been successfully created and saved.";
     private static final String WHO_KILLED_YOU = "Who do you think killed you?";
-    private static final String HELP_COMMAND = "/help";
-    private static final String EXIT_COMMAND = "/exit";
-    private static final String NEXT_COMMAND = "/next";
-    private static final String NOTE_COMMAND = "/note";
-    private static final String VIEW_COMMAND = "/view";
-    private static final String RESTART_COMMAND = "/restart";
+    private static final String HELP_COMMAND = "\"/help\" - view this command list";
+    private static final String EXIT_COMMAND = "\"/exit\" - exit the game";
+    private static final String NEXT_COMMAND = "\"/next\" - move on to the next scene or the next stage of a scene";
+    private static final String NOTE_COMMAND = "\"/note\" - create a new note/ open a note/ delete a note";
+    private static final String VIEW_COMMAND = "\"/view\" - view all the clues that you have gathered";
+    private static final String RESTART_COMMAND = "\"/restart\" - restart the game from beginning";
+
     private static final String INVALID_INPUT_GIVEN = "Invalid input! Type '/help' to see the available commands.";
     private static final String INVALID_NUMBER_SUSPECT =
             "Invalid number! To select a suspect, please input its corresponding number.";
@@ -49,31 +52,30 @@ public class Ui {
     private static final String SCENE_FILE_MISSING_MESSAGE =
             "File containing number of scene and its order is missing";
     private static final String INVALID_INDEX = "Invalid index";
-    private static final String ASK_USER_RETYPE_KILLER_NAME =
-            "Invalid suspect name given. Please enter one of the suspect name below.";
-    private static final String DELETE_ALL_NOTE_MESSAGE = "Ok! All notes has been deleted!";
-    private static final String NO_NOTE_MESSAGE = "There is no note now, try to add one!";
+    private static final String CHOOSE_SUSPECT_OR_CLUE_INDEX =
+            "Key in the index (e.g. 1, 2) in front of the suspect/clue you want to investigate";
 
     private Scanner scanner;
 
     public void printEmptyLine() {
         System.out.println(LINE_SEPARATOR);
     }
+  
+    private static final String ASK_USER_RETYPE_KILLER_NAME =
+            "Invalid suspect name given. Please enter one of the suspect name below.";
 
     public void printWelcomeMessage() {
         System.out.println(WELCOME_MESSAGE);
     }
 
     public String readUserInput() {
-        this.scanner = new Scanner(System.in);
-        String userInput = this.scanner.nextLine();
-        return userInput;
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 
     public void printExitMessage() {
         System.out.println(GOODBYE_MESSAGE);
     }
-
 
     public void printListOfCommands() {
         System.out.println(LIST_OF_COMMAND_AVAILABLE_MESSAGE);
@@ -83,8 +85,8 @@ public class Ui {
         System.out.println(NOTE_COMMAND);
         System.out.println(VIEW_COMMAND);
         System.out.println(RESTART_COMMAND);
+        System.out.println(CHOOSE_SUSPECT_OR_CLUE_INDEX);
         System.out.println(ASK_FOR_CLUE_OR_SUSPECT_NUMBER);
-
     }
 
     public void printListOfClues(ArrayList<Clue> clues) {
@@ -103,6 +105,30 @@ public class Ui {
                 i++;
             }
         }
+    }
+
+    public void printCurrentInvestigation(Investigation investigation, SceneList sceneList) {
+        if (investigation.getStage() == InvestigationStages.SUSPECT_STAGE) {
+            this.printCurrentSuspectPage(sceneList);
+        } else {
+            this.printInvestigationMessage(sceneList.getCurrentSceneIndex());
+            this.printCurrentCluePage(investigation.getCurrentSuspectName(), sceneList.getCurrentScene());
+            this.printGoNextSceneMessage();
+        }
+    }
+
+    public void printCurrentSuspectPage(SceneList sceneList) {
+        if (sceneList.getCurrentSceneType() == SceneTypes.INVESTIGATE_SCENE) {
+            this.printInvestigationMessage(sceneList.getCurrentSceneIndex());
+            this.printWhoToInvestigate();
+            this.printSuspects(sceneList.getCurrentScene().getSuspectList());
+        }
+    }
+
+    public void printCurrentCluePage(String suspectName, Scene scene) {
+        System.out.println(" - " + suspectName);
+        System.out.println("0. Go back to list of suspects");
+        this.printListOfClues(scene.investigateSuspect(suspectName).getClues());
     }
 
     public void printViewingCheckedCluesMessage() {
@@ -133,25 +159,15 @@ public class Ui {
         }
     }
 
-    public void printDeleteAllNoteMessage(){
-        System.out.println(DELETE_ALL_NOTE_MESSAGE);
-    }
-
     public void printDeleteNoteMessage() {
         System.out.println(DELETE_NOTE_MESSAGE);
     }
 
-    public void printNoNoteMessage() {
-        System.out.println(NO_NOTE_MESSAGE);
-        System.out.println(LINE_SEPARATOR);
-    }
-
     public void printNoteTitle(NoteList notes) {
-
-            System.out.println(LIST_OF_NOTES_MESSAGE);
-            for (int i = 0; i < notes.getSize(); i++) {
-                System.out.println((i + 1) + "." + " " + notes.getIndexNote(i).getNoteTitle());
-            }
+        System.out.println(LIST_OF_NOTES_MESSAGE);
+        for (int i = 0; i < notes.getSize(); i++) {
+            System.out.println((i + 1) + "." + " " + notes.getIndexNote(i).getNoteTitle());
+        }
     }
 
     public void printSelectedNote(ArrayList<Note> result) {
@@ -167,11 +183,7 @@ public class Ui {
 
 
     public void printSuspects(SuspectList suspects) {
-        int i = 0;
-        for (Map.Entry<String, Suspect> suspectEntry : suspects.getSuspects().entrySet()) {
-            System.out.println((i + 1) + ". " + suspectEntry.getKey());
-            i++;
-        }
+        System.out.println(suspects.toString());
     }
 
     public void printSuspectKillerMessage() {
@@ -226,5 +238,56 @@ public class Ui {
         printAllSuspectsMessage();
         printSuspects(scene.getSuspectList());
         printSuspectKillerMessage();
+    }
+
+    public void printSelectedClue(Clue currentClueInScene) {
+        System.out.println(currentClueInScene.toString());
+    }
+
+    public void printNoteInstructions() {
+        System.out.println("Do you want to create a new note"
+                + " or open a existing note or delete a note?");
+    }
+
+    public void printNoteTitleInstructions() {
+        System.out.println("Please enter the title for this note"
+                + " (if you do not need title, type a spacing instead:");
+    }
+
+    public void printNoteTextInstructions() {
+        System.out.println("Please enter your note:");
+    }
+
+    public void printNoteOpenSearchInstructions() {
+        System.out.println("Do you want to search a note (type in 'search') or "
+                + "directly open a note (type in 'open')?");
+    }
+
+    public void printNoteSearchInstructions() {
+        System.out.println("Do you want to search by keyword or scene index?");
+    }
+
+    public void printNoteSearchKeyWordInstructions() {
+        System.out.println("Please enter keywords");
+    }
+
+    public void printNoteSearchSceneIndexInstructions() {
+        System.out.println("Please enter scene index:");
+    }
+
+    public void printNoteOpenInstructions() {
+        System.out.println("Please type in the index of the note to open it:");
+    }
+
+    public void printNoteListStarter() {
+        System.out.println("Here are the notes you have: ");
+    }
+
+    public void printNoteDeleteInstructions() {
+        System.out.println("Please enter the index of the note you want to delete.");
+    }
+
+    public void printNoteMissingError(int size) {
+        System.out.println("Invalid index! There are only " + size + " notes currently.");
     }
 }

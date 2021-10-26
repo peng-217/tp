@@ -3,7 +3,6 @@ package environment;
 import java.util.HashMap;
 
 public class Player {
-    private static final int MAX_ITEM_LIMIT = 5;
     private final String name;
     private final HashMap<String, Item> items;
 

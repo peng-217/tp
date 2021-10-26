@@ -11,7 +11,8 @@ import command.ViewCommand;
 import command.BackCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
-import suspect.SuspectNames;
+import scene.Scene;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,6 +40,9 @@ public class Parser {
     private static final String SUSPECT_WENDY_LOWER = "wendy";
     private static final String SUSPECT_LING_LOWER = "ling";
     private static final String SUSPECT_ZACK_LOWER = "zack";
+    private static final String NOTE_CREATE = "create";
+    private static final String NOTE_OPEN = "open";
+    private static final String NOTE_DELETE = "delete";
     private static final int SUSPECT_FATHER_INDEX = 1;
     private static final int SUSPECT_KEVIN_INDEX = 2;
     private static final int SUSPECT_WENDY_INDEX = 3;
@@ -46,58 +50,11 @@ public class Parser {
     private static final int SUSPECT_ZACK_INDEX = 5;
     private static final String ALPHABET_PATTERN = "[a-zA-Z]";
     private static final String NUMBER_PATTERN = "[0-9]";
-    private static final int SCENE_NUMBER_ONE = 1;
-    private static final int SCENE_NUMBER_TWO = 2;
-    private static final int SCENE_NUMBER_THREE = 3;
 
-
-    private String suspectFromFirstScene(int suspectNumber) {
-        if (suspectNumber == SUSPECT_FATHER_INDEX) {
-            return SUSPECT_FATHER;
-        }
-        throw new InvalidSuspectException(INVALID_SUSPECT);
-    }
-
-    private String suspectFromSecondScene(int suspectNumber) {
-        switch (suspectNumber) {
-        case SUSPECT_FATHER_INDEX:
-            return SUSPECT_FATHER;
-        case SUSPECT_KEVIN_INDEX:
-            return SUSPECT_KEVIN;
-        case SUSPECT_WENDY_INDEX:
-            return SUSPECT_WENDY;
-        default:
-            throw new InvalidSuspectException(INVALID_SUSPECT);
-        }
-    }
-
-    private String suspectFromThirdScene(int suspectNumber) {
-        switch (suspectNumber) {
-        case SUSPECT_FATHER_INDEX:
-            return SUSPECT_FATHER;
-        case SUSPECT_KEVIN_INDEX:
-            return SUSPECT_KEVIN;
-        case SUSPECT_WENDY_INDEX:
-            return SUSPECT_WENDY;
-        case SUSPECT_LING_INDEX:
-            return SUSPECT_LING;
-        case SUSPECT_ZACK_INDEX:
-            return SUSPECT_ZACK;
-        default:
-            throw new InvalidSuspectException(INVALID_SUSPECT);
-        }
-    }
-
-
-    public String getSuspectNameFromIndex(int sceneNumber, int suspectNumber) throws InvalidSuspectException {
-        switch (sceneNumber) {
-        case SCENE_NUMBER_ONE:
-            return suspectFromFirstScene(suspectNumber);
-        case SCENE_NUMBER_TWO:
-            return suspectFromSecondScene(suspectNumber);
-        case SCENE_NUMBER_THREE:
-            return suspectFromThirdScene(suspectNumber);
-        default:
+    public String getSuspectNameFromIndex(Scene currentScene, int suspectNumber) throws InvalidSuspectException {
+        if (suspectNumber <= currentScene.getSuspectList().getNumSuspects()) {
+            return currentScene.getSuspectList().getSuspectNames()[suspectNumber - 1];
+        } else {
             throw new InvalidSuspectException(INVALID_SUSPECT);
         }
     }
@@ -107,7 +64,6 @@ public class Parser {
         if (multipleArgumentsGiven) {
             return parseInputMultipleArguments(userInput);
         }
-
         switch (userInput) {
         case NOTE:
             return new NoteCommand();
@@ -148,10 +104,17 @@ public class Parser {
     }
 
     private Command parseInputForViewCommand(String argsGiven) throws InvalidInputException {
-        if (containInvalidArgument(argsGiven)) {
+        if (containInvalidViewArgument(argsGiven)) {
             throw new InvalidInputException(INVALID_INPUT);
         }
         return new ViewCommand(argsGiven);
+    }
+
+    private Command parseInputForNoteCommand(String argsGiven) throws InvalidInputException {
+        if (containInvalidNoteArgument(argsGiven)) {
+            throw new InvalidInputException(INVALID_INPUT);
+        }
+        return new NoteCommand(argsGiven);
     }
 
 
@@ -184,6 +147,8 @@ public class Parser {
         String argsGiven = userInputArr[1];
 
         switch (commandType) {
+        case NOTE:
+            return parseInputForNoteCommand(argsGiven);
         case VIEW:
             return parseInputForViewCommand(argsGiven);
         case INVESTIGATE:
@@ -193,7 +158,25 @@ public class Parser {
         }
     }
 
-    private boolean containInvalidArgument(String args) {
+    private boolean containInvalidNoteArgument(String args) {
+        String[] argsArr = args.split(INPUT_SPLITTER);
+        for (String arg : argsArr) {
+            switch (args) {
+            case NOTE_CREATE:
+                // fallthrough
+            case NOTE_OPEN:
+                //fallthrough
+            case NOTE_DELETE:
+                // fallthrough
+                break;
+            default:
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean containInvalidViewArgument(String args) {
         String[] argsArr = args.split(INPUT_SPLITTER);
         for (String arg : argsArr) {
             switch (arg) {
@@ -214,6 +197,19 @@ public class Parser {
         return false;
     }
 
+    public boolean validSuspectNameGiven(String suspectedKiller) {
+        String suspectedKillerLowerCase = suspectedKiller.toLowerCase();
+        switch (suspectedKillerLowerCase) {
+        case SUSPECT_WENDY_LOWER:
+        case SUSPECT_FATHER_LOWER:
+        case SUSPECT_KEVIN_LOWER:
+        case SUSPECT_LING_LOWER:
+        case SUSPECT_ZACK_LOWER:
+            return true;
+        default:
+            return false;
+        }
+    }
 
     public static int parseNoteSceneIndex(String userInput) {
         String[] userInputSplit = userInput.split(INPUT_SPLITTER);

@@ -1,0 +1,62 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+@startuml
+autonumber
+
+-> NextCommand: execute(ui,investigation,sceneList)
+NextCommand -> SceneList: getCurrentSceneType()
+SceneList -> SceneList: getCurrentScene()
+SceneList -> Scene: getSceneType()
+SceneList <-- Scene
+NextCommand <-- SceneList
+alt #pink CORRECT_KILLER_SCENE
+
+autonumber 7
+
+else #lightBlue TRUTH_SCENE
+    NextCommand -> Investigation: runScenes()
+    Investigation -> SceneList: runCurrentScene()
+    SceneList -> SceneList: getCurrentScene()
+    SceneList -> Scene: runScene()
+    SceneList <-- Scene
+    Investigation <-- SceneList
+    NextCommand <-- Investigation
+
+autonumber 7
+
+else #pink GUESS_KILLER_SCENE
+    NextCommand -> Investigation: checkSuspectedKiller()
+    Investigation -> SceneList: getCurrentScene()
+    Investigation <-- SceneList
+    Investigation -> Ui: printAllSuspectsMessage()
+    Investigation -> SceneList: getSuspectList()
+    Investigation <-- SceneList
+    Investigation -> Ui: printSuspects()
+    Investigation -> Ui: printSuspectKillerMessage()
+    Investigation -> Ui: readUserInput()
+    Investigation <-- Ui
+    Investigation -> Investigation: goToCorrectFinalScene(killerFound)
+    Investigation -> SceneList: setSceneNumberAfterSuspecting(killerFound)
+    SceneList -> GameDataFileDecoder: resetFile(INTRODUCTION_SCENE_INDEX)
+    SceneList <-- GameDataFileDecoder
+    Investigation <-- SceneList
+    NextCommand <-- Investigation
+    NextCommand -> Investigation: runScenes()
+    NextCommand <-- Investigation
+
+autonumber 7
+
+else #lightBlue default
+    NextCommand -> Investigation: updateScene()
+    Investigation -> SceneList: updateSceneNumber()
+    SceneList -> GameDataFileDecoder: resetFile(currentSceneIndex)
+    GameDataFileDecoder -> GameDataFileDecoder: rewriteFile(factorySetting)
+    SceneList <-- GameDataFileDecoder
+    Investigation <-- SceneList
+    NextCommand <-- Investigation
+    NextCommand -> Investigation: runScenes()
+    NextCommand <-- Investigation
+end
+<-- NextCommand
+@enduml

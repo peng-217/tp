@@ -24,7 +24,7 @@ public class SceneListBuilder {
         } catch (FileNotFoundException e) {
             throw new MissingSceneFileException("Text file containing scene order is missing!");
         }
-        return new SceneList(scenes, dataFile);
+        return new SceneList(dataFile, scenes);
     }
 
     private static Scene[] getScenesFromFile(String fileLocation) throws FileNotFoundException {
