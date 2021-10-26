@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class GameDataFileDecoder {
 
-    final static int MAX_SCENE_NUMBER = 3;
+    private static final int MAX_SCENE_NUMBER = 3;
     GameDataFileManager dataFile;
     ArrayList<String> lines;
     Ui ui;

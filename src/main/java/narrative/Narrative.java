@@ -64,7 +64,7 @@ public class Narrative {
         String content = this.getNarrative();
         while (content.contains("\n")) {
             clearConsole();
-            for (int i = 0; i < 4 && content.contains("\n"); i ++) {
+            for (int i = 0; i < 4 && content.contains("\n"); i++) {
                 System.out.print(content.substring(0, 1 + content.indexOf("\n")));
                 content = content.substring(1 + content.indexOf("\n"));
             }
@@ -77,6 +77,7 @@ public class Narrative {
         pressEnterKeyToContinue();
         clearConsole();
     }
+
     public void pressEnterKeyToContinue() {
         System.out.println("\nPress Enter key to continue...");
         Scanner scanner = new Scanner(System.in);
