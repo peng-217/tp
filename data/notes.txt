@@ -1,20 +1,4 @@
-scene 2
-DEFAULT 0
-Test
-End of this note.
-scene 2
-DEFAULT 1
-Test
-End of this note.
-scene 2
-DEFAULT 2
-Test
-End of this note.
-scene 2
-DEFAULT 3
-Test
-End of this note.
-scene 2
-DEFAULT 4
-Test
+scene 1
+Father sus
+amogus
 End of this note.
