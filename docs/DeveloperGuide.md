@@ -8,6 +8,7 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 ### Architecture
+![High Level Architectural design](./main_architecture.png)
 
 ### Parser component
 **API:** Parser.java 
@@ -20,7 +21,7 @@ How the parser work
 
 
 ### UI component
-**API:** Ui.java 
+**API:** `Ui.java`
 
 The ui component communicates with the user via the terminal.
 
@@ -28,21 +29,24 @@ How the ui work
 - Print messages to terminal depending on the scene.
 
 ### Command component
-**API:** Command.java 
+**API:** `Command.java` 
 
-The command component takes in the input given by the user
-and generates a command based on the input given. 
+Here’s a (partial) class diagram of the `Command` component:
 
-Command component is an abstract class.
-Functional command extends the command class. 
-Eg NextCommand, ViewCommand Etc.
+[(partial class) diagram of Command component](./Command_Class_Diagram.png)
 
-How the command work
-- Each command has an execute command.
-- Execute command based on the command type.
+How the `Command` componnet works:
+1. The user input is first parsed using the `Parse` component
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., NextCommand), which is executed by `Duke`.
+3. The command can communicate with the `Ui`, `Investigation` and `SceneList` when it is executed (e.g. to go to the next scene).
+4. Some of the commands may update the `Storage`.
+
+The Sequence Diagram [below](./next_command_sequence_diagram.png) illustrates within the `Command` component for the `execute(ui,investigation,sceneList)` method call of the `NextCommand` class.
+
+[Sequence diagram for execute(ui,investigation,sceneList) method call of NextCommand](./next_command_sequence_diagram.png)
 
 ### Investigation component
-**API:** Investigation.java
+**API:** `Investigation.java`
 
 The investigation class manages the investigation scene in each
 investigation scene. 
@@ -54,15 +58,15 @@ How the investigation works
 
 
 ### Clue component
-**API:** Clue.java
+**API:** `Clue.java`
 
 ### Narrative component
-**API:** Narrative.java
+**API:** `Narrative.java`
 
 The narrative class generates the story for each of the scene.
 
 ### Scene component
-**API:** Scene.java
+**API:** `Scene.java`
 
 The scene class contains and produces the narrative for the scene.
 
@@ -75,14 +79,13 @@ See below for example.
 - The investigation scene asks the user either investigate a suspect or look into a clue.
 
 ### Search component
-**API:** Search.java
+**API:** `Search.java`
 
 ### Storage component
-**API:** Storage.java
+**API:** `Storage.java`
 
 ### Suspect component
-**API:** Suspect.java
-
+**API:** `Suspect.java`
 
 ## Implementation
 
@@ -157,6 +160,9 @@ It will read the file and store the clues as the Class `Clue`, under the specifi
 |v2.0|user|resume the game after exiting|continue the game instead of restarting|
 |v2.0|user|write notes|look at the notes I have written for each scene and suspect|
 
+## Use Cases
+
+(Use /next as an example)
 
 ## Non-Functional Requirements
 1. The game should work as long as java 11 is installed on the local machine.
