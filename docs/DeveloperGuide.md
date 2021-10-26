@@ -13,15 +13,23 @@
 ### Parser component
 **API:** Parser.java 
 
-The parser component is used to parse the input given by the user. 
+The parser component is used to parse the input given by the user.
+
+The Sequence Diagram below illustrates the interactions within the 
+`Parser` component for the `getCommandFromUser("/next")` API call.
+
+![Parser sequence diagram](./ParserUML.png)
+
+The class diagram below shows how the parser interacts with the other classes
+
+![Parser class diagram design](./ParserClassDiagram.png)
 
 How the parser work
-- When the user gives an input, the parser tries to return a command based the input given.
+- When the user gives an input, the parser will the appropriate command for this input.
+- In the case of `/next` as the input, the NextCommand will be generated.
+- The NextCommand is inherits from the abstract class Command.
 - If the input does not generate a valid command type, it throws the invalidInputException.
-
-The sequence diagram below demonstrates how the parser works.
-
-![Parser design](./ParserUML.png)
+- The abstract Command class requires SceneList, Ui and Investigate component as its dependencies. 
 
 ### Note component
 **API:** Note.java
@@ -175,6 +183,7 @@ It will read the file and store the clues as the Class `Clue`, under the specifi
 |v1.0|user|choose the suspect|see if I am able to solve the crime|
 |v2.0|user|resume the game after exiting|continue the game instead of restarting|
 |v2.0|user|write notes|look at the notes I have written for each scene and suspect|
+|v2.0|user|go to previous scene|look at the narrative for the previous scene|
 
 ## Use Cases
 
