@@ -12,18 +12,19 @@ public class Narrative {
     String fileName;
 
     public Narrative() {
-        filePath = "src/main/resources/";
+        filePath = "";
     }
 
     public Narrative(String fileName) {
         this.fileName = fileName;
-        this.filePath = "src/main/resources/";
+        this.filePath = "";
     }
 
     public String getNarrative() throws FileNotFoundException {
-        File file = new File(filePath + fileName);
-        //InputStream file = getClass().getResourceAsStream(filePath + fileName);
-        //assert file != null;
+        //File file = new File(filePath + fileName);
+        //System.out.println(filePath + fileName);
+        InputStream file = getClass().getResourceAsStream(filePath + fileName);
+        assert file != null;
         Scanner in = new Scanner(file);
         StringBuilder content = new StringBuilder();
         while (in.hasNext()) {
@@ -38,19 +39,42 @@ public class Narrative {
         }
         System.out.println(this.getNarrative());
     }
+
+    public static void ClearConsole(){
+        try{
+            String operatingSystem = System.getProperty("os.name"); //Check the current operating system
+
+            if(operatingSystem.contains("Windows")){
+                ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
+                Process startProcess = pb.inheritIO().start();
+                startProcess.waitFor();
+            } else {
+                ProcessBuilder pb = new ProcessBuilder("clear");
+                Process startProcess = pb.inheritIO().start();
+
+                startProcess.waitFor();
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
     public void displaySceneNarrative() throws FileNotFoundException {
         String content = this.getNarrative();
-        int index = 0;
         while(content.contains("\n")) {
+            ClearConsole();
             for(int i=0;i<4 && content.contains("\n");i++) {
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
                 System.out.print(content.substring(0, 1+content.indexOf("\n")));
                 content = content.substring(1+content.indexOf("\n"));
             }
-            pressEnterKeyToContinue();
+            if (content.contains("\n")) {
+                pressEnterKeyToContinue();
+            }
         }
-        System.out.print(content);
+        ClearConsole();
+        System.out.print(content+"\n");
+        pressEnterKeyToContinue();
+        ClearConsole();
     }
     public void pressEnterKeyToContinue()
     {
