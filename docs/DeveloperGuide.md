@@ -34,15 +34,15 @@ How the note work
 - Notes in the note list can be found by their titles and scene index.
 - Unwanted notes can be deleted.
 
-
-
 ### UI component
 **API:** Ui.java 
 
-The ui component communicates with the user via the terminal.
+The ui component communicates with the user via the terminal. Other component call methods of 
+ui to print output to terminal. 
 
 How the ui work
 - Print messages to terminal depending on the scene.
+- Print corresponding output to terminal according to input command.
 
 ### Command component
 **API:** Command.java 
