@@ -1,20 +1,16 @@
-scene 2
-DEFAULT 0
-Test
+scene 1
+SCENE 1
+1
 End of this note.
 scene 2
-DEFAULT 1
-Test
+SCENE 2
+2
 End of this note.
-scene 2
-DEFAULT 2
-Test
+scene 3
+SCENE 3
+3
 End of this note.
-scene 2
-DEFAULT 3
-Test
-End of this note.
-scene 2
-DEFAULT 4
-Test
+scene 3
+this is 2
+test
 End of this note.
