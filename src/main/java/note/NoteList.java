@@ -62,31 +62,23 @@ public class NoteList {
         return notes.get(index);
     }
 
-    public void createNote(Note newNote) {
+    public void createNote(Note newNote, int inputSceneIndex) {
         notes.add(newNote);
-        Storage.saveNote(this);
+        Storage.saveNote(this,inputSceneIndex);
         ui.printSaveNoteMessage();
     }
 
-    public void createNoteFromFile(Note newNote) {
+    public void createNoteFromFile(Note newNote, int inputSceneIndex) {
         notes.add(newNote);
-        Storage.saveNote(this);
+        Storage.saveNote(this,inputSceneIndex);
     }
 
     public void deleteNote(int index) {
         Note noteToDelete = notes.get(index);
         notes.remove(index);
-        Storage.saveNote(this);
+        Storage.saveNote(this,noteToDelete.getNoteSceneIndex());
         ui.printDeleteNoteMessage();
     }
-
-
-    public void deleteAllNote() {
-        notes.removeAll(notes);
-        Storage.saveNote(this);
-        ui.printDeleteAllNoteMessage();
-    }
-
 
     public void processNote(SceneList sceneList, String userChoice) {
         if (userChoice.equals("create")) {
@@ -135,7 +127,6 @@ public class NoteList {
         System.out.println(keywords);
         ui.printSelectedNote(this.searchNoteUsingTitle(keywords, this));
     }
-
 
     public void indexSearch() {
         ui.printNoteSearchSceneIndexInstructions();
