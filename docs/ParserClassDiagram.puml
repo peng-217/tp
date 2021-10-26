@@ -17,9 +17,9 @@ component SceneList {
 
 Parser .down.> xyzCommand
 xyzCommand -down-|> command
-Ui -> command
-Investigation -> command
-SceneList --> command
+command ..> Ui
+command ..> Investigation
+command ..> SceneList
 
 @enduml
 
