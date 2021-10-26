@@ -13,8 +13,13 @@ public class SceneListTest {
     public void scenesTest() throws FileNotFoundException {
         Ui ui = new Ui();
         GameDataFileDecoder datafile = new GameDataFileDecoder(ui,new GameDataFileManager("GameData.txt"));
+<<<<<<< HEAD
         datafile.setCurrentSceneIndex(0);
         SceneList sceneList = SceneListBuilder.buildSceneList(ui,datafile);
+=======
+        datafile.setFile(0);
+        SceneList sceneList = SceneListBuilder.buildSceneList(datafile);
+>>>>>>> cc98a81c041efe0e8df351a01c50dd3041083b88
         Scene currentScene = sceneList.getCurrentScene();
         currentScene.runScene();
 
@@ -37,8 +42,13 @@ public class SceneListTest {
     public void scene2Test() throws FileNotFoundException {
         Ui ui = new Ui();
         GameDataFileDecoder datafile = new GameDataFileDecoder(ui,new GameDataFileManager("GameData.txt"));
+<<<<<<< HEAD
         datafile.setCurrentSceneIndex(0);
         SceneList sceneList = SceneListBuilder.buildSceneList(ui,datafile);
+=======
+        datafile.setFile(0);
+        SceneList sceneList = SceneListBuilder.buildSceneList(datafile);
+>>>>>>> cc98a81c041efe0e8df351a01c50dd3041083b88
 
         Scene currentScene = sceneList.getCurrentScene();
         currentScene.runScene();

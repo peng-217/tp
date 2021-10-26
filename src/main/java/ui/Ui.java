@@ -247,7 +247,7 @@ public class Ui {
 
     public void printNoteInstructions() {
         System.out.println("Do you want to create a new note"
-                + " or open a existing note or delete a note?");
+                + " or open an existing note or delete a note?");
     }
 
     public void printNoteTitleInstructions() {
