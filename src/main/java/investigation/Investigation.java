@@ -1,7 +1,6 @@
 package investigation;
 
 import clue.Clue;
-import storage.Storage;
 import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
 import parser.Parser;
@@ -66,6 +65,7 @@ public class Investigation {
 
     public boolean checkSuspectedKiller(SceneList sceneList) {
         ui.printAllSuspectInCurrentScene(sceneList.getCurrentScene());
+
         boolean killerFound;
         boolean nameGivenIsASuspect;
         String suspectedKiller = ui.readUserInput();

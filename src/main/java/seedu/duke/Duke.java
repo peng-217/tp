@@ -51,8 +51,7 @@ public class Duke {
         }
 
         investigation = new Investigation(clueTracker);
-        notes = new NoteList(ui);
-        Storage.openNoteFromFile(notes);
+        Storage.openNoteFromFile(new NoteList(ui));
         sceneList.runCurrentScene();
     }
 

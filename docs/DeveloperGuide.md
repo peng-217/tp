@@ -21,14 +21,28 @@ How the parser work
 The sequence diagram below demonstrates how the parser works.
 
 {INSERT DIAGRAM HERE}
+>>>>>>> e7de3ad9b4526fbac1d798c6348b53efd66ad6a8
+
+### Note component
+**API:** Note.java
+
+The note component allows user to create / open / delete /search note. 
+
+How the note work
+- When user want to take note, a note with title and content will be created and added 
+  to note list.
+- Notes in the note list can be found by their titles and scene index.
+- Unwanted notes can be deleted.
 
 ### UI component
 **API:** Ui.java 
 
-The ui component communicates with the user via the terminal.
+The ui component communicates with the user via the terminal. Other component call methods of 
+ui to print output to terminal. 
 
 How the ui work
 - Print messages to terminal depending on the scene.
+- Print corresponding output to terminal according to input command.
 
 ### Command component
 **API:** Command.java 

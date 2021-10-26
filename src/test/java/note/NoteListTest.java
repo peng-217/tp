@@ -65,7 +65,7 @@ class NoteListTest {
         NoteList notes = new NoteList(new Ui());
         String testString = "THIS IS A TEST OF DUKE";
         String[] expectedResult = {"THIS","IS","A","TEST","OF","DUKE"};
-        String[] underTest = notes.stringSpliter(testString);
+        String[] underTest = notes.stringSplitter(testString);
         //assertTrue(expectedResult.equals(underTest));
         assertEquals("THIS",underTest[0]);
         assertEquals("IS",underTest[1]);
@@ -82,8 +82,6 @@ class NoteListTest {
         Note testTwo = new Note("test 2","TEST 2",2);
         notes.createNote(testOne,1);
         notes.createNote(testTwo,2);
-        //assertEquals(testOne,notes.getIndexNote(1));
-        //assertEquals(testTwo,notes.getIndexNote(2));
         assertTrue(notes.getIndexNote(0).getNoteSceneIndex() == 1);
         assertTrue(notes.getIndexNote(1).getNoteSceneIndex() == 2);
     }
