@@ -169,7 +169,7 @@ public class Ui {
     }
 
     public void printNoteTitle(NoteList notes) {
-        if (notes.getSize() == 0){
+        if (notes.getSize() == 0) {
             System.out.println(NO_NOTE_MESSAGE);
         } else {
             System.out.println(LIST_OF_NOTES_MESSAGE);
@@ -189,7 +189,7 @@ public class Ui {
         System.out.println();
         System.out.println(LINE_SEPARATOR);
     }
-//@@author
+    //@@author
 
     public void printSuspects(SuspectList suspects) {
         System.out.println(suspects.toString());

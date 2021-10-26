@@ -1,4 +1,5 @@
 //@@author peng-217
+
 package note;
 
 import java.util.ArrayList;
@@ -157,7 +158,7 @@ public class NoteList {
         ui.printAllNotes(this);
         ui.printNoteDeleteInstructions();
         String userInput = ui.readUserInput();
-        if (userInput.equals("all")){
+        if (userInput.equals("all")) {
             deleteAllNotes();
         } else {
             int deletedNoteIndex = Integer.parseInt(userInput) - 1;

@@ -1,4 +1,5 @@
 //@@author peng-217
+
 package note;
 
 public class Note {
