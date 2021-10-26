@@ -107,7 +107,7 @@ public class SuspectList {
         //File f = new File(fileLocation);
         //System.out.println(fileLocation);
         InputStream f = SceneListBuilder.class.getResourceAsStream(fileLocation);
-        if(f == null) {
+        if (f == null) {
             throw new FileNotFoundException();
         }
         Scanner sc = new Scanner(f);

@@ -1,6 +1,5 @@
 package narrative;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Locale;
@@ -24,7 +23,7 @@ public class Narrative {
         //File file = new File(filePath + fileName);
         //System.out.println(filePath + fileName);
         InputStream file = getClass().getResourceAsStream(filePath + fileName);
-        if(file == null) {
+        if (file == null) {
             throw new FileNotFoundException();
         }
         Scanner in = new Scanner(file);
@@ -36,17 +35,17 @@ public class Narrative {
     }
 
     public void displayNarrative() throws FileNotFoundException {
-        if(fileName.toLowerCase(Locale.ROOT).contains("scene")) {
+        if (fileName.toLowerCase(Locale.ROOT).contains("scene")) {
             displaySceneNarrative();
         }
         System.out.println(this.getNarrative());
     }
 
-    public static void ClearConsole(){
-        try{
+    public static void clearConsole() {
+        try {
             String operatingSystem = System.getProperty("os.name"); //Check the current operating system
 
-            if(operatingSystem.contains("Windows")){
+            if (operatingSystem.contains("Windows")) {
                 ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
                 Process startProcess = pb.inheritIO().start();
                 startProcess.waitFor();
@@ -56,30 +55,29 @@ public class Narrative {
 
                 startProcess.waitFor();
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     public void displaySceneNarrative() throws FileNotFoundException {
         String content = this.getNarrative();
-        while(content.contains("\n")) {
-            ClearConsole();
-            for(int i=0;i<4 && content.contains("\n");i++) {
-                System.out.print(content.substring(0, 1+content.indexOf("\n")));
-                content = content.substring(1+content.indexOf("\n"));
+        while (content.contains("\n")) {
+            clearConsole();
+            for (int i = 0; i < 4 && content.contains("\n"); i ++) {
+                System.out.print(content.substring(0, 1 + content.indexOf("\n")));
+                content = content.substring(1 + content.indexOf("\n"));
             }
             if (content.contains("\n")) {
                 pressEnterKeyToContinue();
             }
         }
-        ClearConsole();
-        System.out.print(content+"\n");
+        clearConsole();
+        System.out.print(content + "\n");
         pressEnterKeyToContinue();
-        ClearConsole();
+        clearConsole();
     }
-    public void pressEnterKeyToContinue()
-    {
+    public void pressEnterKeyToContinue() {
         System.out.println("\nPress Enter key to continue...");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();

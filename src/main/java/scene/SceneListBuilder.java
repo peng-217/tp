@@ -30,8 +30,10 @@ public class SceneListBuilder {
     private static Scene[] getScenesFromFile(String fileLocation) throws FileNotFoundException {
         InputStream f = SceneListBuilder.class.getResourceAsStream(fileLocation);
         //File f = new File(fileLocation);
+        if (f == null) {
+            throw new FileNotFoundException();
+        }
         Scanner sc = new Scanner(f);
-
         int numOfScenes = sc.nextInt();
         Scene[] scenes = new Scene[numOfScenes];
         sc.nextLine();
