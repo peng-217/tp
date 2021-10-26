@@ -52,6 +52,7 @@ public class Ui {
     private static final String SCENE_FILE_MISSING_MESSAGE =
             "File containing number of scene and its order is missing";
     private static final String INVALID_INDEX = "Invalid index";
+    private static final String DELETE_ALL_NOTE = "Ok! All notes have been deleted";
     private static final String NO_NOTE_MESSAGE = "There is no note now, try to add one!";
     private static final String CHOOSE_SUSPECT_OR_CLUE_INDEX =
             "Key in the index (e.g. 1, 2) in front of the suspect/clue you want to investigate";
@@ -272,7 +273,7 @@ public class Ui {
     }
 
     public void printNoteSearchInstructions() {
-        System.out.println("Do you want to search by keyword or scene index?");
+        System.out.println("Do you want to search by keyword (type 'keyword') or scene index (type 'index')?");
     }
 
     public void printNoteSearchKeyWordInstructions() {
@@ -293,7 +294,12 @@ public class Ui {
     }
 
     public void printNoteDeleteInstructions() {
-        System.out.println("Please enter the index of the note you want to delete.");
+        System.out.println("Please enter the index of the note you want to delete "
+               + "(type 'all' if you want delete all notes).");
+    }
+
+    public void printDeleteAllNoteMessage() {
+        System.out.println(DELETE_NOTE_MESSAGE);
     }
 
     public void printNoteMissingError(int size) {

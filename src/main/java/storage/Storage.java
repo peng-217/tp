@@ -21,7 +21,7 @@ public class Storage {
 
     }
 
-    public static void saveNote(NoteList notes,int inputSceneIndex) {
+    public static void saveNote(NoteList notes) {
         File saveDirection =  new File("data");
         saveDirection.mkdir();
         File saveNote = new File(saveDirection,"notes.txt");
@@ -66,7 +66,7 @@ public class Storage {
                         contentPart = scanNote.nextLine();
                     }
                     Note savedNote = new Note(content, title, sceneIndex);
-                    notes.createNoteFromFile(savedNote,sceneIndex);
+                    notes.createNoteFromFile(savedNote);
                 }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
