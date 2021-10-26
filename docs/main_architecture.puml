@@ -3,16 +3,57 @@
 
 autonumber
 
-User -> Duke: "/next"
-Duke -> Ui: readUserInput()
-Duke <- Ui: userInput
-Duke -> Command: new Command()
-Duke <- Command: CommandFromUser
-Duke -> Parser: getCommandFromUser(userInput)
-Duke <- Parser: CommandFromUser
-Duke -> Command: execute()
-Command -> Investigation: runScene()
-Duke -> Command: exit()
-User <- Duke
+actor User
+User -> ":Duke": "/next"
+activate ":Duke"
+":Duke" -> ":Ui": readUserInput()
+activate ":Ui"
+":Duke" <-- ":Ui": userInput
+deactivate ":Ui"
+":Duke" -> ":Command": new InvalidCommand()
+activate ":Command"
+":Duke" <-- ":Command": commandFromUser
+deactivate ":Command"
+":Duke" -> ":Parser": getCommandFromUser(userInput)
+activate ":Parser"
+":Parser" -> ":Command": new NextCommand()
+activate ":Command"
+":Parser" <-- ":Command": Command
+deactivate ":Command"
+":Duke" <-- ":Parser": commandFromUser
+deactivate ":Parser"
+":Duke" -> ":Command": execute(ui,investigation,sceneList)
+activate ":Command"
+":Command" -> ":SceneList": getCurrentSceneType()
+activate ":SceneList"
+":Command" <-- ":SceneList": sceneType
+deactivate ":SceneList"
+":Command" -> ":Investigation": getSuspectStage()
+activate ":Investigation"
+":Command" <-- ":Investigation"
+deactivate ":Investigation"
+":Command" -> ":SceneList": updateSceneNumber()
+activate ":SceneList"
+":SceneList" -> ":Storage": setFile(currentSceneIndex)
+activate ":Storage"
+":Storage" -> ":Storage": save to file
+activate ":Storage"
+return
+":SceneList" <-- ":Storage"
+deactivate ":Storage"
+":Command" <-- ":SceneList"
+deactivate ":SceneList"
+":Command" -> ":SceneList": runCurrentScene()
+activate ":SceneList"
+":Command" <-- ":SceneList"
+deactivate ":SceneList"
+":Duke" <-- ":Command"
+deactivate ":Command"
+":Duke" -> ":Command": exit()
+activate ":Command"
+":Duke" <-- ":Command": isExit
+deactivate ":Command"
+User <-- ":Duke"
+deactivate ":Duke"
 
 @enduml
