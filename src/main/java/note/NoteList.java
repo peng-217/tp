@@ -8,6 +8,7 @@ import scene.SceneList;
 import ui.Ui;
 
 
+
 public class NoteList {
     private ArrayList<Note> notes;
 
