@@ -4,14 +4,7 @@
 @startuml
 autonumber
 
-<<<<<<< HEAD
--> NextCommand: execute(ui,investigation,sceneList)
-NextCommand -> SceneList: getCurrentSceneType()
-SceneList -> SceneList: getCurrentScene()
-SceneList -> Scene: getSceneType()
-SceneList <-- Scene
-NextCommand <-- SceneList
-=======
+
 -> ":NextCommand": execute(ui,investigation,sceneList)
 activate ":NextCommand"
 ":NextCommand" -> ":SceneList": getCurrentSceneType()
@@ -25,21 +18,12 @@ activate ":Scene"
 deactivate ":Scene"
 ":NextCommand" <-- ":SceneList"
 deactivate ":SceneList"
->>>>>>> 929718479c9514f15e019e93011695f4cc5bac00
 alt #pink CORRECT_KILLER_SCENE
 
 autonumber 7
 
 else #lightBlue TRUTH_SCENE
-<<<<<<< HEAD
-    NextCommand -> Investigation: runScenes()
-    Investigation -> SceneList: runCurrentScene()
-    SceneList -> SceneList: getCurrentScene()
-    SceneList -> Scene: runScene()
-    SceneList <-- Scene
-    Investigation <-- SceneList
-    NextCommand <-- Investigation
-=======
+
     ":NextCommand" -> ":Investigation": runScenes()
     activate ":Investigation"
     ":Investigation" -> ":SceneList": runCurrentScene()
@@ -55,31 +39,12 @@ else #lightBlue TRUTH_SCENE
     deactivate ":SceneList"
     ":NextCommand" <-- ":Investigation"
     deactivate ":Investigation"
->>>>>>> 929718479c9514f15e019e93011695f4cc5bac00
+
 
 autonumber 7
 
 else #pink GUESS_KILLER_SCENE
-<<<<<<< HEAD
-    NextCommand -> Investigation: checkSuspectedKiller()
-    Investigation -> SceneList: getCurrentScene()
-    Investigation <-- SceneList
-    Investigation -> Ui: printAllSuspectsMessage()
-    Investigation -> SceneList: getSuspectList()
-    Investigation <-- SceneList
-    Investigation -> Ui: printSuspects()
-    Investigation -> Ui: printSuspectKillerMessage()
-    Investigation -> Ui: readUserInput()
-    Investigation <-- Ui
-    Investigation -> Investigation: goToCorrectFinalScene(killerFound)
-    Investigation -> SceneList: setSceneNumberAfterSuspecting(killerFound)
-    SceneList -> GameDataFileDecoder: resetFile(INTRODUCTION_SCENE_INDEX)
-    SceneList <-- GameDataFileDecoder
-    Investigation <-- SceneList
-    NextCommand <-- Investigation
-    NextCommand -> Investigation: runScenes()
-    NextCommand <-- Investigation
-=======
+
     ":NextCommand" -> ":Investigation": checkSuspectedKiller()
     activate ":Investigation"
     ":Investigation" -> ":SceneList": getCurrentScene()
@@ -123,24 +88,12 @@ else #pink GUESS_KILLER_SCENE
     activate ":Investigation"
     ":NextCommand" <-- ":Investigation"
     deactivate ":Investigation"
->>>>>>> 929718479c9514f15e019e93011695f4cc5bac00
+
 
 autonumber 7
 
 else #lightBlue default
-<<<<<<< HEAD
-    NextCommand -> Investigation: updateScene()
-    Investigation -> SceneList: updateSceneNumber()
-    SceneList -> GameDataFileDecoder: resetFile(currentSceneIndex)
-    GameDataFileDecoder -> GameDataFileDecoder: rewriteFile(factorySetting)
-    SceneList <-- GameDataFileDecoder
-    Investigation <-- SceneList
-    NextCommand <-- Investigation
-    NextCommand -> Investigation: runScenes()
-    NextCommand <-- Investigation
-end
-<-- NextCommand
-=======
+
     ":NextCommand" -> ":Investigation": updateScene()
     activate ":Investigation"
     ":Investigation" -> ":SceneList": updateSceneNumber()
@@ -163,5 +116,5 @@ end
 end
 <-- ":NextCommand"
 deactivate ":NextCommand"
->>>>>>> 929718479c9514f15e019e93011695f4cc5bac00
+
 @enduml

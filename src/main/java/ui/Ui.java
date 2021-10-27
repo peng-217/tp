@@ -142,8 +142,7 @@ public class Ui {
     public void printSaveNoteMessage() {
         System.out.println(SAVE_NOTE_MESSAGE);
     }
-
-
+    
     public void printExistingNotes(NoteList notes,int orderIndex) {
         System.out.println(LIST_ALL_NOTES_MESSAGE);
         System.out.println("scene " + notes.getIndexNote(orderIndex - 1).getNoteSceneIndex());

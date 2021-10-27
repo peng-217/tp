@@ -8,8 +8,6 @@ import storage.Storage;
 import scene.SceneList;
 import ui.Ui;
 
-
-
 public class NoteList {
     private ArrayList<Note> notes;
 
@@ -151,7 +149,6 @@ public class NoteList {
         int inputOrderIndex = Integer.parseInt(ui.readUserInput());
         ui.printExistingNotes(this, inputOrderIndex);
     }
-
 
     public void deleteNoteProcess() {
         ui.printNoteListStarter();
