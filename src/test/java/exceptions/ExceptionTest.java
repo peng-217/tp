@@ -2,20 +2,14 @@ package exceptions;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import clue.CheckedClueTrackerBuilder;
+import scene.clue.CheckedClueTrackerBuilder;
 import investigation.Investigation;
 import narrative.Narrative;
 import org.junit.jupiter.api.Test;
-import parser.Parser;
 import scene.Scene;
-import scene.SceneList;
-import scene.SceneListBuilder;
 import scene.SceneTypes;
-import storage.GameDataFileDecoder;
-import storage.GameDataFileManager;
 import suspect.Suspect;
 import suspect.SuspectList;
-import ui.Ui;
 
 public class ExceptionTest {
 

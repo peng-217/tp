@@ -1,6 +1,6 @@
 package ui;
 
-import clue.Clue;
+import scene.clue.Clue;
 import investigation.Investigation;
 import investigation.InvestigationStages;
 import scene.Scene;
