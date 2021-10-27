@@ -4,6 +4,19 @@
 
 The plot of the game was adopted from one of the games available in the Mini Program in WeChat called Ju Ben Sha. The original story was in Chinese and was translated to English with the help of Google Translate. 
 
+## Content Page
+* [Architecture](#Architecture)
+* [Main Components of the Architecture](#Main-components-of-the-architecture)
+  * [Parser Component](#Parser-component)
+  * [Note Component](#Note-component)
+  * [UI Component](#UI-component)
+  * [Command Component](#Command-component)
+  * [Investigation Component](#Investigation-component)
+  * [Scene Component](#Scene-component)
+  * [Storage Component](#Storage-component)
+  * [Suspect Component](#Suspect-component)
+* [Implementation](#Implementation)
+
 ## Design
 
 ### Architecture
@@ -15,7 +28,7 @@ The _**Architecture Diagram**_ given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
-**Main components of the architecture**
+###Main components of the architecture
 
 `Duke` is responsible for,
 
@@ -37,7 +50,7 @@ The rest of the App consists of eight components.
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user issues the command `/next`.
 
-![High Level Sequence Digram for "/next"](./main_architecture.png)
+![High Level Sequence Diagram for main architecture](./main_architecture.png)
 
 ### Parser component
 **API:** Parser.java 
@@ -224,7 +237,7 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 
 ## Appendix
 
-### Product scope
+## Product Scope
 
 **Target user profile：**
 
