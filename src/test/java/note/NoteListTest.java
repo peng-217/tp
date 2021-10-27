@@ -17,13 +17,13 @@ class NoteListTest {
     public void getSize() {
         Ui ui = new Ui();
         NoteList notes = new NoteList(ui);
-        int testSize = 5;
-        int testScene = 2;
+        int testSize = 6;
+        int testScene = 1;
         for (int i = 0; i < testSize; i++) {
             Note testNote = new Note("Test", "DEFAULT " + i, testScene);
             notes.createNote(testNote);
         }
-        assertEquals(5,notes.getSize());
+        assertEquals(6,notes.getSize());
     }
 
     @Test
