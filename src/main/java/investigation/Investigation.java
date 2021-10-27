@@ -6,7 +6,7 @@ import exceptions.InvalidSuspectException;
 import parser.Parser;
 import scene.Scene;
 import scene.SceneList;
-import suspect.SuspectList;
+import scene.suspect.SuspectList;
 import ui.Ui;
 import java.util.ArrayList;
 

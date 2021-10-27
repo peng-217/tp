@@ -1,4 +1,4 @@
-package suspect;
+package scene.suspect;
 
 public enum SuspectNames {
     SUSPECT_FATHER,
