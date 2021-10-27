@@ -115,18 +115,20 @@ public class NoteList {
     }
 
     public void openNoteProcess() {
-        ui.printOpenNoteMessage(this);
-        String userInput = ui.readUserInput();
-        if (userInput.contains("search")) {
-            ui.printNoteSearchInstructions();
-            userInput = ui.readUserInput();
-            if (userInput.equals("keyword")) {
-                keywordSearch();
+        boolean checkExistance = ui.printOpenNoteMessage(this);
+        if(checkExistance) {
+            String userInput = ui.readUserInput();
+            if (userInput.contains("search")) {
+                ui.printNoteSearchInstructions();
+                userInput = ui.readUserInput();
+                if (userInput.equals("keyword")) {
+                    keywordSearch();
+                } else {
+                    indexSearch();
+                }
             } else {
-                indexSearch();
+                openNoteDirectly();
             }
-        } else {
-            openNoteDirectly();
         }
     }
 
