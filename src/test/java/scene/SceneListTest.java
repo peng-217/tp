@@ -9,12 +9,16 @@ import java.io.FileNotFoundException;
 
 public class SceneListTest {
 
+
+    /*
     @Test
     public void scenesTest() throws FileNotFoundException {
         Ui ui = new Ui();
         GameDataFileDecoder datafile = new GameDataFileDecoder(ui,new GameDataFileManager("GameData.txt"));
-        datafile.setFile(0);
-        SceneList sceneList = SceneListBuilder.buildSceneList(ui,datafile);
+
+        datafile.setCurrentSceneIndex(0);
+        SceneList sceneList = SceneListBuilder.buildSceneList(datafile);
+
         Scene currentScene = sceneList.getCurrentScene();
         currentScene.runScene();
 
@@ -31,14 +35,15 @@ public class SceneListTest {
 
         System.out.println("------------------------------------------");
         currentScene.runScene();
-    }
+    }*/
 
     @Test
     public void scene2Test() throws FileNotFoundException {
         Ui ui = new Ui();
         GameDataFileDecoder datafile = new GameDataFileDecoder(ui,new GameDataFileManager("GameData.txt"));
-        datafile.setFile(0);
-        SceneList sceneList = SceneListBuilder.buildSceneList(ui,datafile);
+
+        datafile.setCurrentSceneIndex(0);
+        SceneList sceneList = SceneListBuilder.buildSceneList(datafile);
 
         Scene currentScene = sceneList.getCurrentScene();
         currentScene.runScene();

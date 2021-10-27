@@ -44,7 +44,7 @@ public class Duke {
         dataFile = new GameDataFileDecoder(ui, new GameDataFileManager(GAME_DATA_FILE_NAME));
 
         try {
-            sceneList = SceneListBuilder.buildSceneList(ui, dataFile);
+            sceneList = SceneListBuilder.buildSceneList(dataFile);
             clueTracker = CheckedClueTrackerBuilder.buildClueTracker();
         } catch (MissingSceneFileException e) {
             ui.printMissingSceneFileMessage();

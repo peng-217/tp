@@ -27,7 +27,7 @@ public class SceneList {
         } else {
             this.currentSceneIndex = WRONG_KILLER_SCENE_INDEX;
         }
-        dataFile.setFile(INTRODUCTION_SCENE_INDEX);
+        dataFile.setCurrentSceneIndex(INTRODUCTION_SCENE_INDEX);
     }
 
     public Scene getCurrentScene() {
@@ -37,7 +37,7 @@ public class SceneList {
 
     public void resetCurrentSceneIndex() {
         this.currentSceneIndex = STARTING_INDEX_FOR_FILE;
-        dataFile.setFile(STARTING_INDEX_FOR_FILE);
+        dataFile.setCurrentSceneIndex(STARTING_INDEX_FOR_FILE);
     }
 
     public int getCurrentSceneIndex() {
@@ -47,7 +47,7 @@ public class SceneList {
     public void updateSceneNumber() {
         this.currentSceneIndex++;
         assert currentSceneIndex <= 6;
-        dataFile.setFile(currentSceneIndex);
+        dataFile.setCurrentSceneIndex(currentSceneIndex);
     }
 
     public SceneTypes getCurrentSceneType() {
@@ -66,6 +66,7 @@ public class SceneList {
 
     public void resetAllScenes() {
         this.resetCurrentSceneIndex();
+        dataFile.setCurrentSceneIndex(0);
         runCurrentScene();
     }
 
@@ -80,12 +81,12 @@ public class SceneList {
         case WRONG_KILLER_SCENE:
         case CORRECT_KILLER_SCENE:
             this.currentSceneIndex = GUESS_KILLER_SCENE_INDEX;
-            dataFile.setFile(GUESS_KILLER_SCENE_INDEX);
+            dataFile.setCurrentSceneIndex(GUESS_KILLER_SCENE_INDEX);
             break;
         default:
             this.currentSceneIndex--;
             assert this.currentSceneIndex >= 0;
-            dataFile.setFile(currentSceneIndex);
+            dataFile.setCurrentSceneIndex(currentSceneIndex);
         }
     }
 

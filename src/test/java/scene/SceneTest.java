@@ -13,11 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SceneTest {
 
+    /*
     @Test
     public void getNarrative() {
         Scene scene = new Scene(new Narrative(), new SuspectList(), SceneTypes.INTRODUCTION_SCENE);
         assertThrows(FileNotFoundException.class, scene::runScene);
-    }
+    }*/
 
     @Test
     public void toString_InstantiateScene_printNoNarrativeMessage() {

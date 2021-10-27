@@ -1,8 +1,11 @@
 package suspect;
 
 import clue.Clue;
+import scene.SceneListBuilder;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -27,6 +30,7 @@ public class SuspectList {
     }
 
     public void addClueForSuspect(String name, Clue clue) {
+        assert suspects.containsKey(name);
         suspects.get(name).addClue(clue);
     }
 
@@ -100,15 +104,21 @@ public class SuspectList {
     }
 
     public static void suspectListBuilder(String fileLocation, SuspectList suspectList) throws FileNotFoundException {
-        File f = new File(fileLocation);
+        //File f = new File(fileLocation);
+        //System.out.println(fileLocation);
+        InputStream f = SceneListBuilder.class.getResourceAsStream(fileLocation);
+        if (f == null) {
+            throw new FileNotFoundException();
+        }
         Scanner sc = new Scanner(f);
 
         int numOfSuspect = sc.nextInt();
         sc.nextLine();
 
         for (int i = 0; i < numOfSuspect; i++) {
-            String suspect = sc.nextLine();
-            suspectList.addSuspect(suspect, new Suspect());
+            String suspectName = sc.nextLine();
+            Suspect suspect = new Suspect();
+            suspectList.addSuspect(suspectName, suspect);
         }
 
         int numOfClues = sc.nextInt();

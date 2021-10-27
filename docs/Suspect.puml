@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+":SceneList" -> ":SuspectList" :SuspectListBuilder
+loop numOfSuspects
+    activate ":SuspectList"
+    ":SuspectList" -> "suspect:Suspect" :new Suspect()
+    activate "suspect:Suspect"
+    "suspect:Suspect" --> ":SuspectList"
+    deactivate "suspect:Suspect"
+    ":SuspectList" -> ":SuspectList" :addSuspect(suspectName:String, suspect:Suspect)
+    activate ":SuspectList"
+    ":SuspectList" --> ":SuspectList"
+    deactivate ":SuspectList"
+    end
+loop numOfClues
+    ":SuspectList" -> "clueToAdd:Clue" :new Clue(name:String, image:String, description:String)
+    activate "clueToAdd:Clue"
+    "clueToAdd:Clue" --> ":SuspectList"
+    deactivate "clueToAdd:Clue"
+    ":SuspectList" -> ":SuspectList" :addClueForSuspect(suspectName:String, clueToAdd:Clue)
+    activate ":SuspectList"
+    ":SuspectList" --> ":SuspectList"
+    deactivate ":SuspectList"
+    end
+deactivate ":SuspectList"
+":SuspectList" --> ":SceneList"
+
+
+
+@enduml

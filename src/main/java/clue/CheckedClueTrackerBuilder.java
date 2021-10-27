@@ -20,7 +20,7 @@ public class CheckedClueTrackerBuilder {
         SuspectList suspects = new SuspectList();
 
         try {
-            suspectListBuilder("data/clueTracker.txt", suspects);
+            suspectListBuilder("/clueTracker.txt", suspects);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

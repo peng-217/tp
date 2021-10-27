@@ -42,16 +42,28 @@ The Sequence Diagram below shows how the components interact with each other for
 ### Parser component
 **API:** Parser.java 
 
-The parser component is used to parse the input given by the user. 
+The parser component is used to parse the input given by the user.
 
-How the parser work
-- When the user gives an input, the parser tries to return a command based the input given.
-- If the input does not generate a valid command type, it throws the invalidInputException.
+The Sequence Diagram below illustrates the interactions within the 
+`Parser` component for the `getCommandFromUser("/next")` API call.
 
-The sequence diagram below demonstrates how the parser works.
+![Parser sequence diagram](./ParserUML.png)
 
+<<<<<<< HEAD
 
 ![Parser design](./ParserUML.png)
+=======
+The class diagram below shows how the parser interacts with the other classes
+
+![Parser class diagram design](./ParserClassDiagram.png)
+
+How the parser work
+- When the user gives an input, the parser will the appropriate command for this input.
+- In the case of `/next` as the input, the NextCommand will be generated.
+- The NextCommand is inherits from the abstract class Command.
+- If the input does not generate a valid command type, it throws the invalidInputException.
+- The abstract Command class requires SceneList, Ui and Investigate component as its dependencies. 
+>>>>>>> 37bf6700e3865399c7124230a34fbf34ae6c259d
 
 
 ### Note component
@@ -122,6 +134,7 @@ at the end of the game.
 **API:** `Scene.java`
 
 The scene class contains and produces the narrative for the scene.
+It also holds a suspectList, which contains the suspects and their respective clues.
 
 How the scene class work
 - Each scene has a scene type.
@@ -130,14 +143,39 @@ How the scene class work
 See below for example.
 - The introduction scene shows the introductory message to the user.
 - The investigation scene asks the user either investigate a suspect or look into a clue.
+![](Scene.png)
 
 
 
 ### Storage component
 **API:** `Storage.java`
+The local Game Data Storage feature allows users to save the current game progress and resume the saved progress in the Future.
+It is facilitated by ```java.io.File``` and ```java.io.FileWriter```.
+It implements the following operations
+- ```Storage#checkPath()``` -- Checks if there is a valid path to the data file, and creates a new data file if the data file is missing or hte path is invalid.
+- ```Storage#readFile()``` -- Reads all the lines in the data files and store the information into a ```ArrayList<String>``` type Array List, then close the file.
+- ```Storage#rewriteFile()``` -- Erase the content of the data file and rewrite from the start, then save and close the file.
 
+At first ```Storage file = new Storage("name.txt")```, initialise the ```Storage``` class type with the name of the file.
+Then ```file.checkPath()``` will check for existing data file and creates a new data file if the path ```./Data/name.txt```is invalid.
+Then read the file and store the information into array list using ```ArrayList<String> content = file.readFile()```.
+Eventually, edit the content and rewrite to data file using ```file.rewriteFile(content)```
 ### Suspect component
-**API:** `Suspect.java`
+**API:** Suspect.java
+
+The `Suspect` class contains an `ArrayList` of the class `Clue`. 
+
+How the suspect class work:
+
+  * Different suspects in a particular scene are stored in the `SuspectList` class.
+  * Suspects are stored via a `LinkedHashMap<String, Suspect>`, with the string being the suspect's name.
+
+See below for example:
+
+  * The first investigation scene has a `SuspectList` containing one name, "Father", 
+and four clues within its corresponding `Suspect` class.
+
+![](Suspect.png)
 
 ## Implementation
 
@@ -174,14 +212,20 @@ user is investigating. Note tile and content are fulfilled by users. Default tit
 existing note by either search its title/scene index or directly open it by its sequence number (in the note list). User can also delete the unwanted notes by
 typing in its sequence number.
 
-### [Proposed] Clue Reader and Organizer
+### SuspectListBuilder
 
-Clues used in different scenes can be kept in txt file and created following a specific format.
-It uses `java.io.File` and implements:
-* `clueReader(TEXT_LOCATION.txt)` -- where `TEXT_LOCATION.txt` is the directory containing the specified text file.
+Suspects and clues used in different scenes can be kept in a txt file and created following a specific format.
+It uses `java.io.File`, `java.util.Scanner`, and is implemented as:
+* `suspectListBuilder(String fileLocation, SuspectList suspectList)` -- where `fileLocation` is the directory 
+containing the specified text file and `suspectList` is the instance of class `SuspectList` that the suspects 
+and clues are to be added into.
 
 This method will search for the specified text file, throwing a `FileNotFoundException` if it is missing.
-It will read the file and store the clues as the Class `Clue`, under the specified `Suspect` instance which is then stored in a `SuspectList` class.
+The text file will be written in such a way that the program can recognize how many suspects
+and how many clues there are. It will first add the suspects from the file into the suspectList 
+via the method `addSuspect(String suspectName, Suspect suspect)`, and then the clues via the 
+method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect with the corresponding `suspectName`.
+
 
 
 ## Appendix
@@ -200,8 +244,8 @@ It will read the file and store the clues as the Class `Clue`, under the specifi
 
 - Provide an alternative game for users to exercise creative thinking
 
-### User Stories
 
+<<<<<<< HEAD
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
 |v1.0|new user|see all commands available|understand the game mechanics|
@@ -217,18 +261,42 @@ It will read the file and store the clues as the Class `Clue`, under the specifi
 =======
 |v2.0|user|go back to the previous scene|recap the previous scene|
 |v2.0|user|investigate suspect using name or their index|more than one way to investigate a suspect|
+=======
+## User Stories
+
+|Priority|Version| As a ... | I want to ... | So that I can ...|
+|--------|--------|----------|---------------|------------------|
+| * * *|v1.0|new user|see all commands available|understand the game mechanics|
+| * * *|v1.0|user|investigate the suspects available|better understand the suspect|
+| * * *|v1.0|user|investigate the clues available|understand the story line better|
+| * * *|v1.0|user|choose the suspect|see if I am able to solve the crime|
+| * * |v2.0|user|resume the game after exiting|continue the game instead of restarting|
+| * * |v2.0|user|write notes|look at the notes I have written for each scene and suspect|
+| * |v2.0|user|go to previous scene|look at the narrative for the previous scene|
+
+>>>>>>> 37bf6700e3865399c7124230a34fbf34ae6c259d
 
 ### Use Cases
 
 (Use /next as an example)
 
+Use case: Navigate to the next scene.
+
+1. The user gives `/next` as input.
+2. Parser parsed the `/next` input, returns a NextCommand.
+3. NextCommand does a self-invocation and calls the `execute()` method.
+4. NextCommand returns a boolean by self-invocating the `.exit()` method.
+5. If it is the last scene of the game, `.exit()` returns true else false.
+
 ### Non-Functional Requirements
 1. The game should work as long as java 11 is installed on the local machine.
 2. A working keyboard to play the game and a monitor to read the text.
 
+
 ### Glossary
 
-* *glossary item* - Definition
+
+- Mainstream OS: Windows, Mac OS X, Unix, Linux
 
 ## Appendix: Instructions for manual testing
 
