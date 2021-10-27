@@ -1,8 +1,11 @@
 package suspect;
 
 import clue.Clue;
+import scene.SceneListBuilder;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -101,7 +104,12 @@ public class SuspectList {
     }
 
     public static void suspectListBuilder(String fileLocation, SuspectList suspectList) throws FileNotFoundException {
-        File f = new File(fileLocation);
+        //File f = new File(fileLocation);
+        //System.out.println(fileLocation);
+        InputStream f = SceneListBuilder.class.getResourceAsStream(fileLocation);
+        if (f == null) {
+            throw new FileNotFoundException();
+        }
         Scanner sc = new Scanner(f);
 
         int numOfSuspect = sc.nextInt();

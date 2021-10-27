@@ -8,6 +8,7 @@ import suspect.SuspectList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 import static suspect.SuspectList.suspectListBuilder;
@@ -18,7 +19,8 @@ public class SceneListBuilder {
     public static SceneList buildSceneList(GameDataFileDecoder dataFile) throws MissingSceneFileException {
         Scene[] scenes;
         try {
-            scenes = getScenesFromFile("data/scenesWithNarratives.txt");
+            scenes = getScenesFromFile("/scenesWithNarratives.txt");
+
         } catch (FileNotFoundException e) {
             throw new MissingSceneFileException("Text file containing scene order is missing!");
         }
@@ -26,9 +28,12 @@ public class SceneListBuilder {
     }
 
     private static Scene[] getScenesFromFile(String fileLocation) throws FileNotFoundException {
-        File f = new File(fileLocation);
+        InputStream f = SceneListBuilder.class.getResourceAsStream(fileLocation);
+        //File f = new File(fileLocation);
+        if (f == null) {
+            throw new FileNotFoundException();
+        }
         Scanner sc = new Scanner(f);
-
         int numOfScenes = sc.nextInt();
         Scene[] scenes = new Scene[numOfScenes];
         sc.nextLine();

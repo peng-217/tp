@@ -19,6 +19,5 @@ MANIFEST.MF
 
 # Ignore GameData.txt
 /data/GameData.txt
-
-#Ignore notes.txt
-/data/notes.txt
+TP.jar
+data/notes.txt
