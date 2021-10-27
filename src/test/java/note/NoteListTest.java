@@ -40,7 +40,8 @@ class NoteListTest {
         actualResult = notes.searchNotesUsingSceneIndex(1,notes);
         expectedResult.add(testOne);
         expectedResult.add(testThree);
-        assertEquals(actualResult,expectedResult);
+        assertEquals(actualResult.get(0),expectedResult.get(0));
+        assertEquals(actualResult.get(1),expectedResult.get(1));
     }
 
     @Test
