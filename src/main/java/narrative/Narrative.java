@@ -10,6 +10,8 @@ public class Narrative {
     String filePath;
     String fileName;
 
+    private static int numLinesToPrint = 0;
+
     public Narrative() {
         filePath = "";
     }
@@ -37,8 +39,9 @@ public class Narrative {
     public void displayNarrative() throws FileNotFoundException {
         if (fileName.toLowerCase(Locale.ROOT).contains("scene")) {
             displaySceneNarrative();
+        } else {
+            System.out.println(this.getNarrative());
         }
-        System.out.println(this.getNarrative());
     }
 
     public static void clearConsole() {
@@ -63,24 +66,25 @@ public class Narrative {
     public void displaySceneNarrative() throws FileNotFoundException {
         String content = this.getNarrative();
         while (content.contains("\n")) {
+            promptUserInputNumOfLines();
             clearConsole();
-            for (int i = 0; i < 4 && content.contains("\n"); i++) {
+            for (int i = 0; i < numLinesToPrint && content.contains("\n"); i++) {
                 System.out.print(content.substring(0, 1 + content.indexOf("\n")));
                 content = content.substring(1 + content.indexOf("\n"));
             }
-            if (content.contains("\n")) {
-                pressEnterKeyToContinue();
-            }
         }
-        clearConsole();
-        System.out.print(content + "\n");
-        pressEnterKeyToContinue();
         clearConsole();
     }
 
-    public void pressEnterKeyToContinue() {
-        System.out.println("\nPress Enter key to continue...");
+    public void promptUserInputNumOfLines() {
+        System.out.print("\nEnter number of lines to print for narrative: ");
         Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
+        String s = scanner.nextLine();
+        try {
+            numLinesToPrint = Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid integer");
+            promptUserInputNumOfLines();
+        }
     }
 }
