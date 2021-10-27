@@ -1,6 +1,6 @@
 package ui;
 
-import clue.Clue;
+import scene.clue.Clue;
 import investigation.Investigation;
 import investigation.InvestigationStages;
 import scene.Scene;
@@ -32,6 +32,7 @@ public class Ui {
     private static final String HELP_COMMAND = "\"/help\" - view this command list";
     private static final String EXIT_COMMAND = "\"/exit\" - exit the game";
     private static final String NEXT_COMMAND = "\"/next\" - move on to the next scene or the next stage of a scene";
+    private static final String BACK_COMMAND = "\"/back\" - go back to previous scene";
     private static final String NOTE_COMMAND = "\"/note\" - create a new note/ open a note/ delete a note";
     private static final String VIEW_COMMAND = "\"/view\" - view all the clues that you have gathered";
     private static final String RESTART_COMMAND = "\"/restart\" - restart the game from beginning";
@@ -85,6 +86,7 @@ public class Ui {
         System.out.println(HELP_COMMAND);
         System.out.println(EXIT_COMMAND);
         System.out.println(NEXT_COMMAND);
+        System.out.println(BACK_COMMAND);
         System.out.println(NOTE_COMMAND);
         System.out.println(VIEW_COMMAND);
         System.out.println(RESTART_COMMAND);

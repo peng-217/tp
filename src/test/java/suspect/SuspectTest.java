@@ -2,10 +2,10 @@ package suspect;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import clue.Clue;
-import clue.firstscene.FatherInsurance;
-import clue.firstscene.FatherMap;
-import clue.firstscene.FatherTextMessage;
+import scene.clue.Clue;
+import scene.clue.firstscene.FatherInsurance;
+import scene.clue.firstscene.FatherMap;
+import scene.clue.firstscene.FatherTextMessage;
 import org.junit.jupiter.api.Test;
 
 public class SuspectTest {

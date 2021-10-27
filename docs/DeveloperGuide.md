@@ -47,12 +47,7 @@ The parser component is used to parse the input given by the user.
 The Sequence Diagram below illustrates the interactions within the 
 `Parser` component for the `getCommandFromUser("/next")` API call.
 
-![Parser sequence diagram](./ParserUML.png)
-
-<<<<<<< HEAD
-
 ![Parser design](./ParserUML.png)
-=======
 The class diagram below shows how the parser interacts with the other classes
 
 ![Parser class diagram design](./ParserClassDiagram.png)
@@ -62,8 +57,7 @@ How the parser work
 - In the case of `/next` as the input, the NextCommand will be generated.
 - The NextCommand is inherits from the abstract class Command.
 - If the input does not generate a valid command type, it throws the invalidInputException.
-- The abstract Command class requires SceneList, Ui and Investigate component as its dependencies. 
->>>>>>> 37bf6700e3865399c7124230a34fbf34ae6c259d
+- The abstract Command class requires SceneList, Ui and Investigate component as its dependencies.
 
 
 ### Note component
@@ -244,24 +238,10 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 
 - Provide an alternative game for users to exercise creative thinking
 
-
-<<<<<<< HEAD
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see all commands available|understand the game mechanics|
-|v1.0|user|investigate the suspects available|better understand the suspect|
-|v1.0|user|investigate the clues available|understand the story line better|
-|v1.0|user|choose the suspect|see if I am able to solve the crime|
-|v2.0|user|resume the game after exiting|continue the game instead of restarting|
-|v2.0|user|write notes|look at the notes I have written for each scene and suspect|
-
 ## Use Cases
 
 (Use /next as an example)
-=======
-|v2.0|user|go back to the previous scene|recap the previous scene|
-|v2.0|user|investigate suspect using name or their index|more than one way to investigate a suspect|
-=======
+
 ## User Stories
 
 |Priority|Version| As a ... | I want to ... | So that I can ...|
@@ -274,7 +254,6 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 | * * |v2.0|user|write notes|look at the notes I have written for each scene and suspect|
 | * |v2.0|user|go to previous scene|look at the narrative for the previous scene|
 
->>>>>>> 37bf6700e3865399c7124230a34fbf34ae6c259d
 
 ### Use Cases
 
