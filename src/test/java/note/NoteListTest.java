@@ -17,6 +17,7 @@ class NoteListTest {
     public void getSize() {
         Ui ui = new Ui();
         NoteList notes = new NoteList(ui);
+        notes.deleteAllNotes();
         int testSize = 6;
         int testScene = 1;
         for (int i = 0; i < testSize; i++) {
