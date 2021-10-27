@@ -1,6 +1,6 @@
 package seedu.duke;
 
-import clue.CheckedClueTrackerBuilder;
+import scene.clue.CheckedClueTrackerBuilder;
 import command.InvalidCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidClueException;
@@ -12,7 +12,6 @@ import scene.SceneList;
 import scene.SceneListBuilder;
 import storage.GameDataFileDecoder;
 import storage.GameDataFileManager;
-import storage.Storage;
 import suspect.SuspectList;
 import ui.Ui;
 import parser.Parser;

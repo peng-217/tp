@@ -1,9 +1,8 @@
 package suspect;
 
-import clue.Clue;
+import scene.clue.Clue;
 import scene.SceneListBuilder;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;

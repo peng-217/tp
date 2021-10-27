@@ -1,6 +1,6 @@
 package investigation;
 
-import clue.Clue;
+import scene.clue.Clue;
 import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
 import parser.Parser;
