@@ -88,7 +88,6 @@ public class SceneList {
             assert this.currentSceneIndex >= 0;
             dataFile.setCurrentSceneIndex(currentSceneIndex);
         }
-
     }
 
     public void previousScene() {

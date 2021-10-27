@@ -52,6 +52,9 @@ public class Ui {
     private static final String SCENE_FILE_MISSING_MESSAGE =
             "File containing number of scene and its order is missing";
     private static final String INVALID_INDEX = "Invalid index";
+
+    private static final String DELETE_ALL_NOTE = "Ok! All notes have been deleted";
+    private static final String NO_NOTE_MESSAGE = "There is no note now, try to add one!";
     private static final String CHOOSE_SUSPECT_OR_CLUE_INDEX =
             "Key in the index (e.g. 1, 2) in front of the suspect/clue you want to investigate";
 
@@ -135,10 +138,11 @@ public class Ui {
         System.out.println(VIEWING_CHECKED_CLUES_MESSAGE);
     }
 
+    //@@author peng-217
     public void printSaveNoteMessage() {
         System.out.println(SAVE_NOTE_MESSAGE);
     }
-
+    
     public void printExistingNotes(NoteList notes,int orderIndex) {
         System.out.println(LIST_ALL_NOTES_MESSAGE);
         System.out.println("scene " + notes.getIndexNote(orderIndex - 1).getNoteSceneIndex());
@@ -164,9 +168,13 @@ public class Ui {
     }
 
     public void printNoteTitle(NoteList notes) {
-        System.out.println(LIST_OF_NOTES_MESSAGE);
-        for (int i = 0; i < notes.getSize(); i++) {
-            System.out.println((i + 1) + "." + " " + notes.getIndexNote(i).getNoteTitle());
+        if (notes.getSize() == 0) {
+            System.out.println(NO_NOTE_MESSAGE);
+        } else {
+            System.out.println(LIST_OF_NOTES_MESSAGE);
+            for (int i = 0; i < notes.getSize(); i++) {
+                System.out.println((i + 1) + "." + " " + notes.getIndexNote(i).getNoteTitle());
+            }
         }
     }
 
@@ -180,7 +188,7 @@ public class Ui {
         System.out.println();
         System.out.println(LINE_SEPARATOR);
     }
-
+    //@@author
 
     public void printSuspects(SuspectList suspects) {
         System.out.println(suspects.toString());
@@ -245,6 +253,8 @@ public class Ui {
         System.out.println(currentClueInScene.toString());
     }
 
+
+    //@@author peng-217
     public void printNoteInstructions() {
         System.out.println("Do you want to create a new note"
                 + " or open an existing note or delete a note?");
@@ -265,7 +275,7 @@ public class Ui {
     }
 
     public void printNoteSearchInstructions() {
-        System.out.println("Do you want to search by keyword or scene index?");
+        System.out.println("Do you want to search by keyword (type 'keyword') or scene index (type 'index')?");
     }
 
     public void printNoteSearchKeyWordInstructions() {
@@ -276,6 +286,7 @@ public class Ui {
         System.out.println("Please enter scene index:");
     }
 
+
     public void printNoteOpenInstructions() {
         System.out.println("Please type in the index of the note to open it:");
     }
@@ -285,10 +296,16 @@ public class Ui {
     }
 
     public void printNoteDeleteInstructions() {
-        System.out.println("Please enter the index of the note you want to delete.");
+        System.out.println("Please enter the index of the note you want to delete "
+               + "(type 'all' if you want delete all notes).");
+    }
+
+    public void printDeleteAllNoteMessage() {
+        System.out.println(DELETE_NOTE_MESSAGE);
     }
 
     public void printNoteMissingError(int size) {
         System.out.println("Invalid index! There are only " + size + " notes currently.");
     }
+    //@@author
 }

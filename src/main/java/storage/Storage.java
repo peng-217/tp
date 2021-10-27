@@ -1,3 +1,5 @@
+//@@author peng-217
+
 package storage;
 
 import scene.Scene;
@@ -20,7 +22,7 @@ public class Storage {
 
     }
 
-    public static void saveNote(NoteList notes,int inputSceneIndex) {
+    public static void saveNote(NoteList notes) {
         File saveDirection =  new File("data");
         saveDirection.mkdir();
         File saveNote = new File(saveDirection,"notes.txt");

@@ -3,6 +3,7 @@
 
 autonumber
 
+
 actor User
 User -> ":Duke": "/next"
 activate ":Duke"
@@ -55,5 +56,6 @@ activate ":Command"
 deactivate ":Command"
 User <-- ":Duke"
 deactivate ":Duke"
+
 
 @enduml

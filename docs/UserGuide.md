@@ -21,6 +21,101 @@
 * Items with ... after them can be used multiple times including zero times. 
   e.g. [NAME]... can be used as   (i.e. 0 times), Father, Father Ling etc.
 
+### Taking notes whenever user want: `/note`
+This allows user to take note with title and content whenever they want.
+
+### Search notes with keywords: `keywords`
+This allows user to search the notes using keywords in title
+
+Example of usage:
+```
+/note
+```
+```
+Do you want to create a new note or open a existing note or delete a note?
+```
+```
+open
+```
+```
+Here are the list of notes available to you.
+1. BOOKSHELF
+2. CAR
+3. LIVING ROOM WITH BLOOD
+Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
+```
+```
+search
+```
+```
+Do you want to search by keyword or scene index?
+```
+```
+keyword
+```
+```
+Please enter keywords
+```
+```
+BLOOD
+```
+```
+Here are the list of notes found given keywords:
+1. scene 2
+LIVING ROOM WITH BLOOD
+There is blood in living room, so I think suspect is Wendy.
+
+==============================
+```
+### Search notes with scene index: `index`
+This allows user to search notes with scene index.
+
+Example of usage:
+```
+/note
+```
+```
+Do you want to create a new note or open a existing note or delete a note?
+```
+```
+open
+```
+```
+Here are the list of notes available to you.
+1. BOOKSHELF
+2. CAR
+3. LIVING ROOM WITH BLOOD
+   Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
+   ```
+```
+   search
+   ```
+```
+   Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
+   ```
+```
+   index
+   ```
+```
+   Please enter scene index:
+   ```
+```
+   2
+   ```
+```
+   Here are the list of notes found given keywords:
+1. scene 2
+   BOOKSHELF
+   There are many books on the bookshelf.
+2. scene 2
+   CAR
+
+3. scene 2
+   LIVING ROOM WITH BLOOD
+   There is blood in living room, so I think suspect is Wendy.
+
+==============================
+```
 ### Moving to the next scene: `/next`
 This allows the user to go the next scene.
 

@@ -1,3 +1,5 @@
+//@@author peng-217
+
 package note;
 
 import java.util.ArrayList;
@@ -5,7 +7,6 @@ import java.util.ArrayList;
 import storage.Storage;
 import scene.SceneList;
 import ui.Ui;
-
 
 public class NoteList {
     private ArrayList<Note> notes;
@@ -17,6 +18,7 @@ public class NoteList {
         this.ui = ui;
         //storage = new Storage();
         notes = new ArrayList<>();
+        Storage.openNoteFromFile(this);
     }
 
     public int getSize() {
@@ -62,22 +64,29 @@ public class NoteList {
         return notes.get(index);
     }
 
-    public void createNote(Note newNote, int inputSceneIndex) {
+    public void createNote(Note newNote) {
         notes.add(newNote);
-        Storage.saveNote(this,inputSceneIndex);
+        Storage.saveNote(this);
         ui.printSaveNoteMessage();
     }
 
     public void createNoteFromFile(Note newNote, int inputSceneIndex) {
         notes.add(newNote);
-        Storage.saveNote(this,inputSceneIndex);
+        Storage.saveNote(this);
     }
 
     public void deleteNote(int index) {
         Note noteToDelete = notes.get(index);
         notes.remove(index);
-        Storage.saveNote(this,noteToDelete.getNoteSceneIndex());
+        Storage.saveNote(this);
         ui.printDeleteNoteMessage();
+    }
+
+
+    public void deleteAllNotes() {
+        notes.removeAll(notes);
+        Storage.saveNote(this);
+        ui.printDeleteAllNoteMessage();
     }
 
     public void processNote(SceneList sceneList, String userChoice) {
@@ -102,14 +111,14 @@ public class NoteList {
         ui.printNoteTextInstructions();
         String noteContent = ui.readUserInput();
         Note newNote = new Note(noteContent, noteTitle, sceneList.getCurrentSceneIndex());
-        createNote(newNote, (sceneList.getCurrentSceneIndex()));
+        createNote(newNote);
     }
 
     public void openNoteProcess() {
         ui.printOpenNoteMessage(this);
         String userInput = ui.readUserInput();
         if (userInput.contains("search")) {
-            ui.printNoteOpenSearchInstructions();
+            ui.printNoteSearchInstructions();
             userInput = ui.readUserInput();
             if (userInput.equals("keyword")) {
                 keywordSearch();
@@ -124,7 +133,7 @@ public class NoteList {
     public void keywordSearch() {
         ui.printNoteSearchKeyWordInstructions();
         String keywords = ui.readUserInput();
-        System.out.println(keywords);
+        //System.out.println(keywords);
         ui.printSelectedNote(this.searchNoteUsingTitle(keywords, this));
     }
 
@@ -145,7 +154,12 @@ public class NoteList {
         ui.printNoteListStarter();
         ui.printAllNotes(this);
         ui.printNoteDeleteInstructions();
-        int deletedNoteIndex = Integer.parseInt(ui.readUserInput()) - 1;
-        this.deleteNote(deletedNoteIndex);
+        String userInput = ui.readUserInput();
+        if (userInput.equals("all")) {
+            deleteAllNotes();
+        } else {
+            int deletedNoteIndex = Integer.parseInt(userInput) - 1;
+            this.deleteNote(deletedNoteIndex);
+        }
     }
 }

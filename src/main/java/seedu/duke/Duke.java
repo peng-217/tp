@@ -49,9 +49,7 @@ public class Duke {
         } catch (MissingSceneFileException e) {
             ui.printMissingSceneFileMessage();
         }
-
         investigation = new Investigation(clueTracker);
-        Storage.openNoteFromFile(new NoteList(ui));
         sceneList.runCurrentScene();
     }
 
