@@ -9,7 +9,7 @@
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+2. Download the latest version of `Duke` from [here](http://link.to/duke).
 
 ## Features 
 
@@ -21,10 +21,15 @@
 * Items with ... after them can be used multiple times including zero times. 
   e.g. [NAME]... can be used as   (i.e. 0 times), Father, Father Ling etc.
 
-### Taking notes whenever user want: `/note`
+### Changing the number of lines printed:`NUMBER`
+Changes the number of lines to be printed each time during story-telling part at the start of the game.
+
+Format: `NUMBER`
+
+### Taking notes: `/note`
 This allows user to take note with title and content whenever they want.
 
-### Search notes with keywords: `keywords`
+### Searching notes with keywords: `keywords`
 This allows user to search the notes using keywords in title
 
 Example of usage:
@@ -67,7 +72,7 @@ There is blood in living room, so I think suspect is Wendy.
 
 ==============================
 ```
-### Search notes with scene index: `index`
+### Searching notes with scene index: `index`
 This allows user to search notes with scene index.
 
 Example of usage:
@@ -145,7 +150,7 @@ Example of usage:
 /next
 ```
 
-### Exit the game: `/exit`
+### Exiting the game: `/exit`
 This allows the user to exit the game.
 
 Example of usage:
@@ -157,7 +162,7 @@ Example of usage:
 Goodbye.
 ```
 
-### Go back to the previous scene: `/back`
+### Going back to the previous scene: `/back`
 This allows the user to return to the previous scene.
 
 Example of usage:
@@ -377,10 +382,11 @@ Examples:
 
 |Action| Format & Example |
 |--------|----------|
-| Next | /next |
-| Restart | /restart |
-| Exit | /exit |
-| Back | /back |
-| Investigate | [/investigate] INDEX or KEYWORD e.g., /investigate father |
-| Choose Killer | KEYWORD e.g., Father |
-| View Clues | /view [NAME]...
+| Change number of lines to print | `NUMBER` e.g., 3 |
+| Next | `/next` |
+| Restart | `/restart` |
+| Exit | `/exit` |
+| Back | `/back` |
+| Investigate | `[/investigate] INDEX or KEYWORD` e.g., /investigate father |
+| Choose Killer | `KEYWORD` e.g., Father |
+| View Clues | `/view [NAME]...` e.g., /view Father Ling |
