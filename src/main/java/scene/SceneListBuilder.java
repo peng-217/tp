@@ -1,17 +1,15 @@
 package scene;
 
 import exceptions.MissingSceneFileException;
-import narrative.Narrative;
+import scene.narrative.Narrative;
 import storage.GameDataFileDecoder;
-import ui.Ui;
-import suspect.SuspectList;
+import scene.suspect.SuspectList;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Scanner;
 
-import static suspect.SuspectList.suspectListBuilder;
+import static scene.suspect.SuspectList.suspectListBuilder;
 
 
 public class SceneListBuilder {

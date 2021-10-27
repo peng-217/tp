@@ -7,6 +7,7 @@ The plot of the game was adopted from one of the games available in the Mini Pro
 ## Design
 
 ### Architecture
+![High Level Architectural design](./main_architecture.png)
 
 ![High Level Architecture Diagram](./high_level_architecture.png)
 
@@ -46,8 +47,7 @@ The parser component is used to parse the input given by the user.
 The Sequence Diagram below illustrates the interactions within the 
 `Parser` component for the `getCommandFromUser("/next")` API call.
 
-![Parser sequence diagram](./ParserUML.png)
-
+![Parser design](./ParserUML.png)
 The class diagram below shows how the parser interacts with the other classes
 
 ![Parser class diagram design](./ParserClassDiagram.png)
@@ -57,7 +57,8 @@ How the parser work
 - In the case of `/next` as the input, the NextCommand will be generated.
 - The NextCommand is inherits from the abstract class Command.
 - If the input does not generate a valid command type, it throws the invalidInputException.
-- The abstract Command class requires SceneList, Ui and Investigate component as its dependencies. 
+- The abstract Command class requires SceneList, Ui and Investigate component as its dependencies.
+
 
 ### Note component
 **API:** Note.java
@@ -80,12 +81,15 @@ How the ui work
 - Print messages to terminal depending on the scene.
 - Print corresponding output to terminal according to input command.
 
+[UML diagram for Ui](./UiUML.png)
 ### Command component
 **API:** `Command.java` 
 
 Here’s a (partial) class diagram of the `Command` component:
 
+
 ![(partial class) diagram of Command component](./Command_Class_Diagram.png)
+
 
 How the `Command` componnet works:
 1. The user input is first parsed using the `Parse` component
@@ -93,16 +97,20 @@ How the `Command` componnet works:
 3. The command can communicate with the `Ui`, `Investigation` and `SceneList` when it is executed (e.g. to go to the next scene).
 4. Some of the commands may update the `Storage`.
 
+
 The Sequence Diagram [below](./next_command_sequence_diagram.png) illustrates within the `Command` component for the `execute(ui,investigation,sceneList)` method call of the `NextCommand` class.
+
 
 ![Sequence diagram for execute(ui,investigation,sceneList) method call of NextCommand](./next_command_sequence_diagram.png)
 
 ### Investigation component
 **API:** `Investigation.java`
 
+
 ![Investigation Sequence Diagram](./Investigation_Sequence_Diagram.png)
 
 The investigation class manages the investigation in each investigation scene. 
+
 
 How the `Investigation` component works:
 - When an investigation command is returned from the parser, we investigate the input given by the user.
@@ -130,6 +138,8 @@ See below for example.
 - The introduction scene shows the introductory message to the user.
 - The investigation scene asks the user either investigate a suspect or look into a clue.
 ![](Scene.png)
+
+
 
 ### Storage component
 **API:** `Storage.java`
@@ -228,6 +238,9 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 
 - Provide an alternative game for users to exercise creative thinking
 
+## Use Cases
+
+(Use /next as an example)
 
 ## User Stories
 

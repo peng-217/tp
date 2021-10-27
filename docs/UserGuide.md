@@ -9,7 +9,7 @@
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+2. Download the latest version of `Duke` from [here](http://link.to/duke).
 
 ## Features 
 
@@ -21,6 +21,126 @@
 * Items with ... after them can be used multiple times including zero times. 
   e.g. [NAME]... can be used as   (i.e. 0 times), Father, Father Ling etc.
 
+### Changing the number of lines printed:`NUMBER`
+Changes the number of lines to be printed each time during story-telling part at the start of the game.
+
+Format: `NUMBER`
+
+### Taking notes: `/note`
+This allows user to take note with title and content whenever they want.
+
+### Searching notes with keywords: `keywords`
+This allows user to search the notes using keywords in title
+
+Example of usage:
+```
+/note
+```
+```
+Do you want to create a new note or open a existing note or delete a note?
+```
+```
+open
+```
+```
+Here are the list of notes available to you.
+1. BOOKSHELF
+2. CAR
+3. LIVING ROOM WITH BLOOD
+Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
+```
+```
+search
+```
+```
+Do you want to search by keyword or scene index?
+```
+```
+keyword
+```
+```
+Please enter keywords
+```
+```
+BLOOD
+```
+```
+Here are the list of notes found given keywords:
+1. scene 2
+LIVING ROOM WITH BLOOD
+There is blood in living room, so I think suspect is Wendy.
+
+==============================
+```
+### Searching notes with scene index: `index`
+This allows user to search notes with scene index.
+
+Example of usage:
+```
+/note
+```
+```
+Do you want to create a new note or open a existing note or delete a note?
+```
+```
+open
+```
+```
+Here are the list of notes available to you.
+1. BOOKSHELF
+2. CAR
+3. LIVING ROOM WITH BLOOD
+   Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
+   ```
+```
+   search
+   ```
+```
+   Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
+   ```
+```
+   index
+   ```
+```
+   Please enter scene index:
+   ```
+```
+   2
+   ```
+```
+   Here are the list of notes found given keywords:
+1. scene 2
+   BOOKSHELF
+   There are many books on the bookshelf.
+2. scene 2
+   CAR
+
+3. scene 2
+   LIVING ROOM WITH BLOOD
+   There is blood in living room, so I think suspect is Wendy.
+
+==============================
+```
+
+### Shortcuts for note-taking
+
+An available shortcut is to type the command after `/note`.
+For example, you can input `/note create` to bring up the note creation prompt.
+Example of usage:
+
+* Typing `/note search` would immediately bring up the prompt:
+```
+Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
+```
+* Typing `/note open` would immediately bring up the prompt:
+```
+Here are the list of notes available to you.
+1. BOOKSHELF
+2. CAR
+3. LIVING ROOM WITH BLOOD
+   Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
+```
+
 ### Moving to the next scene: `/next`
 This allows the user to go the next scene.
 
@@ -30,7 +150,7 @@ Example of usage:
 /next
 ```
 
-### Exit the game: `/exit`
+### Exiting the game: `/exit`
 This allows the user to exit the game.
 
 Example of usage:
@@ -42,7 +162,7 @@ Example of usage:
 Goodbye.
 ```
 
-### Go back to the previous scene: `/back`
+### Going back to the previous scene: `/back`
 This allows the user to return to the previous scene.
 
 Example of usage:
@@ -126,20 +246,6 @@ Here are the commands that you can enter:
 
 Now, enter "/next" to start your journey to the truth.
 ```
-
-### Taking down notes `/note`
-
-This allows the user to record their own notes for any particular scene.
-
-Example of usage:
-
-* Typing `/note` would bring up the prompt:
-```
-Do you want to create a new note or open an existing note or delete a note?
-```
-* The three available commands are `create`, `open`, and `delete`.
-* An available shortcut is to type the command after `/note`. 
-For example, you can input `/note create` to bring up the note creation prompt.
 
 ### Investigating suspect: `KEYWORD OR INDEX`
 Users can investigate the suspect using either the suspect's name or the suspect number.
@@ -276,10 +382,11 @@ Examples:
 
 |Action| Format & Example |
 |--------|----------|
-| Next | /next |
-| Restart | /restart |
-| Exit | /exit |
-| Back | /back |
-| Investigate | [/investigate] INDEX or KEYWORD e.g., /investigate father |
-| Choose Killer | KEYWORD e.g., Father |
-| View Clues | /view [NAME]...
+| Change number of lines to print | `NUMBER` e.g., 3 |
+| Next | `/next` |
+| Restart | `/restart` |
+| Exit | `/exit` |
+| Back | `/back` |
+| Investigate | `[/investigate] INDEX or KEYWORD` e.g., /investigate father |
+| Choose Killer | `KEYWORD` e.g., Father |
+| View Clues | `/view [NAME]...` e.g., /view Father Ling |

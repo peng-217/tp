@@ -20,4 +20,4 @@ MANIFEST.MF
 # Ignore GameData.txt
 /data/GameData.txt
 TP.jar
-data/notes.txt
+/data/notes.txt

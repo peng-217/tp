@@ -4,6 +4,7 @@
 @startuml
 autonumber
 
+
 -> ":NextCommand": execute(ui,investigation,sceneList)
 activate ":NextCommand"
 ":NextCommand" -> ":SceneList": getCurrentSceneType()
@@ -22,6 +23,7 @@ alt #pink CORRECT_KILLER_SCENE
 autonumber 7
 
 else #lightBlue TRUTH_SCENE
+
     ":NextCommand" -> ":Investigation": runScenes()
     activate ":Investigation"
     ":Investigation" -> ":SceneList": runCurrentScene()
@@ -38,9 +40,11 @@ else #lightBlue TRUTH_SCENE
     ":NextCommand" <-- ":Investigation"
     deactivate ":Investigation"
 
+
 autonumber 7
 
 else #pink GUESS_KILLER_SCENE
+
     ":NextCommand" -> ":Investigation": checkSuspectedKiller()
     activate ":Investigation"
     ":Investigation" -> ":SceneList": getCurrentScene()
@@ -85,9 +89,11 @@ else #pink GUESS_KILLER_SCENE
     ":NextCommand" <-- ":Investigation"
     deactivate ":Investigation"
 
+
 autonumber 7
 
 else #lightBlue default
+
     ":NextCommand" -> ":Investigation": updateScene()
     activate ":Investigation"
     ":Investigation" -> ":SceneList": updateSceneNumber()
@@ -110,4 +116,5 @@ else #lightBlue default
 end
 <-- ":NextCommand"
 deactivate ":NextCommand"
+
 @enduml
