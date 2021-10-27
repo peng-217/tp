@@ -155,7 +155,7 @@ public class Ui {
 
     public boolean printOpenNoteMessage(NoteList notes) {
         boolean checkExistance = printNoteTitle(notes);
-        if(checkExistance) {
+        if (checkExistance) {
             System.out.println("Do you want to search a note (type in 'search') or "
                     + "directly open a note (type in 'open')?");
         }

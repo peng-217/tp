@@ -116,7 +116,7 @@ public class NoteList {
 
     public void openNoteProcess() {
         boolean checkExistance = ui.printOpenNoteMessage(this);
-        if(checkExistance) {
+        if (checkExistance) {
             String userInput = ui.readUserInput();
             if (userInput.contains("search")) {
                 ui.printNoteSearchInstructions();
