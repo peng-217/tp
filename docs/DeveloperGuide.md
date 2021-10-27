@@ -47,12 +47,7 @@ The parser component is used to parse the input given by the user.
 The Sequence Diagram below illustrates the interactions within the 
 `Parser` component for the `getCommandFromUser("/next")` API call.
 
-![Parser sequence diagram](./ParserUML.png)
-
-<<<<<<< HEAD
-
 ![Parser design](./ParserUML.png)
-=======
 The class diagram below shows how the parser interacts with the other classes
 
 ![Parser class diagram design](./ParserClassDiagram.png)
@@ -242,17 +237,6 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 **Value proposition：**
 
 - Provide an alternative game for users to exercise creative thinking
-
-
-<<<<<<< HEAD
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see all commands available|understand the game mechanics|
-|v1.0|user|investigate the suspects available|better understand the suspect|
-|v1.0|user|investigate the clues available|understand the story line better|
-|v1.0|user|choose the suspect|see if I am able to solve the crime|
-|v2.0|user|resume the game after exiting|continue the game instead of restarting|
-|v2.0|user|write notes|look at the notes I have written for each scene and suspect|
 
 ## Use Cases
 
