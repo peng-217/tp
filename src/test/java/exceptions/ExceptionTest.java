@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import scene.clue.CheckedClueTrackerBuilder;
 import investigation.Investigation;
-import narrative.Narrative;
+import scene.narrative.Narrative;
 import org.junit.jupiter.api.Test;
 import scene.Scene;
 import scene.SceneTypes;
-import suspect.Suspect;
-import suspect.SuspectList;
+import scene.suspect.Suspect;
+import scene.suspect.SuspectList;
 
 public class ExceptionTest {
 

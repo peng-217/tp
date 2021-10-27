@@ -1,4 +1,4 @@
-package suspect;
+package scene.suspect;
 
 import scene.clue.Clue;
 import scene.SceneListBuilder;

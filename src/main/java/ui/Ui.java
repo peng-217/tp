@@ -6,7 +6,7 @@ import investigation.InvestigationStages;
 import scene.Scene;
 import scene.SceneList;
 import scene.SceneTypes;
-import suspect.SuspectList;
+import scene.suspect.SuspectList;
 import note.Note;
 import note.NoteList;
 

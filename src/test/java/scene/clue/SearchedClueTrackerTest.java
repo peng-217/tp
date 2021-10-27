@@ -3,8 +3,8 @@ package scene.clue;
 import scene.clue.firstscene.FatherInsurance;
 import scene.clue.firstscene.FatherTextMessage;
 import org.junit.jupiter.api.Test;
-import suspect.Suspect;
-import suspect.SuspectList;
+import scene.suspect.Suspect;
+import scene.suspect.SuspectList;
 
 import java.util.ArrayList;
 

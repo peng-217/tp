@@ -12,7 +12,7 @@ import scene.SceneList;
 import scene.SceneListBuilder;
 import storage.GameDataFileDecoder;
 import storage.GameDataFileManager;
-import suspect.SuspectList;
+import scene.suspect.SuspectList;
 import ui.Ui;
 import parser.Parser;
 import command.Command;

@@ -1,4 +1,4 @@
-package narrative;
+package scene.narrative;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;

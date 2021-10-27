@@ -1,6 +1,6 @@
 package scene.clue;
 
-import suspect.SuspectList;
+import scene.suspect.SuspectList;
 
 import java.util.ArrayList;
 

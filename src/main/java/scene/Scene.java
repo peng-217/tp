@@ -1,9 +1,9 @@
 package scene;
 
 import exceptions.MissingNarrativeException;
-import narrative.Narrative;
-import suspect.Suspect;
-import suspect.SuspectList;
+import scene.narrative.Narrative;
+import scene.suspect.Suspect;
+import scene.suspect.SuspectList;
 
 import java.io.FileNotFoundException;
 

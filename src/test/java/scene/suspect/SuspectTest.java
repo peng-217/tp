@@ -1,4 +1,4 @@
-package suspect;
+package scene.suspect;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
