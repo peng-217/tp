@@ -63,7 +63,7 @@ public class Narrative {
         }
     }
 
-    public void displaySceneNarrative() throws FileNotFoundException {
+    private void displaySceneNarrative() throws FileNotFoundException {
         String content = this.getNarrative();
         while (content.contains("\n")) {
             promptUserInputNumOfLines();
@@ -73,7 +73,8 @@ public class Narrative {
                 content = content.substring(1 + content.indexOf("\n"));
             }
         }
-        clearConsole();
+        //clearConsole();
+        System.out.println(content + "\n");
     }
 
     public void promptUserInputNumOfLines() {
