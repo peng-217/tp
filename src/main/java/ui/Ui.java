@@ -153,10 +153,13 @@ public class Ui {
         System.out.println(LINE_SEPARATOR);
     }
 
-    public void printOpenNoteMessage(NoteList notes) {
-        printNoteTitle(notes);
-        System.out.println("Do you want to search a note (type in 'search') or "
-                + "directly open a note (type in 'open')?");
+    public boolean printOpenNoteMessage(NoteList notes) {
+        boolean checkExistance = printNoteTitle(notes);
+        if (checkExistance) {
+            System.out.println("Do you want to search a note (type in 'search') or "
+                    + "directly open a note (type in 'open')?");
+        }
+        return checkExistance;
     }
 
     public void printAllNotes(NoteList notes) {
@@ -169,15 +172,20 @@ public class Ui {
         System.out.println(DELETE_NOTE_MESSAGE);
     }
 
-    public void printNoteTitle(NoteList notes) {
+    public boolean printNoteTitle(NoteList notes) {
+        boolean checkExistance = false;
         if (notes.getSize() == 0) {
             System.out.println(NO_NOTE_MESSAGE);
+            return checkExistance;
         } else {
             System.out.println(LIST_OF_NOTES_MESSAGE);
             for (int i = 0; i < notes.getSize(); i++) {
                 System.out.println((i + 1) + "." + " " + notes.getIndexNote(i).getNoteTitle());
             }
+            checkExistance = true;
+            return checkExistance;
         }
+
     }
 
     public void printSelectedNote(ArrayList<Note> result) {

@@ -1,5 +1,3 @@
-//@@author peng-217
-
 package command;
 
 import investigation.Investigation;
