@@ -121,14 +121,18 @@ public class NoteList {
             if (userInput.contains("search")) {
                 ui.printNoteSearchInstructions();
                 userInput = ui.readUserInput();
-                if (userInput.equals("keyword")) {
-                    keywordSearch();
-                } else {
-                    indexSearch();
-                }
+                selectSearchMethod(userInput);
             } else {
                 openNoteDirectly();
             }
+        }
+    }
+
+    public void selectSearchMethod(String userInput) {
+        if (userInput.contains("keyword")) {
+            keywordSearch();
+        } else {
+            indexSearch();
         }
     }
 
