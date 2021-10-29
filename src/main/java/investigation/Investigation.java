@@ -20,8 +20,11 @@ public class Investigation {
     private static final String WRONG_INDEX_GIVEN = "Sorry please enter index within range";
     private static final String SUSPECT_WENDY_LOWER = "wendy";
 
+    public static int numLinesToPrintForNarrative;
+
     public Investigation(SuspectList clueTracker) {
         this.clueTracker = clueTracker;
+        numLinesToPrintForNarrative = 100;
         setSuspectStage();
     }
 
