@@ -29,6 +29,8 @@ public class Ui {
     private static final String SAVE_NOTE_MESSAGE =
             "Ok! The new note has been successfully created and saved.";
     private static final String WHO_KILLED_YOU = "Who do you think killed you?";
+    private static final String NARRATIVE_LINES_COMMAND =
+            "\"/narrative-lines #NUM\" - change number of narrative lines print each time to #NUM";
     private static final String HELP_COMMAND = "\"/help\" - view this command list";
     private static final String EXIT_COMMAND = "\"/exit\" - exit the game";
     private static final String NEXT_COMMAND = "\"/next\" - move on to the next scene or the next stage of a scene";
@@ -83,6 +85,7 @@ public class Ui {
 
     public void printListOfCommands() {
         System.out.println(LIST_OF_COMMAND_AVAILABLE_MESSAGE);
+        System.out.println(NARRATIVE_LINES_COMMAND);
         System.out.println(HELP_COMMAND);
         System.out.println(EXIT_COMMAND);
         System.out.println(NEXT_COMMAND);
