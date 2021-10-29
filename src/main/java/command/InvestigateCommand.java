@@ -17,8 +17,8 @@ public class InvestigateCommand extends Command {
     @Override
     public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws InvalidSuspectException {
         if (sceneList.getCurrentSceneType() == SceneTypes.GUESS_KILLER_SCENE) {
-            boolean isUserCorrect = this.parsedUserInput == WENDY_INDEX;
-            sceneList.setSceneNumberAfterSuspecting(isUserCorrect);
+            boolean isCorrectKiller = (this.parsedUserInput == WENDY_INDEX);
+            sceneList.setSceneNumberAfterSuspecting(isCorrectKiller);
             sceneList.runCurrentScene();
         } else {
             investigation.investigateScene(this.parsedUserInput, sceneList.getCurrentScene());
