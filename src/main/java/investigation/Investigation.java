@@ -6,7 +6,6 @@ import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
 import parser.Parser;
 import scene.Scene;
-import scene.SceneList;
 import scene.suspect.SuspectList;
 import ui.Ui;
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ public class Investigation {
     private static final Ui ui = new Ui();
     private final SuspectList clueTracker;
     private static final String WRONG_INDEX_GIVEN = "Sorry please enter index within range";
-    private static final String SUSPECT_WENDY_LOWER = "wendy";
 
     public Investigation(SuspectList clueTracker) {
         this.clueTracker = clueTracker;
@@ -58,11 +56,6 @@ public class Investigation {
         default:
             ui.printIndexCommand();
         }
-    }
-
-    private boolean killerFoundCorrectly(String suspectedKiller) {
-        String suspectedKillerLowerCase = suspectedKiller.toLowerCase();
-        return suspectedKillerLowerCase.equals(SUSPECT_WENDY_LOWER);
     }
 
     public ArrayList<Clue> getSuspectCheckedClues(String name) {
