@@ -117,7 +117,6 @@ public class Parser {
         return new NoteCommand(argsGiven);
     }
 
-
     private Command parseInputForInvestigateCommand(String suspectName) throws InvalidInputException {
         String suspectNameLowerCase = suspectName.toLowerCase();
         int suspectIndex = getSuspectIndexFromSuspectName(suspectNameLowerCase);
