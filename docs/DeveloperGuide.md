@@ -18,8 +18,8 @@
   * [Taking Notes For Specified Scene](#Taking-Notes-For-Specified-Scene)
   * [SuspectListBuild](#SuspectListBuild)
 * [Product Scope](#Appendix)
-* [Use Cases]
-* [User Stories]
+* [Use Cases](#Use-Cases)
+* [User Stories](#User-Stories)
 * [Appendix](#Appendix)
 
 ## Acknowledgements
