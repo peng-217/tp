@@ -1,5 +1,6 @@
 package investigation;
 
+import scene.SceneTypes;
 import scene.clue.Clue;
 import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
@@ -57,23 +58,6 @@ public class Investigation {
         default:
             ui.printIndexCommand();
         }
-    }
-
-    public boolean checkSuspectedKiller(SceneList sceneList) {
-        ui.printAllSuspectInCurrentScene(sceneList.getCurrentScene());
-
-        boolean killerFound;
-        boolean nameGivenIsASuspect;
-        String suspectedKiller = ui.readUserInput();
-        nameGivenIsASuspect = parser.validSuspectNameGiven(suspectedKiller);
-        if (nameGivenIsASuspect) {
-            killerFound = killerFoundCorrectly(suspectedKiller);
-            return killerFound;
-        } else {
-            ui.printAskUserEnterSuspectName();
-            killerFound = checkSuspectedKiller(sceneList);
-        }
-        return killerFound;
     }
 
     private boolean killerFoundCorrectly(String suspectedKiller) {

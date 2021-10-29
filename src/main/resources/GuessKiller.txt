@@ -3,5 +3,12 @@
 ------------
 
 It is now time for you to choose your killer.
-Enter "/next" to view the names of all suspects.
 
+Here are all the suspects
+1. Father
+2. Kevin
+3. Wendy
+4. Ling
+5. Zack
+
+Who do you think killed you?
