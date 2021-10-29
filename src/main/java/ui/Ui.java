@@ -258,6 +258,9 @@ public class Ui {
         printSuspectKillerMessage();
     }
 
+    public void printSuccessChangeNarrativeLines(int numLines) {
+        System.out.println("Successfully changed number of narrative lines to print each time to " + numLines);
+    }
 
     public void printSelectedClue(Clue currentClueInScene) {
         System.out.println(currentClueInScene.toString());
