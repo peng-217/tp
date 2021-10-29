@@ -1,11 +1,11 @@
 package investigation;
 
+import scene.SceneTypes;
 import scene.clue.Clue;
 import exceptions.InvalidClueException;
 import exceptions.InvalidSuspectException;
 import parser.Parser;
 import scene.Scene;
-import scene.SceneList;
 import scene.suspect.SuspectList;
 import ui.Ui;
 import java.util.ArrayList;
@@ -18,7 +18,6 @@ public class Investigation {
     private static final Ui ui = new Ui();
     private final SuspectList clueTracker;
     private static final String WRONG_INDEX_GIVEN = "Sorry please enter index within range";
-    private static final String SUSPECT_WENDY_LOWER = "wendy";
 
     public static int numLinesToPrintForNarrative;
 
@@ -60,28 +59,6 @@ public class Investigation {
         default:
             ui.printIndexCommand();
         }
-    }
-
-    public boolean checkSuspectedKiller(SceneList sceneList) {
-        ui.printAllSuspectInCurrentScene(sceneList.getCurrentScene());
-
-        boolean killerFound;
-        boolean nameGivenIsASuspect;
-        String suspectedKiller = ui.readUserInput();
-        nameGivenIsASuspect = parser.validSuspectNameGiven(suspectedKiller);
-        if (nameGivenIsASuspect) {
-            killerFound = killerFoundCorrectly(suspectedKiller);
-            return killerFound;
-        } else {
-            ui.printAskUserEnterSuspectName();
-            killerFound = checkSuspectedKiller(sceneList);
-        }
-        return killerFound;
-    }
-
-    private boolean killerFoundCorrectly(String suspectedKiller) {
-        String suspectedKillerLowerCase = suspectedKiller.toLowerCase();
-        return suspectedKillerLowerCase.equals(SUSPECT_WENDY_LOWER);
     }
 
     public ArrayList<Clue> getSuspectCheckedClues(String name) {
