@@ -154,7 +154,7 @@ public class NoteList {
     public void selectSearchMethod(String userInput) throws InvalidNoteSearchException {
         if (userInput.contains("1")) {
             keywordSearch();
-        } else if(userInput.contains("2")) {
+        } else if (userInput.contains("2")) {
             indexSearch();
         } else {
             throw new InvalidNoteSearchException(INVALID_SEARCH_OPTION);
@@ -182,7 +182,6 @@ public class NoteList {
             throw new IndexOutOfBoundsException(INVALID_NOTE_INDEX);
         }
             ui.printExistingNotes(this, inputOrderIndex);
-
     }
 
     public void deleteNoteProcess() {
