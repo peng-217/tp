@@ -67,15 +67,23 @@ public class InvestigateCommand extends Command {
     public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws InvalidSuspectException,
             InvalidInputException {
         suspectNameGiven();
-        if (sceneList.getCurrentSceneType() == SceneTypes.GUESS_KILLER_SCENE) {
+        SceneTypes sceneType = sceneList.getCurrentSceneType();
+
+        switch (sceneType) {
+        case GUESS_KILLER_SCENE:
             boolean isCorrectKiller = (this.suspectIndex == WENDY_INDEX);
             sceneList.setSceneNumberAfterSuspecting(isCorrectKiller);
             sceneList.runCurrentScene();
-        } else {
+            break;
+        case INTRODUCTION_SCENE:
+            ui.printInvalidCommandMessage();
+            break;
+        default:
             if (this.backToSuspectStage) {
                 investigation.setSuspectStage();
             }
             investigation.investigateScene(this.suspectIndex, sceneList.getCurrentScene());
+            break;
         }
     }
 
