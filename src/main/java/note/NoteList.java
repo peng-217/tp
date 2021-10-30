@@ -13,14 +13,8 @@ public class NoteList {
     private ArrayList<Note> notes;
     private final Ui ui;
     private static int defaultTitleCounter = 1;
-    private static final String INVALID_NOTE_COMMAND = "The operation index is invalid! "
-            + "Only index 1-3 are allowed!";
-    private static final String INVALID_NOTE_INDEX = "The index you entered is out of range!"
-            + "Please check again!";
     private static final String INVALID_NOTE_MESSAGE = "The index you entered is not valid!"
             + "Please check again.";
-    private static final String INVALID_SEARCH_OPTION = "The operation index is invalid! "
-            + "Only index 1-2 are allowed";
 
     public NoteList(Ui ui) {
         this.ui = ui;
@@ -140,7 +134,7 @@ public class NoteList {
                         selectSearchMethod(userInput);
                         break;
                     } catch (InvalidNoteException e) {
-                        ui.printNoteSearchError(INVALID_NOTE_MESSAGE);
+                        ui.printNoteErrorMessage(INVALID_NOTE_MESSAGE);
                     }
                 }
             } else if (userInput.contains("2")) {
@@ -184,7 +178,7 @@ public class NoteList {
         //here the index is not scene index, it is the index in the list
         int inputOrderIndex = Integer.parseInt(ui.readUserInput());
         if (inputOrderIndex > notes.size()) {
-            throw new IndexOutOfBoundsException(INVALID_NOTE_INDEX);
+            throw new IndexOutOfBoundsException(INVALID_NOTE_MESSAGE);
         }
         ui.printExistingNotes(this, inputOrderIndex);
     }

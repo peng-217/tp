@@ -28,7 +28,7 @@ public class NoteCommand extends Command {
         try {
             notes.processNote(sceneList, userChoice);
         } catch (InvalidNoteException e) {
-            ui.printNoteCommandError(e.getMessage());
+            ui.printNoteErrorMessage(e.getMessage());
         }
     }
 
