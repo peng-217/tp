@@ -1,12 +1,9 @@
 # Developer Guide
 
-## Acknowledgements
-
-The plot of the game was adopted from one of the games available in the Mini Program in WeChat called Ju Ben Sha. The original story was in Chinese and was translated to English with the help of Google Translate. 
-
 ## Content Page
-* [Architecture](#Architecture)
-* [Main Components of the Architecture](#Main-components-of-the-architecture)
+* [Acknowledgements](#Acknowledgements)
+* [Design](#Design)
+  * [Architecture](#Architecture)
   * [Parser Component](#Parser-component)
   * [Note Component](#Note-component)
   * [UI Component](#UI-component)
@@ -16,6 +13,18 @@ The plot of the game was adopted from one of the games available in the Mini Pro
   * [Storage Component](#Storage-component)
   * [Suspect Component](#Suspect-component)
 * [Implementation](#Implementation)
+  * [Display checked-clues feature](#Display-checked-clues-feature)
+  * [Local Game Data Storage](#Local-Game-Data-Storage)
+  * [Taking Notes For Specified Scene](#Taking-Notes-For-Specified-Scene)
+  * [SuspectListBuild](#SuspectListBuild)
+* [Product Scope](#Appendix)
+* [Use Cases](#Use-Cases)
+* [User Stories](#User-Stories)
+* [Appendix](#Appendix)
+
+## Acknowledgements
+
+The plot of the game was adopted from one of the games available in the Mini Program in WeChat called Ju Ben Sha. The original story was in Chinese and was translated to English with the help of Google Translate.
 
 ## Design
 
@@ -72,7 +81,6 @@ How the parser work
 - If the input does not generate a valid command type, it throws the invalidInputException.
 - The abstract Command class requires SceneList, Ui and Investigate component as its dependencies.
 
-
 ### Note component
 **API:** Note.java
 
@@ -95,6 +103,7 @@ How the ui work
 - Print corresponding output to terminal according to input command.
 
 [UML diagram for Ui](./UiUML.png)
+
 ### Command component
 **API:** `Command.java` 
 
@@ -233,10 +242,6 @@ and how many clues there are. It will first add the suspects from the file into 
 via the method `addSuspect(String suspectName, Suspect suspect)`, and then the clues via the 
 method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect with the corresponding `suspectName`.
 
-
-
-## Appendix
-
 ## Product Scope
 
 **Target user profile：**
@@ -266,7 +271,6 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 | * * |v2.0|user|resume the game after exiting|continue the game instead of restarting|
 | * * |v2.0|user|write notes|look at the notes I have written for each scene and suspect|
 | * |v2.0|user|go to previous scene|look at the narrative for the previous scene|
-
 
 ### Use Cases
 

@@ -4,6 +4,7 @@ import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
 import investigation.Investigation;
 import scene.SceneList;
+import scene.SceneTypes;
 import ui.Ui;
 
 public class InvestigateCommand extends Command {
@@ -21,6 +22,7 @@ public class InvestigateCommand extends Command {
     private int suspectIndex;
     private String suspectName;
     private boolean backToSuspectStage = false;
+    private static final int WENDY_INDEX = 3;
 
     public InvestigateCommand(int suspectIndex) {
         this.suspectIndex = suspectIndex;
@@ -62,13 +64,26 @@ public class InvestigateCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws InvalidSuspectException,
-            InvalidInputException {
-        suspectNameGiven();
-        if (this.backToSuspectStage) {
-            investigation.setSuspectStage();
+//    public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws InvalidSuspectException,
+//            InvalidInputException {
+//        suspectNameGiven();
+//        if (this.backToSuspectStage) {
+//            investigation.setSuspectStage();
+//        }
+//        investigation.investigateScene(this.suspectIndex, sceneList.getCurrentScene());
+
+    public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws InvalidSuspectException, InvalidInputException {
+        if (sceneList.getCurrentSceneType() == SceneTypes.GUESS_KILLER_SCENE) {
+            boolean isCorrectKiller = (this.suspectIndex == WENDY_INDEX);
+            sceneList.setSceneNumberAfterSuspecting(isCorrectKiller);
+            sceneList.runCurrentScene();
+        } else {
+            suspectNameGiven();
+            if (this.backToSuspectStage) {
+                investigation.setSuspectStage();
+            }
+            investigation.investigateScene(this.suspectIndex, sceneList.getCurrentScene());
         }
-        investigation.investigateScene(this.suspectIndex, sceneList.getCurrentScene());
     }
 
     @Override

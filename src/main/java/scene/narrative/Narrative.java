@@ -1,5 +1,7 @@
 package scene.narrative;
 
+import investigation.Investigation;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Locale;
@@ -9,8 +11,6 @@ public class Narrative {
 
     String filePath;
     String fileName;
-
-    private static int numLinesToPrint = 0;
 
     public Narrative() {
         filePath = "";
@@ -66,26 +66,22 @@ public class Narrative {
     private void displaySceneNarrative() throws FileNotFoundException {
         String content = this.getNarrative();
         while (content.contains("\n")) {
-            promptUserInputNumOfLines();
             clearConsole();
-            for (int i = 0; i < numLinesToPrint && content.contains("\n"); i++) {
+            for (int i = 0; i < Investigation.numLinesToPrintForNarrative * 2 && content.contains("\n"); i++) {
                 System.out.print(content.substring(0, 1 + content.indexOf("\n")));
                 content = content.substring(1 + content.indexOf("\n"));
+            }
+            if (content.contains("\n")) {
+                promptUserEnterKey();
             }
         }
         //clearConsole();
         System.out.println(content + "\n");
     }
 
-    public void promptUserInputNumOfLines() {
-        System.out.print("\nEnter number of lines to print for narrative: ");
+    public void promptUserEnterKey() {
+        System.out.println("Please press the Enter key");
         Scanner scanner = new Scanner(System.in);
-        String s = scanner.nextLine();
-        try {
-            numLinesToPrint = Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid integer");
-            promptUserInputNumOfLines();
-        }
+        scanner.nextLine();
     }
 }
