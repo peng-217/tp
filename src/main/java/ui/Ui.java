@@ -267,7 +267,11 @@ public class Ui {
     //@@author peng-217
     public void printNoteInstructions() {
         System.out.println("Do you want to create a new note"
-                + " or open an existing note or delete a note?");
+                + " or open an existing note or delete note?");
+        System.out.println("Please type in:");
+        System.out.println("'1' for create a new note.");
+        System.out.println("'2' for open an existing note.");
+        System.out.println("'3' for open delete notes.");
     }
 
     public void printNoteTitleInstructions() {
