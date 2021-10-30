@@ -20,7 +20,7 @@ public class InvestigateCommand extends Command {
     private static final int SUSPECT_ZACK_INDEX = 5;
     private static final String INVALID_SUSPECT_NAME = "Invalid suspect given!";
     private int suspectIndex;
-    private String suspectName;
+    private String suspectName = null;
     private boolean backToSuspectStage = false;
     private static final int WENDY_INDEX = 3;
 
@@ -64,21 +64,14 @@ public class InvestigateCommand extends Command {
     }
 
     @Override
-//    public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws InvalidSuspectException,
-//            InvalidInputException {
-//        suspectNameGiven();
-//        if (this.backToSuspectStage) {
-//            investigation.setSuspectStage();
-//        }
-//        investigation.investigateScene(this.suspectIndex, sceneList.getCurrentScene());
-
-    public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws InvalidSuspectException, InvalidInputException {
+    public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws InvalidSuspectException,
+            InvalidInputException {
+        suspectNameGiven();
         if (sceneList.getCurrentSceneType() == SceneTypes.GUESS_KILLER_SCENE) {
             boolean isCorrectKiller = (this.suspectIndex == WENDY_INDEX);
             sceneList.setSceneNumberAfterSuspecting(isCorrectKiller);
             sceneList.runCurrentScene();
         } else {
-            suspectNameGiven();
             if (this.backToSuspectStage) {
                 investigation.setSuspectStage();
             }
