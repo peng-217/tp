@@ -35,7 +35,7 @@ public class Ui {
     private static final String EXIT_COMMAND = "\"/exit\" - exit the game";
     private static final String NEXT_COMMAND = "\"/next\" - move on to the next scene or the next stage of a scene";
     private static final String BACK_COMMAND = "\"/back\" - go back to previous scene";
-    private static final String NOTE_COMMAND = "\"/note\" - create a new note/ open a note/ delete a note";
+    private static final String NOTE_COMMAND = "\"/note\" - create a new note / open a note / delete a note";
     private static final String VIEW_COMMAND = "\"/view\" - view all the clues that you have gathered";
     private static final String RESTART_COMMAND = "\"/restart\" - restart the game from beginning";
 
@@ -87,7 +87,6 @@ public class Ui {
         System.out.println(LIST_OF_COMMAND_AVAILABLE_MESSAGE);
         System.out.println(NARRATIVE_LINES_COMMAND);
         System.out.println(HELP_COMMAND);
-        System.out.println(EXIT_COMMAND);
         System.out.println(NEXT_COMMAND);
         System.out.println(BACK_COMMAND);
         System.out.println(NOTE_COMMAND);
@@ -95,6 +94,7 @@ public class Ui {
         System.out.println(RESTART_COMMAND);
         System.out.println(CHOOSE_SUSPECT_OR_CLUE_INDEX);
         System.out.println(ASK_FOR_CLUE_OR_SUSPECT_NUMBER);
+        System.out.println(EXIT_COMMAND);
     }
 
     public void printListOfClues(ArrayList<Clue> clues) {
@@ -236,7 +236,9 @@ public class Ui {
     }
 
     public void printInvestigationMessage(int sceneNumber) {
-        System.out.println("Scene " + sceneNumber + " Investigation");
+        System.out.println("-------------------------");
+        System.out.println("| Scene " + sceneNumber + " Investigation |");
+        System.out.println("-------------------------");
     }
 
     public void printWhoToInvestigate() {
