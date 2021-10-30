@@ -327,13 +327,16 @@ public class Ui {
     }
 
     public void printNoteMissingError(int size) {
-        System.out.println("Invalid index! There are only " + size + " notes currently.");
-        System.out.println();
+        System.out.println("Invalid index! There are only " + size + " notes currently."
+        + "\n");
     }
 
     public void printNoteCommandError(String errorMessage) {
-        System.out.println(errorMessage);
-        System.out.println();
+        System.out.println(errorMessage + "\n");
+    }
+
+    public void printNoteErrorMessage(String errorMessage) {
+        System.out.println(errorMessage + "\n");
     }
 
     public void printNoteSearchError(String errorMessage) {

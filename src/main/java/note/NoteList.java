@@ -4,8 +4,7 @@ package note;
 
 import java.util.ArrayList;
 
-import exceptions.InvalidNoteCommandException;
-import exceptions.InvalidNoteSearchException;
+import exceptions.InvalidNoteException;
 import storage.Storage;
 import scene.SceneList;
 import ui.Ui;
@@ -18,6 +17,8 @@ public class NoteList {
             + "Only index 1-3 are allowed!";
     private static final String INVALID_NOTE_INDEX = "The index you entered is out of range!"
             + "Please check again!";
+    private static final String INVALID_NOTE_MESSAGE = "The index you entered is not valid!"
+            + "Please check again.";
     private static final String INVALID_SEARCH_OPTION = "The operation index is invalid! "
             + "Only index 1-2 are allowed";
 
@@ -96,15 +97,19 @@ public class NoteList {
         ui.printDeleteAllNoteMessage();
     }
 
-    public void processNote(SceneList sceneList, String userChoice) throws InvalidNoteCommandException {
-        if (userChoice.equals("1")) {
+    public void processNote(SceneList sceneList, String userChoice) throws InvalidNoteException {
+        switch (userChoice) {
+        case "1" :
             createNoteProcess(sceneList);
-        } else if (userChoice.equals("2")) {
+            break;
+        case "2" :
             openNoteProcess();
-        } else if (userChoice.equals("3")) {
+            break;
+        case "3" :
             deleteNoteProcess();
-        } else {
-            throw new InvalidNoteCommandException(INVALID_NOTE_COMMAND);
+            break;
+        default :
+            throw new InvalidNoteException(INVALID_NOTE_MESSAGE);
         }
     }
 
@@ -128,14 +133,14 @@ public class NoteList {
         if (checkExistance) {
             String userInput = ui.readUserInput();
             if (userInput.contains("1")) {
-                ui.printNoteSearchInstructions();
-
                 while (!userInput.equals("")) {
+                    ui.printNoteSearchInstructions();
                     userInput = ui.readUserInput();
                     try {
                         selectSearchMethod(userInput);
-                    } catch (InvalidNoteSearchException e) {
-                        ui.printNoteSearchError(INVALID_SEARCH_OPTION);
+                        break;
+                    } catch (InvalidNoteException e) {
+                        ui.printNoteSearchError(INVALID_NOTE_MESSAGE);
                     }
                 }
             } else if (userInput.contains("2")) {
@@ -151,13 +156,13 @@ public class NoteList {
         }
     }
 
-    public void selectSearchMethod(String userInput) throws InvalidNoteSearchException {
+    public void selectSearchMethod(String userInput) throws InvalidNoteException {
         if (userInput.contains("1")) {
             keywordSearch();
         } else if (userInput.contains("2")) {
             indexSearch();
         } else {
-            throw new InvalidNoteSearchException(INVALID_SEARCH_OPTION);
+            throw new InvalidNoteException(INVALID_NOTE_MESSAGE);
         }
     }
 

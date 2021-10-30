@@ -1,6 +1,6 @@
 package command;
 
-import exceptions.InvalidNoteCommandException;
+import exceptions.InvalidNoteException;
 import investigation.Investigation;
 import note.NoteList;
 import scene.SceneList;
@@ -27,7 +27,7 @@ public class NoteCommand extends Command {
         }
         try {
             notes.processNote(sceneList, userChoice);
-        } catch (InvalidNoteCommandException e) {
+        } catch (InvalidNoteException e) {
             ui.printNoteCommandError(e.getMessage());
         }
     }
