@@ -13,6 +13,7 @@ import command.BackCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
 import scene.Scene;
+import scene.suspect.SuspectList;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,7 +37,6 @@ public class Parser {
     private static final int NOTE_SCENE_INDEX = 1;
     private static final String INVALID_INPUT = "Invalid input!";
     private static final String INVESTIGATE = "/investigate";
-    private static final String INVALID_SUSPECT_NAME = "Invalid suspect given!";
     private static final String SUSPECT_FATHER_LOWER = "father";
     private static final String SUSPECT_KEVIN_LOWER = "kevin";
     private static final String SUSPECT_WENDY_LOWER = "wendy";
@@ -45,20 +45,19 @@ public class Parser {
     private static final String NOTE_CREATE = "create";
     private static final String NOTE_OPEN = "open";
     private static final String NOTE_DELETE = "delete";
-    private static final int SUSPECT_FATHER_INDEX = 1;
-    private static final int SUSPECT_KEVIN_INDEX = 2;
-    private static final int SUSPECT_WENDY_INDEX = 3;
-    private static final int SUSPECT_LING_INDEX = 4;
-    private static final int SUSPECT_ZACK_INDEX = 5;
-    private static final String ALPHABET_PATTERN = "[a-zA-Z]";
-    private static final String NUMBER_PATTERN = "[0-9]";
+    private static final String ALPHABET_PATTERN = "^[a-zA-Z]+$";
+    private static final String NUMBER_PATTERN = "^[0-9]+$";
 
     public String getSuspectNameFromIndex(Scene currentScene, int suspectNumber) throws InvalidSuspectException {
-        if (suspectNumber <= currentScene.getSuspectList().getNumSuspects()) {
-            return currentScene.getSuspectList().getSuspectNames()[suspectNumber - 1];
-        } else {
+        SuspectList currentSceneSuspectList = currentScene.getSuspectList();
+        try {
+            return currentSceneSuspectList.getSuspectNames()[suspectNumber - 1];
+        } catch (InvalidSuspectException e) {
+            throw new InvalidSuspectException(INVALID_SUSPECT);
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidSuspectException(INVALID_SUSPECT);
         }
+
     }
 
     public Command getCommandFromUser(String userInput) throws InvalidInputException {
@@ -133,26 +132,9 @@ public class Parser {
 
     private Command parseInputForInvestigateCommand(String suspectName) throws InvalidInputException {
         String suspectNameLowerCase = suspectName.toLowerCase();
-        int suspectIndex = getSuspectIndexFromSuspectName(suspectNameLowerCase);
-        return new InvestigateCommand(suspectIndex);
+        return new InvestigateCommand(suspectNameLowerCase);
     }
 
-    private int getSuspectIndexFromSuspectName(String suspectName) throws InvalidInputException {
-        switch (suspectName) {
-        case SUSPECT_FATHER_LOWER:
-            return SUSPECT_FATHER_INDEX;
-        case SUSPECT_KEVIN_LOWER:
-            return SUSPECT_KEVIN_INDEX;
-        case SUSPECT_WENDY_LOWER:
-            return SUSPECT_WENDY_INDEX;
-        case SUSPECT_LING_LOWER:
-            return SUSPECT_LING_INDEX;
-        case SUSPECT_ZACK_LOWER:
-            return SUSPECT_ZACK_INDEX;
-        default:
-            throw new InvalidInputException(INVALID_SUSPECT_NAME);
-        }
-    }
 
     private Command parseInputMultipleArguments(String userInput) throws InvalidInputException {
         String[] userInputArr = userInput.split(INPUT_SPLITTER, 2);
