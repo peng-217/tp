@@ -4,15 +4,22 @@ package note;
 
 import java.util.ArrayList;
 
+import exceptions.InvalidNoteCommandException;
+import exceptions.InvalidNoteSearchException;
 import storage.Storage;
 import scene.SceneList;
 import ui.Ui;
 
 public class NoteList {
     private ArrayList<Note> notes;
-
     private final Ui ui;
     private static int defaultTitleCounter = 1;
+    private static final String INVALID_NOTE_COMMAND = "The operation index is invalid! "
+            + "Only index 1-3 are allowed!";
+    private static final String INVALID_NOTE_INDEX = "The index you entered is out of range!"
+            + "Please check again!";
+    private static final String INVALID_SEARCH_OPTION = "The operation index is invalid! "
+            + "Only index 1-2 are allowed";
 
     public NoteList(Ui ui) {
         this.ui = ui;
@@ -89,13 +96,15 @@ public class NoteList {
         ui.printDeleteAllNoteMessage();
     }
 
-    public void processNote(SceneList sceneList, String userChoice) {
-        if (userChoice.equals("create")) {
+    public void processNote(SceneList sceneList, String userChoice) throws InvalidNoteCommandException {
+        if (userChoice.equals("1")) {
             createNoteProcess(sceneList);
-        } else if (userChoice.equals("open")) {
+        } else if (userChoice.equals("2")) {
             openNoteProcess();
-        } else {
+        } else if (userChoice.equals("3")) {
             deleteNoteProcess();
+        } else {
+            throw new InvalidNoteCommandException(INVALID_NOTE_COMMAND);
         }
     }
 
@@ -118,21 +127,37 @@ public class NoteList {
         boolean checkExistance = ui.printOpenNoteMessage(this);
         if (checkExistance) {
             String userInput = ui.readUserInput();
-            if (userInput.contains("search")) {
+            if (userInput.contains("1")) {
                 ui.printNoteSearchInstructions();
-                userInput = ui.readUserInput();
-                selectSearchMethod(userInput);
-            } else {
-                openNoteDirectly();
+
+                while (!userInput.equals("")) {
+                    userInput = ui.readUserInput();
+                    try {
+                        selectSearchMethod(userInput);
+                    } catch (InvalidNoteSearchException e) {
+                        ui.printNoteSearchError(INVALID_SEARCH_OPTION);
+                    }
+                }
+            } else if (userInput.contains("2")) {
+                while (!userInput.equals("")) {
+                    try {
+                        openNoteDirectly();
+                        break;
+                    } catch (IndexOutOfBoundsException e) {
+                        ui.printNoteMissingError(notes.size());
+                    }
+                }
             }
         }
     }
 
-    public void selectSearchMethod(String userInput) {
-        if (userInput.contains("keyword")) {
+    public void selectSearchMethod(String userInput) throws InvalidNoteSearchException {
+        if (userInput.contains("1")) {
             keywordSearch();
-        } else {
+        } else if(userInput.contains("2")) {
             indexSearch();
+        } else {
+            throw new InvalidNoteSearchException(INVALID_SEARCH_OPTION);
         }
     }
 
@@ -149,11 +174,15 @@ public class NoteList {
         ui.printSelectedNote(this.searchNotesUsingSceneIndex(sceneIndex, this));
     }
 
-    public void openNoteDirectly() {
+    public void openNoteDirectly() throws IndexOutOfBoundsException  {
         ui.printNoteOpenInstructions();
         //here the index is not scene index, it is the index in the list
         int inputOrderIndex = Integer.parseInt(ui.readUserInput());
-        ui.printExistingNotes(this, inputOrderIndex);
+        if (inputOrderIndex > notes.size()) {
+            throw new IndexOutOfBoundsException(INVALID_NOTE_INDEX);
+        }
+            ui.printExistingNotes(this, inputOrderIndex);
+
     }
 
     public void deleteNoteProcess() {
