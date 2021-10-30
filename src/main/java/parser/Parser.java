@@ -4,6 +4,7 @@ import command.Command;
 import command.ExitCommand;
 import command.HelpCommand;
 import command.InvestigateCommand;
+import command.NarrativeLinesCommand;
 import command.NextCommand;
 import command.NoteCommand;
 import command.RestartCommand;
@@ -23,6 +24,7 @@ public class Parser {
     private static final String NEXT = "/next";
     private static final String VIEW = "/view";
     private static final String BACK = "/back";
+    private static final String NARRATIVE_LINES = "/narrative-lines";
     private static final String RESTART = "/restart";
     private static final String SUSPECT_FATHER = "Father";
     private static final String SUSPECT_KEVIN = "Kevin";
@@ -117,6 +119,17 @@ public class Parser {
         return new NoteCommand(argsGiven);
     }
 
+    private Command parseInputForNarrativeLinesCommand(String argsGiven) throws InvalidInputException {
+        try {
+            int numLines = Integer.parseInt(argsGiven);
+            if (numLines < 1) {
+                throw new InvalidInputException(INVALID_INPUT);
+            }
+            return new NarrativeLinesCommand(numLines);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException(INVALID_INPUT);
+        }
+    }
 
     private Command parseInputForInvestigateCommand(String suspectName) throws InvalidInputException {
         String suspectNameLowerCase = suspectName.toLowerCase();
@@ -153,6 +166,8 @@ public class Parser {
             return parseInputForViewCommand(argsGiven);
         case INVESTIGATE:
             return useSuspectNameOrIndexForInvestigating(argsGiven);
+        case NARRATIVE_LINES:
+            return parseInputForNarrativeLinesCommand(argsGiven);
         default:
             throw new InvalidInputException(INVALID_INPUT);
         }

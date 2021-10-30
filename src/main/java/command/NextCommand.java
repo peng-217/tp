@@ -15,13 +15,12 @@ public class NextCommand extends Command {
         case CORRECT_KILLER_SCENE:
             hasCompleted = true;
             break;
-        case TRUTH_SCENE:
-            hasCompleted = true;
+        case WRONG_KILLER_SCENE:
+            sceneList.updateSceneNumber();
             sceneList.runCurrentScene();
             break;
-        case GUESS_KILLER_SCENE:
-            boolean isUserCorrect = investigation.checkSuspectedKiller(sceneList);
-            sceneList.setSceneNumberAfterSuspecting(isUserCorrect);
+        case TRUTH_SCENE:
+            hasCompleted = true;
             sceneList.runCurrentScene();
             break;
         default:

@@ -32,10 +32,8 @@ This allows user to take note with title and content whenever they want.
 ### Searching notes with keywords: `keywords`
 This allows user to search the notes using keywords in title
 
-Example of usage:
-```
-/note
-```
+Examples of usage:
+- input: `/note`
 ```
 Do you want to create a new note or open a existing note or delete a note?
 ```

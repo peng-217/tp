@@ -1,4 +1,4 @@
-# Duke
+# The Great Detective
 
 {Give product intro here}
 

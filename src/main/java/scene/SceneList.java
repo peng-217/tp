@@ -24,14 +24,14 @@ public class SceneList {
     public void setSceneNumberAfterSuspecting(boolean killerFound) {
         if (killerFound) {
             this.currentSceneIndex = CORRECT_KILLER_SCENE_INDEX;
+            dataFile.setCurrentSceneIndex(INTRODUCTION_SCENE_INDEX);
         } else {
             this.currentSceneIndex = WRONG_KILLER_SCENE_INDEX;
         }
-        dataFile.setCurrentSceneIndex(INTRODUCTION_SCENE_INDEX);
     }
 
     public Scene getCurrentScene() {
-        assert currentSceneIndex <= 6;
+        assert currentSceneIndex <= 7;
         return this.scenes[currentSceneIndex];
     }
 
@@ -46,7 +46,7 @@ public class SceneList {
 
     public void updateSceneNumber() {
         this.currentSceneIndex++;
-        assert currentSceneIndex <= 6;
+        assert currentSceneIndex <= 7;
         dataFile.setCurrentSceneIndex(currentSceneIndex);
     }
 
