@@ -33,7 +33,7 @@ public class InvestigateCommand extends Command {
     }
 
     private void suspectNameToIndex() throws InvalidInputException {
-        switch(suspectName) {
+        switch (suspectName) {
         case SUSPECT_FATHER_LOWER:
             this.suspectIndex = SUSPECT_FATHER_INDEX;
             break;
