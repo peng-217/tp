@@ -181,7 +181,7 @@ public class NoteList {
         if (inputOrderIndex > notes.size()) {
             throw new IndexOutOfBoundsException(INVALID_NOTE_INDEX);
         }
-            ui.printExistingNotes(this, inputOrderIndex);
+        ui.printExistingNotes(this, inputOrderIndex);
     }
 
     public void deleteNoteProcess() {
