@@ -13,6 +13,7 @@ import command.BackCommand;
 import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
 import scene.Scene;
+import scene.suspect.SuspectList;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,11 +49,15 @@ public class Parser {
     private static final String NUMBER_PATTERN = "^[0-9]+$";
 
     public String getSuspectNameFromIndex(Scene currentScene, int suspectNumber) throws InvalidSuspectException {
-        if (suspectNumber <= currentScene.getSuspectList().getNumSuspects()) {
-            return currentScene.getSuspectList().getSuspectNames()[suspectNumber - 1];
-        } else {
+        SuspectList currentSceneSuspectList = currentScene.getSuspectList();
+        try {
+            return currentSceneSuspectList.getSuspectNames()[suspectNumber - 1];
+        } catch (InvalidSuspectException e) {
+            throw new InvalidSuspectException(INVALID_SUSPECT);
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidSuspectException(INVALID_SUSPECT);
         }
+
     }
 
     public Command getCommandFromUser(String userInput) throws InvalidInputException {
