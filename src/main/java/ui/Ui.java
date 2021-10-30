@@ -159,8 +159,8 @@ public class Ui {
     public boolean printOpenNoteMessage(NoteList notes) {
         boolean checkExistance = printNoteTitle(notes);
         if (checkExistance) {
-            System.out.println("Do you want to search a note (type in 'search') or "
-                    + "directly open a note (type in 'open')?");
+            System.out.println("Do you want to search a note (type in '1') or "
+                    + "directly open a note (type in '2')?");
         }
         return checkExistance;
     }
@@ -179,6 +179,7 @@ public class Ui {
         boolean checkExistance = false;
         if (notes.getSize() == 0) {
             System.out.println(NO_NOTE_MESSAGE);
+            System.out.println();
             return checkExistance;
         } else {
             System.out.println(LIST_OF_NOTES_MESSAGE);
@@ -275,12 +276,16 @@ public class Ui {
     //@@author peng-217
     public void printNoteInstructions() {
         System.out.println("Do you want to create a new note"
-                + " or open an existing note or delete a note?");
+                + " or open an existing note or delete note?");
+        System.out.println("Please type in:");
+        System.out.println("'1' for create a new note.");
+        System.out.println("'2' for open an existing note.");
+        System.out.println("'3' for delete notes.");
     }
 
     public void printNoteTitleInstructions() {
         System.out.println("Please enter the title for this note"
-                + " (if you do not need title, type a spacing instead:");
+                + " (if you do not need title, type a spacing instead):");
     }
 
     public void printNoteTextInstructions() {
@@ -293,7 +298,7 @@ public class Ui {
     }
 
     public void printNoteSearchInstructions() {
-        System.out.println("Do you want to search by keyword (type 'keyword') or scene index (type 'index')?");
+        System.out.println("Do you want to search by keyword (type '1') or scene index (type '2')?");
     }
 
     public void printNoteSearchKeyWordInstructions() {
@@ -319,11 +324,17 @@ public class Ui {
     }
 
     public void printDeleteAllNoteMessage() {
-        System.out.println(DELETE_NOTE_MESSAGE);
+        System.out.println(DELETE_ALL_NOTE);
+        System.out.println();
     }
 
     public void printNoteMissingError(int size) {
-        System.out.println("Invalid index! There are only " + size + " notes currently.");
+        System.out.println("Invalid index! There are only " + size + " notes currently."
+               + "\n");
+    }
+    
+    public void printNoteErrorMessage(String errorMessage) {
+        System.out.println(errorMessage + "\n");
     }
     //@@author
 }

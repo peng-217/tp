@@ -1,5 +1,6 @@
 package command;
 
+import exceptions.InvalidNoteException;
 import investigation.Investigation;
 import note.NoteList;
 import scene.SceneList;
@@ -26,8 +27,8 @@ public class NoteCommand extends Command {
         }
         try {
             notes.processNote(sceneList, userChoice);
-        } catch (IndexOutOfBoundsException e) {
-            ui.printNoteMissingError(notes.getSize());
+        } catch (InvalidNoteException e) {
+            ui.printNoteErrorMessage(e.getMessage());
         }
     }
 
