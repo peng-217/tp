@@ -17,6 +17,7 @@ public class NoteList {
             + "Please check again.";
     private static final String INVALID_NOTE_COMMAND_MESSAGE = "The command you entered is not valid!"
             + "Please check again.";
+    
     public NoteList(Ui ui) {
         this.ui = ui;
         //storage = new Storage();
