@@ -56,7 +56,7 @@ public class Narrative {
     /** Function to clear the user console. */
     public static void clearConsole() {
         try {
-            //Check the current operating system
+            // Check the current operating system
             String operatingSystem = System.getProperty("os.name");
 
             if (operatingSystem.contains("Windows")) {
@@ -70,7 +70,7 @@ public class Narrative {
                 startProcess.waitFor();
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 
