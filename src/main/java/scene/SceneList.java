@@ -35,9 +35,9 @@ public class SceneList {
         return this.scenes[currentSceneIndex];
     }
 
-    public void resetCurrentSceneIndex() {
+    private void resetToIntroductionScene() {
         this.currentSceneIndex = STARTING_INDEX_FOR_FILE;
-        dataFile.setCurrentSceneIndex(STARTING_INDEX_FOR_FILE);
+        updateDataFileSceneIndex(STARTING_INDEX_FOR_FILE);
     }
 
     public int getCurrentSceneIndex() {
@@ -47,7 +47,7 @@ public class SceneList {
     public void updateSceneNumber() {
         this.currentSceneIndex++;
         assert currentSceneIndex <= 7;
-        dataFile.setCurrentSceneIndex(currentSceneIndex);
+        updateDataFileSceneIndex(currentSceneIndex);
     }
 
     public SceneTypes getCurrentSceneType() {
@@ -65,9 +65,23 @@ public class SceneList {
     }
 
     public void resetAllScenes() {
-        this.resetCurrentSceneIndex();
-        dataFile.setCurrentSceneIndex(0);
+        this.resetToIntroductionScene();
         runCurrentScene();
+    }
+
+    private void resetToGuessKillerScene() {
+        this.currentSceneIndex = GUESS_KILLER_SCENE_INDEX;
+        updateDataFileSceneIndex(GUESS_KILLER_SCENE_INDEX);
+    }
+
+    private void goBackOneScene() {
+        this.currentSceneIndex--;
+        assert this.currentSceneIndex >= 0;
+        updateDataFileSceneIndex(currentSceneIndex);
+    }
+
+    private void updateDataFileSceneIndex(int sceneIndex) {
+        dataFile.setCurrentSceneIndex(sceneIndex);
     }
 
     private void decreaseSceneNumber() {
@@ -80,13 +94,11 @@ public class SceneList {
             break;
         case WRONG_KILLER_SCENE:
         case CORRECT_KILLER_SCENE:
-            this.currentSceneIndex = GUESS_KILLER_SCENE_INDEX;
-            dataFile.setCurrentSceneIndex(GUESS_KILLER_SCENE_INDEX);
+            this.resetToGuessKillerScene();
             break;
         default:
-            this.currentSceneIndex--;
-            assert this.currentSceneIndex >= 0;
-            dataFile.setCurrentSceneIndex(currentSceneIndex);
+            this.goBackOneScene();
+            break;
         }
     }
 
