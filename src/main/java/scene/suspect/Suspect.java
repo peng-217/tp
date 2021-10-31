@@ -24,9 +24,9 @@ public class Suspect {
     }
 
     /**
-     * Mark the clue specified as checked
+     * Mark the clue specified as checked.
      *
-     * @param clue Clue to set as checked
+     * @param clue Clue to be set as checked.
      */
     public void setChecked(Clue clue) {
         int index = clues.indexOf(clue);
@@ -38,9 +38,9 @@ public class Suspect {
     }
 
     /**
-     * Gets the list of clues which haven't been marked as checked
+     * Gets the list of clues which haven't been marked as checked.
      *
-     * @return List of unchecked clues
+     * @return List of unchecked clues.
      */
     public ArrayList<Clue> getAvailableClues() {
         ArrayList<Clue> availableClues = new ArrayList<>();
@@ -53,9 +53,9 @@ public class Suspect {
     }
 
     /**
-     * Gets the list of clues which have been marked as checked
+     * Gets the list of clues which have been marked as checked.
      *
-     * @return List of chcked clues
+     * @return List of checked clues.
      */
     public ArrayList<Clue> getCheckedClues() {
         ArrayList<Clue> checkedClues = new ArrayList<>();

@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 public class SuspectListBuilder {
     /**
-     * Builds the suspect list from the given file location
+     * Builds the suspect list from the given file location.
      *
-     * @param fileLocation Location of the saved file
-     * @param suspectList Suspect list to be added
-     * @throws FileNotFoundException If the file could not be found
+     * @param fileLocation Location of the saved file.
+     * @param suspectList Suspect list to be added.
+     * @throws FileNotFoundException If the file could not be found.
      */
     public static void suspectListBuilder(String fileLocation, SuspectList suspectList) throws FileNotFoundException {
         //File f = new File(fileLocation);

@@ -65,9 +65,9 @@ public class Narrative {
     }
 
     /**
-     * Prints the narrative while prompting user to press enter key every #num of lines
+     * Prints the narrative while prompting user to press enter key every #num of lines.
      *
-     * @throws FileNotFoundException If the file could not be found
+     * @throws FileNotFoundException If the file could not be found.
      */
     private void displaySceneNarrative() throws FileNotFoundException {
         String content = this.getNarrative();
@@ -81,10 +81,10 @@ public class Narrative {
     }
 
     /**
-     * Gets the content to be printed in current iteration
+     * Gets the content to be printed in current iteration.
      *
-     * @param content Remaining content to print
-     * @return Content to be printed in current iteration
+     * @param content Remaining content to print.
+     * @return Content to be printed in current iteration.
      */
     private String getNarrativeToPrint(String content) {
         int lines = Investigation.numLinesToPrintForNarrative * 2;
@@ -96,10 +96,10 @@ public class Narrative {
     }
 
     /**
-     * Prompt user to press enter key if narrative still contains lines which haven't been printed
-     * If the narrative reaches the end, no need to prompt user to press enter key
+     * Prompt user to press enter key if narrative still contains lines which haven't been printed.
+     * If the narrative reaches the end, no need to prompt user to press enter key.
      *
-     * @param content Remaining content to be printed
+     * @param content Remaining content to be printed.
      */
     public void promptUserEnterKey(String content) {
         if (content.contains("\n")) {

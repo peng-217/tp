@@ -29,20 +29,20 @@ public class SuspectList {
     }
 
     /**
-     * Adds a suspect to the list of suspects
+     * Adds a suspect to the list of suspects.
      *
-     * @param name Name of suspect
-     * @param suspect Suspect
+     * @param name Name of suspect.
+     * @param suspect Suspect.
      */
     public void addSuspect(String name, Suspect suspect) {
         suspects.put(name, suspect);
     }
 
     /**
-     * Adds a clue for the specified subject
+     * Adds a clue for the specified subject.
      *
-     * @param name Name of suspect
-     * @param clue Clue to be added for suspect
+     * @param name Name of suspect.
+     * @param clue Clue to be added for suspect.
      */
     public void addClueForSuspect(String name, Clue clue) {
         assert suspects.containsKey(name);
@@ -50,10 +50,10 @@ public class SuspectList {
     }
 
     /**
-     * Marks the clue specified for the given suspect to be checked
+     * Marks the clue specified for the given suspect to be checked.
      *
-     * @param name Name of suspect
-     * @param clueInScene Clue to be marked as checked
+     * @param name Name of suspect.
+     * @param clueInScene Clue to be marked as checked.
      */
     public void setClueChecked(String name, Clue clueInScene) {
         int indexInClueTracker = this.getClueIndex(name, clueInScene.getClueName());
@@ -63,10 +63,10 @@ public class SuspectList {
     }
 
     /**
-     * Gets all the clues for the given suspect
+     * Gets all the clues for the given suspect.
      *
-     * @param name Name of suspect
-     * @return List of clues belonging to the given suspect
+     * @param name Name of suspect.
+     * @return List of clues belonging to the given suspect.
      */
     public ArrayList<Clue> getSuspectAllClues(String name) {
         assert Arrays.asList(suspectsNames).contains(name);
@@ -74,10 +74,10 @@ public class SuspectList {
     }
 
     /**
-     * Gets all the unchecked clues for the given suspect
+     * Gets all the unchecked clues for the given suspect.
      *
-     * @param name Name of suspect
-     * @return List of unchecked clues belonging to the given suspect
+     * @param name Name of suspect.
+     * @return List of unchecked clues belonging to the given suspect.
      */
     public ArrayList<Clue> getSuspectAvailableClues(String name) {
         assert Arrays.asList(suspectsNames).contains(name);
@@ -85,10 +85,10 @@ public class SuspectList {
     }
 
     /**
-     * Gets all the checked clues for the given suspect
+     * Gets all the checked clues for the given suspect.
      *
-     * @param name Name of suspect
-     * @return List of checked clues belonging to the given suspect
+     * @param name Name of suspect.
+     * @return List of checked clues belonging to the given suspect.
      */
     public ArrayList<Clue> getSuspectCheckedClues(String name) {
         assert Arrays.asList(suspectsNames).contains(name);
@@ -96,9 +96,9 @@ public class SuspectList {
     }
 
     /**
-     * Gets all the clues from all suspects
+     * Gets all the clues from all suspects.
      *
-     * @return List of clues
+     * @return List of clues.
      */
     public ArrayList<Clue> getAllClues() {
         ArrayList<Clue> clues = new ArrayList<>();
@@ -108,6 +108,11 @@ public class SuspectList {
         return clues;
     }
 
+    /**
+     * Gets all the unchecked clues from all suspects.
+     *
+     * @return List of unchecked clues.
+     */
     public ArrayList<Clue> getAllAvailableClues() {
         ArrayList<Clue> clues = new ArrayList<>();
         for (Map.Entry<String, Suspect> suspectEntry : suspects.entrySet()) {
@@ -117,9 +122,9 @@ public class SuspectList {
     }
 
     /**
-     * Gets the names of all the suspects
+     * Gets the names of all the suspects.
      *
-     * @return Array of Strings of suspect names
+     * @return Array of Strings of suspect names.
      */
     public String[] getSuspectNames() {
         String[] suspectNames = new String[getNumSuspects()];
