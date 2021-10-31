@@ -134,15 +134,13 @@ public class SuspectList {
         return suspectNames;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder toReturn = new StringBuilder();
-        for (int i = 0; i < getNumSuspects(); i++) {
-            toReturn.append(i + 1).append(". ").append((String) suspects.keySet().toArray()[i]).append("\n");
-        }
-        return toReturn.toString();
-    }
-
+    /**
+     * Gets the index of the clue of the specified suspect
+     *
+     * @param suspectName Name of suspect.
+     * @param clueName Name of clue.
+     * @return Index of the clue of the specified suspect
+     */
     public int getClueIndex(String suspectName, String clueName) {
         ArrayList<Clue> clues = this.getSuspectAllClues(suspectName);
         for (int i = 0; i < clues.size(); i++) {
@@ -151,6 +149,15 @@ public class SuspectList {
             }
         }
         return -1;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder toReturn = new StringBuilder();
+        for (int i = 0; i < getNumSuspects(); i++) {
+            toReturn.append(i + 1).append(". ").append((String) suspects.keySet().toArray()[i]).append("\n");
+        }
+        return toReturn.toString();
     }
 
 }
