@@ -93,6 +93,7 @@ public class SceneList {
         case INTRODUCTION_SCENE:
             break;
         case WRONG_KILLER_SCENE:
+            //fallthrough
         case CORRECT_KILLER_SCENE:
             this.resetToGuessKillerScene();
             break;

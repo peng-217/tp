@@ -60,6 +60,7 @@ public class Ui {
     private static final String NO_NOTE_MESSAGE = "There is no note now, try to add one!";
     private static final String CHOOSE_SUSPECT_OR_CLUE_INDEX =
             "Key in the index (e.g. 1, 2) in front of the suspect/clue you want to investigate";
+    private static final String ENTER_SUSPECT_NAME = "Please enter a valid suspect name!";
 
     private Scanner scanner;
 
@@ -337,4 +338,8 @@ public class Ui {
         System.out.println(errorMessage + "\n");
     }
     //@@author
+
+    public void printEnterKillerName() {
+        System.out.println(ENTER_SUSPECT_NAME);
+    }
 }

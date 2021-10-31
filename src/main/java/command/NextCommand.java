@@ -23,10 +23,14 @@ public class NextCommand extends Command {
             hasCompleted = true;
             sceneList.runCurrentScene();
             break;
+        case GUESS_KILLER_SCENE:
+            ui.printEnterKillerName();
+            break;
         default:
             investigation.setSuspectStage();
             sceneList.updateSceneNumber();
             sceneList.runCurrentScene();
+            break;
         }
     }
 
