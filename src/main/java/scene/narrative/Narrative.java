@@ -67,21 +67,27 @@ public class Narrative {
         String content = this.getNarrative();
         while (content.contains("\n")) {
             clearConsole();
-            for (int i = 0; i < Investigation.numLinesToPrintForNarrative * 2 && content.contains("\n"); i++) {
-                System.out.print(content.substring(0, 1 + content.indexOf("\n")));
-                content = content.substring(1 + content.indexOf("\n"));
-            }
-            if (content.contains("\n")) {
-                promptUserEnterKey();
-            }
+            content = getNarrativeToPrint(content);
+            promptUserEnterKey(content);
         }
         //clearConsole();
         System.out.println(content + "\n");
     }
 
-    public void promptUserEnterKey() {
-        System.out.println("Please press the Enter key");
-        Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
+    private String getNarrativeToPrint(String content) {
+        int lines = Investigation.numLinesToPrintForNarrative * 2;
+        for (int i = 0; i < lines && content.contains("\n"); i++) {
+            System.out.print(content.substring(0, 1 + content.indexOf("\n")));
+            content = content.substring(1 + content.indexOf("\n"));
+        }
+        return content;
+    }
+
+    public void promptUserEnterKey(String content) {
+        if (content.contains("\n")) {
+            System.out.println("Please press the Enter key");
+            Scanner scanner = new Scanner(System.in);
+            scanner.nextLine();
+        }
     }
 }
