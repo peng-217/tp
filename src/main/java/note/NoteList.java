@@ -17,7 +17,7 @@ public class NoteList {
             + "Please check again.";
     private static final String INVALID_NOTE_COMMAND_MESSAGE = "The command you entered is not valid!"
             + "Please check again.";
-    
+
     public NoteList(Ui ui) {
         this.ui = ui;
         //storage = new Storage();
@@ -129,14 +129,14 @@ public class NoteList {
         if (checkExistance) {
             String userInput = ui.readUserInput();
             while (!userInput.equals("")) {
-                if (!userInput.contains("search") && !userInput.contains("open")) {
+                if (!userInput.equals("search") && !userInput.equals("open")) {
                     ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
                     userInput = ui.readUserInput();
                 } else {
                     break;
                 }
             }
-            if (userInput.contains("search")) {
+            if (userInput.startsWith("search")) {
                 while (!userInput.equals("")) {
                     ui.printNoteSearchInstructions();
                     userInput = ui.readUserInput();
@@ -147,7 +147,7 @@ public class NoteList {
                         ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
                     }
                 }
-            } else if (userInput.contains("open")) {
+            } else if (userInput.startsWith("open")) {
                 while (!userInput.equals("")) {
                     try {
                         openNoteDirectly();
@@ -162,16 +162,16 @@ public class NoteList {
 
     public void selectSearchMethod(String userInput) throws InvalidNoteException {
         while (!userInput.equals("")) {
-            if (!userInput.contains("keyword") && !userInput.contains("index")) {
+            if (!userInput.equals("keyword") && !userInput.equals("index")) {
                 ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
                 userInput = ui.readUserInput();
             } else {
                 break;
             }
         }
-        if (userInput.contains("keyword")) {
+        if (userInput.equals("keyword")) {
             keywordSearch();
-        } else if (userInput.contains("index")) {
+        } else if (userInput.equals("index")) {
             indexSearch();
         } else {
             throw new InvalidNoteException(INVALID_NOTE_COMMAND_MESSAGE);
