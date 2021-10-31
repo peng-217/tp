@@ -46,7 +46,8 @@ public class Narrative {
 
     public static void clearConsole() {
         try {
-            String operatingSystem = System.getProperty("os.name"); //Check the current operating system
+            //Check the current operating system
+            String operatingSystem = System.getProperty("os.name");
 
             if (operatingSystem.contains("Windows")) {
                 ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
@@ -63,6 +64,11 @@ public class Narrative {
         }
     }
 
+    /**
+     * Prints the narrative while prompting user to press enter key every #num of lines
+     *
+     * @throws FileNotFoundException If the file could not be found
+     */
     private void displaySceneNarrative() throws FileNotFoundException {
         String content = this.getNarrative();
         while (content.contains("\n")) {
@@ -74,6 +80,12 @@ public class Narrative {
         System.out.println(content + "\n");
     }
 
+    /**
+     * Gets the content to be printed in current iteration
+     *
+     * @param content Remaining content to print
+     * @return Content to be printed in current iteration
+     */
     private String getNarrativeToPrint(String content) {
         int lines = Investigation.numLinesToPrintForNarrative * 2;
         for (int i = 0; i < lines && content.contains("\n"); i++) {
@@ -83,6 +95,12 @@ public class Narrative {
         return content;
     }
 
+    /**
+     * Prompt user to press enter key if narrative still contains lines which haven't been printed
+     * If the narrative reaches the end, no need to prompt user to press enter key
+     *
+     * @param content Remaining content to be printed
+     */
     public void promptUserEnterKey(String content) {
         if (content.contains("\n")) {
             System.out.println("Please press the Enter key");
