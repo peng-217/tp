@@ -21,9 +21,13 @@ public class Narrative {
         this.filePath = "";
     }
 
+    /**
+     * Reads the text file from the file path.
+     *
+     * @return Contents of the text file.
+     * @throws FileNotFoundException If the file could not be found.
+     */
     public String getNarrative() throws FileNotFoundException {
-        //File file = new File(filePath + fileName);
-        //System.out.println(filePath + fileName);
         InputStream file = getClass().getResourceAsStream(filePath + fileName);
         if (file == null) {
             throw new FileNotFoundException();
@@ -36,6 +40,11 @@ public class Narrative {
         return content.toString();
     }
 
+    /**
+     * Displays the narrative based on the scene.
+     *
+     * @throws FileNotFoundException If the file could not be found.
+     */
     public void displayNarrative() throws FileNotFoundException {
         if (fileName.toLowerCase(Locale.ROOT).contains("scene")) {
             displaySceneNarrative();
@@ -44,6 +53,7 @@ public class Narrative {
         }
     }
 
+    /** Function to clear the user console */
     public static void clearConsole() {
         try {
             //Check the current operating system
@@ -76,7 +86,6 @@ public class Narrative {
             content = getNarrativeToPrint(content);
             promptUserEnterKey(content);
         }
-        //clearConsole();
         System.out.println(content + "\n");
     }
 
