@@ -1,7 +1,7 @@
 package scene.clue;
 
 import scene.suspect.SuspectList;
-import static scene.suspect.SuspectList.suspectListBuilder;
+import static scene.suspect.SuspectListBuilder.suspectListBuilder;
 
 import java.io.FileNotFoundException;
 
