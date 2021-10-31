@@ -82,6 +82,7 @@ class NoteListTest {
     @Test
     public void getIndexNote() {
         NoteList notes = new NoteList(new Ui());
+        notes.deleteAllNotes();
         Note testOne = new Note("test 1","TEST 1",1);
         Note testTwo = new Note("test 2","TEST 2",2);
         notes.createNote(testOne);
