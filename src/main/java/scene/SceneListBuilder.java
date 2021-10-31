@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Scanner;
 
-import static scene.suspect.SuspectList.suspectListBuilder;
+import static scene.suspect.SuspectListBuilder.suspectListBuilder;
 
 
 public class SceneListBuilder {
