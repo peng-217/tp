@@ -135,11 +135,11 @@ public class SuspectList {
     }
 
     /**
-     * Gets the index of the clue of the specified suspect
+     * Gets the index of the clue of the specified suspect.
      *
      * @param suspectName Name of suspect.
      * @param clueName Name of clue.
-     * @return Index of the clue of the specified suspect
+     * @return Index of the clue of the specified suspect.
      */
     public int getClueIndex(String suspectName, String clueName) {
         ArrayList<Clue> clues = this.getSuspectAllClues(suspectName);
