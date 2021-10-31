@@ -53,7 +53,7 @@ public class Narrative {
         }
     }
 
-    /** Function to clear the user console */
+    /** Function to clear the user console. */
     public static void clearConsole() {
         try {
             //Check the current operating system
