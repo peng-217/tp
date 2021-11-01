@@ -7,5 +7,4 @@ public enum SceneTypes {
     WRONG_KILLER_SCENE,
     CORRECT_KILLER_SCENE,
     TRUTH_SCENE
-
 }

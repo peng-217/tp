@@ -27,8 +27,10 @@ public class NoteCommand extends Command {
         }
         try {
             notes.processNote(sceneList, userChoice);
-        } catch (InvalidNoteException e) {
-            ui.printNoteErrorMessage(e.getMessage());
+        } catch (InvalidNoteException e1) {
+            ui.printNoteErrorMessage(e1.getMessage());
+        } catch (NumberFormatException | IndexOutOfBoundsException e2) {
+            ui.printNoteDeleteErrorMessage();
         }
     }
 

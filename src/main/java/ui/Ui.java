@@ -337,6 +337,10 @@ public class Ui {
     public void printNoteErrorMessage(String errorMessage) {
         System.out.println(errorMessage + "\n");
     }
+
+    public void printNoteDeleteErrorMessage() {
+        System.out.println("Invalid index! Please input a number corresponding to one of the notes shown above.");
+    }
     //@@author
 
     public void printEnterKillerName() {
