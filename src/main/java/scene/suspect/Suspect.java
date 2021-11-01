@@ -23,6 +23,11 @@ public class Suspect {
         this.clues.add(clue);
     }
 
+    /**
+     * Mark the clue specified as checked.
+     *
+     * @param clue Clue to be set as checked.
+     */
     public void setChecked(Clue clue) {
         int index = clues.indexOf(clue);
         try {
@@ -32,6 +37,11 @@ public class Suspect {
         }
     }
 
+    /**
+     * Gets the list of clues which haven't been marked as checked.
+     *
+     * @return List of unchecked clues.
+     */
     public ArrayList<Clue> getAvailableClues() {
         ArrayList<Clue> availableClues = new ArrayList<>();
         for (Clue clue : clues) {
@@ -42,6 +52,11 @@ public class Suspect {
         return availableClues;
     }
 
+    /**
+     * Gets the list of clues which have been marked as checked.
+     *
+     * @return List of checked clues.
+     */
     public ArrayList<Clue> getCheckedClues() {
         ArrayList<Clue> checkedClues = new ArrayList<>();
         for (Clue clue : clues) {
