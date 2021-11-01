@@ -72,6 +72,8 @@ public class Duke {
                 ui.printInvalidClueMessage();
             } catch (InvalidInputException e3) {
                 ui.printInvalidCommandMessage();
+            } catch (NumberFormatException e) {
+                ui.printInvalidSuspectMessage();
             }
             isExit = commandFromUser.exit();
         }

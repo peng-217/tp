@@ -60,7 +60,7 @@ public class Parser {
 
     }
 
-    public Command getCommandFromUser(String userInput) throws InvalidInputException {
+    public Command getCommandFromUser(String userInput) throws InvalidInputException, NumberFormatException {
         boolean multipleArgumentsGiven = userInput.contains(INPUT_SPLITTER);
         if (multipleArgumentsGiven) {
             return parseInputMultipleArguments(userInput);
@@ -85,7 +85,8 @@ public class Parser {
         }
     }
 
-    private Command useSuspectNameOrIndexForInvestigating(String userInput) throws InvalidInputException {
+    private Command useSuspectNameOrIndexForInvestigating(String userInput) throws InvalidInputException,
+            NumberFormatException {
         Pattern alphabetPattern = Pattern.compile(ALPHABET_PATTERN);
         Pattern numberPattern = Pattern.compile(NUMBER_PATTERN);
         Matcher alphabetPatternMatcher = alphabetPattern.matcher(userInput);
@@ -95,13 +96,17 @@ public class Parser {
         boolean alphabetFound = alphabetPatternMatcher.find();
 
         if (numberFound) {
-            int inputParsedToInt = Integer.parseInt(userInput);
+            int inputParsedToInt = parseUserInput(userInput);
             return new InvestigateCommand(inputParsedToInt);
         } else if (alphabetFound) {
             return parseInputForInvestigateCommand(userInput);
         } else {
             throw new InvalidInputException(INVALID_INPUT);
         }
+    }
+
+    private int parseUserInput(String userInput) throws NumberFormatException {
+        return Integer.parseInt(userInput);
     }
 
     private Command parseInputForViewCommand(String argsGiven) throws InvalidInputException {

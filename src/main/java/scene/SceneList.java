@@ -35,9 +35,9 @@ public class SceneList {
         return this.scenes[currentSceneIndex];
     }
 
-    public void resetCurrentSceneIndex() {
+    private void resetToIntroductionScene() {
         this.currentSceneIndex = STARTING_INDEX_FOR_FILE;
-        dataFile.setCurrentSceneIndex(STARTING_INDEX_FOR_FILE);
+        updateDataFileSceneIndex(STARTING_INDEX_FOR_FILE);
     }
 
     public int getCurrentSceneIndex() {
@@ -47,7 +47,7 @@ public class SceneList {
     public void updateSceneNumber() {
         this.currentSceneIndex++;
         assert currentSceneIndex <= 7;
-        dataFile.setCurrentSceneIndex(currentSceneIndex);
+        updateDataFileSceneIndex(currentSceneIndex);
     }
 
     public SceneTypes getCurrentSceneType() {
@@ -64,35 +64,44 @@ public class SceneList {
         }
     }
 
-    /** Resets the scene index and rerun the scene from the starting scene. */
     public void resetAllScenes() {
-        this.resetCurrentSceneIndex();
-        dataFile.setCurrentSceneIndex(0);
+        this.resetToIntroductionScene();
         runCurrentScene();
     }
 
-    /**
-     * Decreases the scene index based on the scene types.
-     * Do not allow users to go back to any scene with scene number less than 0.
-     */
+    private void resetToGuessKillerScene() {
+        this.currentSceneIndex = GUESS_KILLER_SCENE_INDEX;
+        updateDataFileSceneIndex(GUESS_KILLER_SCENE_INDEX);
+    }
+
+    private void goBackOneScene() {
+        this.currentSceneIndex--;
+        assert this.currentSceneIndex >= 0;
+        updateDataFileSceneIndex(currentSceneIndex);
+    }
+
+    private void updateDataFileSceneIndex(int sceneIndex) {
+        dataFile.setCurrentSceneIndex(sceneIndex);
+    }
+
     private void decreaseSceneNumber() {
+        // We do not allow users to go back to any scene with
+        // scene number less than 0
+
         SceneTypes sceneType = getCurrentSceneType();
         switch (sceneType) {
         case INTRODUCTION_SCENE:
             break;
         case WRONG_KILLER_SCENE:
+            //fallthrough
         case CORRECT_KILLER_SCENE:
-            this.currentSceneIndex = GUESS_KILLER_SCENE_INDEX;
-            dataFile.setCurrentSceneIndex(GUESS_KILLER_SCENE_INDEX);
+            this.resetToGuessKillerScene();
             break;
         default:
-            this.currentSceneIndex--;
-            assert this.currentSceneIndex >= 0;
-            dataFile.setCurrentSceneIndex(currentSceneIndex);
+            this.goBackOneScene();
         }
     }
 
-    /** Go back to the previous scene. */
     public void previousScene() {
         decreaseSceneNumber();
         runCurrentScene();
