@@ -131,7 +131,7 @@ public class NoteList {
         if (checkExistence) {
             String userInput = ui.readUserInput();
             while (!userInput.equals("")) {
-                if (userInput.startsWith("search") || userInput.startsWith("open")) {
+                if (!(userInput.startsWith("search") || userInput.startsWith("open"))) {
                     ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
                     userInput = ui.readUserInput();
                 } else {
