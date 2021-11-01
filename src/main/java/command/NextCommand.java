@@ -30,7 +30,6 @@ public class NextCommand extends Command {
             investigation.setSuspectStage();
             sceneList.updateSceneNumber();
             sceneList.runCurrentScene();
-            break;
         }
     }
 

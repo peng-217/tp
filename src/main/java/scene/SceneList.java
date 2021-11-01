@@ -99,7 +99,6 @@ public class SceneList {
             break;
         default:
             this.goBackOneScene();
-            break;
         }
     }
 
