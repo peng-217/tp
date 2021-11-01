@@ -13,12 +13,12 @@
   * [Storage Component](#Storage-component)
   * [Suspect Component](#Suspect-component)
 * [Implementation](#Implementation)
-  * [Display checked-clues feature](#Display-checked-clues-feature)
+  * [Display checked-clues feature](#Display checked-clues feature)
   * [Local Game Data Storage](#Local-Game-Data-Storage)
   * [Taking Notes For Specified Scene](#Taking-Notes-For-Specified-Scene)
   * [SuspectListBuild](#SuspectListBuild)
 * [Product Scope](#Appendix)
-* [Use Cases](#Use-Cases)
+* [Use Cases](#Use Cases)
 * [User Stories](#User-Stories)
 * [Appendix](#Appendix)
 
@@ -228,7 +228,7 @@ user is investigating. Note tile and content are fulfilled by users. Default tit
 existing note by either search its title/scene index or directly open it by its sequence number (in the note list). User can also delete the unwanted notes by
 typing in its sequence number.
 
-### SuspectListBuilder
+###SuspectListBuilder
 
 Suspects and clues used in different scenes can be kept in a txt file and created following a specific format.
 It uses `java.io.File`, `java.util.Scanner`, and is implemented as:
@@ -290,7 +290,6 @@ Use case: Navigate to the next scene.
 
 
 ### Glossary
-
 
 - Mainstream OS: Windows, Mac OS X, Unix, Linux
 
