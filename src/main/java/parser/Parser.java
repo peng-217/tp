@@ -42,9 +42,9 @@ public class Parser {
     private static final String SUSPECT_WENDY_LOWER = "wendy";
     private static final String SUSPECT_LING_LOWER = "ling";
     private static final String SUSPECT_ZACK_LOWER = "zack";
-    private static final String NOTE_CREATE = "create";
-    private static final String NOTE_OPEN = "open";
-    private static final String NOTE_DELETE = "delete";
+    private static final String NOTE_CREATE = "1";
+    private static final String NOTE_OPEN = "2";
+    private static final String NOTE_DELETE = "3";
     private static final String ALPHABET_PATTERN = "^[a-zA-Z]+$";
     private static final String NUMBER_PATTERN = "^[0-9]+$";
 
@@ -216,6 +216,11 @@ public class Parser {
     public static int parseNoteSceneIndex(String userInput) {
         String[] userInputSplit = userInput.split(INPUT_SPLITTER);
         return Integer.parseInt(userInputSplit[NOTE_SCENE_INDEX]);
+    }
+
+    public static String[] parseOpenNoteCommand(String userInput) {
+        String[] userInputInArray = userInput.split(" ", 3);
+        return userInputInArray;
     }
 
 }
