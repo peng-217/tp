@@ -73,7 +73,7 @@ public class Duke {
             } catch (InvalidInputException e3) {
                 ui.printInvalidCommandMessage();
             } catch (NumberFormatException e) {
-                ui.printInvalidSuspectMessage();
+                ui.printInvalidCommandMessage();
             }
             isExit = commandFromUser.exit();
         }
