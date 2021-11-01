@@ -14,10 +14,10 @@ public class NoteList {
     private final ArrayList<Note> notes;
     private final Ui ui;
     private static int defaultTitleCounter = 1;
-    private static final String INVALID_NOTE_INDEX_MESSAGE = "The index you entered is not valid!"
+    private static final String INVALID_NOTE_INDEX_MESSAGE = "The index you entered is not valid! "
             + "Please check again.";
-    private static final String INVALID_NOTE_COMMAND_MESSAGE = "The command you entered is not valid!"
-            + " Please check again.";
+    private static final String INVALID_NOTE_COMMAND_MESSAGE = "The command you entered is not valid! "
+            + "Please check again.";
     private static final String INVALID_NOTE_SEARCH_MESSAGE = "Please input a valid search choice!";
 
 
@@ -131,7 +131,7 @@ public class NoteList {
         if (checkExistence) {
             String userInput = ui.readUserInput();
             while (!userInput.equals("")) {
-                if (!userInput.startsWith("search") && !userInput.startsWith("open")) {
+                if (userInput.startsWith("search") || userInput.startsWith("open")) {
                     ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
                     userInput = ui.readUserInput();
                 } else {
@@ -240,7 +240,7 @@ public class NoteList {
 
     public void openNoteDirectly(String index) throws IndexOutOfBoundsException, NumberFormatException {
         ui.printNoteOpenInstructions();
-        //here the index is not scene index, it is the index in the list
+        // here the index is not scene index, it is the index in the list
         int inputOrderIndex = Integer.parseInt(index);
         if (inputOrderIndex > notes.size()) {
             throw new IndexOutOfBoundsException(INVALID_NOTE_INDEX_MESSAGE);
