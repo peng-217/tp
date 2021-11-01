@@ -24,15 +24,37 @@ public class SuspectList {
         return suspects;
     }
 
+    public int getNumSuspects() {
+        return suspects.size();
+    }
+
+    /**
+     * Adds a suspect to the list of suspects.
+     *
+     * @param name Name of suspect.
+     * @param suspect Suspect.
+     */
     public void addSuspect(String name, Suspect suspect) {
         suspects.put(name, suspect);
     }
 
+    /**
+     * Adds a clue for the specified subject.
+     *
+     * @param name Name of suspect.
+     * @param clue Clue to be added for suspect.
+     */
     public void addClueForSuspect(String name, Clue clue) {
         assert suspects.containsKey(name);
         suspects.get(name).addClue(clue);
     }
 
+    /**
+     * Marks the clue specified for the given suspect to be checked.
+     *
+     * @param name Name of suspect.
+     * @param clueInScene Clue to be marked as checked.
+     */
     public void setClueChecked(String name, Clue clueInScene) {
         int indexInClueTracker = this.getClueIndex(name, clueInScene.getClueName());
         Clue clueInTracker = this.getSuspectAllClues(name).get(indexInClueTracker);
@@ -40,21 +62,44 @@ public class SuspectList {
         this.suspects.get(name).setChecked(clueInTracker);
     }
 
+    /**
+     * Gets all the clues for the given suspect.
+     *
+     * @param name Name of suspect.
+     * @return List of clues belonging to the given suspect.
+     */
     public ArrayList<Clue> getSuspectAllClues(String name) {
         assert Arrays.asList(suspectsNames).contains(name);
         return suspects.get(name).getClues();
     }
 
+    /**
+     * Gets all the unchecked clues for the given suspect.
+     *
+     * @param name Name of suspect.
+     * @return List of unchecked clues belonging to the given suspect.
+     */
     public ArrayList<Clue> getSuspectAvailableClues(String name) {
         assert Arrays.asList(suspectsNames).contains(name);
         return suspects.get(name).getAvailableClues();
     }
 
+    /**
+     * Gets all the checked clues for the given suspect.
+     *
+     * @param name Name of suspect.
+     * @return List of checked clues belonging to the given suspect.
+     */
     public ArrayList<Clue> getSuspectCheckedClues(String name) {
         assert Arrays.asList(suspectsNames).contains(name);
         return suspects.get(name).getCheckedClues();
     }
 
+    /**
+     * Gets all the clues from all suspects.
+     *
+     * @return List of clues.
+     */
     public ArrayList<Clue> getAllClues() {
         ArrayList<Clue> clues = new ArrayList<>();
         for (Map.Entry<String, Suspect> suspectEntry : suspects.entrySet()) {
@@ -63,6 +108,11 @@ public class SuspectList {
         return clues;
     }
 
+    /**
+     * Gets all the unchecked clues from all suspects.
+     *
+     * @return List of unchecked clues.
+     */
     public ArrayList<Clue> getAllAvailableClues() {
         ArrayList<Clue> clues = new ArrayList<>();
         for (Map.Entry<String, Suspect> suspectEntry : suspects.entrySet()) {
@@ -71,16 +121,34 @@ public class SuspectList {
         return clues;
     }
 
-    public int getNumSuspects() {
-        return suspects.size();
-    }
-
+    /**
+     * Gets the names of all the suspects.
+     *
+     * @return Array of Strings of suspect names.
+     */
     public String[] getSuspectNames() {
         String[] suspectNames = new String[getNumSuspects()];
         for (int i = 0; i < getNumSuspects(); i++) {
             suspectNames[i] = (String) suspects.keySet().toArray()[i];
         }
         return suspectNames;
+    }
+
+    /**
+     * Gets the index of the clue of the specified suspect.
+     *
+     * @param suspectName Name of suspect.
+     * @param clueName Name of clue.
+     * @return Index of the clue of the specified suspect.
+     */
+    public int getClueIndex(String suspectName, String clueName) {
+        ArrayList<Clue> clues = this.getSuspectAllClues(suspectName);
+        for (int i = 0; i < clues.size(); i++) {
+            if (clues.get(i).getClueName().equals(clueName)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
@@ -92,61 +160,4 @@ public class SuspectList {
         return toReturn.toString();
     }
 
-    public int getClueIndex(String suspectName, String clueName) {
-        ArrayList<Clue> clues = this.getSuspectAllClues(suspectName);
-        for (int i = 0; i < clues.size(); i++) {
-            if (clues.get(i).getClueName().equals(clueName)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public static void suspectListBuilder(String fileLocation, SuspectList suspectList) throws FileNotFoundException {
-        //File f = new File(fileLocation);
-        //System.out.println(fileLocation);
-        InputStream f = SceneListBuilder.class.getResourceAsStream(fileLocation);
-        if (f == null) {
-            throw new FileNotFoundException();
-        }
-        Scanner sc = new Scanner(f);
-
-        int numOfSuspect = sc.nextInt();
-        sc.nextLine();
-
-        for (int i = 0; i < numOfSuspect; i++) {
-            String suspectName = sc.nextLine();
-            Suspect suspect = new Suspect();
-            suspectList.addSuspect(suspectName, suspect);
-        }
-
-        int numOfClues = sc.nextInt();
-        sc.nextLine();
-
-        for (int i = 0; i < numOfClues; i++) {
-            int count = 0;
-            String suspect = "";
-            StringBuilder name = new StringBuilder();
-            StringBuilder image = new StringBuilder();
-            StringBuilder description = new StringBuilder();
-            String phrase = sc.nextLine();
-            while (!phrase.equals("**")) {
-                if (phrase.equals("*")) {
-                    count += 1;
-                } else if (count == 0) {
-                    suspect = phrase;
-                } else if (count == 1) {
-                    name.append(phrase);
-                } else if (count == 2) {
-                    image.append(phrase).append("\n");
-                } else if (count == 3) {
-                    description.append(phrase).append("\n");
-                }
-                phrase = sc.nextLine();
-            }
-            Clue clueToAdd = new Clue(name.toString(), image.toString(), description.toString());
-            suspectList.addClueForSuspect(suspect, clueToAdd);
-        }
-        sc.close();
-    }
 }

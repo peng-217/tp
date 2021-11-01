@@ -64,16 +64,18 @@ public class SceneList {
         }
     }
 
+    /** Resets the scene index and rerun the scene from the starting scene. */
     public void resetAllScenes() {
         this.resetCurrentSceneIndex();
         dataFile.setCurrentSceneIndex(0);
         runCurrentScene();
     }
 
+    /**
+     * Decreases the scene index based on the scene types.
+     * Do not allow users to go back to any scene with scene number less than 0.
+     */
     private void decreaseSceneNumber() {
-        // We do not allow users to go back to any scene with
-        // scene number less than 0
-
         SceneTypes sceneType = getCurrentSceneType();
         switch (sceneType) {
         case INTRODUCTION_SCENE:
@@ -90,6 +92,7 @@ public class SceneList {
         }
     }
 
+    /** Go back to the previous scene. */
     public void previousScene() {
         decreaseSceneNumber();
         runCurrentScene();

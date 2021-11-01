@@ -9,24 +9,36 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Scanner;
 
-import static scene.suspect.SuspectList.suspectListBuilder;
-
+import static scene.suspect.SuspectListBuilder.suspectListBuilder;
 
 public class SceneListBuilder {
+    private static final String FILE_LOCATION = "/scenesWithNarratives.txt";
 
+    /**
+     * Builds the scene list containing the scenes.
+     *
+     * @param dataFile Game data file.
+     * @return Scene list containing the game data read from file.
+     * @throws MissingSceneFileException If scene file is missing.
+     */
     public static SceneList buildSceneList(GameDataFileDecoder dataFile) throws MissingSceneFileException {
         Scene[] scenes;
         try {
-            scenes = getScenesFromFile("/scenesWithNarratives.txt");
-
+            scenes = getScenesFromFile();
         } catch (FileNotFoundException e) {
             throw new MissingSceneFileException("Text file containing scene order is missing!");
         }
         return new SceneList(dataFile, scenes);
     }
 
-    private static Scene[] getScenesFromFile(String fileLocation) throws FileNotFoundException {
-        InputStream f = SceneListBuilder.class.getResourceAsStream(fileLocation);
+    /**
+     * Gets the scenes from the file.
+     *
+     * @return The list of scenes.
+     * @throws FileNotFoundException If scene file is missing.
+     */
+    private static Scene[] getScenesFromFile() throws FileNotFoundException {
+        InputStream f = SceneListBuilder.class.getResourceAsStream(FILE_LOCATION);
         //File f = new File(fileLocation);
         if (f == null) {
             throw new FileNotFoundException();
