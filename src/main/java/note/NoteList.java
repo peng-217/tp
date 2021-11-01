@@ -5,22 +5,18 @@ package note;
 import java.util.ArrayList;
 
 import exceptions.InvalidNoteException;
-import exceptions.InvalidNoteOpenException;
-import exceptions.InvalidNoteSearchException;
 import parser.Parser;
 import storage.Storage;
 import scene.SceneList;
 import ui.Ui;
 
 public class NoteList {
-    private ArrayList<Note> notes;
+    private final ArrayList<Note> notes;
     private final Ui ui;
     private static int defaultTitleCounter = 1;
     private static final String INVALID_NOTE_INDEX_MESSAGE = "The index you entered is not valid!"
             + "Please check again.";
     private static final String INVALID_NOTE_COMMAND_MESSAGE = "The command you entered is not valid!"
-            + " Please check again.";
-    private static final String INVALID_NOTE_MESSAGE = "The index you entered is not valid!"
             + " Please check again.";
     private static final String INVALID_NOTE_SEARCH_MESSAGE = "Please input a valid search choice!";
 
@@ -87,7 +83,6 @@ public class NoteList {
     }
 
     public void deleteNote(int index) {
-        Note noteToDelete = notes.get(index);
         notes.remove(index);
         Storage.saveNote(this);
         ui.printDeleteNoteMessage();
@@ -156,7 +151,7 @@ public class NoteList {
                     } catch (InvalidNoteException e1) {
                         ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
                     } catch (NumberFormatException e2) {
-                        ui.printNoteErrorMessage(INVALID_NOTE_MESSAGE);
+                        ui.printNoteErrorMessage(INVALID_NOTE_INDEX_MESSAGE);
                     }
                 }
             } else if (userInput.startsWith("open") && userInputInArray.length == 2) {
@@ -165,7 +160,7 @@ public class NoteList {
                 } catch (IndexOutOfBoundsException e) {
                     ui.printNoteMissingError(notes.size());
                 } catch (NumberFormatException e2) {
-                    ui.printNoteErrorMessage(INVALID_NOTE_MESSAGE);
+                    ui.printNoteErrorMessage(INVALID_NOTE_INDEX_MESSAGE);
                 }
             } else if (userInputInArray[0].equals("open") && userInputInArray.length == 1) {
                 while (!userInput.equals("")) {
@@ -175,11 +170,11 @@ public class NoteList {
                     } catch (IndexOutOfBoundsException e1) {
                         ui.printNoteMissingError(notes.size());
                     } catch (NumberFormatException e2) {
-                        ui.printNoteErrorMessage(INVALID_NOTE_MESSAGE);
+                        ui.printNoteErrorMessage(INVALID_NOTE_INDEX_MESSAGE);
                     }
                 }
             } else {
-                throw new InvalidNoteOpenException(INVALID_NOTE_MESSAGE);
+                throw new InvalidNoteException(INVALID_NOTE_INDEX_MESSAGE);
             }
         }
     }
@@ -217,7 +212,7 @@ public class NoteList {
                 indexSearch(userInputInArray[2]);
             }
         } else {
-            throw new InvalidNoteSearchException(INVALID_NOTE_SEARCH_MESSAGE);
+            throw new InvalidNoteException(INVALID_NOTE_SEARCH_MESSAGE);
         }
     }
 
@@ -248,7 +243,7 @@ public class NoteList {
         //here the index is not scene index, it is the index in the list
         int inputOrderIndex = Integer.parseInt(index);
         if (inputOrderIndex > notes.size()) {
-            throw new IndexOutOfBoundsException(INVALID_NOTE_MESSAGE);
+            throw new IndexOutOfBoundsException(INVALID_NOTE_INDEX_MESSAGE);
         }
         ui.printExistingNotes(this, inputOrderIndex);
     }
