@@ -26,6 +26,5 @@ public class FatherMap extends Clue {
                 + "                        |\n"
                 + "                   Money Lender";
         this.description = "";
-        //this.suspect = ;
     }
 }

@@ -18,18 +18,34 @@ public class ViewCommand extends Command {
         suspects = args.split(" ");
     }
 
+    /**
+     * Executes the view command. If there are suspect(s) specified by the user,
+     * prints already searched clues relating to them. Else print all clues that
+     * have been searched.
+     *
+     * @param ui            used to communicate with the user.
+     * @param investigation contains method to query the already searched clues.
+     * @param sceneList     not used in this method but passed in as a standard of
+     *                      command execution.
+     */
     @Override
     public void execute(Ui ui, Investigation investigation, SceneList sceneList) {
         ui.printViewingCheckedCluesMessage();
+        findSearchedClues(ui, investigation);
+    }
+
+    /**
+     * Finds the already searched clues for suspects specified by the user.
+     * @param ui used to communicate with the user.
+     * @param investigation contains method to query the already searched clues.
+     */
+    private void findSearchedClues(Ui ui, Investigation investigation) {
         for (String name : suspects) {
             ArrayList<Clue> clues = investigation.getSuspectCheckedClues(name);
             if (clues.isEmpty()) {
                 continue;
             }
-            System.out.println("<" + name + ">");
-            for (Clue clue : clues) {
-                System.out.println(clue);
-            }
+            ui.printSearchedClues(name, clues);
         }
     }
 

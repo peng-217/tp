@@ -66,7 +66,7 @@ public class Ui {
     public void printEmptyLine() {
         System.out.println(LINE_SEPARATOR);
     }
-  
+
     private static final String ASK_USER_RETYPE_KILLER_NAME =
             "Invalid suspect name given. Please enter one of the suspect name below.";
 
@@ -147,8 +147,8 @@ public class Ui {
     public void printSaveNoteMessage() {
         System.out.println(SAVE_NOTE_MESSAGE);
     }
-    
-    public void printExistingNotes(NoteList notes,int orderIndex) {
+
+    public void printExistingNotes(NoteList notes, int orderIndex) {
         System.out.println(LIST_ALL_NOTES_MESSAGE);
         System.out.println("scene " + notes.getIndexNote(orderIndex - 1).getNoteSceneIndex());
         System.out.println(notes.getIndexNote(orderIndex - 1).getNoteTitle());
@@ -320,7 +320,7 @@ public class Ui {
 
     public void printNoteDeleteInstructions() {
         System.out.println("Please enter the index of the note you want to delete "
-               + "(type 'all' if you want delete all notes).");
+                + "(type 'all' if you want delete all notes).");
     }
 
     public void printDeleteAllNoteMessage() {
@@ -330,9 +330,9 @@ public class Ui {
 
     public void printNoteMissingError(int size) {
         System.out.println("Invalid index! There are only " + size + " notes currently."
-               + "\n");
+                + "\n");
     }
-    
+
     public void printNoteErrorMessage(String errorMessage) {
         System.out.println(errorMessage + "\n");
     }
@@ -340,5 +340,21 @@ public class Ui {
     public void printNoteDeleteErrorMessage() {
         System.out.println("Invalid index! Please input a number corresponding to one of the notes shown above.");
     }
-    //@@author
+
+    /**
+     * prints the already searched clues relating to a specifc suspect
+     *
+     * @param name name of one of the suspects
+     * @param clues list of already checked clues under that suspect
+     */
+    public void printSearchedClues(String name, ArrayList<Clue> clues) {
+        printNameHeaderForSearchedCluesList(name);
+        for (Clue clue : clues) {
+            System.out.println(clue);
+        }
+    }
+
+    private void printNameHeaderForSearchedCluesList(String name) {
+        System.out.println("<" + name + ">");
+    }
 }

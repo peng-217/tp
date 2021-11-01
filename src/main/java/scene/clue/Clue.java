@@ -13,6 +13,14 @@ public class Clue {
         isChecked = false;
     }
 
+    /**
+     * Construct a Clue object by setting the clue name, clue image and clue
+     * description to those passed in correspondingly.
+     *
+     * @param clueName name of the clue (usually summarises the gist of the clue)
+     * @param image ascii art that gives visual representation of a clue
+     * @param description details about a clue in words
+     */
     public Clue(String clueName, String image, String description) {
         this.clueName = clueName;
         this.image = image;
