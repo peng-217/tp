@@ -8,7 +8,8 @@ import java.io.FileNotFoundException;
 
 public class CheckedClueTrackerBuilder {
 
-    /** Builds a tracker for already checked clues according
+    /**
+     *  Builds a tracker for already checked clues according
      *  to a text file that records relevant information.
      *
      * @return a SuspectList object representing searched

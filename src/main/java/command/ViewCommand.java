@@ -36,6 +36,7 @@ public class ViewCommand extends Command {
 
     /**
      * Finds the already searched clues for suspects specified by the user.
+     * 
      * @param ui used to communicate with the user.
      * @param investigation contains method to query the already searched clues.
      */
