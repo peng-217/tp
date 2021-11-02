@@ -21,13 +21,17 @@ public class SceneList {
         this.scenes = scenes;
     }
 
+    /**
+     * @param killerFound is a boolean input.
+     * We update the scene number based on if the killer was found or not.
+     */
     public void setSceneNumberAfterSuspecting(boolean killerFound) {
         if (killerFound) {
             this.currentSceneIndex = CORRECT_KILLER_SCENE_INDEX;
-            dataFile.setCurrentSceneIndex(INTRODUCTION_SCENE_INDEX);
         } else {
             this.currentSceneIndex = WRONG_KILLER_SCENE_INDEX;
         }
+        dataFile.setCurrentSceneIndex(this.currentSceneIndex);
     }
 
     public Scene getCurrentScene() {
@@ -40,21 +44,33 @@ public class SceneList {
         updateDataFileSceneIndex(STARTING_INDEX_FOR_FILE);
     }
 
+    /**
+     * @return The current scene's index.
+     */
     public int getCurrentSceneIndex() {
         return this.currentSceneIndex;
     }
 
+    /**
+     * We increase the scene number by 1.
+     */
     public void updateSceneNumber() {
         this.currentSceneIndex++;
         assert currentSceneIndex <= 7;
         updateDataFileSceneIndex(currentSceneIndex);
     }
 
+    /**
+     * We get the current SceneType.
+     */
     public SceneTypes getCurrentSceneType() {
         Scene currentScene = this.getCurrentScene();
         return currentScene.getSceneType();
     }
 
+    /**
+     * We run the current scene.
+     */
     public void runCurrentScene() {
         Scene currentScene = this.getCurrentScene();
         try {
@@ -64,6 +80,10 @@ public class SceneList {
         }
     }
 
+    /**
+     * We reset the scene to the introduction scene.
+     * We then run the scene.
+     */
     public void resetAllScenes() {
         this.resetToIntroductionScene();
         runCurrentScene();
@@ -84,6 +104,16 @@ public class SceneList {
         dataFile.setCurrentSceneIndex(sceneIndex);
     }
 
+    /**
+     * We decrease the scene number based on the
+     * current scene type.
+     *
+     * If the current scene is the introduction scene,
+     * we do not reduce the scene index.
+     * If it is either the wrong or correct killer guessed scene,
+     * we reset the scene number back to the guess killer scene number.
+     * Else we reduce to the introduction scene.
+     */
     private void decreaseSceneNumber() {
         // We do not allow users to go back to any scene with
         // scene number less than 0
@@ -102,6 +132,10 @@ public class SceneList {
         }
     }
 
+    /**
+     * We set the current scene number to the previous scene number,
+     * and run the current scene.
+     */
     public void previousScene() {
         decreaseSceneNumber();
         runCurrentScene();

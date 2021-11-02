@@ -18,8 +18,8 @@ public class Investigation {
     private static final Ui ui = new Ui();
     private final SuspectList clueTracker;
     private static final String WRONG_INDEX_GIVEN = "Sorry please enter index within range";
-
     public static int numLinesToPrintForNarrative;
+    private boolean startedInvestigation = false;
 
     public Investigation(SuspectList clueTracker) {
         this.clueTracker = clueTracker;
@@ -41,6 +41,7 @@ public class Investigation {
         case SUSPECT_STAGE:
             currentSuspect = parser.getSuspectNameFromIndex(scene, index);
             setClueStage();
+            startInvestigate();
             break;
         case CLUE_STAGE:
             currentScene = scene;
@@ -71,9 +72,31 @@ public class Investigation {
 
     public void setSuspectStage() {
         stage = InvestigationStages.SUSPECT_STAGE;
+        stopInvestigation();
     }
 
     private void setClueStage() {
         stage = InvestigationStages.CLUE_STAGE;
+    }
+
+    /**
+     * We call this method when the user starts to investigate either a suspect or clue.
+     */
+    private void startInvestigate() {
+        this.startedInvestigation = true;
+    }
+
+    /**
+     * We call this method to show the user has not started investigation.
+     */
+    private void stopInvestigation() {
+        this.startedInvestigation = false;
+    }
+
+    /**
+     * @return If the user has started investigation
+     * */
+    public boolean hasStartedInvestigation() {
+        return this.startedInvestigation;
     }
 }

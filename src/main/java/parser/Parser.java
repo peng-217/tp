@@ -48,6 +48,14 @@ public class Parser {
     private static final String ALPHABET_PATTERN = "^[a-zA-Z]+$";
     private static final String NUMBER_PATTERN = "^[0-9]+$";
 
+    /**
+     * We get the suspect name based on the suspect number
+     * from the list of suspect in the current scene.
+     *
+     * @param currentScene The current scene.
+     * @param suspectNumber The suspect number.
+     * @throws InvalidSuspectException If the user enters an invalid input.
+     */
     public String getSuspectNameFromIndex(Scene currentScene, int suspectNumber) throws InvalidSuspectException {
         SuspectList currentSceneSuspectList = currentScene.getSuspectList();
         try {
@@ -60,6 +68,12 @@ public class Parser {
 
     }
 
+    /**
+     * We return the command from the user based on the input given.
+     * @param userInput The input given by the user
+     * @throws InvalidInputException We throw this error when the user enters an invalid input.
+     * @throws NumberFormatException We throw this error when the user gives a number that is too large/small.
+     */
     public Command getCommandFromUser(String userInput) throws InvalidInputException, NumberFormatException {
         boolean multipleArgumentsGiven = userInput.contains(INPUT_SPLITTER);
         if (multipleArgumentsGiven) {
@@ -85,6 +99,13 @@ public class Parser {
         }
     }
 
+    /**
+     * We return the InvestigateCommand based on the input given by the user.
+     *
+     * @param userInput The input from the user.
+     * @throws InvalidInputException We throw this error when the user enters an invalid input.
+     * @throws NumberFormatException We throw this error when the user gives a number that is too large/small.
+     */
     private Command useSuspectNameOrIndexForInvestigating(String userInput) throws InvalidInputException,
             NumberFormatException {
         Pattern alphabetPattern = Pattern.compile(ALPHABET_PATTERN);
@@ -105,10 +126,20 @@ public class Parser {
         }
     }
 
+    /**
+     * We parse the input given by the user if the user only entered numbers.
+     * @param userInput The input given by the user.
+     * @throws NumberFormatException We throw this error when the user gives a number that is too large/small.
+     */
     private int parseUserInput(String userInput) throws NumberFormatException {
         return Integer.parseInt(userInput);
     }
 
+    /**
+     * We return a ViewCommand based on the arguments given.
+     * @param argsGiven The arguments given for View Command.
+     * @throws InvalidInputException We throw this error when the user enters invalid arguments.
+     */
     private Command parseInputForViewCommand(String argsGiven) throws InvalidInputException {
         if (containInvalidViewArgument(argsGiven)) {
             throw new InvalidInputException(INVALID_INPUT);
@@ -116,6 +147,11 @@ public class Parser {
         return new ViewCommand(argsGiven);
     }
 
+    /**
+     * We return a NoteCommand based on the arguments given.
+     * @param argsGiven The arguments given for Note Command.
+     * @throws InvalidInputException We throw this error when the user enters invalid arguments.
+     */
     private Command parseInputForNoteCommand(String argsGiven) throws InvalidInputException {
         if (containInvalidNoteArgument(argsGiven)) {
             throw new InvalidInputException(INVALID_INPUT);
@@ -135,12 +171,21 @@ public class Parser {
         }
     }
 
+    /**
+     * We return a InvestigateCommand based on the suspect name.
+     * @param suspectName The suspect name given by the user.
+     * @throws InvalidInputException We throw this error when the user enters invalid suspect name.
+     */
     private Command parseInputForInvestigateCommand(String suspectName) throws InvalidInputException {
         String suspectNameLowerCase = suspectName.toLowerCase();
         return new InvestigateCommand(suspectNameLowerCase);
     }
 
-
+    /**
+     * We return a Command based on the inputs given by the user.
+     * @param userInput The input given by the user.
+     * @throws InvalidInputException We throw this error when the user enters invalid an invalid input.
+     */
     private Command parseInputMultipleArguments(String userInput) throws InvalidInputException {
         String[] userInputArr = userInput.split(INPUT_SPLITTER, 2);
         String commandType = userInputArr[0];
