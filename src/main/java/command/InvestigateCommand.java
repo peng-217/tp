@@ -24,7 +24,7 @@ public class InvestigateCommand extends Command {
     private static final int WENDY_INDEX = 3;
 
     /**
-     * InvestigateCommand using the suspect's index
+     * InvestigateCommand using the suspect's index.
      * @param suspectIndex The index of the suspect.
      * We instantiate a new InvestigateCommand object.
      */
@@ -33,7 +33,7 @@ public class InvestigateCommand extends Command {
     }
 
     /**
-     * InvestigateCommand using the suspect's index
+     * InvestigateCommand using the suspect's index.
      * @param suspectName The name of the suspect.
      * We instantiate a new InvestigateCommand object.
      */
