@@ -18,6 +18,5 @@ public class FatherPhoneCall extends Clue {
                 + "The salary will definitely come next month...\n"
                 + "I'm really not free today, I'll be there tomorrow,\n"
                 + "and I'll follow they said\".\n";
-        //this.suspect = ;
     }
 }

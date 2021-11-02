@@ -18,6 +18,5 @@ public class FatherTextMessage extends Clue {
                 + "for several days in a row, and the contents were \n"
                 + "all the same: \"Li Jianguo, owe money pay money. \n"
                 + "Don't try to hide from us. You can't escape.\"\n";
-        //this.suspect = ;
     }
 }
