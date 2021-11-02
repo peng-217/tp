@@ -342,10 +342,10 @@ public class Ui {
     }
 
     /**
-     * prints the already searched clues relating to a specifc suspect
+     * Prints the already searched clues relating to a specifoc suspect.
      *
-     * @param name name of one of the suspects
-     * @param clues list of already checked clues under that suspect
+     * @param name Name of one of the suspects.
+     * @param clues List of already checked clues under that suspect.
      */
     public void printSearchedClues(String name, ArrayList<Clue> clues) {
         printNameHeaderForSearchedCluesList(name);

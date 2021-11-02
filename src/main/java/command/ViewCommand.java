@@ -23,9 +23,9 @@ public class ViewCommand extends Command {
      * prints already searched clues relating to them. Else print all clues that
      * have been searched.
      *
-     * @param ui            used to communicate with the user.
-     * @param investigation contains method to query the already searched clues.
-     * @param sceneList     not used in this method but passed in as a standard of
+     * @param ui Used to communicate with the user.
+     * @param investigation Contains method to query the already searched clues.
+     * @param sceneList Not used in this method but passed in as a standard of
      *                      command execution.
      */
     @Override
@@ -37,8 +37,8 @@ public class ViewCommand extends Command {
     /**
      * Finds the already searched clues for suspects specified by the user.
      * 
-     * @param ui used to communicate with the user.
-     * @param investigation contains method to query the already searched clues.
+     * @param ui Used to communicate with the user.
+     * @param investigation Contains method to query the already searched clues.
      */
     private void findSearchedClues(Ui ui, Investigation investigation) {
         for (String name : suspects) {

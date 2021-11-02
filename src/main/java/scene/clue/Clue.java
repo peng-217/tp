@@ -17,9 +17,9 @@ public class Clue {
      * Construct a Clue object by setting the clue name, clue image and clue
      * description to those passed in correspondingly.
      *
-     * @param clueName name of the clue (usually summarises the gist of the clue)
-     * @param image ascii art that gives visual representation of a clue
-     * @param description details about a clue in words
+     * @param clueName Name of the clue (usually summarises the gist of the clue).
+     * @param image Ascii art that gives visual representation of a clue.
+     * @param description Details about a clue in words.
      */
     public Clue(String clueName, String image, String description) {
         this.clueName = clueName;
