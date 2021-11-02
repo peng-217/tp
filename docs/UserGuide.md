@@ -1,25 +1,49 @@
 # User Guide
 
-## Introduction
+_The Great Detective_ is an application that allows players to enjoy the fun of role-playing and logical reasoning to find out the truth of a murder case. The player gets the chance to investigate in the case by gathering information about the events that lead to the murder and clues about the suspects. A great journey awaits. 
 
-{Give a product intro}
+>Symbols used in this guide:
+>* 💡 denotes important information.
+>* ❗ denotes a warning.
+
+
+## Table of Contents
+* [Quick Start](#Quick Start)
+* [Features](#Features)
+  * [Changing the number of lines printed: `NUMBER`](#Changing the number of lines printed:`NUMBER`)
+* [FAQ](#FAQ)
+* [Command Summary](#Command Summary)
+
 
 ## Quick Start
 
-{Give steps to get started quickly}
+1. Ensure that you have Java `11` or above installed.
+2. Download the latest version of `TheGreatDetective` from [here](https://github.com/AY2122S1-CS2113-T14-1/tp/releases).
+3. Copy the `.jar` file to the folder you want to use as the home folder for your game.
+4. To launch the app, run the command `java -jar {filename}.jar`. Here are the first few lines you should see in the output when you start _The Great Detective_ for the first time.
+```
+Welcome to the Classic Adventure Text Game!
 
-1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `Duke` from [here](http://link.to/duke).
+
+------------------
+| Who Killed Me? |
+------------------
+
+I woke up and found myself dead. The Spirit Guide from the Hell told me that the only way to revive my soul is for me to find the murderer, eliminating the grudge in my soul. So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
+```
+>❗ The new files created in the `data` folder are used to store the data of your progress. Please refrain from deleting/modifying these files in order to preserve the data.
+5. Type the command and press Enter to execute it. e.g. typing `/help` and pressing Enter will show you the list of commands you can enter.
+6. Refer to the `Features` below for details of each command.
 
 ## Features 
 
-**Notes about the command format:**
-* Words in UPPER_CASE are the parameters to be supplied by the user.
-  e.g. in /view [NAME]..., NAME is a parameter which can be used as /view Father.
-* Items in square brackets are optional.
-  e.g /view [NAME]... can be used as /view or /view Father.
-* Items with ... after them can be used multiple times including zero times. 
-  e.g. [NAME]... can be used as   (i.e. 0 times), Father, Father Ling etc.
+>**Notes about the command format:**
+>* Words in `UPPER_CASE` are the parameters to be supplied by the user.
+  e.g. in `/view [NAME]...`, `NAME` is a parameter which can be used as `/view Father`.
+>* Items in square brackets are optional.
+  e.g `/view [NAME]...` can be used as `/view` or `/view Father`.
+>* Items with `...` after them can be used multiple times including zero times. 
+  e.g. `[NAME]...` can be used as ` ` (i.e. 0 times), `Father`, `Father Ling` etc.
 
 ### Changing the number of lines printed:`NUMBER`
 Changes the number of lines to be printed each time during story-telling part at the start of the game.
@@ -372,19 +396,17 @@ Examples:
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: Launch the app once on the new computer and exit. Afterwards, replace the data folder in the same folder of your new computer with that of your previous computer.
 
 ## Command Summary
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
-
-|Action| Format & Example |
+|Action| Format, Examples |
 |--------|----------|
-| Change number of lines to print | `NUMBER` e.g., 3 |
+| Change number of lines to print | `NUMBER` e.g., `3` |
 | Next | `/next` |
 | Restart | `/restart` |
 | Exit | `/exit` |
 | Back | `/back` |
-| Investigate | `[/investigate] INDEX or KEYWORD` e.g., /investigate father |
-| Choose Killer | `KEYWORD` e.g., Father |
-| View Clues | `/view [NAME]...` e.g., /view Father Ling |
+| Investigate | `[/investigate] INDEX or KEYWORD` e.g., `/investigate father` |
+| Choose Killer | `KEYWORD` e.g., `Father` |
+| View Clues | `/view [NAME]...` e.g., `/view` `/view Father` `/view Father Ling` |
