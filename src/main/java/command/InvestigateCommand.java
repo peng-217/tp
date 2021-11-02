@@ -26,7 +26,7 @@ public class InvestigateCommand extends Command {
     /**
      * InvestigateCommand using the suspect's index.
      * @param suspectIndex The index of the suspect.
-     * We instantiate a new InvestigateCommand object.
+     *     We instantiate a new InvestigateCommand object.
      */
     public InvestigateCommand(int suspectIndex) {
         this.suspectIndex = suspectIndex;
@@ -35,7 +35,7 @@ public class InvestigateCommand extends Command {
     /**
      * InvestigateCommand using the suspect's index.
      * @param suspectName The name of the suspect.
-     * We instantiate a new InvestigateCommand object.
+     *     We instantiate a new InvestigateCommand object.
      */
     public InvestigateCommand(String suspectName) {
         this.suspectName = suspectName;
@@ -70,10 +70,12 @@ public class InvestigateCommand extends Command {
     }
 
     /**
+     * We check if user gave suspect name when the user was investigating.
+     * If user gives a suspect name, we match the suspect index to the corresponding name given.
      * @throws InvalidInputException When the user enters the wrong killer name.
-     * If the suspectName is null, we set backToSuspectStage to false.
-     * Else we try to get a suspect index based on the suspect name
-     * and set backToSuspectStage to true.
+     *      If the suspectName is null, we set backToSuspectStage to false.
+     *      Else we try to get a suspect index based on the suspect name
+     *      and set backToSuspectStage to true.
      */
     private void suspectNameGiven() throws InvalidInputException {
         if (this.suspectName != null) {
@@ -85,8 +87,8 @@ public class InvestigateCommand extends Command {
     }
 
     /**
-     * @throws InvalidInputException
-     * When the suspect index is not within 1 to 5 inclusive.
+     * We check if the suspect index is valid.
+     * @throws InvalidInputException When the suspect index is not within 1 to 5 inclusive.
      */
     private void checkSuspectIndex() throws InvalidInputException {
         if (this.suspectIndex <= 0 || this.suspectIndex >= 6) {

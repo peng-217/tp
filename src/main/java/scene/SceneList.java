@@ -22,8 +22,9 @@ public class SceneList {
     }
 
     /**
+     * We set scene number based on killer being found.
      * @param killerFound is a boolean input.
-     * We update the scene number based on if the killer was found or not.
+     *      We update the scene number based on if the killer was found or not.
      */
     public void setSceneNumberAfterSuspecting(boolean killerFound) {
         if (killerFound) {
@@ -45,6 +46,7 @@ public class SceneList {
     }
 
     /**
+     * We return the current scene index.
      * @return The current scene's index.
      */
     public int getCurrentSceneIndex() {
@@ -107,7 +109,6 @@ public class SceneList {
     /**
      * We decrease the scene number based on the
      * current scene type.
-     *
      * If the current scene is the introduction scene,
      * we do not reduce the scene index.
      * If it is either the wrong or correct killer guessed scene,
