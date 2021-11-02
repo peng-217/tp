@@ -55,11 +55,11 @@ public class Ui {
     private static final String SCENE_FILE_MISSING_MESSAGE =
             "File containing number of scene and its order is missing";
     private static final String INVALID_INDEX = "Invalid index";
-
     private static final String DELETE_ALL_NOTE = "Ok! All notes have been deleted";
     private static final String NO_NOTE_MESSAGE = "There is no note now, try to add one!";
     private static final String CHOOSE_SUSPECT_OR_CLUE_INDEX =
             "Key in the index (e.g. 1, 2) in front of the suspect/clue you want to investigate";
+    private static final String ENTER_SUSPECT_NAME = "Please enter a valid suspect name!";
 
     private Scanner scanner;
 
@@ -341,6 +341,7 @@ public class Ui {
         System.out.println("Invalid index! Please input a number corresponding to one of the notes shown above.");
     }
 
+
     /**
      * Prints the already searched clues relating to a specifoc suspect.
      *
@@ -356,5 +357,9 @@ public class Ui {
 
     private void printNameHeaderForSearchedCluesList(String name) {
         System.out.println("<" + name + ">");
+    }
+
+    public void printEnterKillerName() {
+        System.out.println(ENTER_SUSPECT_NAME);
     }
 }
