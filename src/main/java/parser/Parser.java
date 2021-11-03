@@ -15,6 +15,7 @@ import exceptions.InvalidSuspectException;
 import scene.Scene;
 import scene.suspect.SuspectList;
 
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -113,7 +114,16 @@ public class Parser {
         if (containInvalidViewArgument(argsGiven)) {
             throw new InvalidInputException(INVALID_INPUT);
         }
-        return new ViewCommand(argsGiven);
+        String[] argsArr = capitalizeWords(argsGiven);
+        return new ViewCommand(argsArr);
+    }
+
+    private String[] capitalizeWords(String argsGiven) {
+        String[] argsArr = argsGiven.toLowerCase(Locale.ROOT).split(INPUT_SPLITTER);
+        for (int i = 0; i < argsArr.length; i++) {
+            argsArr[i] = capitalizeWord(argsArr[i]);
+        }
+        return argsArr;
     }
 
     private Command parseInputForNoteCommand(String argsGiven) throws InvalidInputException {
@@ -181,6 +191,7 @@ public class Parser {
     private boolean containInvalidViewArgument(String args) {
         String[] argsArr = args.split(INPUT_SPLITTER);
         for (String arg : argsArr) {
+            arg = capitalizeWord(arg);
             switch (arg) {
             case SUSPECT_FATHER:
                 // fallthrough
@@ -197,6 +208,10 @@ public class Parser {
             }
         }
         return false;
+    }
+
+    private String capitalizeWord(String arg) {
+        return arg.substring(0, 1).toUpperCase(Locale.ROOT) + arg.substring(1).toLowerCase(Locale.ROOT);
     }
 
     public boolean validSuspectNameGiven(String suspectedKiller) {
