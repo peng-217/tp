@@ -78,7 +78,7 @@ public class Ui {
 
     public String readUserInput() {
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        return scanner.nextLine().trim();
     }
 
     public void printExitMessage() {

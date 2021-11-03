@@ -16,8 +16,8 @@ public class ViewCommand extends Command {
         hasNoSpecifiedSuspects = true;
     }
 
-    public ViewCommand(String args) {
-        suspects = args.split(" ");
+    public ViewCommand(String[] args) {
+        suspects = args;
         hasNoSpecifiedSuspects = false;
     }
 
