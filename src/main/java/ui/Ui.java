@@ -47,7 +47,7 @@ public class Ui {
     private static final String ASK_FOR_CLUE_OR_SUSPECT_NUMBER =
             "To investigate suspects or clues, please input their corresponding number.";
     private static final String LIST_ALL_NOTES_MESSAGE = "Here is the note you want:";
-    private static final String VIEWING_CHECKED_CLUES_MESSAGE = "Here are the clues that you have gathered.\n";
+    private static final String VIEWING_CHECKED_CLUES_MESSAGE = "Preparing the clues that you have gathered...\n";
     private static final String FILE_NOT_FOUND = "File not Found";
     private static final String ALL_SUSPECT_MESSAGE = "Here are all the suspects";
     private static final String WHO_TO_INVESTIGATE_MESSAGE = "Who do you want to investigate?";
@@ -60,6 +60,8 @@ public class Ui {
     private static final String CHOOSE_SUSPECT_OR_CLUE_INDEX =
             "Key in the index (e.g. 1, 2) in front of the suspect/clue you want to investigate";
     private static final String ENTER_SUSPECT_NAME = "Please enter a valid suspect name!";
+    private static final String NO_SEARCHED_CLUES_FOR_ALL = "You have not gathered any clues for anyone.";
+    private static final String NO_SEARCHED_CLUES_FOR_ONE = "You have not gathered any clues for ";
 
     private Scanner scanner;
 
@@ -345,7 +347,7 @@ public class Ui {
     /**
      * Prints the already searched clues relating to a specifoc suspect.
      *
-     * @param name Name of one of the suspects.
+     * @param name  Name of one of the suspects.
      * @param clues List of already checked clues under that suspect.
      */
     public void printSearchedClues(String name, ArrayList<Clue> clues) {
@@ -361,5 +363,17 @@ public class Ui {
 
     public void printEnterKillerName() {
         System.out.println(ENTER_SUSPECT_NAME);
+    }
+
+    public void printNoSearchedClues() {
+        System.out.println(NO_SEARCHED_CLUES_FOR_ALL);
+    }
+
+    public void printNoSearchedClues(boolean hasNoSpecifiedSuspects, String name) {
+        if (hasNoSpecifiedSuspects) {
+            return;
+        }
+        System.out.println("<" + name + ">");
+        System.out.println(NO_SEARCHED_CLUES_FOR_ONE + name + ".");
     }
 }
