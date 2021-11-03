@@ -120,7 +120,7 @@ public class Parser {
 
     private String[] capitalizeWords(String argsGiven) {
         String[] argsArr = argsGiven.toLowerCase(Locale.ROOT).split(INPUT_SPLITTER);
-        for (int i = 0; i < argsArr.length ; i++) {
+        for (int i = 0; i < argsArr.length; i++) {
             argsArr[i] = capitalizeWord(argsArr[i]);
         }
         return argsArr;
@@ -211,7 +211,7 @@ public class Parser {
     }
 
     private String capitalizeWord(String arg) {
-        return arg.substring(0,1).toUpperCase(Locale.ROOT)+arg.substring(1).toLowerCase(Locale.ROOT);
+        return arg.substring(0, 1).toUpperCase(Locale.ROOT) + arg.substring(1).toLowerCase(Locale.ROOT);
     }
 
     public boolean validSuspectNameGiven(String suspectedKiller) {
