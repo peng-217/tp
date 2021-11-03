@@ -53,9 +53,7 @@ public class Parser {
         SuspectList currentSceneSuspectList = currentScene.getSuspectList();
         try {
             return currentSceneSuspectList.getSuspectNames()[suspectNumber - 1];
-        } catch (InvalidSuspectException e) {
-            throw new InvalidSuspectException(INVALID_SUSPECT);
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (InvalidSuspectException | ArrayIndexOutOfBoundsException e) {
             throw new InvalidSuspectException(INVALID_SUSPECT);
         }
 
