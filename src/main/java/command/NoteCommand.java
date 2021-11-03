@@ -14,7 +14,6 @@ public class NoteCommand extends Command {
      * Create a Note Command that takes in an additional input from the user and process it in the next execute.
      *
      * @param command the intended String of the command.
-     *
      */
     public NoteCommand(String command) {
         this.userChoice = command;
