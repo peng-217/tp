@@ -1,6 +1,7 @@
 @startuml
 
 allowmixing
+hide circle
 skinparam componentStyle rectangle
 
 class Duke

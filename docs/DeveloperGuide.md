@@ -116,8 +116,8 @@ Here’s a (partial) class diagram of the `Command` component:
 How the `Command` componnet works:
 1. The user input is first parsed using the `Parse` component
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., NextCommand), which is executed by `Duke`.
-3. The command can communicate with the `Ui`, `Investigation` and `SceneList` when it is executed (e.g. to go to the next scene).
-4. Some of the commands may update the `Storage`.
+3. The command can invoke the `Ui`, `Investigation` and `SceneList` when it is executed (e.g. to go to the next scene).
+4. Some commands such as next and note will update the `Storage`.
 
 
 The Sequence Diagram [below](./next_command_sequence_diagram.png) illustrates within the `Command` component for the `execute(ui,investigation,sceneList)` method call of the `NextCommand` class.
