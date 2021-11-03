@@ -11,9 +11,9 @@ public class NoteCommand extends Command {
     static NoteList notes = new NoteList(new Ui());
 
     /**
-     * Create a Note Command that takes in an additional input from the user and process it in the next execute.
+     * Creates a Note Command that takes in an additional input from the user and process it in the next execute.
      *
-     * @param command the intended String of the command.
+     * @param command The intended String of the command.
      */
     public NoteCommand(String command) {
         this.userChoice = command;

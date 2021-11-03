@@ -37,7 +37,7 @@ public class Investigation {
 
     /**
      * Investigates the scene.
-     * Displaying the suspect's clue if on the suspects page, and displaying the clue's detail if on the clue page.
+     * Displays the suspect's clue if on the suspects page, and displays the clue's detail if on the clue page.
      *
      * @param index Index of the suspect or clue.
      * @param scene The current scene where the suspect or clue was selected from.
