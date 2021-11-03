@@ -70,6 +70,7 @@ public class Parser {
 
     /**
      * We return the command from the user based on the input given.
+     *
      * @param userInput The input given by the user
      * @throws InvalidInputException We throw this error when the user enters an invalid input.
      * @throws NumberFormatException We throw this error when the user gives a number that is too large/small.
@@ -128,6 +129,7 @@ public class Parser {
 
     /**
      * We parse the input given by the user if the user only entered numbers.
+     *
      * @param userInput The input given by the user.
      * @throws NumberFormatException We throw this error when the user gives a number that is too large/small.
      */
@@ -137,6 +139,7 @@ public class Parser {
 
     /**
      * We return a ViewCommand based on the arguments given.
+     *
      * @param argsGiven The arguments given for View Command.
      * @throws InvalidInputException We throw this error when the user enters invalid arguments.
      */
@@ -149,6 +152,7 @@ public class Parser {
 
     /**
      * We return a NoteCommand based on the arguments given.
+     *
      * @param argsGiven The arguments given for Note Command.
      * @throws InvalidInputException We throw this error when the user enters invalid arguments.
      */
@@ -173,6 +177,7 @@ public class Parser {
 
     /**
      * We return a InvestigateCommand based on the suspect name.
+     *
      * @param suspectName The suspect name given by the user.
      * @throws InvalidInputException We throw this error when the user enters invalid suspect name.
      */
@@ -183,6 +188,7 @@ public class Parser {
 
     /**
      * We return a Command based on the inputs given by the user.
+     *
      * @param userInput The input given by the user.
      * @throws InvalidInputException We throw this error when the user enters invalid an invalid input.
      */

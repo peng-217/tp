@@ -22,9 +22,10 @@ public class SceneList {
     }
 
     /**
-     * We set scene number based on killer being found.
+     * Set scene number based on killer being found.
+     *
      * @param killerFound is a boolean input.
-     *      We update the scene number based on if the killer was found or not.
+     *      Update the scene number based on if the killer was found or not.
      */
     public void setSceneNumberAfterSuspecting(boolean killerFound) {
         if (killerFound) {
@@ -46,7 +47,7 @@ public class SceneList {
     }
 
     /**
-     * We return the current scene index.
+     * Return the current scene index.
      * @return The current scene's index.
      */
     public int getCurrentSceneIndex() {
@@ -54,7 +55,7 @@ public class SceneList {
     }
 
     /**
-     * We increase the scene number by 1.
+     * Increase the scene number by 1.
      */
     public void updateSceneNumber() {
         this.currentSceneIndex++;
@@ -63,7 +64,7 @@ public class SceneList {
     }
 
     /**
-     * We get the current SceneType.
+     * Get the current SceneType.
      */
     public SceneTypes getCurrentSceneType() {
         Scene currentScene = this.getCurrentScene();
@@ -71,7 +72,7 @@ public class SceneList {
     }
 
     /**
-     * We run the current scene.
+     * Run the current scene.
      */
     public void runCurrentScene() {
         Scene currentScene = this.getCurrentScene();
@@ -83,8 +84,8 @@ public class SceneList {
     }
 
     /**
-     * We reset the scene to the introduction scene.
-     * We then run the scene.
+     * Reset the scene to the introduction scene.
+     * Run the scene.
      */
     public void resetAllScenes() {
         this.resetToIntroductionScene();
@@ -107,7 +108,7 @@ public class SceneList {
     }
 
     /**
-     * We decrease the scene number based on the
+     * Decrease the scene number based on the
      * current scene type.
      * If the current scene is the introduction scene,
      * we do not reduce the scene index.
@@ -134,7 +135,7 @@ public class SceneList {
     }
 
     /**
-     * We set the current scene number to the previous scene number,
+     * Set the current scene number to the previous scene number,
      * and run the current scene.
      */
     public void previousScene() {

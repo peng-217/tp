@@ -95,8 +95,9 @@ public class Investigation {
 
     /**
      * We return if the user has started investigation.
+     *
      * @return If the user has started investigation
-     * */
+     */
     public boolean hasStartedInvestigation() {
         return this.startedInvestigation;
     }

@@ -25,6 +25,7 @@ public class InvestigateCommand extends Command {
 
     /**
      * InvestigateCommand using the suspect's index.
+     *
      * @param suspectIndex The index of the suspect.
      *     We instantiate a new InvestigateCommand object.
      */
@@ -34,6 +35,7 @@ public class InvestigateCommand extends Command {
 
     /**
      * InvestigateCommand using the suspect's index.
+     *
      * @param suspectName The name of the suspect.
      *     We instantiate a new InvestigateCommand object.
      */
@@ -45,6 +47,7 @@ public class InvestigateCommand extends Command {
      * If the user enters a valid user name, we set the suspect's index with
      * the corresponding suspect index.
      * Else we throw a new InvalidInputException.
+     *
      * @throws InvalidInputException When the user enters the wrong killer name.
      */
     private void suspectNameToIndex() throws InvalidInputException {
@@ -70,8 +73,9 @@ public class InvestigateCommand extends Command {
     }
 
     /**
-     * We check if user gave suspect name when the user was investigating.
+     * Check if user gave suspect name when the user was investigating.
      * If user gives a suspect name, we match the suspect index to the corresponding name given.
+     *
      * @throws InvalidInputException When the user enters the wrong killer name.
      *      If the suspectName is null, we set backToSuspectStage to false.
      *      Else we try to get a suspect index based on the suspect name
@@ -87,7 +91,8 @@ public class InvestigateCommand extends Command {
     }
 
     /**
-     * We check if the suspect index is valid.
+     * Check if the suspect index is valid.
+     *
      * @throws InvalidInputException When the suspect index is not within 1 to 5 inclusive.
      */
     private void checkSuspectIndex() throws InvalidInputException {
@@ -104,11 +109,11 @@ public class InvestigateCommand extends Command {
         SceneTypes sceneType = sceneList.getCurrentSceneType();
 
         // If we are at the guess killer scene,
-        // we check if the user has given a correct suspect name/index using checkSuspectIndex.
+        // We check if the user has given a correct suspect name/index using checkSuspectIndex.
         // We then check if the suspect's index matches the index of the correct killer.
         // We then set the scene number and run the scene.
         // If the user tries to investigate at the introduction scene,
-        // we will print an invalid command message.
+        // We will print an invalid command message.
         // Else we investigate the scene based on the suspect index.
         switch (sceneType) {
         case GUESS_KILLER_SCENE:
