@@ -31,11 +31,11 @@ The plot of the game was adopted from one of the games available in the Mini Pro
 ### Architecture
 ![High Level Architectural design](./main_architecture.png)
 
-![High Level Architecture Diagram](./high_level_architecture.png)
-
 The _**Architecture Diagram**_ given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+
+![High Level Architecture Diagram](./high_level_architecture.png)
 
 ###Main components of the architecture
 
@@ -116,14 +116,15 @@ Here’s a (partial) class diagram of the `Command` component:
 How the `Command` componnet works:
 1. The user input is first parsed using the `Parse` component
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., NextCommand), which is executed by `Duke`.
-3. The command can communicate with the `Ui`, `Investigation` and `SceneList` when it is executed (e.g. to go to the next scene).
-4. Some of the commands may update the `Storage`.
+3. The command can invoke the `Ui`, `Investigation` and `SceneList` when it is executed (e.g. to go to the next scene).
+4. Some commands such as next and note will update the `Storage`.
 
 
 The Sequence Diagram [below](./next_command_sequence_diagram.png) illustrates within the `Command` component for the `execute(ui,investigation,sceneList)` method call of the `NextCommand` class.
 
-
 ![Sequence diagram for execute(ui,investigation,sceneList) method call of NextCommand](./next_command_sequence_diagram.png)
+![sd run the scene](./ref_run_scene_for_next_command.png)
+![sd check suspected killer](./check_suspected_killer_for_next_command.png)
 
 ### Investigation component
 **API:** `Investigation.java`
