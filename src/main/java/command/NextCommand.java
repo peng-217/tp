@@ -11,6 +11,16 @@ public class NextCommand extends Command {
     @Override
     public void execute(Ui ui, Investigation investigation, SceneList sceneList) {
         SceneTypes sceneType = sceneList.getCurrentSceneType();
+        // If the current scene type is correct killer scene,
+        // we set hasCompleted to true.
+        // If the current scene type is wrong killer scene,
+        // we update scene number and run the new scene.
+        // If the current scene type is the truth scene,
+        // we set hasCompleted to true and run the last scene.
+        // If the current scene type is the guess killer scene,
+        // we print the message to ask user to enter suspect name
+        // Else we set the investigation to the suspectStage,
+        // updates scene number and run the new scene.
         switch (sceneType) {
         case CORRECT_KILLER_SCENE:
             hasCompleted = true;

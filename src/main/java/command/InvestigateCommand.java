@@ -1,7 +1,6 @@
 package command;
 
 import exceptions.InvalidInputException;
-import exceptions.InvalidSuspectException;
 import investigation.Investigation;
 import scene.SceneList;
 import scene.SceneTypes;
@@ -23,15 +22,36 @@ public class InvestigateCommand extends Command {
     private String suspectName = null;
     private boolean backToSuspectStage = false;
     private static final int WENDY_INDEX = 3;
+    private static final int INVALID_SUSPECT_NUMBER_LOWER_BOUND = 0;
+    private static final int INVALID_SUSPECT_NUMBER_UPPER_BOUND = 6;
 
+    /**
+     * Creates an InvestigateCommand object using the suspect's index.
+     *
+     * @param suspectIndex The index of the suspect.
+     *     We instantiate a new InvestigateCommand object.
+     */
     public InvestigateCommand(int suspectIndex) {
         this.suspectIndex = suspectIndex;
     }
 
+    /**
+     * Creates an InvestigateCommand object using the suspect's name.
+     *
+     * @param suspectName The name of the suspect.
+     *     We instantiate a new InvestigateCommand object.
+     */
     public InvestigateCommand(String suspectName) {
         this.suspectName = suspectName;
     }
 
+    /**
+     * Checks if the user enters a valid suspect name, we set the suspect's index with
+     * the corresponding suspect index.
+     * Else throw a new InvalidInputException.
+     *
+     * @throws InvalidInputException When the user enters the wrong killer name.
+     */
     private void suspectNameToIndex() throws InvalidInputException {
         switch (suspectName) {
         case SUSPECT_FATHER_LOWER:
@@ -54,6 +74,11 @@ public class InvestigateCommand extends Command {
         }
     }
 
+    /**
+     * Checks if user gave a correct suspect name when the user was investigating.
+     *
+     * @throws InvalidInputException If user enters invalid killer name.
+     */
     private void suspectNameGiven() throws InvalidInputException {
         if (this.suspectName != null) {
             suspectNameToIndex();
@@ -63,17 +88,32 @@ public class InvestigateCommand extends Command {
         }
     }
 
+    /**
+     * Checks if the suspect index is valid.
+     *
+     * @throws InvalidInputException If suspect index is not within 1 to 5 inclusive.
+     */
     private void checkSuspectIndex() throws InvalidInputException {
-        if (this.suspectIndex <= 0 || this.suspectIndex >= 6) {
+        if (this.suspectIndex <= INVALID_SUSPECT_NUMBER_LOWER_BOUND
+                || this.suspectIndex >= INVALID_SUSPECT_NUMBER_UPPER_BOUND) {
             throw new InvalidInputException(INVALID_SUSPECT_NAME);
         }
     }
 
     @Override
     public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws InvalidInputException {
+        // If the user enters the suspect name,
+        // we get the corresponding suspect index.
         suspectNameGiven();
         SceneTypes sceneType = sceneList.getCurrentSceneType();
 
+        // If we are at the guess killer scene,
+        // We check if the user has given a correct suspect name/index using checkSuspectIndex.
+        // We then check if the suspect's index matches the index of the correct killer.
+        // We then set the scene number and run the scene.
+        // If the user tries to investigate at the introduction scene,
+        // We will print an invalid command message.
+        // Else we investigate the scene based on the suspect index.
         switch (sceneType) {
         case GUESS_KILLER_SCENE:
             checkSuspectIndex();
