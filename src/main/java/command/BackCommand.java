@@ -17,7 +17,8 @@ public class BackCommand extends Command {
      * @param investigation Investigation object
      * @param sceneList SceneList object
      */
-    private void backToCorrectScene(Investigation investigation, SceneList sceneList) {
+    private void backToCorrectScene(Investigation investigation, SceneList sceneList) 
+            throws DukeCorruptedFileException, DukeFileNotFoundException {
         boolean hasStartedInvestigation = investigation.hasStartedInvestigation();
         if (hasStartedInvestigation) {
             investigation.setSuspectStage();
