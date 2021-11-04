@@ -9,13 +9,16 @@ import java.util.ArrayList;
 
 public class ViewCommand extends Command {
     private final String[] suspects;
+    private boolean hasNoSpecifiedSuspects;
 
     public ViewCommand() {
         suspects = new String[]{"Father", "Kevin", "Wendy", "Ling", "Zack"};
+        hasNoSpecifiedSuspects = true;
     }
 
-    public ViewCommand(String args) {
-        suspects = args.split(" ");
+    public ViewCommand(String[] args) {
+        suspects = args;
+        hasNoSpecifiedSuspects = false;
     }
 
     /**
@@ -41,12 +44,18 @@ public class ViewCommand extends Command {
      * @param investigation Contains method to query the already searched clues.
      */
     private void findSearchedClues(Ui ui, Investigation investigation) {
+        boolean hasSearchedClues = false;
         for (String name : suspects) {
             ArrayList<Clue> clues = investigation.getSuspectCheckedClues(name);
             if (clues.isEmpty()) {
+                ui.printNoSearchedClues(hasNoSpecifiedSuspects, name);
                 continue;
             }
             ui.printSearchedClues(name, clues);
+            hasSearchedClues = true;
+        }
+        if (hasNoSpecifiedSuspects & !hasSearchedClues) {
+            ui.printNoSearchedClues();
         }
     }
 
