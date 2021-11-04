@@ -31,7 +31,7 @@ public class DataFileEncoder extends FileManager {
 
         } catch (IOException e) {
             throw new DukeFileNotFoundException();
-        } catch (BadPaddingException| InvalidKeyException | IllegalBlockSizeException e) {
+        } catch (BadPaddingException | InvalidKeyException | IllegalBlockSizeException e) {
             System.out.println(e.getMessage());
         }
     }

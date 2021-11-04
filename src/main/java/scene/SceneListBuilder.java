@@ -23,7 +23,8 @@ public class SceneListBuilder {
      * @return Scene list containing the game data read from file.
      * @throws MissingSceneFileException If scene file is missing.
      */
-    public static SceneList buildSceneList(GameDataFileDecoder dataFile) throws MissingSceneFileException, DukeCorruptedFileException, DukeFileNotFoundException {
+    public static SceneList buildSceneList(GameDataFileDecoder dataFile)
+            throws MissingSceneFileException, DukeCorruptedFileException, DukeFileNotFoundException {
         Scene[] scenes;
         try {
             scenes = getScenesFromFile();

@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.File;
 import java.security.NoSuchAlgorithmException;
 
-public class FileManager{
+public class FileManager {
     String fileName;
     String filePath;
     String keyPath = "data/key.txt";
