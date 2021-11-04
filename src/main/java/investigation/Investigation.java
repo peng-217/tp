@@ -80,21 +80,21 @@ public class Investigation {
     }
 
     /**
-     * We call this method when the user starts to investigate either a suspect or clue.
+     * Sets startedInvestigation = true.
      */
     private void startInvestigate() {
         this.startedInvestigation = true;
     }
 
     /**
-     * We call this method to show the user has not started investigation.
+     * Sets startedInvestigation = false.
      */
     private void stopInvestigation() {
         this.startedInvestigation = false;
     }
 
     /**
-     * We return if the user has started investigation.
+     * Returns if the user has started investigation.
      *
      * @return If the user has started investigation
      */
