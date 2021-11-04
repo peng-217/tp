@@ -75,6 +75,7 @@ public class FileManager {
         try {
             new File(direName).mkdir();
             new File(keyPath).createNewFile();
+            new File(filePath).createNewFile();
         } catch (IOException e) {
             throw new DukeFileNotFoundException();
         }

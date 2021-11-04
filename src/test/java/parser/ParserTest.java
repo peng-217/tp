@@ -20,8 +20,7 @@ public class ParserTest {
     @Test
     public void parserTest() throws MissingSceneFileException, DukeCorruptedFileException, DukeFileNotFoundException {
         Parser parser = new Parser();
-        Ui ui = new Ui();
-        GameDataFileDecoder dataFile = new GameDataFileDecoder("GameData.txt");
+        GameDataFileDecoder dataFile = new GameDataFileDecoder("Data.txt");
         SceneList sceneList = SceneListBuilder.buildSceneList(dataFile);
 
         sceneList.updateSceneNumber();
