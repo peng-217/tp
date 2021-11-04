@@ -7,6 +7,7 @@ autonumber
 ":SceneList" -> ":SuspectListBuilder" :suspectListBuilder(fileLocation:String, suspectList:SuspectList)
 loop numOfSuspects
     activate ":SuspectListBuilder"
+    create "suspect:Suspect"
     ":SuspectListBuilder" -> "suspect:Suspect" :new Suspect()
     activate "suspect:Suspect"
     "suspect:Suspect" --> ":SuspectListBuilder" :suspect
@@ -18,6 +19,7 @@ loop numOfSuspects
 
     end
 loop numOfClues
+    create "clueToAdd:Clue"
     ":SuspectListBuilder" -> "clueToAdd:Clue" :new Clue(name:String, image:String, description:String)
     activate "clueToAdd:Clue"
     "clueToAdd:Clue" --> ":SuspectListBuilder" :clueToAdd
