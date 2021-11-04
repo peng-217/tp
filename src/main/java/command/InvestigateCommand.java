@@ -1,5 +1,7 @@
 package command;
 
+import exception.DukeCorruptedFileException;
+import exception.DukeFileNotFoundException;
 import exceptions.InvalidInputException;
 import investigation.Investigation;
 import scene.SceneList;
@@ -101,7 +103,8 @@ public class InvestigateCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws InvalidInputException {
+    public void execute(Ui ui, Investigation investigation, SceneList sceneList)
+            throws InvalidInputException, DukeCorruptedFileException, DukeFileNotFoundException {
         // If the user enters the suspect name,
         // we get the corresponding suspect index.
         suspectNameGiven();

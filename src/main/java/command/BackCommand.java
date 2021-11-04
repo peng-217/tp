@@ -1,5 +1,7 @@
 package command;
 
+import exception.DukeCorruptedFileException;
+import exception.DukeFileNotFoundException;
 import investigation.Investigation;
 import scene.SceneList;
 import scene.SceneTypes;
@@ -15,7 +17,8 @@ public class BackCommand extends Command {
      * @param investigation Investigation object
      * @param sceneList SceneList object
      */
-    private void backToCorrectScene(Investigation investigation, SceneList sceneList) {
+    private void backToCorrectScene(Investigation investigation, SceneList sceneList) 
+            throws DukeCorruptedFileException, DukeFileNotFoundException {
         boolean hasStartedInvestigation = investigation.hasStartedInvestigation();
         if (hasStartedInvestigation) {
             investigation.setSuspectStage();
@@ -25,7 +28,8 @@ public class BackCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Investigation investigation, SceneList sceneList) {
+    public void execute(Ui ui, Investigation investigation, SceneList sceneList)
+            throws DukeCorruptedFileException, DukeFileNotFoundException {
         // If the user is currently in the INVESTIGATE_SCENE and enters
         // /back as the input,
         // We should bring the user back to the start of the investigation scene
