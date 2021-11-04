@@ -10,6 +10,7 @@ public class GameDataFileDecoder extends GameDataFileManager {
     public GameDataFileDecoder(String fileName) throws DukeFileNotFoundException, DukeCorruptedFileException {
         super(fileName);
     }
+
     public void setCurrentSceneIndex(int index) throws DukeFileNotFoundException {
         this.writeFile(factorySetting + index);
     }

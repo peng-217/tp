@@ -72,7 +72,8 @@ public class InvestigateCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws InvalidInputException, DukeCorruptedFileException, DukeFileNotFoundException {
+    public void execute(Ui ui, Investigation investigation, SceneList sceneList)
+            throws InvalidInputException, DukeCorruptedFileException, DukeFileNotFoundException {
         suspectNameGiven();
         SceneTypes sceneType = sceneList.getCurrentSceneType();
 

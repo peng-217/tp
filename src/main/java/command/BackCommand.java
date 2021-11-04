@@ -9,7 +9,8 @@ import ui.Ui;
 
 public class BackCommand extends Command {
     @Override
-    public void execute(Ui ui, Investigation investigation, SceneList sceneList) throws DukeCorruptedFileException, DukeFileNotFoundException {
+    public void execute(Ui ui, Investigation investigation, SceneList sceneList)
+            throws DukeCorruptedFileException, DukeFileNotFoundException {
         SceneTypes sceneType = sceneList.getCurrentSceneType();
         if (sceneType != SceneTypes.INVESTIGATE_SCENE) {
             investigation.setSuspectStage();

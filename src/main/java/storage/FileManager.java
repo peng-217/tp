@@ -8,7 +8,11 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.File;
 import java.security.NoSuchAlgorithmException;
 
 public class FileManager{
@@ -71,7 +75,6 @@ public class FileManager{
         try {
             new File(direName).mkdir();
             new File(keyPath).createNewFile();
-            new File(filePath).createNewFile();
         } catch (IOException e) {
             throw new DukeFileNotFoundException();
         }
