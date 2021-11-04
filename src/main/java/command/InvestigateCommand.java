@@ -22,6 +22,8 @@ public class InvestigateCommand extends Command {
     private String suspectName = null;
     private boolean backToSuspectStage = false;
     private static final int WENDY_INDEX = 3;
+    private static final int INVALID_SUSPECT_NUMBER_LOWER_BOUND = 0;
+    private static final int INVALID_SUSPECT_NUMBER_UPPER_BOUND = 6;
 
     /**
      * Creates an InvestigateCommand object using the suspect's index.
@@ -52,23 +54,23 @@ public class InvestigateCommand extends Command {
      */
     private void suspectNameToIndex() throws InvalidInputException {
         switch (suspectName) {
-        case SUSPECT_FATHER_LOWER:
-            this.suspectIndex = SUSPECT_FATHER_INDEX;
-            break;
-        case SUSPECT_KEVIN_LOWER:
-            this.suspectIndex = SUSPECT_KEVIN_INDEX;
-            break;
-        case SUSPECT_WENDY_LOWER:
-            this.suspectIndex = SUSPECT_WENDY_INDEX;
-            break;
-        case SUSPECT_LING_LOWER:
-            this.suspectIndex = SUSPECT_LING_INDEX;
-            break;
-        case SUSPECT_ZACK_LOWER:
-            this.suspectIndex = SUSPECT_ZACK_INDEX;
-            break;
-        default:
-            throw new InvalidInputException(INVALID_SUSPECT_NAME);
+            case SUSPECT_FATHER_LOWER:
+                this.suspectIndex = SUSPECT_FATHER_INDEX;
+                break;
+            case SUSPECT_KEVIN_LOWER:
+                this.suspectIndex = SUSPECT_KEVIN_INDEX;
+                break;
+            case SUSPECT_WENDY_LOWER:
+                this.suspectIndex = SUSPECT_WENDY_INDEX;
+                break;
+            case SUSPECT_LING_LOWER:
+                this.suspectIndex = SUSPECT_LING_INDEX;
+                break;
+            case SUSPECT_ZACK_LOWER:
+                this.suspectIndex = SUSPECT_ZACK_INDEX;
+                break;
+            default:
+                throw new InvalidInputException(INVALID_SUSPECT_NAME);
         }
     }
 
@@ -92,7 +94,8 @@ public class InvestigateCommand extends Command {
      * @throws InvalidInputException If suspect index is not within 1 to 5 inclusive.
      */
     private void checkSuspectIndex() throws InvalidInputException {
-        if (this.suspectIndex <= 0 || this.suspectIndex >= 6) {
+        if (this.suspectIndex <= INVALID_SUSPECT_NUMBER_LOWER_BOUND
+                || this.suspectIndex >= INVALID_SUSPECT_NUMBER_UPPER_BOUND) {
             throw new InvalidInputException(INVALID_SUSPECT_NAME);
         }
     }
@@ -112,21 +115,21 @@ public class InvestigateCommand extends Command {
         // We will print an invalid command message.
         // Else we investigate the scene based on the suspect index.
         switch (sceneType) {
-        case GUESS_KILLER_SCENE:
-            checkSuspectIndex();
-            boolean isCorrectKiller = (this.suspectIndex == WENDY_INDEX);
-            sceneList.setSceneNumberAfterSuspecting(isCorrectKiller);
-            sceneList.runCurrentScene();
-            break;
-        case INTRODUCTION_SCENE:
-            ui.printInvalidCommandMessage();
-            break;
-        default:
-            if (this.backToSuspectStage) {
-                investigation.setSuspectStage();
-            }
-            investigation.investigateScene(this.suspectIndex, sceneList.getCurrentScene());
-            break;
+            case GUESS_KILLER_SCENE:
+                checkSuspectIndex();
+                boolean isCorrectKiller = (this.suspectIndex == WENDY_INDEX);
+                sceneList.setSceneNumberAfterSuspecting(isCorrectKiller);
+                sceneList.runCurrentScene();
+                break;
+            case INTRODUCTION_SCENE:
+                ui.printInvalidCommandMessage();
+                break;
+            default:
+                if (this.backToSuspectStage) {
+                    investigation.setSuspectStage();
+                }
+                investigation.investigateScene(this.suspectIndex, sceneList.getCurrentScene());
+                break;
         }
     }
 
