@@ -66,10 +66,10 @@ public class SceneList {
         return this.currentSceneIndex;
     }
 
-    /**
-     * Increase the scene number by 1.
-     */
-     public void updateSceneNumber()
+     /**
+      * Increase the scene number by 1.
+      */
+    public void updateSceneNumber()
             throws DukeCorruptedFileException, DukeFileNotFoundException {
         this.currentSceneIndex++;
         assert currentSceneIndex <= 7;
@@ -101,10 +101,10 @@ public class SceneList {
      * Reset the scene to the introduction scene.
      * Run the scene.
      */
-     public void resetAllScenes()
-            throws DukeCorruptedFileException, DukeFileNotFoundException {
-        this.resetToIntroductionScene();
-        runCurrentScene();
+    public void resetAllScenes()
+           throws DukeCorruptedFileException, DukeFileNotFoundException {
+       this.resetToIntroductionScene();
+       runCurrentScene();
     }
 
     private void resetToGuessKillerScene()
@@ -125,7 +125,7 @@ public class SceneList {
         dataFile.setCurrentSceneIndex(sceneIndex);
     }
 
-  /**
+    /**
      * Decrease the scene number based on the
      * current scene type.
      * If the current scene is the introduction scene,
