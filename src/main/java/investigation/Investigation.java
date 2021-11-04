@@ -35,6 +35,13 @@ public class Investigation {
         return currentSuspect;
     }
 
+    /**
+     * Investigates the scene.
+     * Displays the suspect's clue if on the suspects page, and displays the clue's detail if on the clue page.
+     *
+     * @param index Index of the suspect or clue.
+     * @param scene The current scene where the suspect or clue was selected from.
+     */
     public void investigateScene(Integer index, Scene scene)
             throws InvalidSuspectException, InvalidClueException {
         switch (stage) {

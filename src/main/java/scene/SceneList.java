@@ -15,6 +15,13 @@ public class SceneList {
     private static final int WRONG_KILLER_SCENE_INDEX = 6;
     GameDataFileDecoder dataFile;
 
+    /**
+     * Creates a SceneList that contains an array of scenes, with its currentSceneIndex obtained from the dataFile.
+     * The scenes in the array will be arranged based on the order they were taken in the parameter.
+     *
+     * @param dataFile Game data file.
+     * @param scenes The scenes that are to be contained in this SceneList
+     */
     public SceneList(GameDataFileDecoder dataFile, Scene... scenes) {
         this.dataFile = dataFile;
         this.currentSceneIndex = dataFile.getCurrentSceneIndex();
