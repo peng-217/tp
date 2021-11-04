@@ -41,8 +41,8 @@ public class Ui {
 
     private static final String INVALID_INPUT_GIVEN = "Invalid input! Type '/help' to see the available commands.";
     private static final String INVALID_NUMBER_SUSPECT =
-            "Invalid suspect chosen! To select a suspect, please input the suspect's name " +
-                    "(or its corresponding number when investigating suspects).";
+            "Invalid suspect chosen! To select a suspect, please input the suspect's name "
+                    + "(or its corresponding number when investigating suspects).";
     private static final String INVALID_NUMBER_CLUE =
             "Invalid clue chosen! To select a clue, please input its corresponding number.";
     private static final String ASK_FOR_CLUE_OR_SUSPECT_NUMBER =
