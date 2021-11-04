@@ -50,7 +50,7 @@ public class Parser {
     private static final String NUMBER_PATTERN = "^[0-9]+$";
 
     /**
-     * Returns suspect name based on the suspect number
+     * Returns suspect name based on the suspect number.
      *
      * @param currentScene The current scene.
      * @param suspectNumber The suspect number.
