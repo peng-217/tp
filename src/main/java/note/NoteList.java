@@ -130,7 +130,7 @@ public class NoteList {
         String transientTitle = ui.readUserInput();
         String noteTitle = "";
         if ((!transientTitle.equals(" ") || !transientTitle.equals("")) && !transientTitle.equals("/quit")
-           && !transientTitle.equals("End of this note.") && !transientTitle.startsWith("scene")) {
+            && !transientTitle.equals("End of this note.") && !transientTitle.startsWith("scene")) {
             noteTitle = transientTitle;
         } else if (transientTitle.equals("/quit")) {
             quitNote = true;
