@@ -38,7 +38,7 @@ public class NoteList {
     public int getSize() {
         return notes.size();
     }
-    
+
     public ArrayList<Note> searchNotesUsingSceneIndex(int searchSceneIndex,NoteList notes) {
         ArrayList<Note> result = new ArrayList<>();
         for (int i = 0; i < notes.getSize(); i++) {
@@ -130,7 +130,7 @@ public class NoteList {
         String transientTitle = ui.readUserInput();
         String noteTitle = "";
         if ((!transientTitle.equals(" ") || !transientTitle.equals("")) && !transientTitle.equals("/quit")
-        && !transientTitle.equals("End of this note.") &&!transientTitle.startsWith("scene")) {
+           && !transientTitle.equals("End of this note.") && !transientTitle.startsWith("scene")) {
             noteTitle = transientTitle;
         } else if (transientTitle.equals("/quit")) {
             quitNote = true;
@@ -138,21 +138,19 @@ public class NoteList {
         } else if (transientTitle.equals("End of this note.") || transientTitle.startsWith("scene")) {
             validNoteTitle = false;
             ui.printInvalidNoteTitle();
-        }
-        else {
+        } else {
             noteTitle = "DEFAULT(" + (defaultTitleCounter++) + ")";
         }
         if (!quitNote && validNoteTitle) {
             ui.printNoteTextInstructions();
             String noteContent = ui.readUserInput();
-            if(!noteContent.contains("/quit") && !noteContent.equals("End of this note.")
+            if (!noteContent.contains("/quit") && !noteContent.equals("End of this note.")
                     && !noteContent.startsWith("scene")) {
                 Note newNote = new Note(noteContent, noteTitle, sceneList.getCurrentSceneIndex());
                 createNote(newNote);
             } else if (noteContent.equals("End of this note.") || noteContent.startsWith("scene")) {
                 ui.printInvalidNoteContent();
-            }
-            else {
+            } else {
                 ui.printQuitNoteProcess();
             }
         }

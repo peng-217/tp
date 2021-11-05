@@ -20,6 +20,7 @@ public class Storage {
     private static final int NUMBER_OF_BLANK_LINE = 1;
     private static final String NOTE_CORRUPTED_MESSAGE = "The note data file is corrupted!"
             + " A new note data file will be created. ";
+
     public Storage() {
 
     }
