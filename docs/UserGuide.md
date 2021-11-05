@@ -296,10 +296,6 @@ Users can investigate the suspect using either the suspect's name or the suspect
 
 Format: `[/investigate] KEYWORD OR INDEX`
 
->💡/investigate is an optional command for the user to use.
->❗The user has to enter a valid suspect name or the suspect number. 
->❗Suspect name is not case-sensitive.
-
 Example of usage: `/investigate father`
 
 The following command below are valid commands to investigate father.
@@ -324,6 +320,11 @@ Scene 1 Investigation
 4. Text Message
 Enter "/next" to go to the next scene.
 ```
+>💡`/investigate` is an optional command for the user.
+>
+> 💡Suspect name is not case-sensitive.
+>
+> ❗The user has to enter a valid suspect name or the suspect number.
 
 
 ### Investigating clue: `INDEX`
