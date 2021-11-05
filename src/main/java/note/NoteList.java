@@ -4,6 +4,7 @@ package note;
 
 import java.util.ArrayList;
 
+import exception.NoteCorruptedFileException;
 import exceptions.InvalidNoteException;
 import parser.Parser;
 import storage.Storage;
@@ -19,13 +20,19 @@ public class NoteList {
     private static final String INVALID_NOTE_COMMAND_MESSAGE = "The command you entered is not valid! "
             + "Please check again.";
     private static final String INVALID_NOTE_SEARCH_MESSAGE = "Please input a valid search choice!";
-
+    private static final String NOTE_CORRUPTED_MESSAGE = "The note data file is corrputed!"
+            + " A new note data file will be created. ";
 
     public NoteList(Ui ui) {
         this.ui = ui;
         //storage = new Storage();
         notes = new ArrayList<>();
-        Storage.openNoteFromFile(this);
+        try {
+            Storage.openNoteFromFile(this);
+        } catch (NoteCorruptedFileException e) {
+            Storage.forceClearNote();
+            ui.printNoteErrorMessage(NOTE_CORRUPTED_MESSAGE);
+        }
     }
 
     public int getSize() {
@@ -96,91 +103,128 @@ public class NoteList {
     }
 
     public void processNote(SceneList sceneList, String userChoice) throws InvalidNoteException {
-        switch (userChoice) {
-        case "1" :
-            createNoteProcess(sceneList);
-            break;
-        case "2" :
-            openNoteProcess();
-            break;
-        case "3" :
-            deleteNoteProcess();
-            break;
-        default :
-            throw new InvalidNoteException(INVALID_NOTE_INDEX_MESSAGE);
+        if (!userChoice.equals("/quit")) {
+            switch (userChoice) {
+            case "1":
+                createNoteProcess(sceneList);
+                break;
+            case "2":
+                openNoteProcess();
+                break;
+            case "3":
+                deleteNoteProcess();
+                break;
+            default:
+                throw new InvalidNoteException(INVALID_NOTE_INDEX_MESSAGE);
+            }
+        } else {
+            ui.printQuitNoteProcess();
         }
     }
 
     public void createNoteProcess(SceneList sceneList) {
+        boolean quitNote = false;
+        boolean validNoteTitle = true;
+        boolean validNoteContent = true;
         ui.printNoteTitleInstructions();
         String transientTitle = ui.readUserInput();
-        String noteTitle;
-        if (!transientTitle.equals(" ")) {
+        String noteTitle = "";
+        if ((!transientTitle.equals(" ") || !transientTitle.equals("")) && !transientTitle.equals("/quit")
+            && !transientTitle.equals("End of this note.") && !transientTitle.startsWith("scene")) {
             noteTitle = transientTitle;
+        } else if (transientTitle.equals("/quit")) {
+            quitNote = true;
+            ui.printQuitNoteProcess();
+        } else if (transientTitle.equals("End of this note.") || transientTitle.startsWith("scene")) {
+            validNoteTitle = false;
+            ui.printInvalidNoteTitle();
         } else {
             noteTitle = "DEFAULT(" + (defaultTitleCounter++) + ")";
         }
-        ui.printNoteTextInstructions();
-        String noteContent = ui.readUserInput();
-        Note newNote = new Note(noteContent, noteTitle, sceneList.getCurrentSceneIndex());
-        createNote(newNote);
+        if (!quitNote && validNoteTitle) {
+            ui.printNoteTextInstructions();
+            String noteContent = ui.readUserInput();
+            if (!noteContent.contains("/quit") && !noteContent.equals("End of this note.")
+                    && !noteContent.startsWith("scene")) {
+                Note newNote = new Note(noteContent, noteTitle, sceneList.getCurrentSceneIndex());
+                createNote(newNote);
+            } else if (noteContent.equals("End of this note.") || noteContent.startsWith("scene")) {
+                ui.printInvalidNoteContent();
+            } else {
+                ui.printQuitNoteProcess();
+            }
+        }
     }
 
     public void openNoteProcess() throws InvalidNoteException {
+        boolean quitNote = false;
         boolean checkExistence = ui.printOpenNoteMessage(this);
         if (checkExistence) {
             String userInput = ui.readUserInput();
-            while (!userInput.equals("")) {
-                if (!(userInput.startsWith("search") || userInput.startsWith("open"))) {
-                    ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
-                    userInput = ui.readUserInput();
-                } else {
-                    break;
-                }
+            if (userInput.equals("/quit")) {
+                quitNote = true;
+                ui.printQuitNoteProcess();
             }
-            String[] userInputInArray = Parser.parseOpenNoteCommand(userInput.trim());
-            if (userInputInArray[0].equals("search") && userInputInArray.length > 1) {
-                selectSearchMethod(userInputInArray);
-            } else if (userInputInArray[0].equals("search")) {
+            if (!quitNote) {
                 while (!userInput.equals("")) {
-                    ui.printNoteSearchInstructions();
-                    userInput = ui.readUserInput();
-                    try {
-                        selectSearchMethod(userInput);
-                        break;
-                    } catch (InvalidNoteException e1) {
+                    if (!(userInput.startsWith("search") || userInput.startsWith("open"))) {
                         ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
-                    } catch (NumberFormatException e2) {
-                        ui.printNoteErrorMessage(INVALID_NOTE_INDEX_MESSAGE);
+                        userInput = ui.readUserInput();
+                    } else {
+                        break;
                     }
                 }
-            } else if (userInput.startsWith("open") && userInputInArray.length == 2) {
-                try {
-                    openNoteDirectly(userInputInArray[1]);
-                } catch (IndexOutOfBoundsException e) {
-                    ui.printNoteMissingError(notes.size());
-                } catch (NumberFormatException e2) {
-                    ui.printNoteErrorMessage(INVALID_NOTE_INDEX_MESSAGE);
-                }
-            } else if (userInputInArray[0].equals("open") && userInputInArray.length == 1) {
-                while (!userInput.equals("")) {
+                String[] userInputInArray = Parser.parseOpenNoteCommand(userInput.trim());
+                if (userInputInArray[0].equals("search") && userInputInArray.length > 1) {
+                    selectSearchMethod(userInputInArray);
+                } else if (userInputInArray[0].equals("search")) {
+                    while (!userInput.equals("")) {
+                        ui.printNoteSearchInstructions();
+                        userInput = ui.readUserInput();
+                        try {
+                            selectSearchMethod(userInput);
+                            break;
+                        } catch (InvalidNoteException e1) {
+                            ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
+                        } catch (NumberFormatException e2) {
+                            ui.printNoteErrorMessage(INVALID_NOTE_INDEX_MESSAGE);
+                        }
+                    }
+                } else if (userInput.startsWith("open") && userInputInArray.length == 2) {
                     try {
-                        openNoteDirectly();
-                        break;
-                    } catch (IndexOutOfBoundsException e1) {
+                        openNoteDirectly(userInputInArray[1]);
+                    } catch (IndexOutOfBoundsException e) {
                         ui.printNoteMissingError(notes.size());
                     } catch (NumberFormatException e2) {
                         ui.printNoteErrorMessage(INVALID_NOTE_INDEX_MESSAGE);
                     }
+                } else if (userInputInArray[0].equals("open") && userInputInArray.length == 1) {
+                    while (!userInput.equals("")) {
+                        try {
+                            openNoteDirectly();
+                            break;
+                        } catch (IndexOutOfBoundsException e1) {
+                            ui.printNoteMissingError(notes.size());
+                        } catch (NumberFormatException e2) {
+                            ui.printNoteErrorMessage(INVALID_NOTE_INDEX_MESSAGE);
+                        }
+                    }
+                } else if (userInputInArray[0].equals("/quit")) {
+                    ui.printQuitNoteProcess();
+                } else {
+                    throw new InvalidNoteException(INVALID_NOTE_INDEX_MESSAGE);
                 }
-            } else {
-                throw new InvalidNoteException(INVALID_NOTE_INDEX_MESSAGE);
             }
         }
     }
 
     public void selectSearchMethod(String userInput) throws InvalidNoteException {
-        while (!userInput.equals("")) {
+        boolean quitNote = false;
+        if (userInput.equals("/quit")) {
+            quitNote = true;
+            ui.printQuitNoteProcess();
+        }
+        while (!userInput.equals("") && quitNote == false) {
             if (!userInput.equals("keyword") && !userInput.equals("index")) {
                 ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
                 userInput = ui.readUserInput();
@@ -188,12 +232,16 @@ public class NoteList {
                 break;
             }
         }
-        if (userInput.equals("keyword")) {
-            keywordSearch();
-        } else if (userInput.equals("index")) {
-            indexSearch();
-        } else {
-            throw new InvalidNoteException(INVALID_NOTE_COMMAND_MESSAGE);
+        if (quitNote == false) {
+            if (userInput.equals("keyword")) {
+                keywordSearch();
+            } else if (userInput.equals("index")) {
+                indexSearch();
+            } else if (userInput.equals("/quit")) {
+                ui.printQuitNoteProcess();
+            } else {
+                throw new InvalidNoteException(INVALID_NOTE_COMMAND_MESSAGE);
+            }
         }
     }
 
@@ -217,45 +265,71 @@ public class NoteList {
     }
 
     public void keywordSearch(String userInput) {
-        ui.printSelectedNote(this.searchNoteUsingTitle(userInput, this));
+        if (!userInput.equals("/quit")) {
+            ui.printSelectedNote(this.searchNoteUsingTitle(userInput, this));
+        } else {
+            ui.printQuitNoteProcess();
+        }
     }
 
     public void keywordSearch() {
         ui.printNoteSearchKeyWordInstructions();
         String keywords = ui.readUserInput();
-        ui.printSelectedNote(this.searchNoteUsingTitle(keywords, this));
+        if (!keywords.equals("/quit")) {
+            ui.printSelectedNote(this.searchNoteUsingTitle(keywords, this));
+        } else {
+            ui.printQuitNoteProcess();
+        }
     }
 
     public void indexSearch(String userInput) throws NumberFormatException {
         ui.printNoteSearchSceneIndexInstructions();
-        int sceneIndex = Integer.parseInt(userInput);
-        ui.printSelectedNote(this.searchNotesUsingSceneIndex(sceneIndex, this));
+        if (!userInput.equals("/quit")) {
+            int sceneIndex = Integer.parseInt(userInput);
+            ui.printSelectedNote(this.searchNotesUsingSceneIndex(sceneIndex, this));
+        } else {
+            ui.printQuitNoteProcess();
+        }
     }
 
     public void indexSearch() throws NumberFormatException {
         ui.printNoteSearchSceneIndexInstructions();
-        int sceneIndex = Integer.parseInt(ui.readUserInput());
-        ui.printSelectedNote(this.searchNotesUsingSceneIndex(sceneIndex, this));
+        String userInput = ui.readUserInput();
+        if (!userInput.equals("/quit")) {
+            int sceneIndex = Integer.parseInt(userInput);
+            ui.printSelectedNote(this.searchNotesUsingSceneIndex(sceneIndex, this));
+        } else {
+            ui.printQuitNoteProcess();
+        }
     }
 
     public void openNoteDirectly(String index) throws IndexOutOfBoundsException, NumberFormatException {
         ui.printNoteOpenInstructions();
         // here the index is not scene index, it is the index in the list
-        int inputOrderIndex = Integer.parseInt(index);
-        if (inputOrderIndex > notes.size()) {
-            throw new IndexOutOfBoundsException(INVALID_NOTE_INDEX_MESSAGE);
+        if (!index.equals("/quit")) {
+            int inputOrderIndex = Integer.parseInt(index);
+            if (inputOrderIndex > notes.size()) {
+                throw new IndexOutOfBoundsException(INVALID_NOTE_INDEX_MESSAGE);
+            }
+            ui.printExistingNotes(this, inputOrderIndex);
+        } else {
+            ui.printQuitNoteProcess();
         }
-        ui.printExistingNotes(this, inputOrderIndex);
     }
 
     public void openNoteDirectly() throws IndexOutOfBoundsException, NumberFormatException {
         ui.printNoteOpenInstructions();
+        String userInput = ui.readUserInput();
         //here the index is not scene index, it is the index in the list
-        int inputOrderIndex = Integer.parseInt(ui.readUserInput());
-        if (inputOrderIndex > notes.size()) {
-            throw new IndexOutOfBoundsException(INVALID_NOTE_INDEX_MESSAGE);
+        if (!userInput.equals("/quit")) {
+            int inputOrderIndex = Integer.parseInt(userInput);
+            if (inputOrderIndex > notes.size()) {
+                throw new IndexOutOfBoundsException(INVALID_NOTE_INDEX_MESSAGE);
+            }
+            ui.printExistingNotes(this, inputOrderIndex);
+        } else {
+            ui.printQuitNoteProcess();
         }
-        ui.printExistingNotes(this, inputOrderIndex);
     }
 
     public void deleteNoteProcess() throws IndexOutOfBoundsException, NumberFormatException {
@@ -265,6 +339,8 @@ public class NoteList {
         String userInput = ui.readUserInput();
         if (userInput.equals("all")) {
             deleteAllNotes();
+        } else if (userInput.equals("/quit")) {
+            ui.printQuitNoteProcess();
         } else {
             int deletedNoteIndex = Integer.parseInt(userInput) - 1;
             this.deleteNote(deletedNoteIndex);
