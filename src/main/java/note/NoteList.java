@@ -38,10 +38,7 @@ public class NoteList {
     public int getSize() {
         return notes.size();
     }
-
-   /* public NoteList createNewNoteList(NoteList notes) {
-
-    }*/
+    
     public ArrayList<Note> searchNotesUsingSceneIndex(int searchSceneIndex,NoteList notes) {
         ArrayList<Note> result = new ArrayList<>();
         for (int i = 0; i < notes.getSize(); i++) {
