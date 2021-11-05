@@ -1,26 +1,27 @@
 # Developer Guide
 
 ## Content Page
-* [Acknowledgements](#Acknowledgements)
-* [Design](#Design)
-  * [Architecture](#Architecture)
-  * [Parser Component](#Parser-component)
-  * [Note Component](#Note-component)
-  * [UI Component](#UI-component)
-  * [Command Component](#Command-component)
-  * [Investigation Component](#Investigation-component)
-  * [Scene Component](#Scene-component)
-  * [Storage Component](#Storage-component)
-  * [Suspect Component](#Suspect-component)
-* [Implementation](#Implementation)
-  * [Display checked-clues feature](#Display checked-clues feature)
-  * [Local Game Data Storage](#Local-Game-Data-Storage)
-  * [Taking Notes For Specified Scene](#Taking-Notes-For-Specified-Scene)
-  * [SuspectListBuild](#SuspectListBuild)
-* [Product Scope](#Appendix)
-* [Use Cases](#Use Cases)
-* [User Stories](#User-Stories)
-* [Appendix](#Appendix)
+* [Acknowledgements](#acknowledgements)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [Parser Component](#parser-component)
+  * [Note Component](#note-component)
+  * [UI Component](#ui-component)
+  * [Command Component](#command-component)
+  * [Investigation Component](#investigation-component)
+  * [Scene Component](#scene-component)
+  * [Storage Component](#storage-component)
+  * [Suspect Component](#suspect-component)
+* [Implementation](#implementation)
+  * [Display checked-clues feature](#display-checked-clues-feature)
+  * [Local Game Data Storage](#local-game-data-storage)
+  * [Taking Notes For Specified Scene](#taking-notes-for-specified-scene)
+  * [SuspectListBuild](#suspectlistbuilder)
+* [Product Scope](#product-scope)
+* [User Stories](#user-stories)
+* [Non-Functional Requirements](#non-functional-requirements)
+* [Glossary](#glossary)
+* [Instructions for manual testing](#instructions-for-manual-testing)
 
 ## Acknowledgements
 
@@ -37,7 +38,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 ![High Level Architecture Diagram](./high_level_architecture.png)
 
-###Main components of the architecture
+### Main components of the architecture
 
 `Duke` is responsible for,
 
@@ -45,15 +46,14 @@ Given below is a quick overview of main components and how they interact with ea
 * During the game: Takes in user input and coordinates other components to parse and execute the input in a while loop, until the game is shut down.
 
 The rest of the App consists of eight components.
-
-`Parser`:
-`Ui`:
-`Command`: The command executor.
-`Investigation`:
-`Scene`:
-`Suspect`:
-`Note`:
-`Storage`:
+- `Parser`: Validates the user input and parses to the respective command.
+- `Ui`: Handles the user interface to prompt user for input and displays output from the game.
+- `Command`: Executes the command input from the user.
+- `Investigation`: Handles the main flow of game.
+- `Scene`: Holds the list of suspects and narrative for the respective scene.
+- `Suspect`: Holds the list of clue available for the respective suspect.
+- `Note`: Handles the data that user added from note-taking. 
+- `Storage`: Deals with writing and reading of data to/from the hard disk.
 
 **How the architecture components interact with each other**
 
@@ -129,11 +129,10 @@ The Sequence Diagram [below](./next_command_sequence_diagram.png) illustrates wi
 ### Investigation component
 **API:** `Investigation.java`
 
+Here’s a (partial) class diagram of the `Investigation` component:
+![Investigation Class Diagram](./Investigation_Class_Diagram.png)
 
-![Investigation Sequence Diagram](./Investigation_Sequence_Diagram.png)
-
-The investigation class manages the investigation in each investigation scene. 
-
+The investigation class manages the investigation in each investigation scene.
 
 How the `Investigation` component works:
 - When an investigation command is returned from the parser, we investigate the input given by the user.
@@ -146,6 +145,8 @@ for input, user selects which clue he/she wants to view. The user may enter the 
 clue is displayed on the terminal.
 - The Investigation class is also used to determine if the user has managed to find the correct killer
 at the end of the game.
+
+![Investigation Sequence Diagram](./Investigation_Sequence_Diagram.png)
 
 ### Scene component
 **API:** `Scene.java`
@@ -198,7 +199,7 @@ and four clues within its corresponding `Suspect` class.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Display checked-clues feature
+### Display checked clues feature
 
 This feature allows the user to review the clues that have been gathered. The clues will be displayed according to the suspect they belong to.
 To implement this feature, a clue tracker that contains all 5 suspects and all the clues corresponding to each suspect is used.
@@ -221,7 +222,7 @@ Then ```file.checkPath()``` will check for existing data file and creates a new 
 Then read the file and store the information into array list using ```ArrayList<String> content = file.readFile()```.
 Eventually, edit the content and rewrite to data file using ```file.rewriteFile(content)```
 
-###Taking Notes For Specified Scene
+### Taking Notes For Specified Scene
 
 This note-taking feature allows users to take note whenever they want, and store these notes locally. All the locally saved notes will be loaded and accessible
 for users to open. Each note contains three parts: scene index, title and content. The note index will be automatically set according to the current scene that 
@@ -229,7 +230,7 @@ user is investigating. Note tile and content are fulfilled by users. Default tit
 existing note by either search its title/scene index or directly open it by its sequence number (in the note list). User can also delete the unwanted notes by
 typing in its sequence number.
 
-###SuspectListBuilder
+### SuspectListBuilder
 
 Suspects and clues used in different scenes can be kept in a txt file and created following a specific format.
 It uses `java.io.File`, `java.util.Scanner`, and is implemented as:
@@ -257,10 +258,6 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 
 - Provide an alternative game for users to exercise creative thinking
 
-## Use Cases
-
-(Use /next as an example)
-
 ## User Stories
 
 |Priority|Version| As a ... | I want to ... | So that I can ...|
@@ -285,15 +282,17 @@ Use case: Navigate to the next scene.
 4. NextCommand returns a boolean by self-invocating the `.exit()` method.
 5. If it is the last scene of the game, `.exit()` returns true else false.
 
-### Non-Functional Requirements
+## Non Functional Requirements
 1. The game should work as long as java 11 is installed on the local machine.
 2. A working keyboard to play the game and a monitor to read the text.
 
-
-### Glossary
-
+## Glossary
 - Mainstream OS: Windows, Mac OS X, Unix, Linux
 
-## Appendix: Instructions for manual testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+## Instructions for manual testing
+The instructions below give a brief overview on how to test the functions manually.
+- Fork the entire repo from GitHub & clone to local machine.
+- Configure IDE with **JDK 11**.
+- Import the project as a **Gradle** project.
+- Open `Duke.java` and run the code to ensure it's able to run.
+- More test cases can be found in the test folder `src/test/java`
