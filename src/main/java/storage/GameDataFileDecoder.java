@@ -5,14 +5,14 @@ import exception.DukeFileNotFoundException;
 
 public class GameDataFileDecoder extends GameFileManager {
     private static final int MAX_SCENE_NUMBER = 3;
-    String factorySetting = "The Great Detective Data File\nCurrentSceneIndex: ";
+    private static final String FACTORY_SETTING = "The Great Detective Data File\nCurrentSceneIndex: ";
 
     public GameDataFileDecoder(String fileName) throws DukeFileNotFoundException, DukeCorruptedFileException {
         super(fileName);
     }
 
     public void setCurrentSceneIndex(int index) throws DukeFileNotFoundException {
-        this.writeFile(factorySetting + index);
+        this.writeFile(FACTORY_SETTING + index);
 
     }
 
@@ -21,7 +21,7 @@ public class GameDataFileDecoder extends GameFileManager {
         try {
             if (isValidFile()) {
                 String lines = this.readFile();
-                currentSceneIndex = Integer.parseInt(lines.substring(factorySetting.length()));
+                currentSceneIndex = Integer.parseInt(lines.substring(FACTORY_SETTING.length()));
                 if (currentSceneIndex <= MAX_SCENE_NUMBER) {
                     return currentSceneIndex;
                 }
