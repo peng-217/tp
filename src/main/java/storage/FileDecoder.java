@@ -10,9 +10,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 
-public class DataFileDecoder extends FileManager {
+public class FileDecoder extends EncryptedFile {
 
-    public DataFileDecoder(String fileName) throws DukeFileNotFoundException, DukeCorruptedFileException {
+    public FileDecoder(String fileName) throws DukeFileNotFoundException, DukeCorruptedFileException {
         super(fileName);
     }
 

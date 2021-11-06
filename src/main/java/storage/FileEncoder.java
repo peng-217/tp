@@ -11,9 +11,9 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 
-public class DataFileEncoder extends FileManager {
+public class FileEncoder extends EncryptedFile {
 
-    public DataFileEncoder(String fileName) throws DukeFileNotFoundException, DukeCorruptedFileException {
+    public FileEncoder(String fileName) throws DukeFileNotFoundException, DukeCorruptedFileException {
         super(fileName);
     }
 

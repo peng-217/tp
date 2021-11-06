@@ -24,6 +24,7 @@ else CLUE_STAGE
     return currentSuspectName
     return
 end
+
 return
 
 -> ":InvestigateCommand": execute()

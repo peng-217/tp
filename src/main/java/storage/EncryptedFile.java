@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.File;
 import java.security.NoSuchAlgorithmException;
 
-public class FileManager {
+public class EncryptedFile {
     String fileName;
     String filePath;
     String keyPath = "data/key.txt";
@@ -25,7 +25,7 @@ public class FileManager {
     static SecretKey myDesKey;
     static Cipher desCipher;
 
-    public FileManager(String fileName) throws DukeFileNotFoundException, DukeCorruptedFileException {
+    public EncryptedFile(String fileName) throws DukeFileNotFoundException, DukeCorruptedFileException {
         this.fileName = fileName;
         this.filePath = direName + this.fileName;
         if (keygenerator == null) {
