@@ -53,7 +53,7 @@ public class Narrative {
         }
     }
 
-    /** Function to clear the user console. */
+    /** Clears the user console. */
     public static void clearConsole() {
         try {
             // Check the current operating system
@@ -105,7 +105,7 @@ public class Narrative {
     }
 
     /**
-     * Prompt user to press enter key if narrative still contains lines which haven't been printed.
+     * Prompts user to press enter key if narrative still contains lines which haven't been printed.
      * If the narrative reaches the end, no need to prompt user to press enter key.
      *
      * @param content Remaining content to be printed.

@@ -1,66 +1,68 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
--> UI : printCurrentInvestigation()
-activate UI
+-> ":UI" : printCurrentInvestigation()
+activate ":UI"
 
-UI -> Investigation: getStage()
-activate Investigation
+create ":Investigation"
+
+":UI" -> ":Investigation": getStage()
+activate ":Investigation"
 return stage
 
 
 alt SUSPECT_STAGE
-    UI -> UI: printCurrentSuspectPage()
-    activate UI
+    ":UI" -> ":UI": printCurrentSuspectPage()
+    activate ":UI"
     return
 
-else
-    UI -> UI: printCurrentCluePage()
-    activate UI
-    UI -> Investigation: getCurrentSuspectName()
-    activate Investigation
+else CLUE_STAGE
+    ":UI" -> ":UI": printCurrentCluePage()
+    activate ":UI"
+    ":UI" -> ":Investigation": getCurrentSuspectName()
+    activate ":Investigation"
     return currentSuspectName
     return
 end
 return
 
--> InvestigateCommand: execute(ui, investigation, sceneList)
-activate InvestigateCommand
-InvestigateCommand -> Investigation: investigateScene(index, currentScene)
+-> ":InvestigateCommand": execute()
+activate ":InvestigateCommand"
+":InvestigateCommand" -> ":Investigation": investigateScene(index, currentScene)
 alt SUSPECT_STAGE
-    activate Investigation
-    Investigation -> Parser: getSuspectNameFromIndex(scene, index)
-    activate Parser
+    activate ":Investigation"
+    ":Investigation" -> ":Parser": getSuspectNameFromIndex(scene, index)
+    activate ":Parser"
     return currentSuspectName
 
-    Investigation -> Investigation: setClueStage()
-    activate Investigation
+    ":Investigation" -> ":Investigation": setClueStage()
+    activate ":Investigation"
     return
 else CLUE_STAGE
     alt index == 0
-        Investigation -> Investigation: setSuspectStage()
-        activate Investigation
+        ":Investigation" -> ":Investigation": setSuspectStage()
+        activate ":Investigation"
         return
     else
-        Investigation -> Scene: investigateSuspect(currentSuspectName)
-        activate Scene
-        Scene -> Clue: get(index)
-        activate Clue
+        ":Investigation" -> ":Scene": investigateSuspect(currentSuspectName)
+        activate ":Scene"
+        ":Scene" -> ":Clue": get(index)
+        activate ":Clue"
         return clue
         return clue
-        Investigation -> SuspectList: setClueChecked(currentSuspectName, clue)
-        activate SuspectList
+        ":Investigation" -> ":SuspectList": setClueChecked(currentSuspectName, clue)
+        activate ":SuspectList"
         return
-        Investigation -> UI: printSelectedClue(clue)
-        activate UI
+        ":Investigation" -> ":UI": printSelectedClue(clue)
+        activate ":UI"
         return
     end
 else
-    Investigation -> UI: printInvalidIndex()
-    activate UI
+    ":Investigation" -> ":UI": printInvalidIndex()
+    activate ":UI"
     return
 end
 
-destroy InvestigateCommand
+destroy ":InvestigateCommand"
 
 @enduml

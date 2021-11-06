@@ -32,7 +32,7 @@ public class SceneList {
     }
 
     /**
-     * Set scene number based on killer being found.
+     * Sets scene number based on killer being found.
      *
      * @param killerFound is a boolean input.
      *      Update the scene number based on if the killer was found or not.
@@ -59,7 +59,8 @@ public class SceneList {
     }
 
     /**
-     * Return the current scene index.
+     * Returns the current scene index.
+     *
      * @return The current scene's index.
      */
     public int getCurrentSceneIndex() {
@@ -67,7 +68,7 @@ public class SceneList {
     }
 
     /**
-     * Increase the scene number by 1.
+     * Increases the scene number by 1.
      */
     public void updateSceneNumber()
             throws DukeCorruptedFileException, DukeFileNotFoundException {
@@ -77,7 +78,7 @@ public class SceneList {
     }
 
     /**
-     * Get the current SceneType.
+     * Gets the current SceneType.
      */
     public SceneTypes getCurrentSceneType() {
         Scene currentScene = this.getCurrentScene();
@@ -85,7 +86,7 @@ public class SceneList {
     }
 
     /**
-     * Run the current scene.
+     * Runs the current scene.
      */
     public void runCurrentScene() {
         Scene currentScene = this.getCurrentScene();
@@ -98,8 +99,7 @@ public class SceneList {
 
    
     /**
-     * Reset the scene to the introduction scene.
-     * Run the scene.
+     * Resets the scene to the introduction scene and run the introduction scene.
      */
     public void resetAllScenes()
            throws DukeCorruptedFileException, DukeFileNotFoundException {
@@ -126,8 +126,7 @@ public class SceneList {
     }
 
     /**
-     * Decrease the scene number based on the
-     * current scene type.
+     * Decreases the scene number based on the current scene type.
      * If the current scene is the introduction scene,
      * we do not reduce the scene index.
      * If it is either the wrong or correct killer guessed scene,
@@ -155,7 +154,7 @@ public class SceneList {
     }
 
     /**
-     * Set the current scene number to the previous scene number,
+     * Sets the current scene number to the previous scene number,
      * and run the current scene.
      */
     public void previousScene()
