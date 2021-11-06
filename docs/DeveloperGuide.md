@@ -262,17 +262,18 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 - Provide an alternative game for users to exercise creative thinking
 
 ## User Stories
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 |Priority|Version| As a ... | I want to ... | So that I can ...|
 |--------|--------|----------|---------------|------------------|
-| * * *|v1.0|new user|see all commands available|understand the game mechanics|
-| * * *|v1.0|user|investigate the suspects available|better understand the suspect|
-| * * *|v1.0|user|investigate the clues available|understand the story line better|
-| * * *|v1.0|user|review the clues that I have gathered|refresh my memory and make a more informed decision when choosing the suspect
-| * * *|v1.0|user|choose the suspect|see if I am able to solve the crime|
-| * * |v2.0|user|resume the game after exiting|continue the game instead of restarting|
-| * * |v2.0|user|write notes|look at the notes I have written for each scene and suspect|
-| * |v2.0|user|go to previous scene|look at the narrative for the previous scene|
+|`* * *`|v1.0|new user|see all commands available|understand the game mechanics|
+|`* * *`|v1.0|user|investigate the suspects available|better understand the suspect|
+|`* * *`|v1.0|user|investigate the clues available|understand the story line better|
+|`* * *`|v1.0|user|review the clues that I have gathered|refresh my memory and make a more informed decision when choosing the suspect
+|`* * *`|v1.0|user|choose the suspect|see if I am able to solve the crime|
+|`* *`|v2.0|user|resume the game after exiting|continue the game instead of restarting|
+|`* *`|v2.0|user|write notes|look at the notes I have written for each scene and suspect|
+|`*`|v2.0|user|go to previous scene|look at the narrative for the previous scene|
 
 ### Use Cases
 
