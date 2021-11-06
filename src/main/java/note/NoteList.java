@@ -22,8 +22,8 @@ public class NoteList {
     private static final String INVALID_NOTE_COMMAND_MESSAGE = "The command you entered is not valid! "
             + "Please check again.";
     private static final String INVALID_NOTE_SEARCH_MESSAGE = "Please input a valid search choice!";
-    private static final String NOTE_CORRUPTED_MESSAGE = "The corrupted file has been removed! " +
-                                                            "The new file has been created!";
+    private static final String NOTE_CORRUPTED_MESSAGE = "The corrupted file has been removed! "
+            + "The new file has been created!";
 
 
     public NoteList(Ui ui) {
