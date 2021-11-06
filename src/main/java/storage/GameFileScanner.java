@@ -7,8 +7,9 @@ public class GameFileScanner {
     GameFileManager file;
     String lines;
 
-    public GameFileScanner (GameFileManager file) throws DukeCorruptedFileException, DukeFileNotFoundException {
-        this.file=file;
+    public GameFileScanner(GameFileManager file)
+            throws DukeCorruptedFileException, DukeFileNotFoundException {
+        this.file = file;
         lines = file.readFile();
     }
 
