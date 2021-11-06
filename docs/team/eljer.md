@@ -29,9 +29,11 @@ The Great Detective is an interactive murder-mystery game.
   - Justification: It allows us to handle the commands from the user and contains the main flow of the game.
 
 - `Code Contribution`: [RepoSense Link](https://nus-cs2113-ay2122s1.github.io/tp-dashboard/?search=arcturusz&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-25&tabOpen=true&tabType=authorship&tabAuthor=arcturusz&tabRepo=AY2122S1-CS2113-T14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
+
 - `Enhancements Implemented`:
   - Added assertions to ensure correctness of gameplay data.
   - Wrote JUnit test for several classes.
+
 - `Documentation`:
   - `User Guide`
     - Added documentation for the features `/narrative-lines #NUM`.
@@ -41,10 +43,12 @@ The Great Detective is an interactive murder-mystery game.
     - Contributed to part of `Main components of the architecture` under `Design`.
   - `Javadocs`
     - Added javadocs for several classes like `Suspect`, `SuspectList`, `Narrative`, `SceneListBuilder`.
+
 - `Project Management`:
   - Setup repo's `Branch Protection Rules` to prevent unauthorized merging, and ensures CI tests pass before able to merge.
   - Maintain the issue tracker and milestones.
   - Review, approve and provide comments for pull requests.
+
 - `Review / Mentoring Contributions`:
   - Helped team members fix branch and version control issues.
   - Helped team members with rebase to fix merge conflicts and undo mistakes.
@@ -53,6 +57,7 @@ The Great Detective is an interactive murder-mystery game.
 [#218](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/218),
 [#220](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/220),
 [#213](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/213)
+
 - `Contributions Beyond the Team Project`:
   - Reviewed other team's project. ([Example](https://github.com/nus-cs2113-AY2122S1/tp/pull/5/files/dc0f334b0895c33494b4ea0685143f176730f8fb))
   - Functional bugs and suggestions for other team during PED. ([Bugs Found](https://github.com/arcturusz/ped/issues))
