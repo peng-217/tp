@@ -71,40 +71,41 @@ $ /note
 This allows user to search the notes using keywords in title
 
 Example of usage:
-$ /note
 ```
+$ /note
+
 Do you want to create a new note or open a existing note or delete a note?
 Please type in:
 '1' for create a new note.
 '2' for open an existing note.
 '3' for delete notes.
-```
+
 
 $ 2
 
-```
+
 Here are the list of notes available to you.
 1. BOOKSHELF
 2. CAR
 3. LIVING ROOM WITH BLOOD
 Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
-```
+
 
 $ search
 
-```
+
 Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
-```
+
 
 $ keyword
 
-```
+
 Please enter keywords
-```
+
 
 $ BLOOD
 
-```
+
 Here are the list of notes found given keywords:
 1. scene 2
 LIVING ROOM WITH BLOOD
@@ -116,41 +117,41 @@ There is blood in living room, so I think suspect is Wendy.
 This allows user to search notes with scene index.
 
 Example of usage:
-
+```
 $ /note
 
-```
+
 Do you want to create a new note or open a existing note or delete a note?
 Please type in:
 '1' for create a new note.
 '2' for open an existing note.
 '3' for delete notes.
-```
+
 
 $ 2
 
-```
+
 Here are the list of notes available to you.
 1. BOOKSHELF
 2. CAR
 3. LIVING ROOM WITH BLOOD
    Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
-   ```
+ 
 
 $ search
-```
+
    Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
-   ```
+
 
 $ index
    
-```
+
    Please enter scene index:
-   ```
+  
 
 $ 2
 
-```
+
    Here are the list of notes found given keywords:
 1. scene 2
    BOOKSHELF
@@ -212,16 +213,14 @@ Example of usage:
 $ /note 1
 ```
 Please enter the title for this note (if you do not need title, type a spacing or press enter instead):
-```
+
 $ APPLE ON THE GROUND
 
-```
-Please enter your note:
-```
 
+Please enter your note:
 
 $ /quit
-```
+
 Ok! You have successfully quit note process!
 ```
 >💡 Users can quit note function at any time they choose.
@@ -499,5 +498,5 @@ Examples:
 | Investigate | `[/investigate] INDEX or KEYWORD` e.g., `/investigate father`, `father`, `1` |
 | Choose Killer | `KEYWORD or INDEX` e.g., `Father`, `1` |
 | View Clues | `/view [NAME]...` e.g., `/view` `/view Father` `/view Father Ling` |
-| Take Note | `/note <Command index>(optional) |
+| Take Note | `/note <Command index>(optional)` |
 | Quit note | `/quit` |
