@@ -79,8 +79,8 @@ The class diagram below shows how the parser interacts with the other classes
 How the `parser` component works
 - When the user gives an input, the parser will the appropriate command for this input.
 - In the case of `/next` as the input, the NextCommand will be generated.
-- The NextCommand is inherits from the abstract class Command.
-- If the input does not generate a valid command type, it throws the invalidInputException.
+- The NextCommand inherits from the abstract class Command.
+- If the input does not generate a valid command type, it throws the InvalidInputException.
 - The abstract Command class requires SceneList, Ui and Investigate component as its dependencies.
 
 ### Note component

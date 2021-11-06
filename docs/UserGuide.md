@@ -237,9 +237,9 @@ This allows the user to exit the game.
 -------------------------
 Who do you want to investigate?
 1. Father
-```
+
 $ /exit
-```
+
 Goodbye.
 ```
 
@@ -254,10 +254,9 @@ Example of usage:
 Scene 1 Investigation
 Who do you want to investigate?
 1. Father
-```
 
 $ /back 
-```
+
 ------------------
 | Who Killed Me? |
 ------------------
@@ -287,14 +286,13 @@ Now, enter "/next" to start your journey to the truth.
 
 ### Viewing the list of commands available: `/help`
 This allows the user to view the list of commands available.
-```
+
 Format: `/help`
 
 Example of usage:
-
-
-$ /help
 ```
+$ /help
+
 Here are the list of commands available to you.
 "/narrative-lines #NUM" - change number of narrative lines print each time to #NUM
 "/help" - view this command list
