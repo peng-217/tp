@@ -39,10 +39,22 @@ public class NoteList {
         }
     }
 
+    /**
+     * Get the size of note list.
+     *
+     * @return Size of note list.
+     */
     public int getSize() {
         return notes.size();
     }
 
+    /**
+     * Search notes with given scene index.
+     *
+     * @param searchSceneIndex User input scene index.
+     * @param notes Note list.
+     * @return An arraylist contains all the corresponding notes.
+     */
     public ArrayList<Note> searchNotesUsingSceneIndex(int searchSceneIndex,NoteList notes) {
         ArrayList<Note> result = new ArrayList<>();
         for (int i = 0; i < notes.getSize(); i++) {
@@ -53,6 +65,12 @@ public class NoteList {
         return result;
     }
 
+    /**
+     * Search notes with given keywords.
+     * @param keyword User input keywords.
+     * @param notes Note list.
+     * @return An arraylist contains all the corresponding notes.
+     */
     public ArrayList<Note> searchNoteUsingTitle(String keyword,NoteList notes) {
         String[] words = stringSplitter(keyword);
         ArrayList<Note> result = new ArrayList<>();
@@ -70,6 +88,12 @@ public class NoteList {
         return result;
     }
 
+    /**
+     * Split the keywords string into a string array that contains all the keywords.
+     *
+     * @param keywords User input keywords.
+     * @return A string array that contains all the keywords.
+     */
     public static String[] stringSplitter(String keywords) {
         String[] words = keywords.split(" ");
         for (int i = 0; i < words.length; i++) {
@@ -78,34 +102,61 @@ public class NoteList {
         return words;
     }
 
+    /**
+     * Get the note with given index.
+     *
+     * @param index User input index.
+     * @return Note with given index.
+     */
     public Note getIndexNote(int index) {
         return notes.get(index);
     }
 
+    /**
+     * Create a new note and add it into note list.
+     * @param newNote The new note to be created.
+     */
     public void createNote(Note newNote) {
         notes.add(newNote);
         noteFile.saveNote(this);
         ui.printSaveNoteMessage();
     }
 
+    /**
+     * Initialize all saved note from local note data file.
+     * @param newNote The note from the local note data file to be initialized.
+     * @param inputSceneIndex Scene index that stored in data file.
+     */
     public void createNoteFromFile(Note newNote, int inputSceneIndex) {
         notes.add(newNote);
         noteFile.saveNote(this);
     }
 
+    /**
+     * Delete a note with given index.
+     * @param index The index of the note that to be deleted.
+     */
     public void deleteNote(int index) {
         notes.remove(index);
         noteFile.saveNote(this);
         ui.printDeleteNoteMessage();
     }
 
-
+    /**
+     * Delete all notes.
+     */
     public void deleteAllNotes() {
         notes.removeAll(notes);
         noteFile.forceClearNote();
         ui.printDeleteAllNoteMessage();
     }
 
+    /**
+     * Perform all note-related functions.
+     * @param sceneList The scene list used for creating note.
+     * @param userChoice The desired function by user.
+     * @throws InvalidNoteException If user's input is invalid.
+     */
     public void processNote(SceneList sceneList, String userChoice) throws InvalidNoteException {
         if (!userChoice.equals("/quit")) {
             switch (userChoice) {
@@ -126,6 +177,10 @@ public class NoteList {
         }
     }
 
+    /**
+     * Create a new note.
+     * @param sceneList Scene list for creating note.
+     */
     public void createNoteProcess(SceneList sceneList) {
         boolean quitNote = false;
         boolean validNoteTitle = true;
@@ -160,6 +215,10 @@ public class NoteList {
         }
     }
 
+    /**
+     * Open a note.
+     * @throws InvalidNoteException If user's input command is invalid.
+     */
     public void openNoteProcess() throws InvalidNoteException {
         boolean quitNote = false;
         boolean checkExistence = ui.printOpenNoteMessage(this);
@@ -222,6 +281,11 @@ public class NoteList {
         }
     }
 
+    /**
+     * Let user to select searching method.
+     * @param userInput The searching method that user inputs.
+     * @throws InvalidNoteException If user's input command is invalid.
+     */
     public void selectSearchMethod(String userInput) throws InvalidNoteException {
         boolean quitNote = false;
         if (userInput.equals("/quit")) {
@@ -249,6 +313,12 @@ public class NoteList {
         }
     }
 
+    /**
+     * Let user to select searching method.
+     * @param userInputInArray The searching method and corresponding user input keywords/scene index.
+     * @throws InvalidNoteException If user input is invalid.
+     * @throws NumberFormatException If user input is invalid.
+     */
     public void selectSearchMethod(String[] userInputInArray)
             throws InvalidNoteException, NumberFormatException {
         if (userInputInArray[1].equals("keyword")) {
@@ -268,6 +338,10 @@ public class NoteList {
         }
     }
 
+    /**
+     * Start the keyword search process.
+     * @param userInput User input keywords.
+     */
     public void keywordSearch(String userInput) {
         if (!userInput.equals("/quit")) {
             ui.printSelectedNote(this.searchNoteUsingTitle(userInput, this));
@@ -276,6 +350,9 @@ public class NoteList {
         }
     }
 
+    /**
+     * Start the keyword search process.
+     */
     public void keywordSearch() {
         ui.printNoteSearchKeyWordInstructions();
         String keywords = ui.readUserInput();
@@ -286,6 +363,11 @@ public class NoteList {
         }
     }
 
+    /**
+     * Start the index search process.
+     * @param userInput User input scene index.
+     * @throws NumberFormatException If user input index is invalid.
+     */
     public void indexSearch(String userInput) throws NumberFormatException {
         ui.printNoteSearchSceneIndexInstructions();
         if (!userInput.equals("/quit")) {
@@ -296,6 +378,10 @@ public class NoteList {
         }
     }
 
+    /**
+     * Start the index search process.
+     * @throws NumberFormatException If user input index is invalid.
+     */
     public void indexSearch() throws NumberFormatException {
         ui.printNoteSearchSceneIndexInstructions();
         String userInput = ui.readUserInput();
@@ -307,6 +393,12 @@ public class NoteList {
         }
     }
 
+    /**
+     * Open the note with given index.
+     * @param index User input index.
+     * @throws IndexOutOfBoundsException If user input index is bigger than the size of note list.
+     * @throws NumberFormatException If user input is invalid.
+     */
     public void openNoteDirectly(String index) throws IndexOutOfBoundsException, NumberFormatException {
         ui.printNoteOpenInstructions();
         // here the index is not scene index, it is the index in the list
@@ -321,6 +413,11 @@ public class NoteList {
         }
     }
 
+    /**
+     * Open the note with given index.
+     * @throws IndexOutOfBoundsException If user input index is bigger than the size of note list.
+     * @throws NumberFormatException If user input is invalid.
+     */
     public void openNoteDirectly() throws IndexOutOfBoundsException, NumberFormatException {
         ui.printNoteOpenInstructions();
         String userInput = ui.readUserInput();
@@ -336,6 +433,11 @@ public class NoteList {
         }
     }
 
+    /**
+     * Delete note.
+     * @throws IndexOutOfBoundsException If user input index is bigger than the size of note list.
+     * @throws NumberFormatException If user input is invalid.
+     */
     public void deleteNoteProcess() throws IndexOutOfBoundsException, NumberFormatException {
         ui.printNoteListStarter();
         ui.printAllNotes(this);
