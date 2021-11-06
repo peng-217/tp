@@ -22,6 +22,7 @@ about the events that lead to the murder and clues about the suspects. A great j
 2. Download the latest version of `TheGreatDetective` from [here](https://github.com/AY2122S1-CS2113-T14-1/tp/releases).
 3. Copy the `.jar` file to the folder you want to use as the home folder for your game.
 4. To launch the app, run the command `java -jar {filename}.jar`. Here are the first few lines you should see in the output when you start _The Great Detective_ for the first time.
+
 ```
 Welcome to the Classic Adventure Text Game!
 
@@ -32,6 +33,7 @@ Welcome to the Classic Adventure Text Game!
 
 I woke up and found myself dead. The Spirit Guide from the Hell told me that the only way to revive my soul is for me to find the murderer, eliminating the grudge in my soul. So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
 ```
+
 >❗ The new files created in the `data` folder are used to store the data of your progress. Please refrain from deleting/modifying these files in order to preserve the data.
 5. Type the command and press Enter to execute it. e.g. typing `/help` and pressing Enter will show you the list of commands you can enter.
 6. Refer to the `Features` below for details of each command.

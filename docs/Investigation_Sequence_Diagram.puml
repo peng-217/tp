@@ -1,10 +1,16 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
--> ":UI" : printCurrentInvestigation()
-activate ":UI"
+create ":Duke"
+activate ":Duke"
 
 create ":Investigation"
+":Duke" -> ":Investigation"
+activate ":Investigation"
+return
+
+":Duke" -> ":UI" : printCurrentInvestigation()
+activate ":UI"
 
 ":UI" -> ":Investigation": getStage()
 activate ":Investigation"
@@ -27,7 +33,7 @@ end
 
 return
 
--> ":InvestigateCommand": execute()
+":Duke" -> ":InvestigateCommand": execute()
 activate ":InvestigateCommand"
 ":InvestigateCommand" -> ":Investigation": investigateScene(index, currentScene)
 alt SUSPECT_STAGE
@@ -42,6 +48,9 @@ alt SUSPECT_STAGE
 else CLUE_STAGE
     alt index == 0
         ":Investigation" -> ":Investigation": setSuspectStage()
+        note top
+            index == 0 implies go back to suspect stage
+        end note
         activate ":Investigation"
         return
     else
