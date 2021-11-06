@@ -60,17 +60,26 @@ Successfully changed number of narrative lines to print each time to 10
 ### Taking notes: `/note`
 This allows user to take note with title and content whenever they want.
 
+Example of usage:
+```
+$ /note
+```
+
 ### Searching notes with keywords: `keywords`
 This allows user to search the notes using keywords in title
 
-Examples of usage:
-- input: `/note`
+Example of usage:
+$ /note
 ```
 Do you want to create a new note or open a existing note or delete a note?
+Please type in:
+'1' for create a new note.
+'2' for open an existing note.
+'3' for delete notes.
 ```
-```
-open
-```
+
+$ 2
+
 ```
 Here are the list of notes available to you.
 1. BOOKSHELF
@@ -78,21 +87,21 @@ Here are the list of notes available to you.
 3. LIVING ROOM WITH BLOOD
 Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
 ```
+
+$ search
+
 ```
-search
+Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
 ```
-```
-Do you want to search by keyword or scene index?
-```
-```
-keyword
-```
+
+$ keyword
+
 ```
 Please enter keywords
 ```
-```
-BLOOD
-```
+
+$ BLOOD
+
 ```
 Here are the list of notes found given keywords:
 1. scene 2
@@ -105,15 +114,19 @@ There is blood in living room, so I think suspect is Wendy.
 This allows user to search notes with scene index.
 
 Example of usage:
-```
-/note
-```
+
+$ /note
+
 ```
 Do you want to create a new note or open a existing note or delete a note?
+Please type in:
+'1' for create a new note.
+'2' for open an existing note.
+'3' for delete notes.
 ```
-```
-open
-```
+
+$ 2
+
 ```
 Here are the list of notes available to you.
 1. BOOKSHELF
@@ -121,21 +134,20 @@ Here are the list of notes available to you.
 3. LIVING ROOM WITH BLOOD
    Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
    ```
-```
-   search
-   ```
+
+$ search
 ```
    Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
    ```
-```
-   index
-   ```
+
+$ index
+   
 ```
    Please enter scene index:
    ```
-```
-   2
-   ```
+
+$ 2
+
 ```
    Here are the list of notes found given keywords:
 1. scene 2
@@ -170,19 +182,52 @@ Here are the list of notes available to you.
    Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
 ```
 
+### Default note title
+
+If user does not specify the note tile, like he/she just type in a spacing or press enter, the program will give the note a default title with the format 'DEFAULT(i)', i is an integer.
+
+Example of usage:
+```
+Here are the notes you have: 
+1.LIVING ROOM
+2.DEFAULT(1)
+3.DEFAULT(2)
+```
+
 ### Moving to the next scene: `/next`
 This allows the user to go the next scene.
 
 Example of usage: 
-
 ```
 $ /next
 ```
 
+### Quit note function: `/quit`
+Allows user to quit note function.
+
+
+Example of usage:
+$ /note 1
+```
+Please enter the title for this note (if you do not need title, type a spacing or press enter instead):
+```
+$ APPLE ON THE GROUND
+
+```
+Please enter your note:
+```
+
+
+$ /quit
+```
+Ok! You have successfully quit note process!
+```
+>💡 Users can quit note function at any time they choose.
+
+
 ### Exiting the game: `/exit`
 This allows the user to exit the game.
 
-Example of usage:
 
 ```
 -------------------------
@@ -190,11 +235,12 @@ Example of usage:
 -------------------------
 Who do you want to investigate?
 1. Father
-
+```
 $ /exit
-
+```
 Goodbye.
 ```
+
 >💡 Users can exit the game at any time they choose.
 
 ### Going back to the previous scene: `/back`
@@ -206,9 +252,10 @@ Example of usage:
 Scene 1 Investigation
 Who do you want to investigate?
 1. Father
+```
 
 $ /back 
-
+```
 ------------------
 | Who Killed Me? |
 ------------------
@@ -238,13 +285,14 @@ Now, enter "/next" to start your journey to the truth.
 
 ### Viewing the list of commands available: `/help`
 This allows the user to view the list of commands available.
-
+```
 Format: `/help`
 
 Example of usage:
 
-```
+
 $ /help
+```
 Here are the list of commands available to you.
 "/narrative-lines #NUM" - change number of narrative lines print each time to #NUM
 "/help" - view this command list
@@ -451,3 +499,5 @@ Examples:
 | Investigate | `[/investigate] INDEX or KEYWORD` e.g., `/investigate father`, `father`, `1` |
 | Choose Killer | `KEYWORD or INDEX` e.g., `Father`, `1` |
 | View Clues | `/view [NAME]...` e.g., `/view` `/view Father` `/view Father Ling` |
+| Take Note | `/note <Command index>(optional) |
+| Quit note | `/quit` |

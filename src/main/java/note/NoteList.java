@@ -133,7 +133,7 @@ public class NoteList {
         ui.printNoteTitleInstructions();
         String transientTitle = ui.readUserInput();
         String noteTitle = "";
-        if ((!transientTitle.equals(" ") || !transientTitle.equals("")) && !transientTitle.equals("/quit")
+        if ((!transientTitle.equals("") && !transientTitle.equals("\r")) && !transientTitle.equals("/quit")
             && !transientTitle.equals("End of this note.") && !transientTitle.startsWith("scene")) {
             noteTitle = transientTitle;
         } else if (transientTitle.equals("/quit")) {
@@ -142,7 +142,7 @@ public class NoteList {
         } else if (transientTitle.equals("End of this note.") || transientTitle.startsWith("scene")) {
             validNoteTitle = false;
             ui.printInvalidNoteTitle();
-        } else {
+        } else if (transientTitle.equals("") || transientTitle.equals("\r")) {
             noteTitle = "DEFAULT(" + (defaultTitleCounter++) + ")";
         }
         if (!quitNote && validNoteTitle) {
