@@ -499,3 +499,5 @@ Examples:
 | Investigate | `[/investigate] INDEX or KEYWORD` e.g., `/investigate father`, `father`, `1` |
 | Choose Killer | `KEYWORD or INDEX` e.g., `Father`, `1` |
 | View Clues | `/view [NAME]...` e.g., `/view` `/view Father` `/view Father Ling` |
+| Take Note | `/note <Command index>(optional) |
+| Quit note | `/quit` |
