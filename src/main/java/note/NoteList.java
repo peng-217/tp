@@ -142,7 +142,7 @@ public class NoteList {
         } else if (transientTitle.equals("End of this note.") || transientTitle.startsWith("scene")) {
             validNoteTitle = false;
             ui.printInvalidNoteTitle();
-        } else if (transientTitle.equals("") || transientTitle.equals("\r")){
+        } else if (transientTitle.equals("") || transientTitle.equals("\r")) {
             noteTitle = "DEFAULT(" + (defaultTitleCounter++) + ")";
         }
         if (!quitNote && validNoteTitle) {
