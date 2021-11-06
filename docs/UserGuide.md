@@ -10,11 +10,26 @@ about the events that lead to the murder and clues about the suspects. A great j
 
 
 ## Table of Contents
-* [Quick Start](#Quick Start)
-* [Features](#Features)
-  * [Changing narrative number of lines](#Changing narrative number of lines:`/narrative-lines #NUM`)
-* [FAQ](#FAQ)
-* [Command Summary](#Command Summary)
+* [Quick Start](#quick-start)
+* [Features](#features)
+  * [Changing narrative number of lines: `/narrative-lines #NUM`](#changing-narrative-number-of-linesnarrative-lines-num)
+  * [Taking notes: `/note`](#taking-notes-note)
+  * [Searching notes with keywords](#searching-notes-with-keywords-keywords)
+  * [Searching notes with scene index](#searching-notes-with-scene-index-index)
+  * [Shortcuts for note-taking](#shortcuts-for-note-taking)
+  * [Default note title](#default-note-title)
+  * [Quit note function: `/quit`](#quit-note-function-quit)
+  * [Moving to the next scene: `/next`](#moving-to-the-next-scene-next)
+  * [Exiting the game: `/exit`](#exiting-the-game-exit)
+  * [Going back to the previous scene: `/back`](#going-back-to-the-previous-scene-back)
+  * [Viewing the list of commands available: `/help`](#viewing-the-list-of-commands-available-help)
+  * [Restarting the game: `/restart`](#restarting-the-game-restart)
+  * [Investigating suspect: `KEYWORD` or `INDEX`](#investigating-suspect-keyword-or-index)
+  * [Investigating clue: `INDEX`](#investigating-clue-index)
+  * [Choosing the killer: `KEYWORD`](#choosing-the-killer-keyword)
+  * [Viewing checked clues: `/view`](#viewing-checked-clues-view)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
 
 ## Quick Start
