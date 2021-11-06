@@ -30,6 +30,7 @@ The plot of the game was adopted from one of the games available in the Mini Pro
 ## Design
 
 ### Architecture
+
 ![High Level Architectural design](./main_architecture.png)
 
 The _**Architecture Diagram**_ given above explains the high-level design of the App.
@@ -78,8 +79,8 @@ The class diagram below shows how the parser interacts with the other classes
 How the `parser` component works
 - When the user gives an input, the parser will the appropriate command for this input.
 - In the case of `/next` as the input, the NextCommand will be generated.
-- The NextCommand is inherits from the abstract class Command.
-- If the input does not generate a valid command type, it throws the invalidInputException.
+- The NextCommand inherits from the abstract class Command.
+- If the input does not generate a valid command type, it throws the InvalidInputException.
 - The abstract Command class requires SceneList, Ui and Investigate component as its dependencies.
 
 ### Note component
@@ -164,6 +165,7 @@ How the scene class works
 See below for example.
 - The introduction scene shows the introductory message to the user.
 - The investigation scene asks the user either investigate a suspect or look into a clue.
+
 ![](Scene.png)
 
 
@@ -186,6 +188,7 @@ At first ```Storage file = new Storage("name.txt")```, initialise the ```Storage
 Then ```file.checkPath()``` will check for existing data file and creates a new data file if the path ```./Data/name.txt```is invalid.
 Then read the file and store the information into array list using ```ArrayList<String> content = file.readFile()```.
 Eventually, edit the content and rewrite to data file using ```file.rewriteFile(content)```
+
 ### Suspect component
 **API:** `Suspect.java`
 

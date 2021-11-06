@@ -1,22 +1,22 @@
 package seedu.duke;
 
+import command.Command;
+import command.InvalidCommand;
 import exception.DukeCorruptedFileException;
 import exception.DukeFileNotFoundException;
-import scene.clue.CheckedClueTrackerBuilder;
-import command.InvalidCommand;
-import exceptions.InvalidInputException;
 import exceptions.InvalidClueException;
+import exceptions.InvalidInputException;
 import exceptions.InvalidSuspectException;
 import exceptions.MissingSceneFileException;
 import investigation.Investigation;
 import note.NoteList;
+import parser.Parser;
 import scene.SceneList;
 import scene.SceneListBuilder;
-import storage.GameDataFileDecoder;
+import scene.clue.CheckedClueTrackerBuilder;
 import scene.suspect.SuspectList;
+import storage.GameDataFileDecoder;
 import ui.Ui;
-import parser.Parser;
-import command.Command;
 
 public class Duke {
     /**
