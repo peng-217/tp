@@ -13,13 +13,10 @@ import note.NoteList;
 import scene.SceneList;
 import scene.SceneListBuilder;
 import storage.GameDataFileDecoder;
-import storage.GameDataFileManager;
 import scene.suspect.SuspectList;
 import ui.Ui;
 import parser.Parser;
 import command.Command;
-
-import java.io.FileNotFoundException;
 
 public class Duke {
     /**

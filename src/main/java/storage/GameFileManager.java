@@ -3,17 +3,15 @@ package storage;
 import exception.DukeCorruptedFileException;
 import exception.DukeFileNotFoundException;
 
-public class GameDataFileManager extends FileManager {
+public class GameFileManager extends EncryptedFile {
 
-    static DataFileDecoder decoder;
-    static DataFileEncoder encoder;
+    static FileDecoder decoder;
+    static FileEncoder encoder;
 
-    public GameDataFileManager(String fileName) throws DukeFileNotFoundException, DukeCorruptedFileException {
+    public GameFileManager(String fileName) throws DukeFileNotFoundException, DukeCorruptedFileException {
         super(fileName);
-        if (decoder == null) {
-            decoder = new DataFileDecoder(fileName);
-            encoder = new DataFileEncoder(fileName);
-        }
+        decoder = new FileDecoder(fileName);
+        encoder = new FileEncoder(fileName);
     }
 
     public void writeFile(String lines) throws DukeFileNotFoundException {

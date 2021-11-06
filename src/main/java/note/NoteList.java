@@ -4,33 +4,37 @@ package note;
 
 import java.util.ArrayList;
 
+import exception.DukeCorruptedFileException;
 import exception.NoteCorruptedFileException;
 import exceptions.InvalidNoteException;
 import parser.Parser;
-import storage.Storage;
+import storage.GameNoteFileManager;
 import scene.SceneList;
 import ui.Ui;
 
 public class NoteList {
     private final ArrayList<Note> notes;
     private final Ui ui;
+    private static GameNoteFileManager noteFile;
     private static int defaultTitleCounter = 1;
     private static final String INVALID_NOTE_INDEX_MESSAGE = "The index you entered is not valid! "
             + "Please check again.";
     private static final String INVALID_NOTE_COMMAND_MESSAGE = "The command you entered is not valid! "
             + "Please check again.";
     private static final String INVALID_NOTE_SEARCH_MESSAGE = "Please input a valid search choice!";
-    private static final String NOTE_CORRUPTED_MESSAGE = "The note data file is corrputed!"
-            + " A new note data file will be created. ";
+    private static final String NOTE_CORRUPTED_MESSAGE = "The corrupted file has been removed! "
+            + "The new file has been created!";
+
 
     public NoteList(Ui ui) {
         this.ui = ui;
         //storage = new Storage();
+        noteFile = new GameNoteFileManager();
         notes = new ArrayList<>();
         try {
-            Storage.openNoteFromFile(this);
+            noteFile.openNoteFromFile(this);
         } catch (NoteCorruptedFileException e) {
-            Storage.forceClearNote();
+            noteFile.forceClearNote();
             ui.printNoteErrorMessage(NOTE_CORRUPTED_MESSAGE);
         }
     }
@@ -80,25 +84,25 @@ public class NoteList {
 
     public void createNote(Note newNote) {
         notes.add(newNote);
-        Storage.saveNote(this);
+        noteFile.saveNote(this);
         ui.printSaveNoteMessage();
     }
 
     public void createNoteFromFile(Note newNote, int inputSceneIndex) {
         notes.add(newNote);
-        Storage.saveNote(this);
+        noteFile.saveNote(this);
     }
 
     public void deleteNote(int index) {
         notes.remove(index);
-        Storage.saveNote(this);
+        noteFile.saveNote(this);
         ui.printDeleteNoteMessage();
     }
 
 
     public void deleteAllNotes() {
         notes.removeAll(notes);
-        Storage.saveNote(this);
+        noteFile.forceClearNote();
         ui.printDeleteAllNoteMessage();
     }
 

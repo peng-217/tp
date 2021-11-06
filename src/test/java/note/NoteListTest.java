@@ -87,6 +87,7 @@ class NoteListTest {
         Note testTwo = new Note("test 2","TEST 2",2);
         notes.createNote(testOne);
         notes.createNote(testTwo);
+        System.out.println(notes.getIndexNote(0).getNoteSceneIndex());
         assertTrue(notes.getIndexNote(0).getNoteSceneIndex() == 1);
         assertTrue(notes.getIndexNote(1).getNoteSceneIndex() == 2);
     }
