@@ -11,15 +11,28 @@ The Great Detective is an interactive murder-mystery game.
   - Justification: This allows us to generate specific commands based on the user input.
 
 - `Feature`: Command class
-  - What it does: Each command class has an `execute` method executes the game logic and `exit` command to determine if the game has ended.
+  - What it does: The command class is an abstract class that has an `execute` method that executes the game logic and an `exit` command to determine if the game has ended.
   - Justification: It allows us to extend the abstract Command class to create subclasses that executes different game logic.
+
+- `Feature`: Ui class
+  - What it does: The Ui class prints the output to the terminal/command line to communicate with the user.
+  - Justification: We have a centralized system to communicate with the user to reduce code duplication.
+
 
 - `Code Contribution`: [RepoSense Link](https://nus-cs2113-ay2122s1.github.io/tp-dashboard/?search=Maifeng&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-25&tabOpen=true&tabType=zoom&zA=MaifengNg&zR=AY2122S1-CS2113-T14-1%2Ftp%5Bmaster%5D&zACS=103.0909090909091&zS=2021-09-25&zFS=Maifeng&zU=2021-11-05&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 - `Enhancements implemented`: 
+  - Refactor code base to follow more principles such as SLAP.
 - `Documentation`:
   - `User Guide`
-    - Added documentation for the features `/next`, `/exit`, `/back`, `/help`, `/restart`, `Investigating suspect`, `Investigating clue`, `Choosing the killer`
-    - Created the skeleton structure for the User Guide
+    - Added documentation for the features `/next`, `/exit`, `/back`, `/help`, `/restart`, `Investigating suspect`, `Investigating clue`, `Choosing the killer`.
   - `Developer Guide`
-    - Added documentation and UML diagram for `Parser` feature
-    - Created the skeleton structure for the Developer Guide
+    - Added documentation and UML diagram for `Parser` feature.
+  - `Java Docs`:
+    - Written non-trivial documentation for `Parser`, `Command`, `Investigation` class.
+    
+- `Contributions to team-based tasks`:
+  - Created the skeleton structure for the Developer Guide.
+  - Created the skeleton structure for the User Guide.
+
+- `Review/mentoring contributions`:
+  - Reviewed and merge some PRs requested from team members [#237](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/237) [#114](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/114) [#93](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/93)
