@@ -1,6 +1,8 @@
 # User Guide
 
-_The Great Detective_ is an application that allows players to enjoy the fun of role-playing and logical reasoning to find out the truth of a murder case. The player gets the chance to investigate in the case by gathering information about the events that lead to the murder and clues about the suspects. A great journey awaits. 
+_The Great Detective_ is an application that allows players to enjoy the fun of role-playing and logical reasoning to
+find out the truth of a murder case. The player gets the chance to investigate in the case by gathering information
+about the events that lead to the murder and clues about the suspects. A great journey awaits.
 
 >Symbols used in this guide:
 >* 💡 denotes important information.
@@ -10,13 +12,12 @@ _The Great Detective_ is an application that allows players to enjoy the fun of 
 ## Table of Contents
 * [Quick Start](#Quick Start)
 * [Features](#Features)
-  * [Changing the number of lines printed: `NUMBER`](#Changing the number of lines printed:`NUMBER`)
+  * [Changing narrative number of lines](#Changing narrative number of lines:`/narrative-lines #NUM`)
 * [FAQ](#FAQ)
 * [Command Summary](#Command Summary)
 
 
 ## Quick Start
-
 1. Ensure that you have Java `11` or above installed.
 2. Download the latest version of `TheGreatDetective` from [here](https://github.com/AY2122S1-CS2113-T14-1/tp/releases).
 3. Copy the `.jar` file to the folder you want to use as the home folder for your game.
@@ -45,10 +46,16 @@ I woke up and found myself dead. The Spirit Guide from the Hell told me that the
 >* Items with `...` after them can be used multiple times including zero times. 
   e.g. `[NAME]...` can be used as ` ` (i.e. 0 times), `Father`, `Father Ling` etc.
 
-### Changing the number of lines printed:`NUMBER`
-Changes the number of lines to be printed each time during story-telling part at the start of the game.
+### Changing narrative number of lines:`/narrative-lines #NUM`
+Changes the number of lines to be printed each time during story-telling narrative at the start of each scene.
 
-Format: `NUMBER`
+Format: `/narrative-lines #NUM`
+
+Example of usage:
+```
+$ /narrative-lines 10
+Successfully changed number of narrative lines to print each time to 10
+```
 
 ### Taking notes: `/note`
 This allows user to take note with title and content whenever they want.
