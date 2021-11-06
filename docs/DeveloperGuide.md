@@ -62,19 +62,20 @@ The Sequence Diagram below shows how the components interact with each other for
 ![High Level Sequence Diagram for main architecture](./main_architecture.png)
 
 ### Parser component
-**API:** Parser.java 
+**API:** `Parser.java` 
 
-The parser component is used to parse the input given by the user.
+The `parser` component is used to parse the input given by the user.
 
 The Sequence Diagram below illustrates the interactions within the 
 `Parser` component for the `getCommandFromUser("/next")` API call.
 
 ![Parser design](./ParserUML.png)
+
 The class diagram below shows how the parser interacts with the other classes
 
 ![Parser class diagram design](./ParserClassDiagram.png)
 
-How the parser work
+How the `parser` component works
 - When the user gives an input, the parser will the appropriate command for this input.
 - In the case of `/next` as the input, the NextCommand will be generated.
 - The NextCommand is inherits from the abstract class Command.
@@ -82,11 +83,11 @@ How the parser work
 - The abstract Command class requires SceneList, Ui and Investigate component as its dependencies.
 
 ### Note component
-**API:** Note.java
+**API:** `Note.java`
 
-The note component allows user to create / open / delete /search note. 
+The `note` component allows user to create / open / delete /search note. 
 
-How the note work
+How the `note` component works
 - When user want to take note, a note with title and content will be created and added 
   to note list.
 - Notes in the note list can be found by their titles and scene index.
@@ -95,10 +96,10 @@ How the note work
 ### UI component
 **API:** `Ui.java`
 
-The ui component communicates with the user via the terminal. Other component call methods of 
+The `ui` component communicates with the user via the terminal. Other component call methods of 
 ui to print output to terminal. 
 
-How the ui work
+How the `ui` component works
 - Print messages to terminal depending on the scene.
 - Print corresponding output to terminal according to input command.
 
@@ -107,14 +108,15 @@ How the ui work
 ### Command component
 **API:** `Command.java` 
 
-Here’s a (partial) class diagram of the `Command` component:
+The `command` component executes commands input by the user.
 
+Here’s a (partial) class diagram of the `Command` component:
 
 ![(partial class) diagram of Command component](./Command_Class_Diagram.png)
 
 
-How the `Command` componnet works:
-1. The user input is first parsed using the `Parse` component
+How the `Command` component works:
+1. The user input is first parsed using the `Parser` component
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., NextCommand), which is executed by `Duke`.
 3. The command can invoke the `Ui`, `Investigation` and `SceneList` when it is executed (e.g. to go to the next scene).
 4. Some commands such as next and note will update the `Storage`.
@@ -130,6 +132,7 @@ The Sequence Diagram [below](./next_command_sequence_diagram.png) illustrates wi
 **API:** `Investigation.java`
 
 Here’s a (partial) class diagram of the `Investigation` component:
+
 ![Investigation Class Diagram](./Investigation_Class_Diagram.png)
 
 The investigation class manages the investigation in each investigation scene.
@@ -154,7 +157,7 @@ at the end of the game.
 The scene class contains and produces the narrative for the scene.
 It also holds a suspectList, which contains the suspects and their respective clues.
 
-How the scene class work
+How the scene class works
 - Each scene has a scene type.
 - For each scene type, we interact differently from the user.
 
@@ -179,7 +182,7 @@ Then ```file.checkPath()``` will check for existing data file and creates a new 
 Then read the file and store the information into array list using ```ArrayList<String> content = file.readFile()```.
 Eventually, edit the content and rewrite to data file using ```file.rewriteFile(content)```
 ### Suspect component
-**API:** Suspect.java
+**API:** `Suspect.java`
 
 The `Suspect` class contains an `ArrayList` of the class `Clue`. 
 
@@ -248,9 +251,9 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 
 **Target user profile：**
 
-- enjoy the playing interactive game
-- enjoy mystery genre
-- enjoy reading
+- enjoys the playing interactive game
+- enjoys mystery genre
+- enjoys reading
 - wants to take a break from visual games
 
 
@@ -265,6 +268,7 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 | * * *|v1.0|new user|see all commands available|understand the game mechanics|
 | * * *|v1.0|user|investigate the suspects available|better understand the suspect|
 | * * *|v1.0|user|investigate the clues available|understand the story line better|
+| * * *|v1.0|user|review the clues that I have gathered|refresh my memory and make a more informed decision when choosing the suspect
 | * * *|v1.0|user|choose the suspect|see if I am able to solve the crime|
 | * * |v2.0|user|resume the game after exiting|continue the game instead of restarting|
 | * * |v2.0|user|write notes|look at the notes I have written for each scene and suspect|
@@ -272,7 +276,7 @@ method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect wi
 
 ### Use Cases
 
-(Use /next as an example)
+(Use `/next` as an example)
 
 Use case: Navigate to the next scene.
 
