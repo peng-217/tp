@@ -4,6 +4,14 @@
 
 ### Given below are my contributions to the project:
 
+* New Feature: Added the class `Scene`.
+  * What it does: Scene allows the organization of the investigative story, each containing the required Narrative to 
+  display and containing the suspects and clues available for each scenario.
+  * Justification: This organizes each part of the story into an existing scenario, where the user can then investigate 
+  and then interact with via looking into the suspects and clues after reading the narrative.
+  * Highlights: As everything contained within the scene do not directly interact with each other, it reduces coupling 
+  dependencies and increases abstraction.
+
 * New Feature: Added the class `SuspectListBuilder`.
   * What it does: Allows the creation of SuspectList to be more efficient, by reading a text file containing the clues
   and suspects and adding them into the specified SuspectList.
@@ -16,7 +24,7 @@
 * New Feature: Allowed the `/note` command to take in more parameters for faster typing.
     * What it does: Instead of just single word commands being inputted in note creation, 
   users can create, read, search, or delete a note in at least two lines.
-    * Justification: This would be more suited to fast-typers, and allow user-made notes to be more efficiently managed.
+    * Justification: This would be more suited to fast-typing, and allow user-made notes to be more efficiently managed.
     * Highlights: This enhancement allows a note command, which could take up to five separate inputs,
   to be created with two inputs instead.
 
