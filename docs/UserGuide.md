@@ -477,8 +477,6 @@ $ zack
 -----------
 
 I'm back on the current timeline.
-
-Sure enough, I guessed it wrongly.
 ```
 >❗ Users are not allowed to go to the next scene before guessing the killer.
 > 
@@ -488,14 +486,30 @@ Views the clues that have been gathered from investigations.
 
 Format: `/view [NAME]...`
 
-* NAME(s) provided must be one/more of the suspects' names.
+* `NAME(s)` provided must be one/more of the suspects' names.
 * If valid names are provided, only clues gathered that are specific to those suspects will be shown.
 
-Examples:
+Examples of usage:
 
+> 💡 To avoid spoiling the plot of the game, both of the examples provided below describe the scenario where no clues have been gathered by the user yet.
+> 
 * `/view` Displays all clues that have been gathered.
-* `/view Father` Displays clues that have been gathered and are specific to Father.
+```
+$ /view
+Preparing the clues that you have gathered...
 
+You have not gathered any clues for anyone.
+```
+* `/view Father Ling` Displays clues that have been gathered and are specific to Father and Ling respectively.
+```
+$ /view Father Ling
+Preparing the clues that you have gathered...
+
+<Father>
+You have not gathered any clues for Father.
+<Ling>
+You have not gathered any clues for Ling.
+```
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
