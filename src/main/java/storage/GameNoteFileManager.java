@@ -37,13 +37,6 @@ public class GameNoteFileManager {
             for (int i = 0; i < notes.getSize(); i++) {
                 String titleToWrite = notes.getIndexNote(i).getNoteTitle();
                 String contentToWrite = notes.getIndexNote(i).getNoteContent();
-//                noteWriter.write("scene " + notes.getIndexNote(i).getNoteSceneIndex());
-//                noteWriter.write("\n");
-//                noteWriter.write(titleToWrite);
-//                noteWriter.write("\n");
-//                noteWriter.write(contentToWrite);
-//                noteWriter.write("\n");
-//                noteWriter.write("End of this note.");
                 StringBuilder lines = new StringBuilder();
                 lines.append("scene ").append(notes.getIndexNote(i).getNoteSceneIndex()).append("\n");
                 lines.append(titleToWrite).append("\n");
@@ -65,9 +58,7 @@ public class GameNoteFileManager {
             while (lines.hasNext()) {
                 //String nextLine = scanNote.nextLine();
                 String nextLine = lines.nextLine();
-
                 if (!nextLine.startsWith("scene")) {
-                    System.out.println(nextLine);
                     throw new NoteCorruptedFileException(NOTE_CORRUPTED_MESSAGE);
                 }
                 int sceneIndex = Integer.parseInt(nextLine.substring(6));
@@ -105,18 +96,5 @@ public class GameNoteFileManager {
         } catch (DukeFileNotFoundException | IOException e) {
             e.printStackTrace();
         }
-        System.out.println("The note data file is corrputed! A new note data file will be created. ");
-//        new File("data").mkdir();
-//        new File("notes.txt").createNewFile();
-//        File saveNote = new File(saveDirectory,"notes.txt");
-//        try {
-//            FileWriter noteWriter = new FileWriter(saveNote);
-//            noteWriter.write("");
-//            noteWriter.flush();
-//            noteWriter.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            System.out.println("The corrupted file has been removed! The new file has been created!");
-//        }
     }
 }

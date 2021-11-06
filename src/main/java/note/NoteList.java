@@ -101,7 +101,7 @@ public class NoteList {
 
     public void deleteAllNotes() {
         notes.removeAll(notes);
-        noteFile.saveNote(this);
+        noteFile.forceClearNote();
         ui.printDeleteAllNoteMessage();
     }
 

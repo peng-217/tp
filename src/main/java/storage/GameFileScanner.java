@@ -17,7 +17,7 @@ public class GameFileScanner {
     }
 
     public String nextLine() {
-        String nextLine = lines.substring(0, lines.indexOf("\n") + 1);
+        String nextLine = lines.substring(0, lines.indexOf("\n"));
         lines = lines.substring(lines.indexOf("\n") + 1);
         return nextLine;
     }
