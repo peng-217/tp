@@ -42,9 +42,10 @@ public class Ui {
 
     private static final String INVALID_INPUT_GIVEN = "Invalid input! Type '/help' to see the available commands.";
     private static final String INVALID_NUMBER_SUSPECT =
-            "Invalid number! To select a suspect, please input its corresponding number.";
+            "Invalid suspect chosen! To select a suspect, please input the suspect's name "
+                    + "(or its corresponding number when investigating suspects).";
     private static final String INVALID_NUMBER_CLUE =
-            "Invalid number! To select a clue, please input its corresponding number.";
+            "Invalid clue chosen! To select a clue, please input its corresponding number.";
     private static final String ASK_FOR_CLUE_OR_SUSPECT_NUMBER =
             "To investigate suspects or clues, please input their corresponding number.";
     private static final String LIST_ALL_NOTES_MESSAGE = "Here is the note you want:";
@@ -63,7 +64,11 @@ public class Ui {
     private static final String ENTER_SUSPECT_NAME = "Please enter a valid suspect name!";
     private static final String NO_SEARCHED_CLUES_FOR_ALL = "You have not gathered any clues for anyone.";
     private static final String NO_SEARCHED_CLUES_FOR_ONE = "You have not gathered any clues for ";
-
+    private static final String QUIT_NOTE_MESSAGE = "Ok! You have successfully quit note process!";
+    private static final String INVALID_NOTE_CONTENT = "Hey! The note content cannot contain 'End of this note.'!"
+            + " And it cannot start with 'scene'!" + "\nPlease check again!";
+    private static final String INVALID_NOTE_TITLE = "Hey! The note title cannot contain 'End of this note.'!"
+            + " And it cannot start with 'scene'! Please check again!";
     private Scanner scanner;
 
     public void printEmptyLine() {
@@ -361,6 +366,18 @@ public class Ui {
         for (Clue clue : clues) {
             System.out.println(clue);
         }
+    }
+
+    public void printQuitNoteProcess() {
+        System.out.println(QUIT_NOTE_MESSAGE);
+    }
+
+    public void printInvalidNoteContent() {
+        System.out.println(INVALID_NOTE_CONTENT);
+    }
+
+    public void printInvalidNoteTitle() {
+        System.out.println(INVALID_NOTE_TITLE);
     }
 
     private void printNameHeaderForSearchedCluesList(String name) {

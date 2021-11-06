@@ -169,7 +169,7 @@ This allows the user to go the next scene.
 Example of usage: 
 
 ```
-/next
+$ /next
 ```
 
 ### Exiting the game: `/exit`
@@ -178,11 +178,17 @@ This allows the user to exit the game.
 Example of usage:
 
 ```
-/exit
-```
-```
+-------------------------
+| Scene 1 Investigation |
+-------------------------
+Who do you want to investigate?
+1. Father
+
+$ /exit
+
 Goodbye.
 ```
+>💡 Users can exit the game at any time they choose.
 
 ### Going back to the previous scene: `/back`
 This allows the user to return to the previous scene.
@@ -193,31 +199,35 @@ Example of usage:
 Scene 1 Investigation
 Who do you want to investigate?
 1. Father
-```
-```
-/back
-```
-```
+
+$ /back 
+
 ------------------
 | Who Killed Me? |
 ------------------
 
-I woke up and found myself dead. The Spirit Guide from the Hell told me that the only way to revive my soul is for me to find the murderer, eliminating the grudge in my soul. So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
+I woke up and found myself dead.
+
+The Spirit Guide from the Hell told me that the only way to revive my soul is for me to find the murderer, eliminating the grudge in my soul.
+
+So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
 
 ----------------
 | Instructions |
 ----------------
 
 Here are the commands that you can enter:
+"/narrative-lines #NUM" - change number of narrative lines print each time to #NUM
 "/help" - view this command list
-"/exit" - exit the game
 "/next" - move on to the next scene or the next stage of a scene
-"/note" - create a new note/ open a note/ delete a note
+"/note" - create a new note / open a note / delete a note
 "/view" - view all the clues that you have gathered
 "/restart" - restart the game from beginning
+"/exit" - exit the game
 
 Now, enter "/next" to start your journey to the truth.
 ```
+>💡 Users can use /back at any scene
 
 ### Viewing the list of commands available: `/help`
 This allows the user to view the list of commands available.
@@ -227,16 +237,18 @@ Format: `/help`
 Example of usage:
 
 ```
-/help
-```
-```
+$ /help
 Here are the list of commands available to you.
-/help
-/exit
-/next
-/note
-/view
-/restart
+"/narrative-lines #NUM" - change number of narrative lines print each time to #NUM
+"/help" - view this command list
+"/next" - move on to the next scene or the next stage of a scene
+"/back" - go back to previous scene
+"/note" - create a new note / open a note / delete a note
+"/view" - view all the clues that you have gathered
+"/restart" - restart the game from beginning
+Key in the index (e.g. 1, 2) in front of the suspect/clue you want to investigate
+To investigate suspects or clues, please input their corresponding number.
+"/exit" - exit the game
 ```
 
 ### Restarting the game: `/restart`
@@ -245,53 +257,60 @@ This allows the user to restart the game.
 Example of usage:
 
 ```
-/restart
-```
-```
+Scene 1 Investigation
+Who do you want to investigate?
+1. Father
+
+$ /restart
+
 ------------------
 | Who Killed Me? |
 ------------------
 
-I woke up and found myself dead. The Spirit Guide from the Hell told me that the only way to revive my soul is for me to find the murderer, eliminating the grudge in my soul. So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
+I woke up and found myself dead.
+
+The Spirit Guide from the Hell told me that the only way to revive my soul is for me to find the murderer, eliminating the grudge in my soul.
+
+So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
 
 ----------------
 | Instructions |
 ----------------
 
 Here are the commands that you can enter:
+"/narrative-lines #NUM" - change number of narrative lines print each time to #NUM
 "/help" - view this command list
-"/exit" - exit the game
 "/next" - move on to the next scene or the next stage of a scene
-"/note" - create a new note/ open a note/ delete a note
+"/note" - create a new note / open a note / delete a note
 "/view" - view all the clues that you have gathered
 "/restart" - restart the game from beginning
+"/exit" - exit the game
 
 Now, enter "/next" to start your journey to the truth.
 ```
+>💡 Users can restart the game at any point.
+
 
 ### Investigating suspect: `KEYWORD OR INDEX`
 Users can investigate the suspect using either the suspect's name or the suspect number.
 
 Format: `[/investigate] KEYWORD OR INDEX`
 
-- /investigate is an optional command for the user to use.
-- The user has to enter a valid suspect name or the suspect number.
-- Suspect name is not case-sensitive.
+Example of usage: `/investigate father`
 
-Example of usage:
+The following command below are valid commands to investigate father.
+- 1
+- father
+- /investigate father
+
 
 ```
 Scene 1 Investigation
 Who do you want to investigate?
 1. Father
-```
 
-The following command below are valid commands
-- 1
-- father
-- /investigate father
+$ /investigate father
 
-```
 Scene 1 Investigation
  - Father
 0. Go back to list of suspects
@@ -301,6 +320,11 @@ Scene 1 Investigation
 4. Text Message
 Enter "/next" to go to the next scene.
 ```
+>💡`/investigate` is an optional command for the user.
+>
+> 💡Suspect name is not case-sensitive.
+>
+> ❗The user has to enter a valid suspect name or the suspect number.
 
 
 ### Investigating clue: `INDEX`
@@ -321,11 +345,9 @@ Scene 1 Investigation
 3. Phone Call
 4. Text Message
 Enter "/next" to go to the next scene.
-```
-```
-1
-```
-```
+
+$ 1
+
 ------------------------------------------------
               Insurance Documents
                 __________
@@ -351,6 +373,7 @@ Scene 1 Investigation
 4. Text Message
 Enter "/next" to go to the next scene.
 ```
+>❗ Users can only use index to select the clue to investigate using index.
 
 ### Choosing the killer: `KEYWORD`
 This allows the user to choose the killer based on the user name.
@@ -363,21 +386,32 @@ Format: `KEYWORD`
 Example of usage:
 
 ```
+------------
+| Scene #4 |
+------------
+
+It is now time for you to choose your killer.
+
 Here are all the suspects
 1. Father
 2. Kevin
 3. Wendy
 4. Ling
 5. Zack
-Who do you think killed you?
-```
-```
-Wendy
-```
-```
-This is an ending for guessing correctly.
-```
 
+Who do you think killed you?
+$ zack
+
+-----------
+| The End |
+-----------
+
+I'm back on the current timeline.
+
+Sure enough, I guessed it wrongly.
+```
+>❗ Users are not allowed to go to the next scene before guessing the killer.
+> 
 ### Viewing checked clues: `/view`
 
 Views the clues that have been gathered from investigations.
@@ -407,6 +441,6 @@ Examples:
 | Restart | `/restart` |
 | Exit | `/exit` |
 | Back | `/back` |
-| Investigate | `[/investigate] INDEX or KEYWORD` e.g., `/investigate father` |
-| Choose Killer | `KEYWORD` e.g., `Father` |
+| Investigate | `[/investigate] INDEX or KEYWORD` e.g., `/investigate father`, `father`, `1` |
+| Choose Killer | `KEYWORD or INDEX` e.g., `Father`, `1` |
 | View Clues | `/view [NAME]...` e.g., `/view` `/view Father` `/view Father Ling` |

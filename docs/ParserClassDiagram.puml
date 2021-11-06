@@ -1,9 +1,10 @@
 @startuml
 skinparam componentStyle rectangle
 
-component Parser {
+component  {
+[Parser]
 [XYZCommand] as xyzCommand
-[<abstract> Command] as command
+[{abstract} Command] as command
 }
 
 component Ui {
