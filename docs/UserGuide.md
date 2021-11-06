@@ -60,10 +60,15 @@ Successfully changed number of narrative lines to print each time to 10
 ### Taking notes: `/note`
 This allows user to take note with title and content whenever they want.
 
+Example of usage:
+```
+$ /note
+```
+
 ### Searching notes with keywords: `keywords`
 This allows user to search the notes using keywords in title
 
-Examples of usage:
+Example of usage:
 $ /note
 ```
 Do you want to create a new note or open a existing note or delete a note?
@@ -180,6 +185,7 @@ Here are the list of notes available to you.
 ### Default note title
 
 If user does not specify the note tile, like he/she just type in a spacing or press enter, the program will give the note a default title with the format 'DEFAULT(i)', i is an integer.
+
 Example of usage:
 ```
 Here are the notes you have: 
@@ -199,17 +205,19 @@ $ /next
 ### Quit note function: `/quit`
 Allows user to quit note function.
 
-Example of usage:
+
 Example of usage:
 $ /note 1
 ```
-Please enter the title for this note (if you do not need title, type a spacing instead):
+Please enter the title for this note (if you do not need title, type a spacing or press enter instead):
 ```
-
 $ APPLE ON THE GROUND
+
 ```
 Please enter your note:
 ```
+
+
 $ /quit
 ```
 Ok! You have successfully quit note process!
