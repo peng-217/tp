@@ -11,8 +11,6 @@ import org.junit.jupiter.api.Test;
 import scene.SceneList;
 import scene.SceneListBuilder;
 import storage.GameDataFileDecoder;
-import storage.GameDataFileManager;
-import ui.Ui;
 
 public class ParserTest {
 
