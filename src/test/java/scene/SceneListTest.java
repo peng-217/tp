@@ -2,8 +2,8 @@ package scene;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import exception.DukeCorruptedFileException;
-import exception.DukeFileNotFoundException;
+import exceptions.DukeCorruptedFileException;
+import exceptions.DukeFileNotFoundException;
 import org.junit.jupiter.api.Test;
 import storage.GameDataFileDecoder;
 import ui.Ui;
@@ -44,7 +44,7 @@ public class SceneListTest {
 
         datafile.setCurrentSceneIndex(0);
         SceneList sceneList = SceneListBuilder.buildSceneList(datafile);
-
+        
         Scene currentScene = sceneList.getCurrentScene();
         currentScene.runScene();
     }
@@ -108,26 +108,18 @@ public class SceneListTest {
         sceneList.previousScene();
         assertEquals(0, sceneList.getCurrentSceneIndex());
     }
-
+  
     @Test
     public void testSceneNumber() throws FileNotFoundException,
-            DukeFileNotFoundException, DukeCorruptedFileException {
+            DukeCorruptedFileException, DukeFileNotFoundException {
+        Ui ui = new Ui();
         GameDataFileDecoder datafile = new GameDataFileDecoder("GameData.txt");
 
         datafile.setCurrentSceneIndex(0);
         SceneList sceneList = SceneListBuilder.buildSceneList(datafile);
 
-        int introductionSceneNumber = 0;
-        assertEquals(introductionSceneNumber, sceneList.getCurrentSceneIndex());
-
-        assertEquals(SceneTypes.INTRODUCTION_SCENE, sceneList.getCurrentSceneType());
-
-        sceneList.previousScene();
-        assertEquals(introductionSceneNumber, sceneList.getCurrentSceneIndex());
-
-        sceneList.setSceneNumberAfterSuspecting(true);
-        int killerGuessedCorrectlySceneNumber = 5;
-        assertEquals(killerGuessedCorrectlySceneNumber, sceneList.getCurrentSceneIndex());
-
+        Scene currentScene = sceneList.getCurrentScene();
+        currentScene.runScene();
     }
+
 }

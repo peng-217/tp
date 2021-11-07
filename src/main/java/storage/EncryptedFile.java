@@ -1,7 +1,7 @@
 package storage;
 
-import exception.DukeCorruptedFileException;
-import exception.DukeFileNotFoundException;
+import exceptions.DukeCorruptedFileException;
+import exceptions.DukeFileNotFoundException;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -14,7 +14,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.File;
 import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 
 public class EncryptedFile {
     String fileName;

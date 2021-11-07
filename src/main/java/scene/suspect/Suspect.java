@@ -24,7 +24,7 @@ public class Suspect {
     }
 
     /**
-     * Marks the clue specified as checked.
+     * Sets the clue specified as checked.
      *
      * @param clue Clue to be set as checked.
      */

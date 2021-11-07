@@ -1,7 +1,7 @@
 package scene;
 
-import exception.DukeCorruptedFileException;
-import exception.DukeFileNotFoundException;
+import exceptions.DukeCorruptedFileException;
+import exceptions.DukeFileNotFoundException;
 import exceptions.MissingSceneFileException;
 import scene.narrative.Narrative;
 import storage.GameDataFileDecoder;

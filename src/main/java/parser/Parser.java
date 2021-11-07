@@ -126,7 +126,7 @@ public class Parser {
     }
 
     /**
-     * Parse the input given by the user if the user entered numbers only.
+     * Parses the input given by the user if the user entered numbers only.
      *
      * @param userInput The input given by the user.
      * @throws NumberFormatException If user enters a number that is too large/small.
