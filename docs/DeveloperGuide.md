@@ -17,11 +17,13 @@
   * [Local Game Data Storage](#local-game-data-storage)
   * [Taking Notes For Specified Scene](#taking-notes-for-specified-scene)
   * [SuspectListBuild](#suspectlistbuilder)
-* [Product Scope](#product-scope)
-* [User Stories](#user-stories)
-* [Non-Functional Requirements](#non-functional-requirements)
-* [Glossary](#glossary)
-* [Instructions for manual testing](#instructions-for-manual-testing)
+* [Appendix](#appendix)
+  * [Product Scope](#product-scope)
+  * [User Stories](#user-stories)
+  * [Use Cases](#use-cases) 
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+  * [Instructions for manual testing](#instructions-for-manual-testing)
 
 ## Acknowledgements
 
@@ -63,18 +65,18 @@ The Sequence Diagram below shows how the components interact with each other for
 ### Parser component
 **API:** `Parser.java` 
 
-The `parser` component is used to parse the input given by the user.
+The `Parser` component is used to parse the input given by the user.
 
 The Sequence Diagram below illustrates the interactions within the 
 `Parser` component for the `getCommandFromUser("/next")` API call.
 
 ![Parser design](./ParserUML.png)
 
-The class diagram below shows how the parser interacts with the other classes
+The class diagram below shows how the `Parser` interacts with the other classes
 
 ![Parser class diagram design](./ParserClassDiagram.png)
 
-How the `parser` component works
+How the `Parser` component works
 - When the user gives an input, the parser will the appropriate command for this input.
 - In the case of `/next` as the input, the NextCommand will be generated.
 - The NextCommand inherits from the abstract class Command.
@@ -84,10 +86,10 @@ How the `parser` component works
 ### Note component
 **API:** `Note.java`
 
-The `note` component allows user to create / open / delete /search note. 
+The `Note` component allows user to create / open / delete /search note. 
 
-How the `note` component works
-- When user want to take note, a note with title and content will be created and added 
+How the `Note` component works
+- When user wants to take note, a note with title and content will be created and added 
   to note list.
 - Notes in the note list can be found by their titles and scene index.
 - Unwanted notes can be deleted.
@@ -96,10 +98,10 @@ How the `note` component works
 ### UI component
 **API:** `Ui.java`
 
-The `ui` component communicates with the user via the terminal. Other component call methods of 
+The `Ui` component communicates with the user via the terminal. Other component call methods of 
 ui to print output to terminal. 
 
-How the `ui` component works
+How the `Ui` component works
 - Print messages to terminal depending on the scene.
 - Print corresponding output to terminal according to input command.
 
@@ -108,7 +110,7 @@ How the `ui` component works
 ### Command component
 **API:** `Command.java` 
 
-The `command` component executes commands input by the user.
+The `Command` component executes commands input by the user.
 
 Here’s a (partial) class diagram of the `Command` component:
 
@@ -154,10 +156,10 @@ at the end of the game.
 ### Scene component
 **API:** `Scene.java`
 
-The scene class contains and produces the narrative for the scene.
+The `Scene` class contains and produces the narrative for the scene.
 It also holds a suspectList, which contains the suspects and their respective clues.
 
-How the scene class works
+How the `Scene` class works
 - Each scene has a scene type.
 - For each scene type, we interact differently from the user.
 
@@ -171,6 +173,7 @@ See below for example.
 
 ### Storage component
 **API:** `Storage.java`
+
 The local Game Data Storage feature allows users to save the current game progress and resume the saved progress in the Future.
 It is facilitated by ```java.io.File``` and ```java.io.FileWriter```.
 
@@ -193,7 +196,7 @@ Eventually, edit the content and rewrite to data file using ```file.rewriteFile(
 
 The `Suspect` class contains an `ArrayList` of the class `Clue`. 
 
-How the suspect class work:
+How the `Suspect` class works:
 
   * Different suspects in a particular scene are stored in the `SuspectList` class.
   * Suspects are stored via a `LinkedHashMap<String, Suspect>`, with the string being the suspect's name.
@@ -254,21 +257,23 @@ and how many clues there are. It will first add the suspects from the file into 
 via the method `addSuspect(String suspectName, Suspect suspect)`, and then the clues via the 
 method `addClueForSuspect(String suspectName, Clue clueToAdd)` to the suspect with the corresponding `suspectName`.
 
-## Product Scope
+## Appendix
+
+### Product Scope
 
 **Target user profile：**
 
-- enjoys the playing interactive game
-- enjoys mystery genre
-- enjoys reading
-- wants to take a break from visual games
+- Enjoys the playing interactive game
+- Enjoys mystery genre
+- Enjoys reading
+- Wants to take a break from visual games
 
 
 **Value proposition：**
 
-- Provide an alternative game for users to exercise creative thinking
+- Provides an alternative game for users to exercise creative thinking
 
-## User Stories
+### User Stories
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 |Priority|Version| As a ... | I want to ... | So that I can ...|
@@ -281,6 +286,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |`* *`|v2.0|user|resume the game after exiting|continue the game instead of restarting|
 |`* *`|v2.0|user|write notes|look at the notes I have written for each scene and suspect|
 |`*`|v2.0|user|go to previous scene|look at the narrative for the previous scene|
+|`* *`|v2.1|user|change the number of lines displayed for the narrative|read the narrative without scrolling too much|
+|`*`|v2.1|user who guessed the wrong killer|have the option to restart the game without knowing the actual killer|replay the game|
 
 ### Use Cases
 
@@ -294,14 +301,14 @@ Use case: Navigate to the next scene.
 4. NextCommand returns a boolean by self-invocating the `.exit()` method.
 5. If it is the last scene of the game, `.exit()` returns true else false.
 
-## Non Functional Requirements
+### Non Functional Requirements
 1. The game should work as long as java 11 is installed on the local machine.
 2. A working keyboard to play the game and a monitor to read the text.
 
-## Glossary
+### Glossary
 - Mainstream OS: Windows, Mac OS X, Unix, Linux
 
-## Instructions for manual testing
+### Instructions for manual testing
 The instructions below give a brief overview on how to test the functions manually.
 - Fork the entire repo from GitHub & clone to local machine.
 - Configure IDE with **JDK 11**.

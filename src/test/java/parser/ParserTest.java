@@ -21,6 +21,8 @@ public class ParserTest {
         GameDataFileDecoder dataFile = new GameDataFileDecoder("Data.txt");
         SceneList sceneList = SceneListBuilder.buildSceneList(dataFile);
 
+        sceneList.resetAllScenes();
+
         sceneList.updateSceneNumber();
         String suspectFather = parser.getSuspectNameFromIndex(sceneList.getCurrentScene(), 1);
         assertEquals("Father", suspectFather);
@@ -35,5 +37,10 @@ public class ParserTest {
         assertEquals("Zack", suspectZack);
 
         assertThrows(InvalidInputException.class, () -> parser.getCommandFromUser(""));
+
+        assertThrows(InvalidInputException.class, () -> parser.getCommandFromUser("/investigate -1"));
+
+        assertThrows(NumberFormatException.class,
+            () -> parser.getCommandFromUser("/investigate 99999999999999999999999999"));
     }
 }
