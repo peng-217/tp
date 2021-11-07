@@ -69,6 +69,7 @@ public class Ui {
             + " And it cannot start with 'scene'!" + "\nPlease check again!";
     private static final String INVALID_NOTE_TITLE = "Hey! The note title cannot contain 'End of this note.'!"
             + " And it cannot start with 'scene'! Please check again!";
+    private static final String REINPUT_MESSAGE = "Please type in the correct note command:";
     private Scanner scanner;
 
     public void printEmptyLine() {
@@ -166,7 +167,7 @@ public class Ui {
         System.out.println("scene " + notes.getIndexNote(orderIndex - 1).getNoteSceneIndex());
         System.out.println(notes.getIndexNote(orderIndex - 1).getNoteTitle());
         System.out.println(notes.getIndexNote(orderIndex - 1).getNoteContent());
-        System.out.println(LINE_SEPARATOR);
+        System.out.println();
     }
 
     public boolean printOpenNoteMessage(NoteList notes) {
@@ -353,6 +354,10 @@ public class Ui {
 
     public void printNoteDeleteErrorMessage() {
         System.out.println("Invalid index! Please input a number corresponding to one of the notes shown above.");
+    }
+
+    public void printReinputMessage() {
+        System.out.println(REINPUT_MESSAGE);
     }
 
 
