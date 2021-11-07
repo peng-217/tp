@@ -3,7 +3,6 @@ package parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import command.ExitCommand;
 import exception.DukeCorruptedFileException;
 import exception.DukeFileNotFoundException;
 import exceptions.InvalidInputException;
@@ -17,8 +16,7 @@ public class ParserTest {
 
     // test failed invocation of display method of an Narrative object
     @Test
-    public void parserTest() throws MissingSceneFileException, DukeCorruptedFileException,
-            DukeFileNotFoundException, InvalidInputException {
+    public void parserTest() throws MissingSceneFileException, DukeCorruptedFileException, DukeFileNotFoundException {
         Parser parser = new Parser();
         GameDataFileDecoder dataFile = new GameDataFileDecoder("Data.txt");
         SceneList sceneList = SceneListBuilder.buildSceneList(dataFile);
