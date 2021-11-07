@@ -94,6 +94,7 @@ How the `note` component works
 - Notes in the note list can be found by their titles and scene index.
 - Unwanted notes can be deleted.
 
+![UML diagram for Note](./Note_UML.png)
 ### UI component
 **API:** `Ui.java`
 
