@@ -28,7 +28,7 @@ The Great Detective is an interactive murder-mystery game.
     - Added documentation for the features `/next`, `/exit`, `/back`, `/help`, `/restart`, `Choosing a suspect`, `Investigating clue`.
   - `Developer Guide`
     - Added documentation and UML diagram for `Parser` feature.
-  - `Java Docs`
+  - `Javadocs`
     - Written non-trivial documentation for `Parser`, `Command`, `Investigation` class.
     
 - `Contributions to team-based tasks`:
