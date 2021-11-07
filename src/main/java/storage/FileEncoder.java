@@ -17,9 +17,8 @@ public class FileEncoder extends EncryptedFile {
         super(fileName);
     }
 
-    public void encodeFile(String line) throws DukeFileNotFoundException {
+    public void encodeFile(String line) throws DukeFileNotFoundException, DukeCorruptedFileException {
         try {
-
             byte[] text = line.getBytes(StandardCharsets.UTF_8);
 
             desCipher.init(Cipher.ENCRYPT_MODE, myDesKey);
@@ -32,6 +31,7 @@ public class FileEncoder extends EncryptedFile {
         } catch (IOException e) {
             throw new DukeFileNotFoundException();
         } catch (BadPaddingException | InvalidKeyException | IllegalBlockSizeException e) {
+            generateNewKey();
             System.out.println(e.getMessage());
         }
     }
