@@ -21,6 +21,8 @@
 '":NextCommand" -> ":NextCommand": exit()
 '":NextCommand" -> ":Parser"
 
+hide footbox
+
 -> ":Parser"
 activate ":Parser"
 

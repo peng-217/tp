@@ -18,7 +18,7 @@ public class Ui {
     private static final String WELCOME_MESSAGE = "Welcome to the " + GAME_NAME + "!\n";
     private static final String GOODBYE_MESSAGE = "Goodbye.";
     private static final String LIST_OF_COMMAND_AVAILABLE_MESSAGE =
-            "Here are the list of commands available to you.";
+            "Here are the list of commands available to you.\nYou can also check out this webpage for our user guide:\nhttps://ay2122s1-cs2113-t14-1.github.io/tp/UserGuide.html";
     private static final String LIST_OF_NOTES_MESSAGE =
             "Here are the list of notes available to you.";
     private static final String LINE_SEPARATOR = "==============================";
@@ -30,13 +30,14 @@ public class Ui {
             "Ok! The new note has been successfully created and saved.";
     private static final String WHO_KILLED_YOU = "Who do you think killed you?";
     private static final String NARRATIVE_LINES_COMMAND =
-            "\"/narrative-lines #NUM\" - change number of narrative lines print each time to #NUM";
+            "\"/narrative-lines NUM\" - change number of narrative lines print each time to NUM";
     private static final String HELP_COMMAND = "\"/help\" - view this command list";
     private static final String EXIT_COMMAND = "\"/exit\" - exit the game";
     private static final String NEXT_COMMAND = "\"/next\" - move on to the next scene or the next stage of a scene";
     private static final String BACK_COMMAND = "\"/back\" - go back to previous scene";
     private static final String NOTE_COMMAND = "\"/note\" - create a new note / open a note / delete a note";
     private static final String VIEW_COMMAND = "\"/view\" - view all the clues that you have gathered";
+    private static final String QUIT_COMMAND = "\"/quit\" - quit the note function";
     private static final String RESTART_COMMAND = "\"/restart\" - restart the game from beginning";
 
     private static final String INVALID_INPUT_GIVEN = "Invalid input! Type '/help' to see the available commands.";
@@ -93,16 +94,17 @@ public class Ui {
 
     public void printListOfCommands() {
         System.out.println(LIST_OF_COMMAND_AVAILABLE_MESSAGE);
-        System.out.println(NARRATIVE_LINES_COMMAND);
         System.out.println(HELP_COMMAND);
+        System.out.println(NARRATIVE_LINES_COMMAND);
         System.out.println(NEXT_COMMAND);
         System.out.println(BACK_COMMAND);
-        System.out.println(NOTE_COMMAND);
         System.out.println(VIEW_COMMAND);
+        System.out.println(NOTE_COMMAND);
+        System.out.println(QUIT_COMMAND);
         System.out.println(RESTART_COMMAND);
+        System.out.println(EXIT_COMMAND);
         System.out.println(CHOOSE_SUSPECT_OR_CLUE_INDEX);
         System.out.println(ASK_FOR_CLUE_OR_SUSPECT_NUMBER);
-        System.out.println(EXIT_COMMAND);
     }
 
     public void printListOfClues(ArrayList<Clue> clues) {

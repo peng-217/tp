@@ -1,6 +1,6 @@
-##Wu Luoyu's Project Portfolio Page
+# Wu Luoyu's Project Portfolio Page
 
-### Project: The Great Detective
+## Project: The Great Detective
 
 _The Great Detective_ is a desktop CLI application that allows players to enjoy the fun of role-playing and logical reasoning to find out the truth of a murder case. The player gets the chance to investigate in the case by gathering information about the events that lead to the murder and clues about the suspects.
 
@@ -51,4 +51,4 @@ Given below are my contributions to the project.
     * Added descriptions of the overall architecture of the application, including the design of an overall architecture diagram and an overall sequence diagram. (Pull requests [\#103](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/103) [\#127](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/127) [\#225](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/225))
     * Added implementation details of the display checked clues feature. (Pull request [\#64](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/64))
     * Added descriptions of the design of the command component, including a class diagram and a sequence diagram for the user input `/next` as an example. (Pull requests [\#94](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/94) [\#222](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/222))
-    * Made cosmetic changes. (Pull request [\#236](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/236))
+    * Made cosmetic changes. (Pull request [\#236](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/236) [\#258](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/258))
