@@ -71,34 +71,50 @@ Example of usage:
 
 ```
 $ /narrative-lines 10
+
 Successfully changed number of narrative lines to print each time to 10
 ```
 
 ### Taking notes: `/note`
 Allows user to take note with title and content whenever they want.
 
+Format: `/note [INDEX]`
+
 Example of usage:
+
+* To create a note, enter `/note` followed by `1`
 
 ```
 $ /note
+
+Do you want to create a new note or open an existing note or delete note?
+Please type in:
+'1' for create a new note.
+'2' for open an existing note.
+'3' for delete notes.
+
+$ 1
+
+Please enter the title for this note (if you do not need title, type a spacing instead):
 ```
+
+* To create a note using shortcut, enter `/note 1`
+```
+$ /note 1
+
+Please enter the title for this note (if you do not need title, type a spacing instead):
+```
+
+>💡 Use index for shortcuts.
+> 
+> 💡 If no title is provided, a default title will be provided for you. E.g. DEFAULT(1)
 
 ### Searching notes with keywords: `KEYWORDS`
 Allows user to search the notes using keywords in title
 
 Example of usage:
 ```
-$ /note
-
-Do you want to create a new note or open a existing note or delete a note?
-Please type in:
-'1' for create a new note.
-'2' for open an existing note.
-'3' for delete notes.
-
-
-$ 2
-
+$ /note 2
 
 Here are the list of notes available to you.
 1. BOOKSHELF
@@ -106,21 +122,15 @@ Here are the list of notes available to you.
 3. LIVING ROOM WITH BLOOD
 Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
 
-
 $ search
-
 
 Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
 
-
 $ keyword
-
 
 Please enter keywords
 
-
 $ BLOOD
-
 
 Here are the list of notes found given keywords:
 1. scene 2
@@ -137,37 +147,29 @@ Example of usage:
 ```
 $ /note
 
-
 Do you want to create a new note or open a existing note or delete a note?
 Please type in:
 '1' for create a new note.
 '2' for open an existing note.
 '3' for delete notes.
 
-
 $ 2
-
 
 Here are the list of notes available to you.
 1. BOOKSHELF
 2. CAR
 3. LIVING ROOM WITH BLOOD
-   Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
+Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
  
-
 $ search
 
-   Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
-
+ Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
 
 $ index
    
-
-   Please enter scene index:
-  
+ Please enter scene index:
 
 $ 2
-
 
    Here are the list of notes found given keywords:
 1. scene 2
@@ -186,25 +188,38 @@ $ 2
 ### Shortcuts for note-taking
 
 An available shortcut is to type the command after `/note`.
-For example, you can input `/note create` to bring up the note creation prompt.
+For example, you can input `/note 1` to bring up the note creation prompt.
 Example of usage:
 
-* Typing `/note search` would immediately bring up the prompt:
+* Typing `/note 2` would immediately bring up the prompt:
 
 ```
 Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
 ```
 
-* Typing `/note open` would immediately bring up the prompt:
+* Typing `/note 2` then `open 1` would immediately bring up the first note in the list:
 
 ```
-Here are the list of notes available to you.
-1. BOOKSHELF
-2. CAR
-3. LIVING ROOM WITH BLOOD
-   Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
+Here is the note you want:
+scene 2
+BOOKSHELF
+There area many books on the bookshelf.
 ```
 
+* Typing `/note 2` then `search index 2` would immediately bring up the scenes:
+
+```
+Here are the list of notes found given keywords:
+1. scene 2
+   BOOKSHELF
+   There are many books on the bookshelf.
+2. scene 2
+   CAR
+
+3. scene 2
+   LIVING ROOM WITH BLOOD
+   There is blood in living room, so I think suspect is Wendy.
+```
 
 ### Moving to the next scene: `/next`
 This allows the user to go the next scene.
@@ -248,15 +263,14 @@ Please enter the title for this note (if you do not need title, type a spacing o
 
 $ APPLE ON THE GROUND
 
-
 Please enter your note:
 
 $ /quit
 
 Ok! You have successfully quit note process!
 ```
->💡 Users can quit note function at any time they choose.
 
+>💡 Users can quit note function at any time they choose.
 
 ### Exiting the game: `/exit`
 Exits the game.
@@ -514,6 +528,7 @@ Examples of usage:
 
 ```
 $ /view
+
 Preparing the clues that you have gathered...
 
 You have not gathered any clues for anyone.
@@ -523,6 +538,7 @@ You have not gathered any clues for anyone.
 
 ```
 $ /view father ling
+
 Preparing the clues that you have gathered...
 
 <Father>
