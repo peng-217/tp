@@ -48,6 +48,6 @@ user.
   - `User Guide`:
   Added documentation for the features `/note`, `/quit`, `keywords`, `index`
   - `Developer Guide`:
-  Added documentation and UML diagram for 'Ui' class
+  Added documentation and UML diagram for 'Ui' component and 'Note' component
   - `Javadoc`:
   Added Javadoc for all note-related class.
