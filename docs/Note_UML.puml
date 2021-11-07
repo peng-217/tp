@@ -9,8 +9,12 @@ activate ":GameNoteFileManager"
 ":GameNoteFileManager"<-":NoteList": forceClearNote()
 ":GameNoteFileManager" --> ":NoteList"
 activate ":NoteList"
-":NoteList" -> ":Note"
 ":NoteList" -> ":NoteList" :getSize()
-create
+":NoteList" -> ":Note":createNote(newNote:Note)
+activate ":Note"
+":NoteList" -> ":GameNoteFileManager":deleteNote(index:int)
+":NoteList" -> ":GameNoteFileManager":deleteAllNotes()
+":NoteList" -> ":NoteList": processNote(sceneList
+
 
 @enduml
