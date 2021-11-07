@@ -172,24 +172,28 @@ See below for example.
 
 
 ### Storage component
-**API:** `Storage.java`
+**API:** `EncryptedFile.java`
 
 The local Game Data Storage feature allows users to save the current game progress and resume the saved progress in the Future.
-It is facilitated by ```java.io.File``` and ```java.io.FileWriter```.
+It is facilitated by ```java.io.File``` and ```java.io.FileWriter```. Moreover, it uses "DES" encryption to ensure that the users
+will not be able to modify the game file to cheat the progress. It is facilitated by ```javax.crypto.Cipher```, ```javax.crypto.SecretKeyand``` and ```javax.crypto.KeyGenerator```.
+
+
+
+```GameFileManager``` extends ```EncryptedFile``` It has one ```decoder:FilrDecoder``` and ```encoder:FileEncoder```, it implements the following operations
+- ```GameFileManager#writeFile()``` -- Takes ```lines:String``` as the content and write the content into files. 
+- ```GameFileManager#readFile()``` -- Reads all the lines in the data files and store the content into a ```String``` type, then close the file.
 
 ![Storage Class Diagram](./StorageClassDiagram.png)
 
-It implements the following operations
-- ```Storage#checkPath()``` -- Checks if there is a valid path to the data file, and creates a new data file if the data file is missing or hte path is invalid.
-- ```Storage#readFile()``` -- Reads all the lines in the data files and store the information into a ```ArrayList<String>``` type Array List, then close the file.
-- ```Storage#rewriteFile()``` -- Erase the content of the data file and rewrite from the start, then save and close the file.
+```GameDataFileDecoder``` extends ```GameFileManager```, it implements the following operations
+- ```GameDataFileDecoder#setCurrentIndex()``` -- Takes ```index:int``` as the index, and write to the file with a factory format.
+- ```GameDataFileDecoder#getCurrentIndex()``` -- Read the content from file and extract the index from the factory format.
+- ```GameDataFileDecoder#isValidFile()``` -- Read the content from file and check the content against the factory format, and returns true if the format is correct.
 
 ![Storage Sequence Diagram](./GetIndexSequenceDiagram.png)
 
-At first ```Storage file = new Storage("name.txt")```, initialise the ```Storage``` class type with the name of the file.
-Then ```file.checkPath()``` will check for existing data file and creates a new data file if the path ```./Data/name.txt```is invalid.
-Then read the file and store the information into array list using ```ArrayList<String> content = file.readFile()```.
-Eventually, edit the content and rewrite to data file using ```file.rewriteFile(content)```
+
 
 ### Suspect component
 **API:** `Suspect.java`
