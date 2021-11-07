@@ -2,6 +2,7 @@
 'https://plantuml.com/sequence-diagram
 
 autonumber
+hide footbox
 
 ":GameNoteFileManager"<-"notes:NoteList": openNoteFromFile()
 activate "notes:NoteList"
