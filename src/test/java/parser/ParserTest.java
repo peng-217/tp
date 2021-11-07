@@ -27,7 +27,6 @@ public class ParserTest {
         String suspectFather = parser.getSuspectNameFromIndex(sceneList.getCurrentScene(), 1);
         assertEquals("Father", suspectFather);
 
-
         sceneList.updateSceneNumber();
         String suspectKevin = parser.getSuspectNameFromIndex(sceneList.getCurrentScene(), 2);
         assertEquals("Kevin", suspectKevin);
@@ -37,8 +36,6 @@ public class ParserTest {
         assertEquals("Zack", suspectZack);
 
         assertThrows(InvalidInputException.class, () -> parser.getCommandFromUser(""));
-
-        assertThrows(InvalidInputException.class, () -> parser.getCommandFromUser("/investigate -1"));
 
         assertThrows(NumberFormatException.class,
             () -> parser.getCommandFromUser("/investigate 99999999999999999999999999"));

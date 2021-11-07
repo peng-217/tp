@@ -262,25 +262,6 @@ public class Parser {
         return arg.substring(0, 1).toUpperCase(Locale.ROOT) + arg.substring(1).toLowerCase(Locale.ROOT);
     }
 
-    public boolean validSuspectNameGiven(String suspectedKiller) {
-        String suspectedKillerLowerCase = suspectedKiller.toLowerCase();
-        switch (suspectedKillerLowerCase) {
-        case SUSPECT_WENDY_LOWER:
-        case SUSPECT_FATHER_LOWER:
-        case SUSPECT_KEVIN_LOWER:
-        case SUSPECT_LING_LOWER:
-        case SUSPECT_ZACK_LOWER:
-            return true;
-        default:
-            return false;
-        }
-    }
-
-    public static int parseNoteSceneIndex(String userInput) {
-        String[] userInputSplit = userInput.split(INPUT_SPLITTER);
-        return Integer.parseInt(userInputSplit[NOTE_SCENE_INDEX]);
-    }
-
     public static String[] parseOpenNoteCommand(String userInput) {
         String[] userInputInArray = userInput.split(" ", 3);
         return userInputInArray;

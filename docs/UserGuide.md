@@ -214,11 +214,11 @@ $ father
 I'm back on the current timeline.
 ```
 
->💡`/investigate` is an optional command for the user.
+> 💡 `/investigate` is an optional command for the user.
 >
-> 💡Suspect name is not case-sensitive.
+> 💡 Suspect name is not case-sensitive.
 >
-> ❗The user has to enter a valid suspect name or the suspect number.
+> ❗ The user has to enter a valid suspect name or the suspect number.
 >
 > ❗ Users are not allowed to go to the next scene before guessing the killer.
 
@@ -270,7 +270,7 @@ Scene 1 Investigation
 Enter "/next" to go to the next scene.
 ```
 
->❗ Users can only use index to select the clue to investigate.
+> ❗ Users can only use index to select the clue to investigate.
 
 ### Viewing checked clues: `/view`
 
@@ -309,7 +309,7 @@ You have not gathered any clues for Father.
 You have not gathered any clues for Ling.
 ```
 
->💡Suspect name is not case-sensitive.
+> 💡 Suspect name is not case-sensitive.
 
 ### Using note functions: `/note`
 Creates, opens or deletes a note.
@@ -454,7 +454,7 @@ $ /quit
 Ok! You have successfully quit note process!
 ```
 
->💡 Users can quit note function at any time they choose.
+> 💡 Users can quit note function at any time they choose.
 
 
 ### Restarting the game: `/restart`
@@ -482,7 +482,7 @@ The Spirit Guide from the Hell told me that the only way to revive my soul is fo
 So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
 ```
 
->💡 Users can restart the game at any point.
+> 💡 Users can restart the game at any point.
 
 
 ### Exiting the game: `/exit`

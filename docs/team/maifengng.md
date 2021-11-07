@@ -16,7 +16,7 @@ The Great Detective is an interactive murder-mystery game.
 
 - `Feature`: Ui class
   - What it does: The Ui class prints the output to the terminal/command line to communicate with the user.
-  - Justification: We have a centralized system to communicate with the user to reduce code duplication.
+  - Justification: It allows us to have a centralized system to communicate with the user to reduce code duplication.
 
 
 - `Code Contribution`: [RepoSense Link](https://nus-cs2113-ay2122s1.github.io/tp-dashboard/?search=Maifeng&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-25&tabOpen=true&tabType=zoom&zA=MaifengNg&zR=AY2122S1-CS2113-T14-1%2Ftp%5Bmaster%5D&zACS=103.0909090909091&zS=2021-09-25&zFS=Maifeng&zU=2021-11-05&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
@@ -25,10 +25,10 @@ The Great Detective is an interactive murder-mystery game.
   - Implemented feature to allow users to investigate a suspect in multiple ways. Instead of only being able to choose a suspect using a suspect's index, we can now investigate using the suspect name or even use the /investigate command.
 - `Documentation`:
   - `User Guide`
-    - Added documentation for the features `/next`, `/exit`, `/back`, `/help`, `/restart`, `Investigating suspect`, `Investigating clue`, `Choosing the killer`.
+    - Added documentation for the features `/next`, `/exit`, `/back`, `/help`, `/restart`, `Choosing a suspect`, `Investigating clue`.
   - `Developer Guide`
     - Added documentation and UML diagram for `Parser` feature.
-  - `Java Docs`:
+  - `Java Docs`
     - Written non-trivial documentation for `Parser`, `Command`, `Investigation` class.
     
 - `Contributions to team-based tasks`:
