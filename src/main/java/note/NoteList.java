@@ -4,8 +4,7 @@ package note;
 
 import java.util.ArrayList;
 
-import exception.DukeCorruptedFileException;
-import exception.NoteCorruptedFileException;
+import exceptions.NoteCorruptedFileException;
 import exceptions.InvalidNoteException;
 import parser.Parser;
 import storage.GameNoteFileManager;

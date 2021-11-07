@@ -1,6 +1,6 @@
 //@@author peng-217
 
-package exception;
+package exceptions;
 
 public class DukeException extends Exception {
 

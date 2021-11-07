@@ -1,7 +1,7 @@
 package storage;
 
-import exception.DukeCorruptedFileException;
-import exception.DukeFileNotFoundException;
+import exceptions.DukeCorruptedFileException;
+import exceptions.DukeFileNotFoundException;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;

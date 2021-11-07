@@ -1,7 +1,7 @@
 package storage;
 
-import exception.DukeCorruptedFileException;
-import exception.DukeFileNotFoundException;
+import exceptions.DukeCorruptedFileException;
+import exceptions.DukeFileNotFoundException;
 
 public class GameDataFileDecoder extends GameFileManager {
     private static final int MAX_SCENE_NUMBER = 3;

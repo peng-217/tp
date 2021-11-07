@@ -2,14 +2,13 @@
 
 package storage;
 
-import exception.DukeCorruptedFileException;
-import exception.DukeFileNotFoundException;
-import exception.NoteCorruptedFileException;
+import exceptions.DukeCorruptedFileException;
+import exceptions.DukeFileNotFoundException;
+import exceptions.NoteCorruptedFileException;
 import note.NoteList;
 import note.Note;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 
