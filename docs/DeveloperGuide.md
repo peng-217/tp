@@ -63,18 +63,18 @@ The Sequence Diagram below shows how the components interact with each other for
 ### Parser component
 **API:** `Parser.java` 
 
-The `parser` component is used to parse the input given by the user.
+The `Parser` component is used to parse the input given by the user.
 
 The Sequence Diagram below illustrates the interactions within the 
 `Parser` component for the `getCommandFromUser("/next")` API call.
 
 ![Parser design](./ParserUML.png)
 
-The class diagram below shows how the parser interacts with the other classes
+The class diagram below shows how the `Parser` interacts with the other classes
 
 ![Parser class diagram design](./ParserClassDiagram.png)
 
-How the `parser` component works
+How the `Parser` component works
 - When the user gives an input, the parser will the appropriate command for this input.
 - In the case of `/next` as the input, the NextCommand will be generated.
 - The NextCommand inherits from the abstract class Command.
@@ -84,10 +84,10 @@ How the `parser` component works
 ### Note component
 **API:** `Note.java`
 
-The `note` component allows user to create / open / delete /search note. 
+The `Note` component allows user to create / open / delete /search note. 
 
-How the `note` component works
-- When user want to take note, a note with title and content will be created and added 
+How the `Note` component works
+- When user wants to take note, a note with title and content will be created and added 
   to note list.
 - Notes in the note list can be found by their titles and scene index.
 - Unwanted notes can be deleted.
@@ -95,10 +95,10 @@ How the `note` component works
 ### UI component
 **API:** `Ui.java`
 
-The `ui` component communicates with the user via the terminal. Other component call methods of 
+The `Ui` component communicates with the user via the terminal. Other component call methods of 
 ui to print output to terminal. 
 
-How the `ui` component works
+How the `Ui` component works
 - Print messages to terminal depending on the scene.
 - Print corresponding output to terminal according to input command.
 
@@ -107,7 +107,7 @@ How the `ui` component works
 ### Command component
 **API:** `Command.java` 
 
-The `command` component executes commands input by the user.
+The `Command` component executes commands input by the user.
 
 Here’s a (partial) class diagram of the `Command` component:
 
