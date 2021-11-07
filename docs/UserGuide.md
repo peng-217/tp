@@ -12,21 +12,18 @@ about the events that lead to the murder and clues about the suspects. A great j
 ## Table of Contents
 * [Quick Start](#quick-start)
 * [Features](#features)
-  * [Changing narrative number of lines: `/narrative-lines #NUM`](#changing-narrative-number-of-linesnarrative-lines-num)
-  * [Taking notes: `/note`](#taking-notes-note)
-  * [Searching notes with keywords](#searching-notes-with-keywords-keywords)
-  * [Searching notes with scene index](#searching-notes-with-scene-index-index)
-  * [Shortcuts for note-taking](#shortcuts-for-note-taking)
-  * [Default note title](#default-note-title)
-  * [Quit note function: `/quit`](#quit-note-function-quit)
-  * [Moving to the next scene: `/next`](#moving-to-the-next-scene-next)
-  * [Exiting the game: `/exit`](#exiting-the-game-exit)
-  * [Going back to the previous scene: `/back`](#going-back-to-the-previous-scene-back)
   * [Viewing the list of commands available: `/help`](#viewing-the-list-of-commands-available-help)
-  * [Restarting the game: `/restart`](#restarting-the-game-restart)
+  * [Changing narrative number of lines: `/narrative-lines NUM`](#changing-narrative-number-of-lines-narrative-lines-num)
+  * [Moving to the next scene: `/next`](#moving-to-the-next-scene-next)
+  * [Going back to the previous scene: `/back`](#going-back-to-the-previous-scene-back)
   * [Choosing suspect: `KEYWORD` or `INDEX`](#choosing-a-suspect-keyword-or-index)
   * [Investigating clue: `INDEX`](#investigating-a-clue-index)
   * [Viewing checked clues: `/view`](#viewing-checked-clues-view)
+  * [Using note functions: `/note`](#using-note-functions-note)
+  * [Searching notes: `KEYWORD` or `INDEX`](#searching-notes-keyword-or-index)
+  * [Quit note function: `/quit`](#quit-note-function-quit)
+  * [Restarting the game: `/restart`](#restarting-the-game-restart)
+  * [Exiting the game: `/exit`](#exiting-the-game-exit)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -63,6 +60,30 @@ I woke up and found myself dead. The Spirit Guide from the Hell told me that the
 >* Items with `...` after them can be used multiple times including zero times. 
   e.g. `[NAME]...` can be used as ` ` (i.e. 0 times), `Father`, `Father Ling` etc.
 
+### Viewing the list of commands available: `/help`
+Views the list of commands available.
+
+Format: `/help`
+
+Example of usage:
+
+```
+$ /help
+
+Here are the list of commands available to you.
+"/narrative-lines NUM" - change number of narrative lines print each time to #NUM
+"/help" - view this command list
+"/next" - move on to the next scene or the next stage of a scene
+"/back" - go back to previous scene
+"/note" - create a new note / open a note / delete a note
+"/view" - view all the clues that you have gathered
+"/restart" - restart the game from beginning
+Key in the index (e.g. 1, 2) in front of the suspect/clue you want to investigate
+To investigate suspects or clues, please input their corresponding number.
+"/exit" - exit the game
+```
+
+
 ### Changing narrative number of lines: `/narrative-lines NUM`
 Changes the number of lines to be printed each time during story-telling narrative at the start of each scene.
 
@@ -72,218 +93,46 @@ Example of usage:
 
 ```
 $ /narrative-lines 10
+
 Successfully changed number of narrative lines to print each time to 10
 ```
 
-### Taking notes: `/note`
-Allows user to take note with title and content whenever they want.
-
-Example of usage:
-
-```
-$ /note
-```
-
-### Searching notes with keywords: `KEYWORDS`
-Allows user to search the notes using keywords in title
-
-Example of usage:
-```
-$ /note
-
-Do you want to create a new note or open a existing note or delete a note?
-Please type in:
-'1' for create a new note.
-'2' for open an existing note.
-'3' for delete notes.
-
-
-$ 2
-
-
-Here are the list of notes available to you.
-1. BOOKSHELF
-2. CAR
-3. LIVING ROOM WITH BLOOD
-Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
-
-
-$ search
-
-
-Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
-
-
-$ keyword
-
-
-Please enter keywords
-
-
-$ BLOOD
-
-
-Here are the list of notes found given keywords:
-1. scene 2
-LIVING ROOM WITH BLOOD
-There is blood in living room, so I think suspect is Wendy.
-
-==============================
-```
-
-### Searching notes with scene index: `index`
-This allows user to search notes with scene index.
-
-Example of usage:
-```
-$ /note
-
-
-Do you want to create a new note or open a existing note or delete a note?
-Please type in:
-'1' for create a new note.
-'2' for open an existing note.
-'3' for delete notes.
-
-
-$ 2
-
-
-Here are the list of notes available to you.
-1. BOOKSHELF
-2. CAR
-3. LIVING ROOM WITH BLOOD
-   Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
- 
-
-$ search
-
-   Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
-
-
-$ index
-   
-
-   Please enter scene index:
-  
-
-$ 2
-
-
-   Here are the list of notes found given keywords:
-1. scene 2
-   BOOKSHELF
-   There are many books on the bookshelf.
-2. scene 2
-   CAR
-
-3. scene 2
-   LIVING ROOM WITH BLOOD
-   There is blood in living room, so I think suspect is Wendy.
-
-==============================
-```
-
-### Shortcuts for note-taking
-
-An available shortcut is to type the command after `/note`.
-For example, you can input `/note 1` to bring up the note creation prompt.
-Example of usage:
-
-* Typing `/note 2` would immediately bring up the prompt:
-
-```
-Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
-```
-
-* Typing `/note 2` then `open 1` would immediately bring up the first note in the list:
-
-```
-Here is the note you want:
-scene 2
-BOOKSHELF
-There area many books on the bookshelf.
-```
-
-* Typing `/note 2` then `search index 2` would immediately bring up the scenes:
-
-```
-Here are the list of notes found given keywords:
-1. scene 2
-   BOOKSHELF
-   There are many books on the bookshelf.
-2. scene 2
-   CAR
-
-3. scene 2
-   LIVING ROOM WITH BLOOD
-   There is blood in living room, so I think suspect is Wendy.
-```
-
-### Default note title
-
-If user does not specify the note tile, like he/she just type in a spacing or press enter, the program will give the note a default title with the format 'DEFAULT(i)', i is an integer.
-
-Example of usage:
-
-```
-Here are the notes you have: 
-1.LIVING ROOM
-2.DEFAULT(1)
-3.DEFAULT(2)
-```
-
-
-### Quit note function: `/quit`
-Allows user to quit note function.
-
-
-Example of usage:
-$ /note 1
-```
-Please enter the title for this note (if you do not need title, type a spacing or press enter instead):
-
-$ APPLE ON THE GROUND
-
-
-Please enter your note:
-
-$ /quit
-
-Ok! You have successfully quit note process!
-```
-
->💡 Users can quit note function at any time they choose.
-
 ### Moving to the next scene: `/next`
-Allows the user to go the next scene.
+Goes to next scene.
+
+Format: `/next`
 
 Example of usage:
 
 ```
+----------------
+| Instructions |
+----------------
+
+Here are the commands that you can enter:
+"/narrative-lines #NUM" - change number of narrative lines print each time to #NUM
+"/help" - view this command list
+"/next" - move on to the next scene or the next stage of a scene
+"/note" - create a new note / open a note / delete a note
+"/view" - view all the clues that you have gathered
+"/restart" - restart the game from beginning
+"/exit" - exit the game
+
+Now, enter "/next" to start your journey to the truth.
+
 $ /next
+
+------------
+| Scene #1 |
+------------
+
+"Om... Om... Om..." The alarm clock on the head of the bed rang on time as usual, March 1, 2020, at 8 o'clock in the morning, every minute and second. I woke up in a daze, stretched out a lot, feeling extremely tired, and my bones were crushed.
 ```
-
-### Exiting the game: `/exit`
-Exits the game.
-
-
-```
--------------------------
-| Scene 1 Investigation |
--------------------------
-Who do you want to investigate?
-1. Father
-
-$ /exit
-
-Goodbye.
-```
-
->💡 Users can exit the game at any time they choose.
 
 ### Going back to the previous scene: `/back`
 Returns to the previous scene.
+
+Format: `/back`
 
 Example of usage:
 
@@ -303,95 +152,16 @@ I woke up and found myself dead.
 The Spirit Guide from the Hell told me that the only way to revive my soul is for me to find the murderer, eliminating the grudge in my soul.
 
 So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
-
-----------------
-| Instructions |
-----------------
-
-Here are the commands that you can enter:
-"/narrative-lines #NUM" - change number of narrative lines print each time to #NUM
-"/help" - view this command list
-"/next" - move on to the next scene or the next stage of a scene
-"/note" - create a new note / open a note / delete a note
-"/view" - view all the clues that you have gathered
-"/restart" - restart the game from beginning
-"/exit" - exit the game
-
-Now, enter "/next" to start your journey to the truth.
 ```
 
 >💡 Users can use /back at any scene
-
-### Viewing the list of commands available: `/help`
-Views the list of commands available.
-
-Format: `/help`
-
-Example of usage:
-
-```
-$ /help
-
-Here are the list of commands available to you.
-"/narrative-lines #NUM" - change number of narrative lines print each time to #NUM
-"/help" - view this command list
-"/next" - move on to the next scene or the next stage of a scene
-"/back" - go back to previous scene
-"/note" - create a new note / open a note / delete a note
-"/view" - view all the clues that you have gathered
-"/restart" - restart the game from beginning
-Key in the index (e.g. 1, 2) in front of the suspect/clue you want to investigate
-To investigate suspects or clues, please input their corresponding number.
-"/exit" - exit the game
-```
-
-### Restarting the game: `/restart`
-Restarts the game.
-
-Example of usage:
-
-```
-Scene 1 Investigation
-Who do you want to investigate?
-1. Father
-
-$ /restart
-
-------------------
-| Who Killed Me? |
-------------------
-
-I woke up and found myself dead.
-
-The Spirit Guide from the Hell told me that the only way to revive my soul is for me to find the murderer, eliminating the grudge in my soul.
-
-So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
-
-----------------
-| Instructions |
-----------------
-
-Here are the commands that you can enter:
-"/narrative-lines #NUM" - change number of narrative lines print each time to #NUM
-"/help" - view this command list
-"/next" - move on to the next scene or the next stage of a scene
-"/note" - create a new note / open a note / delete a note
-"/view" - view all the clues that you have gathered
-"/restart" - restart the game from beginning
-"/exit" - exit the game
-
-Now, enter "/next" to start your journey to the truth.
-```
-
->💡 Users can restart the game at any point.
-
 
 ### Choosing a suspect: `KEYWORD` or `INDEX`
 Chooses a suspect using either the suspect's name or the suspect number.
 
 Format: `[/investigate] KEYWORD` or `[/investigate] INDEX`
 
-Examples of usage: 
+Examples of usage:
 
 * To investigate the suspect father, all the commands below are valid.
   * `1`
@@ -449,7 +219,7 @@ I'm back on the current timeline.
 > 💡Suspect name is not case-sensitive.
 >
 > ❗The user has to enter a valid suspect name or the suspect number.
-> 
+>
 > ❗ Users are not allowed to go to the next scene before guessing the killer.
 
 
@@ -500,7 +270,7 @@ Scene 1 Investigation
 Enter "/next" to go to the next scene.
 ```
 
->❗ Users can only use index to select the clue to investigate using index.
+>❗ Users can only use index to select the clue to investigate.
 
 ### Viewing checked clues: `/view`
 
@@ -514,11 +284,13 @@ Format: `/view [NAME]...`
 Examples of usage:
 
 > 💡 To avoid spoiling the plot of the game, both of the examples provided below describe the scenario where no clues have been gathered by the user yet.
-> 
+
+
 * `/view` Displays all clues that have been gathered.
 
 ```
 $ /view
+
 Preparing the clues that you have gathered...
 
 You have not gathered any clues for anyone.
@@ -528,6 +300,7 @@ You have not gathered any clues for anyone.
 
 ```
 $ /view father ling
+
 Preparing the clues that you have gathered...
 
 <Father>
@@ -537,6 +310,188 @@ You have not gathered any clues for Ling.
 ```
 
 >💡Suspect name is not case-sensitive.
+
+### Using note functions: `/note`
+Creates, opens or deletes a note.
+
+Format: `/note [INDEX]`
+
+Examples of usage:
+
+* To create a note, enter `/note` followed by `1`
+
+```
+$ /note
+
+Do you want to create a new note or open an existing note or delete note?
+Please type in:
+'1' for create a new note.
+'2' for open an existing note.
+'3' for delete notes.
+
+$ 1
+
+Please enter the title for this note (if you do not need title, type a spacing instead):
+```
+
+> 💡 To perform the same action using shortcut, you can also enter `/note 1`
+> 
+> 💡 If no title is provided, a default title will be provided for you. E.g. DEFAULT(1)
+
+
+* To open the first note in the list, enter `/note 2` followed by `open 1`
+
+```
+$ /note 2
+
+Here are the list of notes available to you.
+1. BOOKSHELF
+2. CAR
+3. LIVING ROOM WITH BLOOD
+Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
+
+$ open 1
+
+Here is the note you want:
+scene 2
+BOOKSHELF
+There area many books on the bookshelf.
+```
+
+> 💡 `open 1` is a shortcut for entering `open` followed by `1`
+
+
+### Searching notes: `KEYWORD` or `INDEX`
+Searches for notes using keywords in **note title** or scene index
+
+Format: `KEYWORD` or `INDEX`
+
+* The search function can only be used after invoking the note function (which can be done by entering `/note 2`).
+
+```
+$ /note 2
+
+Here are the list of notes available to you.
+1. BOOKSHELF
+2. CAR
+3. LIVING ROOM WITH BLOOD
+Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
+
+```
+
+* `INDEX` should be an integer representing the scene number of interest.
+* `KEYWORDS` is/are the keyword(s) you are looking for in a note title and can have one/more words.
+
+Examples of usage:
+* To search for all the notes taken for Scene 2, enter following inputs in order: `search`,  `index` and `2`.
+
+```
+$ /note 2
+
+Here are the list of notes available to you.
+1. BOOKSHELF
+2. CAR
+3. LIVING ROOM WITH BLOOD
+Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
+
+$ search
+
+Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
+
+$ index
+
+Please enter scene index:
+
+$ 2
+
+Here are the list of notes found given keywords:
+1. scene 2
+   BOOKSHELF
+   There are many books on the bookshelf.
+2. scene 2
+   CAR
+   This is a car.
+3. scene 2
+   LIVING ROOM WITH BLOOD
+   There is blood in living room, so I think suspect is Wendy.
+```
+
+> 💡 To achieve the same output using shortcut, you can also enter `search index 2`
+
+* To search for a note title that contains the word “BLOOD”, enter `search keyword BLOOD`
+
+```
+$ search keyword BLOOD
+
+Here are the list of notes found given keywords:
+1. scene 2
+LIVING ROOM WITH BLOOD
+There is blood in living room, so I think suspect is Wendy.
+```
+
+> 💡 You can enter one or more keywords to search for the note title.
+> 
+> ❗ The keywords to search for note title are case-sensitive.
+
+### Quit note function: `/quit`
+Quits note function.
+
+Format: `/quit`
+
+Example of usage:
+
+```
+$ /note 1
+
+Please enter the title for this note (if you do not need title, type a spacing or press enter instead):
+
+$ APPLE ON THE GROUND
+
+Please enter your note:
+
+$ /quit
+
+Ok! You have successfully quit note process!
+```
+
+>💡 Users can quit note function at any time they choose.
+
+
+### Restarting the game: `/restart`
+Restarts the game.
+
+Format: `/restart`
+
+Example of usage:
+
+```
+Scene 1 Investigation
+Who do you want to investigate?
+1. Father
+
+$ /restart
+
+------------------
+| Who Killed Me? |
+------------------
+
+I woke up and found myself dead.
+
+The Spirit Guide from the Hell told me that the only way to revive my soul is for me to find the murderer, eliminating the grudge in my soul.
+
+So I have to go back 24 hours ago and find the murderer from the perspective of my soul.
+```
+
+>💡 Users can restart the game at any point.
+
+
+### Exiting the game: `/exit`
+Exits the game.
+
+Format: `/exit`
+
+>💡 Users can exit the game at any time they choose.
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -552,8 +507,7 @@ You have not gathered any clues for Ling.
 | Restart | `/restart` |
 | Exit | `/exit` |
 | Back | `/back` |
-| Investigate | `[/investigate] INDEX or KEYWORD` e.g., `/investigate father`, `father`, `1` |
-| Choose Killer | `KEYWORD or INDEX` e.g., `Father`, `1` |
+| Investigate/Choose Killer | `[/investigate] INDEX or KEYWORD` e.g., `/investigate father`, `father`, `1` |
 | View Clues | `/view [NAME]...` e.g., `/view` `/view Father` `/view Father Ling` |
 | Take Note | `/note <Command index>(optional)` |
 | Quit note | `/quit` |
