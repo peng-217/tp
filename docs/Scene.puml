@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+hide footbox
+
 autonumber
 ":Duke"-> ":SceneListBuilder": buildSceneList(dataFile:GameDataFileDecoder)
 activate ":SceneListBuilder"

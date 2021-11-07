@@ -14,7 +14,7 @@ public class Clue {
     }
 
     /**
-     * Construct a Clue object by setting the clue name, clue image and clue
+     * Constructs a Clue object by setting the clue name, clue image and clue
      * description to those passed in correspondingly.
      *
      * @param clueName Name of the clue (usually summarises the gist of the clue).

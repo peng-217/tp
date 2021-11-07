@@ -1,7 +1,7 @@
 package command;
 
-import exception.DukeCorruptedFileException;
-import exception.DukeFileNotFoundException;
+import exceptions.DukeCorruptedFileException;
+import exceptions.DukeFileNotFoundException;
 import investigation.Investigation;
 import scene.SceneList;
 import scene.SceneTypes;

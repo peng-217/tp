@@ -2,7 +2,7 @@
 'https://plantuml.com/sequence-diagram
 
 autonumber
-
+hide footbox
 
 ":SceneList" -> ":SuspectListBuilder" :suspectListBuilder(fileLocation:String, suspectList:SuspectList)
 loop numOfSuspects

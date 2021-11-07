@@ -1,7 +1,7 @@
 package scene;
 
-import exception.DukeCorruptedFileException;
-import exception.DukeFileNotFoundException;
+import exceptions.DukeCorruptedFileException;
+import exceptions.DukeFileNotFoundException;
 import storage.GameDataFileDecoder;
 import ui.Ui;
 import java.io.FileNotFoundException;
@@ -96,7 +96,6 @@ public class SceneList {
             ui.printFileErrorMessage();
         }
     }
-
    
     /**
      * Resets the scene to the introduction scene and run the introduction scene.

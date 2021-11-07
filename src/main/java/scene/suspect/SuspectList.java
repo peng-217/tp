@@ -50,7 +50,7 @@ public class SuspectList {
     }
 
     /**
-     * Marks the clue specified for the given suspect to be checked.
+     * Sets the clue specified for the given suspect to be checked.
      *
      * @param name Name of suspect.
      * @param clueInScene Clue to be marked as checked.
