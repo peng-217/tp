@@ -40,7 +40,7 @@ public class NoteList {
     }
 
     /**
-     * Get the size of note list.
+     * Returns the size of note list.
      *
      * @return Size of note list.
      */
@@ -49,7 +49,7 @@ public class NoteList {
     }
 
     /**
-     * Search notes with given scene index.
+     * Returns an arraylist contains searched notes with given scene index.
      *
      * @param searchSceneIndex User input scene index.
      * @param notes Note list.
@@ -66,7 +66,7 @@ public class NoteList {
     }
 
     /**
-     * Search notes with given keywords.
+     * Returns an arraylist contains searched notes with given title keywords.
      * @param keyword User input keywords.
      * @param notes Note list.
      * @return An arraylist contains all the corresponding notes.
@@ -89,7 +89,7 @@ public class NoteList {
     }
 
     /**
-     * Split the keywords string into a string array that contains all the keywords.
+     * Returned the string array contains splited keywords.
      *
      * @param keywords User input keywords.
      * @return A string array that contains all the keywords.
@@ -103,7 +103,7 @@ public class NoteList {
     }
 
     /**
-     * Get the note with given index.
+     * Returns the note with given index.
      *
      * @param index User input index.
      * @return Note with given index.
@@ -114,6 +114,7 @@ public class NoteList {
 
     /**
      * Create a new note and add it into note list.
+     *
      * @param newNote The new note to be created.
      */
     public void createNote(Note newNote) {
@@ -124,6 +125,7 @@ public class NoteList {
 
     /**
      * Initialize all saved note from local note data file.
+     *
      * @param newNote The note from the local note data file to be initialized.
      * @param inputSceneIndex Scene index that stored in data file.
      */
@@ -134,6 +136,7 @@ public class NoteList {
 
     /**
      * Delete a note with given index.
+     *
      * @param index The index of the note that to be deleted.
      */
     public void deleteNote(int index) {
@@ -144,6 +147,7 @@ public class NoteList {
 
     /**
      * Delete all notes.
+     *
      */
     public void deleteAllNotes() {
         notes.removeAll(notes);
@@ -153,6 +157,7 @@ public class NoteList {
 
     /**
      * Perform all note-related functions.
+     *
      * @param sceneList The scene list used for creating note.
      * @param userChoice The desired function by user.
      * @throws InvalidNoteException If user's input is invalid.
@@ -179,6 +184,7 @@ public class NoteList {
 
     /**
      * Create a new note.
+     *
      * @param sceneList Scene list for creating note.
      */
     public void createNoteProcess(SceneList sceneList) {
@@ -217,6 +223,7 @@ public class NoteList {
 
     /**
      * Open a note.
+     *
      * @throws InvalidNoteException If user's input command is invalid.
      */
     public void openNoteProcess() throws InvalidNoteException {
@@ -282,7 +289,8 @@ public class NoteList {
     }
 
     /**
-     * Let user to select searching method.
+     * Let user select searching method.
+     *
      * @param userInput The searching method that user inputs.
      * @throws InvalidNoteException If user's input command is invalid.
      */
@@ -314,7 +322,8 @@ public class NoteList {
     }
 
     /**
-     * Let user to select searching method.
+     * Let user select searching method.
+     *
      * @param userInputInArray The searching method and corresponding user input keywords/scene index.
      * @throws InvalidNoteException If user input is invalid.
      * @throws NumberFormatException If user input is invalid.
@@ -340,6 +349,7 @@ public class NoteList {
 
     /**
      * Start the keyword search process.
+     *
      * @param userInput User input keywords.
      */
     public void keywordSearch(String userInput) {
@@ -352,6 +362,7 @@ public class NoteList {
 
     /**
      * Start the keyword search process.
+     *
      */
     public void keywordSearch() {
         ui.printNoteSearchKeyWordInstructions();
@@ -365,6 +376,7 @@ public class NoteList {
 
     /**
      * Start the index search process.
+     *
      * @param userInput User input scene index.
      * @throws NumberFormatException If user input index is invalid.
      */
@@ -380,6 +392,7 @@ public class NoteList {
 
     /**
      * Start the index search process.
+     *
      * @throws NumberFormatException If user input index is invalid.
      */
     public void indexSearch() throws NumberFormatException {
@@ -395,6 +408,7 @@ public class NoteList {
 
     /**
      * Open the note with given index.
+     *
      * @param index User input index.
      * @throws IndexOutOfBoundsException If user input index is bigger than the size of note list.
      * @throws NumberFormatException If user input is invalid.
@@ -415,6 +429,7 @@ public class NoteList {
 
     /**
      * Open the note with given index.
+     *
      * @throws IndexOutOfBoundsException If user input index is bigger than the size of note list.
      * @throws NumberFormatException If user input is invalid.
      */
@@ -435,6 +450,7 @@ public class NoteList {
 
     /**
      * Delete note.
+     * 
      * @throws IndexOutOfBoundsException If user input index is bigger than the size of note list.
      * @throws NumberFormatException If user input is invalid.
      */

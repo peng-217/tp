@@ -15,7 +15,8 @@ public class Note {
     }
 
     /**
-     * Get the note content.
+     * Returns the note content.
+     *
      * @return A string containing note content.
      */
     public String getNoteContent() {
@@ -23,7 +24,8 @@ public class Note {
     }
 
     /**
-     * Get the scene index of a note.
+     * Returns the scene index of a note.
+     *
      * @return The scene index of a note.
      */
     public int getNoteSceneIndex() {
@@ -31,7 +33,8 @@ public class Note {
     }
 
     /**
-     * Get the note title.
+     * Returns the note title.
+     *
      * @return A string contains note title.
      */
     public String getNoteTitle() { //title must all in uppercase
