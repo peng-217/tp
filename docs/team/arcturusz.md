@@ -1,10 +1,9 @@
-# Eljer - Project Portfolio Page
+# Eljer's - Project Portfolio Page
 
 ## Project: The Great Detective
 The Great Detective is an interactive murder-mystery game.
 
-
-### Summary of Contributions
+## Summary of Contributions
 
 - **New Feature**: Added the ability to change narrative number of lines
   - What it does: Allows user to change the number of lines to be printed each time during story-telling narrative at the start of each scene.
@@ -28,7 +27,7 @@ The Great Detective is an interactive murder-mystery game.
   - What it does: Manages the investigation in each investigation scene based on the current state of the game (Suspect or Clue stage)
   - Justification: It allows us to handle the commands from the user and contains the main flow of the game.
 
-- `Code Contribution`: [RepoSense Link](https://nus-cs2113-ay2122s1.github.io/tp-dashboard/?search=arcturusz&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-25&tabOpen=true&tabType=authorship&tabAuthor=arcturusz&tabRepo=AY2122S1-CS2113-T14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
+- **Code Contribution**: [RepoSense Link](https://nus-cs2113-ay2122s1.github.io/tp-dashboard/?search=arcturusz&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-25&tabOpen=true&tabType=authorship&tabAuthor=arcturusz&tabRepo=AY2122S1-CS2113-T14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 <div style="page-break-after: always;"></div>
 
@@ -54,7 +53,7 @@ The Great Detective is an interactive murder-mystery game.
 
 - **Review / Mentoring Contributions**:
   - Helped team members fix branch and version control issues.
-  - Helped team members with rebase to fix merge conflicts and undo mistakes.
+  - Helped team members with rebase to fix merge conflicts and revert changes.
   - Some PRs reviewed (with non-trivial comments): 
 [#135](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/135),
 [#218](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/218),
