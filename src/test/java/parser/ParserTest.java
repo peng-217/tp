@@ -29,7 +29,6 @@ public class ParserTest {
         String suspectFather = parser.getSuspectNameFromIndex(sceneList.getCurrentScene(), 1);
         assertEquals("Father", suspectFather);
 
-
         sceneList.updateSceneNumber();
         String suspectKevin = parser.getSuspectNameFromIndex(sceneList.getCurrentScene(), 2);
         assertEquals("Kevin", suspectKevin);
