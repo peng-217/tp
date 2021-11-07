@@ -21,6 +21,7 @@ public class NoteList {
             + "Please check again.";
     private static final String INVALID_NOTE_COMMAND_MESSAGE = "The command you entered is not valid! "
             + "Please check again.";
+    private static final String REINPUT_MESSAGE = "Please type in the command:";
     private static final String INVALID_NOTE_SEARCH_MESSAGE = "Please input a valid search choice!";
     private static final String NOTE_CORRUPTED_MESSAGE = "The corrupted file has been removed! "
             + "The new file has been created!";
@@ -239,6 +240,7 @@ public class NoteList {
                 while (!userInput.equals("")) {
                     if (!(userInput.startsWith("search") || userInput.startsWith("open"))) {
                         ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
+                        ui.printReinputMessage();
                         userInput = ui.readUserInput();
                     } else {
                         break;
@@ -301,23 +303,28 @@ public class NoteList {
             ui.printQuitNoteProcess();
         }
         while (!userInput.equals("") && quitNote == false) {
-            if (!userInput.equals("keyword") && !userInput.equals("index")) {
+            if (!userInput.equals("keyword") && !userInput.equals("index") && !userInput.equals("/quit")) {
                 ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
+                ui.printReinputMessage();
                 userInput = ui.readUserInput();
+            } else if (userInput.equals("/quit")) {
+                quitNote = true;
+                break;
             } else {
                 break;
             }
         }
+
         if (quitNote == false) {
             if (userInput.equals("keyword")) {
                 keywordSearch();
             } else if (userInput.equals("index")) {
                 indexSearch();
-            } else if (userInput.equals("/quit")) {
-                ui.printQuitNoteProcess();
             } else {
                 throw new InvalidNoteException(INVALID_NOTE_COMMAND_MESSAGE);
             }
+        } else {
+            ui.printQuitNoteProcess();
         }
     }
 
