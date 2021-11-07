@@ -1,5 +1,6 @@
 @startuml
 skinparam componentStyle rectangle
+hide circle
 
 class EncryptedFile {
 

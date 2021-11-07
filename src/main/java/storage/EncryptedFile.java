@@ -34,6 +34,12 @@ public class EncryptedFile {
         checkPath();
     }
 
+    /**
+     * Reads the key from text file from keyPath. Generates new key if the current key is corrupted.
+     *
+     * @throws DukeCorruptedFileException If the file is corrupted.
+     * @throws DukeFileNotFoundException If the file is missing.
+     */
     public void initialise() throws DukeCorruptedFileException, DukeFileNotFoundException {
         try {
             FileInputStream keyFis = new FileInputStream(keyPath);
@@ -55,6 +61,7 @@ public class EncryptedFile {
         }
     }
 
+
     public void generateNewKey() throws DukeCorruptedFileException,DukeFileNotFoundException {
         try {
             keygenerator = KeyGenerator.getInstance("DES");
@@ -73,6 +80,11 @@ public class EncryptedFile {
         }
     }
 
+    /**
+     * Checks the path to crucial files and creates new file or directory if the path is not found.
+     *
+     * @throws DukeFileNotFoundException If the file is missing.
+     */
     public void checkPath() throws DukeFileNotFoundException {
         try {
             new File(direName).mkdir();

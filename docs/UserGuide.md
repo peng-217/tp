@@ -49,6 +49,7 @@ I woke up and found myself dead. The Spirit Guide from the Hell told me that the
 
 5. Type the command and press Enter to execute it. e.g. typing `/help` and pressing Enter will show you the list of commands you can enter.
 6. Refer to the `Features` below for details of each command.
+7. The game progress is automatically stored locally, but the game progress will be reset if the data file is corrupted.
 
 ## Features 
 
