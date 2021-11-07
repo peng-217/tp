@@ -14,7 +14,9 @@ activate ":NoteList"
 activate ":Note"
 ":NoteList" -> ":GameNoteFileManager":deleteNote(index:int)
 ":NoteList" -> ":GameNoteFileManager":deleteAllNotes()
-":NoteList" -> ":NoteList": processNote(sceneList
+":NoteList" -> ":NoteList": processNote(sceneList:SceneList,userChoice:String)
+":NoteList"-> ":Note" : createNoteProcess(sceneList:SceneList)
+":NoteList"-> ":Note"
 
 
 @enduml
