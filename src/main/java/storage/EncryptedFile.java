@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.File;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 
 public class EncryptedFile {
     String fileName;
@@ -44,11 +45,13 @@ public class EncryptedFile {
             myDesKey = new SecretKeySpec(encKey, "DES");
             desCipher = Cipher.getInstance("DES");
 
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | IllegalArgumentException e) {
             generateNewKey();
         } catch (IOException e) {
+            generateNewKey();
             throw new DukeFileNotFoundException();
         } catch (NoSuchPaddingException | NoSuchAlgorithmException e) {
+            generateNewKey();
             throw new DukeCorruptedFileException();
         }
     }

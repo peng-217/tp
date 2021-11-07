@@ -32,6 +32,7 @@ public class FileDecoder extends EncryptedFile {
         } catch (IOException e) {
             throw new DukeFileNotFoundException();
         } catch (BadPaddingException | InvalidKeyException | IllegalBlockSizeException e) {
+            generateNewKey();
             throw new DukeCorruptedFileException();
         }
     }

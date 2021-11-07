@@ -15,7 +15,11 @@ public class GameFileManager extends EncryptedFile {
     }
 
     public void writeFile(String lines) throws DukeFileNotFoundException {
-        encoder.encodeFile(lines);
+        try {
+            encoder.encodeFile(lines);
+        } catch (DukeCorruptedFileException e) {
+            e.printStackTrace();
+        }
     }
 
     public String readFile() throws DukeCorruptedFileException, DukeFileNotFoundException {
