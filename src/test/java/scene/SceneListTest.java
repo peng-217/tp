@@ -80,7 +80,7 @@ public class SceneListTest {
 
         GameDataFileDecoder datafile = new GameDataFileDecoder("GameData.txt");
 
-        datafile.setCurrentSceneIndex(6);
+        datafile.setCurrentSceneIndex(0);
         SceneList sceneList = SceneListBuilder.buildSceneList(datafile);
 
         sceneList.setSceneNumberAfterSuspecting(true);
