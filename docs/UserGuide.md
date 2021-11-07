@@ -24,8 +24,8 @@ about the events that lead to the murder and clues about the suspects. A great j
   * [Going back to the previous scene: `/back`](#going-back-to-the-previous-scene-back)
   * [Viewing the list of commands available: `/help`](#viewing-the-list-of-commands-available-help)
   * [Restarting the game: `/restart`](#restarting-the-game-restart)
-  * [Choosing suspect: `KEYWORD` or `INDEX`](#choosing-suspect-keyword-or-index)
-  * [Investigating clue: `INDEX`](#investigating-clue-index)
+  * [Choosing suspect: `KEYWORD` or `INDEX`](#choosing-a-suspect-keyword-or-index)
+  * [Investigating clue: `INDEX`](#investigating-a-clue-index)
   * [Viewing checked clues: `/view`](#viewing-checked-clues-view)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
@@ -65,9 +65,10 @@ I woke up and found myself dead. The Spirit Guide from the Hell told me that the
 ### Changing narrative number of lines:`/narrative-lines #NUM`
 Changes the number of lines to be printed each time during story-telling narrative at the start of each scene.
 
-Format: `/narrative-lines #NUM`
+Format: `/narrative-lines NUM`
 
 Example of usage:
+
 ```
 $ /narrative-lines 10
 Successfully changed number of narrative lines to print each time to 10
@@ -77,6 +78,7 @@ Successfully changed number of narrative lines to print each time to 10
 This allows user to take note with title and content whenever they want.
 
 Example of usage:
+
 ```
 $ /note
 ```
@@ -127,6 +129,7 @@ There is blood in living room, so I think suspect is Wendy.
 
 ==============================
 ```
+
 ### Searching notes with scene index: `index`
 This allows user to search notes with scene index.
 
@@ -187,10 +190,13 @@ For example, you can input `/note create` to bring up the note creation prompt.
 Example of usage:
 
 * Typing `/note search` would immediately bring up the prompt:
+
 ```
 Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
 ```
+
 * Typing `/note open` would immediately bring up the prompt:
+
 ```
 Here are the list of notes available to you.
 1. BOOKSHELF
@@ -204,6 +210,7 @@ Here are the list of notes available to you.
 If user does not specify the note tile, like he/she just type in a spacing or press enter, the program will give the note a default title with the format 'DEFAULT(i)', i is an integer.
 
 Example of usage:
+
 ```
 Here are the notes you have: 
 1.LIVING ROOM
@@ -215,6 +222,7 @@ Here are the notes you have:
 This allows the user to go the next scene.
 
 Example of usage: 
+
 ```
 $ /next
 ```
@@ -295,6 +303,7 @@ Here are the commands that you can enter:
 
 Now, enter "/next" to start your journey to the truth.
 ```
+
 >💡 Users can use /back at any scene
 
 ### Viewing the list of commands available: `/help`
@@ -303,6 +312,7 @@ Views the list of commands available.
 Format: `/help`
 
 Example of usage:
+
 ```
 $ /help
 
@@ -356,6 +366,7 @@ Here are the commands that you can enter:
 
 Now, enter "/next" to start your journey to the truth.
 ```
+
 >💡 Users can restart the game at any point.
 
 
@@ -387,9 +398,12 @@ Scene 1 Investigation
 4. Text Message
 Enter "/next" to go to the next scene.
 ```
-* To choose father as the killer, both commands below are valid.
+
+* To choose father as the killer, all commands below are valid.
   * `1`
   * `father`
+  * `/investigate father`
+
 ```
 ------------
 | Scene #4 |
@@ -413,6 +427,7 @@ $ father
 
 I'm back on the current timeline.
 ```
+
 >💡`/investigate` is an optional command for the user.
 >
 > 💡Suspect name is not case-sensitive.
@@ -468,6 +483,7 @@ Scene 1 Investigation
 4. Text Message
 Enter "/next" to go to the next scene.
 ```
+
 >❗ Users can only use index to select the clue to investigate using index.
 
 ### Viewing checked clues: `/view`
@@ -484,13 +500,16 @@ Examples of usage:
 > 💡 To avoid spoiling the plot of the game, both of the examples provided below describe the scenario where no clues have been gathered by the user yet.
 > 
 * `/view` Displays all clues that have been gathered.
+
 ```
 $ /view
 Preparing the clues that you have gathered...
 
 You have not gathered any clues for anyone.
 ```
+
 * `/view father ling` Displays clues that have been gathered and are specific to Father and Ling respectively.
+
 ```
 $ /view father ling
 Preparing the clues that you have gathered...
@@ -512,7 +531,7 @@ You have not gathered any clues for Ling.
 
 |Action| Format, Examples |
 |--------|----------|
-| Change number of lines to print | `NUMBER` e.g., `3` |
+| Changes the number of lines to be printed during narrative | `/narrative-lines NUM` e.g., `10` |
 | Next | `/next` |
 | Restart | `/restart` |
 | Exit | `/exit` |
