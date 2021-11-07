@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+":GameNoteFileManager"<-":NoteList": openNoteFromFile()
+activate ":GameNoteFileManager"
+":GameNoteFileManager" --> ":NoteList"
+":GameNoteFileManager"<-":NoteList": forceClearNote()
+":GameNoteFileManager" --> ":NoteList"
+activate ":NoteList"
+":NoteList" -> ":Note"
+":NoteList" -> ":NoteList" :getSize()
+create
+
+@enduml

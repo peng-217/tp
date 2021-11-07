@@ -450,7 +450,7 @@ public class NoteList {
 
     /**
      * Delete note.
-     * 
+     *
      * @throws IndexOutOfBoundsException If user input index is bigger than the size of note list.
      * @throws NumberFormatException If user input is invalid.
      */
