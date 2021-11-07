@@ -1,7 +1,7 @@
 package command;
 
-import exception.DukeCorruptedFileException;
-import exception.DukeFileNotFoundException;
+import exceptions.DukeCorruptedFileException;
+import exceptions.DukeFileNotFoundException;
 import investigation.Investigation;
 import scene.SceneList;
 import scene.SceneTypes;
@@ -10,7 +10,7 @@ import ui.Ui;
 public class BackCommand extends Command {
 
     /**
-     * Check if the user has started investigation on a suspect or a clue.
+     * Checks if the user has started investigation on a suspect or a clue.
      * If the user has not started investigation, we go to the previous scene.
      * Else we reset the scene to ask the user which suspect they want to inspect.
      *

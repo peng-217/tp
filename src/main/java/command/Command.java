@@ -1,10 +1,8 @@
 package command;
 
-import exception.DukeCorruptedFileException;
-import exception.DukeFileNotFoundException;
-import exceptions.InvalidClueException;
+import exceptions.DukeCorruptedFileException;
+import exceptions.DukeFileNotFoundException;
 import exceptions.InvalidInputException;
-import exceptions.InvalidSuspectException;
 import scene.SceneList;
 import ui.Ui;
 import investigation.Investigation;

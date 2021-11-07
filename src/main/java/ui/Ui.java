@@ -1,6 +1,5 @@
 package ui;
 
-import exception.DukeCorruptedFileException;
 import scene.clue.Clue;
 import investigation.Investigation;
 import investigation.InvestigationStages;
@@ -362,9 +361,9 @@ public class Ui {
 
 
     /**
-     * Prints the already searched clues relating to a specifoc suspect.
+     * Prints the already searched clues relating to a specific suspect.
      *
-     * @param name  Name of one of the suspects.
+     * @param name Name of one of the suspects.
      * @param clues List of already checked clues under that suspect.
      */
     public void printSearchedClues(String name, ArrayList<Clue> clues) {

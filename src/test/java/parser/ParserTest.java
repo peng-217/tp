@@ -3,8 +3,8 @@ package parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import exception.DukeCorruptedFileException;
-import exception.DukeFileNotFoundException;
+import exceptions.DukeCorruptedFileException;
+import exceptions.DukeFileNotFoundException;
 import exceptions.InvalidInputException;
 import exceptions.MissingSceneFileException;
 import org.junit.jupiter.api.Test;

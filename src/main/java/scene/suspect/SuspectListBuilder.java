@@ -16,8 +16,6 @@ public class SuspectListBuilder {
      * @throws FileNotFoundException If the file could not be found.
      */
     public static void suspectListBuilder(String fileLocation, SuspectList suspectList) throws FileNotFoundException {
-        //File f = new File(fileLocation);
-        //System.out.println(fileLocation);
         InputStream f = SceneListBuilder.class.getResourceAsStream(fileLocation);
         if (f == null) {
             throw new FileNotFoundException();

@@ -2,8 +2,8 @@ package scene;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import exception.DukeCorruptedFileException;
-import exception.DukeFileNotFoundException;
+import exceptions.DukeCorruptedFileException;
+import exceptions.DukeFileNotFoundException;
 import org.junit.jupiter.api.Test;
 import storage.GameDataFileDecoder;
 import ui.Ui;
