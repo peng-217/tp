@@ -213,7 +213,8 @@ public class Ui {
             System.out.println(result.get(i).getNoteContent());
         }
         System.out.println();
-        System.out.println(LINE_SEPARATOR);
+        System.out.println();
+
     }
     //@@author
 
@@ -298,7 +299,7 @@ public class Ui {
 
     public void printNoteTitleInstructions() {
         System.out.println("Please enter the title for this note"
-                + " (if you do not need title, type a spacing instead):");
+                + " (if you do not need title, type a spacing or press enter instead):");
     }
 
     public void printNoteTextInstructions() {

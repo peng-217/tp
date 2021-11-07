@@ -33,21 +33,27 @@ user.
     - Justification: After user make changes to notes (like create or delete), all the changes will be saved locally and will be loaded at the start of the game.
 
 
+- `Feature`: Note-related methods in Ui class
+    - What is does: The note-related methods in Ui class give all the note-related output to user.
+    - Justification: Including note printing, error message, instructions and so on.
+
+
 - `Code Contribution`: [RepoSense Link](https://nus-cs2113-ay2122s1.github.io/tp-dashboard/?search=peng-217&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-25)
 
 
 - `Enhancements implemented`:
-   - Wrote Junit test for all note-related classes.
-   - Implement quit command for note function, allowing user to quiz note function at anytime they want.
+   - Wrote Junit test for all note-related classes. 
+   - Implement quit command for note function, allowing user to quit note function at anytime they want.
 
 
-- `Community` : Reviewed other's PR
+- `Community` : Reviewed other's PR. (Pull request [\#213](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/213))
 
 
 - `Documentation`:
+
   - `User Guide`:
-  Added documentation for the features `/note`, `/quit`, `keywords`, `index`
+  Added documentation for the Note-related features (Pull request [\#244](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/244/files) )
   - `Developer Guide`:
-  Added documentation and UML diagram for 'Ui' component and 'Note' component
+  Added documentation and UML diagram for 'Ui' component and 'Note' component (Pull request [\#249](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/249/files))
   - `Javadoc`:
-  Added Javadoc for all note-related class.
+  Added Javadoc for all note-related class. (Pull request [\#244](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/244/files) )
