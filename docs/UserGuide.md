@@ -187,23 +187,37 @@ $ 2
 ### Shortcuts for note-taking
 
 An available shortcut is to type the command after `/note`.
-For example, you can input `/note create` to bring up the note creation prompt.
+For example, you can input `/note 1` to bring up the note creation prompt.
 Example of usage:
 
-* Typing `/note search` would immediately bring up the prompt:
+* Typing `/note 2` would immediately bring up the prompt:
 
 ```
 Do you want to search by keyword (type 'keyword') or scene index (type 'index')?
 ```
 
-* Typing `/note open` would immediately bring up the prompt:
+* Typing `/note 2` then `open 1` would immediately bring up the first note in the list:
 
 ```
-Here are the list of notes available to you.
-1. BOOKSHELF
-2. CAR
-3. LIVING ROOM WITH BLOOD
-   Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
+Here is the note you want:
+scene 2
+BOOKSHELF
+There area many books on the bookshelf.
+```
+
+* Typing `/note 2` then `search index 2` would immediately bring up the scenes:
+
+```
+Here are the list of notes found given keywords:
+1. scene 2
+   BOOKSHELF
+   There are many books on the bookshelf.
+2. scene 2
+   CAR
+
+3. scene 2
+   LIVING ROOM WITH BLOOD
+   There is blood in living room, so I think suspect is Wendy.
 ```
 
 ### Default note title
@@ -219,14 +233,6 @@ Here are the notes you have:
 3.DEFAULT(2)
 ```
 
-### Moving to the next scene: `/next`
-This allows the user to go the next scene.
-
-Example of usage: 
-
-```
-$ /next
-```
 
 ### Quit note function: `/quit`
 Allows user to quit note function.
@@ -246,8 +252,17 @@ $ /quit
 
 Ok! You have successfully quit note process!
 ```
+
 >💡 Users can quit note function at any time they choose.
 
+### Moving to the next scene: `/next`
+Allows the user to go the next scene.
+
+Example of usage:
+
+```
+$ /next
+```
 
 ### Exiting the game: `/exit`
 Exits the game.
