@@ -4,58 +4,58 @@
 autonumber
 hide footbox
 
- ->"ui:Ui":
-"ui:Ui" -> Clue:getClueName()
-activate Clue
-Clue --> "ui:Ui"
-"ui:Ui" -> "investigation:Investigation" : getStages()
+ ->":Ui":
+":Ui" -> ":Clue":getClueName()
+activate ":Clue"
+":Clue" --> ":Ui"
+":Ui" -> "investigation:Investigation" : getStages()
 activate "investigation:Investigation"
-"investigation:Investigation" --> "ui:Ui"
+"investigation:Investigation" --> ":Ui"
 "investigation:Investigation" -> "investigation:Investigation":getStage()
-"ui:Ui" -> "sceneList:SceneList":getCurrentSceneIndex()
+":Ui" -> "sceneList:SceneList":getCurrentSceneIndex()
 activate "sceneList:SceneList"
-"sceneList:SceneList" --> "ui:Ui"
-"ui:Ui" -> "sceneList:SceneList":getCurrentScene()
-"sceneList:SceneList" --> "ui:Ui"
-"ui:Ui" -> "investigation:Investigation":getCurrentSceneType()
+"sceneList:SceneList" --> ":Ui"
+":Ui" -> "sceneList:SceneList":getCurrentScene()
+"sceneList:SceneList" --> ":Ui"
+":Ui" -> "investigation:Investigation":getCurrentSceneType()
 
-"investigation:Investigation" --> "ui:Ui"
+"investigation:Investigation" --> ":Ui"
 deactivate "investigation:Investigation"
-"ui:Ui" -> "sceneList:SceneList":getCurrentSceneType()
-"sceneList:SceneList"-->"ui:Ui"
+":Ui" -> "sceneList:SceneList":getCurrentSceneType()
+"sceneList:SceneList"-->":Ui"
 deactivate "sceneList:SceneList"
-"ui:Ui" -> Scene:investigateSuspect(suspectName)
-activate Scene
-Scene -> Suspect:getClues()
-activate Suspect
-Suspect-->Scene
-deactivate Suspect
-"ui:Ui" -> Note: getNoteTitle()
-activate Note
-Note --> "ui:Ui"
-"ui:Ui"-> Note: getNoteContent()
-Note --> "ui:Ui"
-"ui:Ui" -> "notes:NoteList":getIndexNote()
+":Ui" -> ":Scene":investigateSuspect(suspectName)
+activate ":Scene"
+":Scene"-> ":Suspect":getClues()
+activate ":Suspect"
+":Suspect"-->":Scene"
+deactivate ":Suspect"
+":Ui" -> ":Note": getNoteTitle()
+activate ":Note"
+":Note"--> ":Ui"
+":Ui"-> ":Note": getNoteContent()
+":Note" --> ":Ui"
+":Ui" -> "notes:NoteList":getIndexNote()
 activate "notes:NoteList"
-"notes:NoteList" -> Note: getNoteTitle()
-Note --> "notes:NoteList"
-"ui:Ui" -> "notes:NoteList":getIndexNote()
-"notes:NoteList" --> "ui:Ui"
+"notes:NoteList" ->":Note": getNoteTitle()
+":Note" --> "notes:NoteList"
+":Ui" -> "notes:NoteList":getIndexNote()
+"notes:NoteList" --> ":Ui"
 
-deactivate Note
+deactivate ":Note"
 deactivate "notes:NoteList"
-"ui:Ui"-> SuspectList:toString()
+":Ui"-> SuspectList:toString()
 activate SuspectList
 
-"ui:Ui" -> SuspectList:printSuspects(suspects)
+":Ui" -> SuspectList:printSuspects(suspects)
 SuspectList --> SuspectList:toString()
 deactivate SuspectList
-"ui:Ui" --> Scene:printAllSuspectInCurrentScene(scene)
+":Ui" --> Scene:printAllSuspectInCurrentScene(scene)
 Scene --> Scene: toString()
 deactivate Scene
-"ui:Ui" --> Clue:printSelectedClue(scene)
-Clue --> Clue: toString()
-deactivate Clue
+":Ui" --> ":Clue":printSelectedClue(scene)
+":Clue" --> ":Clue": toString()
+deactivate ":Clue"
 
 
 
