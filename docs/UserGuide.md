@@ -35,7 +35,7 @@ about the events that lead to the murder and clues about the suspects. A great j
 1. Ensure that you have Java `11` or above installed.
 2. Download the latest version of `TheGreatDetective` from [here](https://github.com/AY2122S1-CS2113-T14-1/tp/releases).
 3. Copy the `.jar` file to the folder you want to use as the home folder for your game.
-4. To launch the app, run the command `java -jar {filename}.jar`. Here are the first few lines you should see in the output when you start _The Great Detective_ for the first time.
+4. To launch the app, run the command `java -jar TheGreatDetective.jar`. Here are the first few lines you should see in the output when you start _The Great Detective_ for the first time.
 
 ```
 Welcome to the Classic Adventure Text Game!
@@ -49,6 +49,7 @@ I woke up and found myself dead. The Spirit Guide from the Hell told me that the
 ```
 
 >❗ The new files created in the `data` folder are used to store the data of your progress. Please refrain from deleting/modifying these files in order to preserve the data.
+
 5. Type the command and press Enter to execute it. e.g. typing `/help` and pressing Enter will show you the list of commands you can enter.
 6. Refer to the `Features` below for details of each command.
 
@@ -62,10 +63,10 @@ I woke up and found myself dead. The Spirit Guide from the Hell told me that the
 >* Items with `...` after them can be used multiple times including zero times. 
   e.g. `[NAME]...` can be used as ` ` (i.e. 0 times), `Father`, `Father Ling` etc.
 
-### Changing narrative number of lines:`/narrative-lines #NUM`
+### Changing narrative number of lines: `/narrative-lines NUM`
 Changes the number of lines to be printed each time during story-telling narrative at the start of each scene.
 
-Format: `/narrative-lines #NUM`
+Format: `/narrative-lines NUM`
 
 Example of usage:
 ```
@@ -74,15 +75,15 @@ Successfully changed number of narrative lines to print each time to 10
 ```
 
 ### Taking notes: `/note`
-This allows user to take note with title and content whenever they want.
+Allows user to take note with title and content whenever they want.
 
 Example of usage:
 ```
 $ /note
 ```
 
-### Searching notes with keywords: `keywords`
-This allows user to search the notes using keywords in title
+### Searching notes with keywords: `KEYWORDS`
+Allows user to search the notes using keywords in title
 
 Example of usage:
 $ /note
