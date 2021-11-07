@@ -12,12 +12,11 @@ about the events that lead to the murder and clues about the suspects. A great j
 ## Table of Contents
 * [Quick Start](#quick-start)
 * [Features](#features)
-  * [Changing narrative number of lines: `/narrative-lines #NUM`](#changing-narrative-number-of-linesnarrative-lines-num)
+  * [Changing narrative number of lines: `/narrative-lines NUM`](#changing-narrative-number-of-lines-narrative-lines-num)
   * [Taking notes: `/note`](#taking-notes-note)
   * [Searching notes with keywords](#searching-notes-with-keywords-keywords)
   * [Searching notes with scene index](#searching-notes-with-scene-index-index)
   * [Shortcuts for note-taking](#shortcuts-for-note-taking)
-  * [Default note title](#default-note-title)
   * [Quit note function: `/quit`](#quit-note-function-quit)
   * [Moving to the next scene: `/next`](#moving-to-the-next-scene-next)
   * [Exiting the game: `/exit`](#exiting-the-game-exit)
@@ -131,8 +130,8 @@ There is blood in living room, so I think suspect is Wendy.
 ==============================
 ```
 
-### Searching notes with scene index: `index`
-This allows user to search notes with scene index.
+### Searching notes with scene index: `INDEX`
+Allows user to search notes with scene index.
 
 Example of usage:
 ```
@@ -206,18 +205,6 @@ Here are the list of notes available to you.
    Do you want to search a note (type in 'search') or directly open a note (type in 'open')?
 ```
 
-### Default note title
-
-If user does not specify the note tile, like he/she just type in a spacing or press enter, the program will give the note a default title with the format 'DEFAULT(i)', i is an integer.
-
-Example of usage:
-
-```
-Here are the notes you have: 
-1.LIVING ROOM
-2.DEFAULT(1)
-3.DEFAULT(2)
-```
 
 ### Moving to the next scene: `/next`
 This allows the user to go the next scene.
@@ -225,7 +212,29 @@ This allows the user to go the next scene.
 Example of usage: 
 
 ```
+----------------
+| Instructions |
+----------------
+
+Here are the commands that you can enter:
+"/narrative-lines #NUM" - change number of narrative lines print each time to #NUM
+"/help" - view this command list
+"/next" - move on to the next scene or the next stage of a scene
+"/note" - create a new note / open a note / delete a note
+"/view" - view all the clues that you have gathered
+"/restart" - restart the game from beginning
+"/exit" - exit the game
+
+Now, enter "/next" to start your journey to the truth.
+
 $ /next
+
+------------
+| Scene #1 |
+------------
+
+"Om... Om... Om..." The alarm clock on the head of the bed rang on time as usual, March 1, 2020, at 8 o'clock in the morning, every minute and second. I woke up in a daze, stretched out a lot, feeling extremely tired, and my bones were crushed.
+
 ```
 
 ### Quit note function: `/quit`
@@ -499,7 +508,8 @@ Format: `/view [NAME]...`
 Examples of usage:
 
 > 💡 To avoid spoiling the plot of the game, both of the examples provided below describe the scenario where no clues have been gathered by the user yet.
-> 
+
+ 
 * `/view` Displays all clues that have been gathered.
 
 ```
@@ -522,6 +532,7 @@ You have not gathered any clues for Ling.
 ```
 
 >💡Suspect name is not case-sensitive.
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -537,8 +548,7 @@ You have not gathered any clues for Ling.
 | Restart | `/restart` |
 | Exit | `/exit` |
 | Back | `/back` |
-| Investigate | `[/investigate] INDEX or KEYWORD` e.g., `/investigate father`, `father`, `1` |
-| Choose Killer | `KEYWORD or INDEX` e.g., `Father`, `1` |
+| Investigate/Choose Killer | `[/investigate] INDEX or KEYWORD` e.g., `/investigate father`, `father`, `1` |
 | View Clues | `/view [NAME]...` e.g., `/view` `/view Father` `/view Father Ling` |
 | Take Note | `/note <Command index>(optional)` |
 | Quit note | `/quit` |
