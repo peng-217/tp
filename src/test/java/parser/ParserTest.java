@@ -40,6 +40,7 @@ public class ParserTest {
 
         assertThrows(InvalidInputException.class, () -> parser.getCommandFromUser("/investigate -1"));
 
-        assertThrows(NumberFormatException.class, () -> parser.getCommandFromUser("/investigate 99999999999999999999999999"));
+        assertThrows(NumberFormatException.class,
+                () -> parser.getCommandFromUser("/investigate 99999999999999999999999999"));
     }
 }
