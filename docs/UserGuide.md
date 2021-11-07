@@ -10,11 +10,25 @@ about the events that lead to the murder and clues about the suspects. A great j
 
 
 ## Table of Contents
-* [Quick Start](#Quick Start)
-* [Features](#Features)
-  * [Changing narrative number of lines](#Changing narrative number of lines:`/narrative-lines #NUM`)
-* [FAQ](#FAQ)
-* [Command Summary](#Command Summary)
+* [Quick Start](#quick-start)
+* [Features](#features)
+  * [Changing narrative number of lines: `/narrative-lines #NUM`](#changing-narrative-number-of-linesnarrative-lines-num)
+  * [Taking notes: `/note`](#taking-notes-note)
+  * [Searching notes with keywords](#searching-notes-with-keywords-keywords)
+  * [Searching notes with scene index](#searching-notes-with-scene-index-index)
+  * [Shortcuts for note-taking](#shortcuts-for-note-taking)
+  * [Default note title](#default-note-title)
+  * [Quit note function: `/quit`](#quit-note-function-quit)
+  * [Moving to the next scene: `/next`](#moving-to-the-next-scene-next)
+  * [Exiting the game: `/exit`](#exiting-the-game-exit)
+  * [Going back to the previous scene: `/back`](#going-back-to-the-previous-scene-back)
+  * [Viewing the list of commands available: `/help`](#viewing-the-list-of-commands-available-help)
+  * [Restarting the game: `/restart`](#restarting-the-game-restart)
+  * [Choosing suspect: `KEYWORD` or `INDEX`](#choosing-suspect-keyword-or-index)
+  * [Investigating clue: `INDEX`](#investigating-clue-index)
+  * [Viewing checked clues: `/view`](#viewing-checked-clues-view)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
 
 ## Quick Start
@@ -228,7 +242,7 @@ Ok! You have successfully quit note process!
 
 
 ### Exiting the game: `/exit`
-This allows the user to exit the game.
+Exits the game.
 
 
 ```
@@ -246,7 +260,7 @@ Goodbye.
 >💡 Users can exit the game at any time they choose.
 
 ### Going back to the previous scene: `/back`
-This allows the user to return to the previous scene.
+Returns to the previous scene.
 
 Example of usage:
 
@@ -285,7 +299,7 @@ Now, enter "/next" to start your journey to the truth.
 >💡 Users can use /back at any scene
 
 ### Viewing the list of commands available: `/help`
-This allows the user to view the list of commands available.
+Views the list of commands available.
 
 Format: `/help`
 
@@ -307,7 +321,7 @@ To investigate suspects or clues, please input their corresponding number.
 ```
 
 ### Restarting the game: `/restart`
-This allows the user to restart the game.
+Restarts the game.
 
 Example of usage:
 
@@ -346,18 +360,17 @@ Now, enter "/next" to start your journey to the truth.
 >💡 Users can restart the game at any point.
 
 
-### Investigating suspect: `KEYWORD OR INDEX`
-Users can investigate the suspect using either the suspect's name or the suspect number.
+### Choosing a suspect: `KEYWORD` or `INDEX`
+Chooses a suspect using either the suspect's name or the suspect number.
 
-Format: `[/investigate] KEYWORD OR INDEX`
+Format: `[/investigate] KEYWORD` or `[/investigate] INDEX`
 
-Example of usage: `/investigate father`
+Examples of usage: 
 
-The following command below are valid commands to investigate father.
-- 1
-- father
-- /investigate father
-
+* To investigate the suspect father, all the commands below are valid.
+  * `1`
+  * `father`
+  * `/investigate father`
 
 ```
 Scene 1 Investigation
@@ -375,15 +388,43 @@ Scene 1 Investigation
 4. Text Message
 Enter "/next" to go to the next scene.
 ```
+* To choose father as the killer, both commands below are valid.
+  * `1`
+  * `father`
+```
+------------
+| Scene #4 |
+------------
+
+It is now time for you to choose your killer.
+
+Here are all the suspects
+1. Father
+2. Kevin
+3. Wendy
+4. Ling
+5. Zack
+
+Who do you think killed you?
+$ father
+
+-----------
+| The End |
+-----------
+
+I'm back on the current timeline.
+```
 >💡`/investigate` is an optional command for the user.
 >
 > 💡Suspect name is not case-sensitive.
 >
 > ❗The user has to enter a valid suspect name or the suspect number.
+> 
+> ❗ Users are not allowed to go to the next scene before guessing the killer.
 
 
-### Investigating clue: `INDEX`
-This allows the user to investigate the clue based on the index.
+### Investigating a clue: `INDEX`
+Investigates the clue based on the index.
 
 Format: `INDEX`
 
@@ -430,57 +471,38 @@ Enter "/next" to go to the next scene.
 ```
 >❗ Users can only use index to select the clue to investigate using index.
 
-### Choosing the killer: `KEYWORD`
-This allows the user to choose the killer based on the user name.
-
-Format: `KEYWORD`
-
-- The name has to be one of the name of the suspects given to the users to choose.
-- The name given by the user is not case-sensitive.
-
-Example of usage:
-
-```
-------------
-| Scene #4 |
-------------
-
-It is now time for you to choose your killer.
-
-Here are all the suspects
-1. Father
-2. Kevin
-3. Wendy
-4. Ling
-5. Zack
-
-Who do you think killed you?
-$ zack
-
------------
-| The End |
------------
-
-I'm back on the current timeline.
-
-Sure enough, I guessed it wrongly.
-```
->❗ Users are not allowed to go to the next scene before guessing the killer.
-> 
 ### Viewing checked clues: `/view`
 
 Views the clues that have been gathered from investigations.
 
 Format: `/view [NAME]...`
 
-* NAME(s) provided must be one/more of the suspects' names.
+* `NAME(s)` provided must be one/more of the suspects' names.
 * If valid names are provided, only clues gathered that are specific to those suspects will be shown.
 
-Examples:
+Examples of usage:
 
+> 💡 To avoid spoiling the plot of the game, both of the examples provided below describe the scenario where no clues have been gathered by the user yet.
+> 
 * `/view` Displays all clues that have been gathered.
-* `/view Father` Displays clues that have been gathered and are specific to Father.
+```
+$ /view
+Preparing the clues that you have gathered...
 
+You have not gathered any clues for anyone.
+```
+* `/view father ling` Displays clues that have been gathered and are specific to Father and Ling respectively.
+```
+$ /view father ling
+Preparing the clues that you have gathered...
+
+<Father>
+You have not gathered any clues for Father.
+<Ling>
+You have not gathered any clues for Ling.
+```
+
+>💡Suspect name is not case-sensitive.
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 

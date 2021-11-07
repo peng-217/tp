@@ -31,15 +31,13 @@ The plot of the game was adopted from one of the games available in the Mini Pro
 
 ### Architecture
 
-![High Level Architectural design](./main_architecture.png)
+![High Level Architecture Diagram](./high_level_architecture.png)
 
 The _**Architecture Diagram**_ given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
-![High Level Architecture Diagram](./high_level_architecture.png)
-
-### Main components of the architecture
+**Main components of the architecture**
 
 `Duke` is responsible for,
 
