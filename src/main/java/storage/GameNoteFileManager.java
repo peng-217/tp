@@ -30,9 +30,9 @@ public class GameNoteFileManager {
     }
 
     /**
-     * Save all the exiting note into a local data file.
+     * Saves all the exiting note into a local data file.
      *
-     * @param notes The note list to be saved
+     * @param notes The note list to be saved.
      */
     public void saveNote(NoteList notes) {
         File saveDirectory =  new File("data");
@@ -55,7 +55,7 @@ public class GameNoteFileManager {
     }
 
     /**
-     * Initialize all the locally saved notes.
+     * Initializes all the locally saved notes.
      *
      * @param notes The note list that going to be initialized.
      * @throws NoteCorruptedFileException If there is corruption in note data file.
@@ -99,8 +99,7 @@ public class GameNoteFileManager {
 
 
     /**
-     * Clear all locally saved notes if corruption is detected.
-     *
+     * Clears all locally saved notes if corruption is detected.
      */
     public void forceClearNote() {
         try {
