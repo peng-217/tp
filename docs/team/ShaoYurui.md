@@ -71,9 +71,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * JavaDoc:
-    * Added headers comments to improve code readability. 
+    * Added headers comments to improve code readability. (Pull request [\#264]( https://github.com/AY2122S1-CS2113-T14-1/tp/pull/264))
   * User Guide:
-    * Added local storage component explaining how the game progress is saved. 
+    * Added local storage component explaining how the game progress is saved. (Pull request [\#264]( https://github.com/AY2122S1-CS2113-T14-1/tp/pull/264))
   * Developer Guide:
     * Added Storage component explaining how to read and write encrypted files. (Pull request [\#218](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/260))
     * Added Storage class diagram explaining the structure among Added `Encrypted` class, `GameFileManager` class and `GameDataFileDecoer` class. (Pull request [\#218](https://github.com/AY2122S1-CS2113-T14-1/tp/pull/260))
