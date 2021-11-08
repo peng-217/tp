@@ -69,8 +69,10 @@ public class Ui {
             + " And it cannot start with 'scene'!" + "\nPlease check again!";
     private static final String INVALID_NOTE_TITLE = "Hey! The note title cannot contain 'End of this note.'!"
             + " And it cannot start with 'scene'! Please check again!";
-    private static final String REINPUT_MESSAGE_OPEN_OPTION = "Please type in the correct note command ('keyword' or 'index'):";
-    private static final String REINPUT_MESSAGE_SEARCH_METHOD = "Please type in the correct note command ('open' or 'search'):";
+    private static final String REINPUT_MESSAGE_OPEN_OPTION = "Please type in the correct note command"
+            + " ('keyword' or 'index'):";
+    private static final String REINPUT_MESSAGE_SEARCH_METHOD = "Please type in the correct note command"
+            + " ('open' or 'search'):";
     private Scanner scanner;
 
     public void printEmptyLine() {
