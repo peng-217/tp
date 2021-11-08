@@ -239,7 +239,7 @@ public class NoteList {
                 while (!userInput.equals("")) {
                     if (!(userInput.startsWith("search") || userInput.startsWith("open"))) {
                         ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
-                        ui.printReinputMessage();
+                        ui.printReinputMessageOpenOption();
                         userInput = ui.readUserInput();
                     } else {
                         break;
@@ -304,7 +304,7 @@ public class NoteList {
         while (!userInput.equals("") && quitNote == false) {
             if (!userInput.equals("keyword") && !userInput.equals("index") && !userInput.equals("/quit")) {
                 ui.printNoteErrorMessage(INVALID_NOTE_COMMAND_MESSAGE);
-                ui.printReinputMessage();
+                ui.printReinputMessageSearchMethod();
                 userInput = ui.readUserInput();
             } else if (userInput.equals("/quit")) {
                 quitNote = true;
